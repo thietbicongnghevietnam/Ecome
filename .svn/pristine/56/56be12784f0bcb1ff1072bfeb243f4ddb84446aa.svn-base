@@ -1,0 +1,75 @@
+﻿using MATERIAL_IN_OUT.AppCode;
+using System;
+using System.Data;
+using System.IO;
+using System.Net.Mail;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.Rendering;
+using System.Diagnostics;
+using System.Globalization;
+using System.Xml;
+using System.Xml.XPath;
+using MigraDoc.DocumentObjectModel.Tables;
+using MigraDoc.DocumentObjectModel.Shapes;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace MATERIAL_IN_OUT
+{
+    public partial class Index2 : System.Web.UI.Page
+    {
+        public float total_RQMaterialA_Month = 0;
+        public float total_RQMaterialB_Month  = 0;
+        public float total_Tranfer_Month = 0;
+        public float Total_MaterialA_Day = 0;
+        public float Total_MaterialB_Day = 0;
+        public float Total_Tranfer_Day = 0;
+        public DataTable DtTotal_RQ ;
+        public DataTable DtTotal_Dept ;
+        public DataTable DtTotal_Vendor ;
+        public DataTable  DtTotal_User ;
+
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                try
+                {
+                    var dt = DataConn.StoreFillDS("SP_Overview_RQ", System.Data.CommandType.StoredProcedure);
+                    total_RQMaterialA_Month = float.Parse(dt.Rows[0]["Total_MaterialA"].ToString());
+                    total_RQMaterialB_Month = float.Parse(dt.Rows[0]["Total_MaterialB"].ToString());
+                    total_Tranfer_Month = float.Parse(dt.Rows[0]["Total_Tranfer"].ToString());
+
+                    var dt1 = DataConn.StoreFillDS("SP_Overview_RQ_Day", System.Data.CommandType.StoredProcedure);
+                    Total_MaterialA_Day = float.Parse(dt1.Rows[0]["Total_MaterialA_Day"].ToString());
+                    Total_MaterialB_Day = float.Parse(dt1.Rows[0]["Total_MaterialB_Day"].ToString());
+                    Total_Tranfer_Day = float.Parse(dt1.Rows[0]["Total_Tranfer_Day"].ToString());
+
+                    DtTotal_Dept = DataConn.StoreFillDS("SP_Overview_RQ_TotalDept", CommandType.StoredProcedure);
+                    lblTotalDept.Text = DtTotal_Dept.Rows[0]["TotalDept"].ToString();
+
+                    DtTotal_RQ = DataConn.StoreFillDS("SP_Overview_RQ_TotalRQ", CommandType.StoredProcedure);
+                    lblTotalRQ.Text = DtTotal_RQ.Rows[0]["TotalRQ"].ToString();
+
+
+                    DtTotal_User = DataConn.StoreFillDS("SP_Overview_RQ_TotalUser", CommandType.StoredProcedure);
+                    lblTotalUser.Text = DtTotal_User.Rows[0]["TotalUser"].ToString();
+
+                    DtTotal_Vendor = DataConn.StoreFillDS("SP_Overview_RQ_TotalVendor", CommandType.StoredProcedure);
+                    lblTotalVendor.Text = DtTotal_Vendor.Rows[0]["TotalVendor"].ToString();
+
+                }
+                catch
+                {
+                    Response.Redirect("Login.aspx", false);
+                }
+               
+
+            }
+        }
+    }
+}

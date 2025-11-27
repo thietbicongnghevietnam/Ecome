@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Approved by email</title>
+</head>
+<body>
+    
+    <div style="float:left">
+
+
+        <h4>Dear All </h4>
+        <p>
+            Please check and approve for website:
+
+            <a href="http://10.92.184.24:8095/Material_Issue_FormB.aspx?RQ_NO=RQID&UserName=USID&Role=RoleUser&DeptID=CostCenter&Stock=StockOut&RoleD=RoleDept"> Link</a>
+
+        </p><br />
+        <p>
+            *******************************<br />
+            Issue material In-Out sys. <br />
+            Panasonic System Networks Vietnam Co., Ltd. (PSNV)<br />
+            Lot J1&J2 Thang Long Industrial Park, Dong Anh, Hanoi<br />
+            *******************************
+        </p>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,634 @@
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll.config
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.pdb
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csc.exe
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csc.exe.config
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csc.rsp
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csi.exe
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csi.rsp
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.AppContext.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.Collections.Immutable.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.Diagnostics.StackTrace.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.Primitives.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.Reflection.Metadata.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\vbc.exe
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\vbc.exe.config
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\vbc.rsp
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe.config
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\AjaxControlToolkit.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Antlr3.Runtime.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.bootstrap.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.jQuery.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.MSAjax.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.WebForms.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.Web.Infrastructure.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MigraDoc.DocumentObjectModel.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MigraDoc.Rendering.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MigraDoc.RtfRendering.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\msgbox.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Newtonsoft.Json.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\pdfsharp.charting.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\pdfsharp.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\System.Web.Optimization.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\WebGrease.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\System.Web.Optimization.xml
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Newtonsoft.Json.xml
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Antlr3.Runtime.pdb
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.xml
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CoreCompileInputs.cache
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CopyComplete
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.dll
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.pdb
+F:\MATERIAL _IN_OUT\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csprojAssemblyReference.cache
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll.config
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.pdb
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csc.exe
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csc.exe.config
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csc.rsp
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csi.exe
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csi.rsp
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CSharp.Core.targets
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.VisualBasic.Core.targets
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.AppContext.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.Collections.Immutable.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.Diagnostics.StackTrace.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.Primitives.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.Reflection.Metadata.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\vbc.exe
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\vbc.exe.config
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\vbc.rsp
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe.config
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\AjaxControlToolkit.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Antlr3.Runtime.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.bootstrap.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.jQuery.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.MSAjax.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.WebForms.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.Web.Infrastructure.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MigraDoc.DocumentObjectModel.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MigraDoc.Rendering.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MigraDoc.RtfRendering.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\msgbox.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Newtonsoft.Json.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\pdfsharp.charting.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\pdfsharp.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\System.Web.Optimization.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\WebGrease.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\System.Web.Optimization.xml
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Newtonsoft.Json.xml
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Antlr3.Runtime.pdb
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.xml
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CoreCompileInputs.cache
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CopyComplete
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.dll
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.pdb
+Y:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csprojAssemblyReference.cache
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll.config
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.pdb
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csc.exe
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csc.exe.config
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csc.rsp
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csi.exe
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\csi.rsp
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.AppContext.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.Collections.Immutable.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.Diagnostics.StackTrace.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.Primitives.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\System.Reflection.Metadata.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\vbc.exe
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\vbc.exe.config
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\vbc.rsp
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe.config
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\AjaxControlToolkit.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Antlr3.Runtime.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.bootstrap.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.jQuery.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.MSAjax.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.WebForms.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.Web.Infrastructure.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MigraDoc.DocumentObjectModel.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MigraDoc.Rendering.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\MigraDoc.RtfRendering.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\msgbox.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Newtonsoft.Json.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\pdfsharp.charting.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\pdfsharp.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\System.Web.Optimization.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\WebGrease.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\System.Web.Optimization.xml
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Newtonsoft.Json.xml
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Antlr3.Runtime.pdb
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.xml
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CoreCompileInputs.cache
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CopyComplete
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.pdb
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.AssemblyReference.cache
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\ClosedXML.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\ExcelNumberFormat.dll
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\ClosedXML.pdb
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\ClosedXML.xml
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.xml
+F:\MATERIAL_IN_OUT\MATERIAL_IN_OUT\bin\ExcelNumberFormat.xml
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll.config
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.pdb
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe.config
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.rsp
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.exe
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.rsp
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.AppContext.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Collections.Immutable.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Diagnostics.StackTrace.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.Primitives.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Reflection.Metadata.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe.config
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.rsp
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe.config
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AjaxControlToolkit.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.bootstrap.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.jQuery.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.MSAjax.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.WebForms.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.Web.Infrastructure.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.DocumentObjectModel.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.Rendering.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.RtfRendering.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\msgbox.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.charting.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\WebGrease.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.pdb
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.xml
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.xml
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.xml
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.xml
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.xml
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.pdb
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.xml
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CoreCompileInputs.cache
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CopyComplete
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.dll
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.pdb
+F:\04.CODECODE\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.AssemblyReference.cache
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll.config
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.pdb
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe.config
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.rsp
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.exe
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.rsp
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CSharp.Core.targets
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.VisualBasic.Core.targets
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.AppContext.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Collections.Immutable.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Diagnostics.StackTrace.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.Primitives.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Reflection.Metadata.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe.config
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.rsp
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe.config
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AjaxControlToolkit.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.bootstrap.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.jQuery.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.MSAjax.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.WebForms.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.Web.Infrastructure.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.DocumentObjectModel.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.Rendering.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.RtfRendering.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\msgbox.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.charting.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\WebGrease.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.pdb
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.xml
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.xml
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.xml
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.xml
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.xml
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.pdb
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.xml
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.AssemblyReference.cache
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CoreCompileInputs.cache
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CopyComplete
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.dll
+Y:\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.pdb
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll.config
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.pdb
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe.config
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.rsp
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.exe
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.rsp
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.AppContext.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Collections.Immutable.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Diagnostics.StackTrace.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.Primitives.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Reflection.Metadata.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe.config
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.rsp
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe.config
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AjaxControlToolkit.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.bootstrap.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.jQuery.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.MSAjax.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.WebForms.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.Web.Infrastructure.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.DocumentObjectModel.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.Rendering.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.RtfRendering.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\msgbox.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.charting.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\WebGrease.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.pdb
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.xml
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.xml
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.xml
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.xml
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.xml
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.pdb
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.xml
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.AssemblyReference.cache
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CoreCompileInputs.cache
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CopyComplete
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.dll
+F:\04.CODECODE\19.TOOLING_SYSTEM\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.pdb
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll.config
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.pdb
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe.config
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.rsp
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.exe
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.rsp
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.AppContext.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Collections.Immutable.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Reflection.Metadata.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe.config
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.rsp
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe.config
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AjaxControlToolkit.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.bootstrap.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.jQuery.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.MSAjax.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.WebForms.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.Web.Infrastructure.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.DocumentObjectModel.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.Rendering.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.RtfRendering.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\msgbox.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.charting.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\WebGrease.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.pdb
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.xml
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.xml
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.xml
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.xml
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.xml
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.pdb
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.xml
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.AssemblyReference.cache
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CoreCompileInputs.cache
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CopyComplete
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.dll
+D:\DIRIVE F\14. Material IN_OUT\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.pdb
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll.config
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.pdb
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe.config
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.rsp
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.exe
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.rsp
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CSharp.Core.targets
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.VisualBasic.Core.targets
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.AppContext.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Collections.Immutable.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Diagnostics.StackTrace.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.Primitives.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Reflection.Metadata.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe.config
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.rsp
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe.config
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AjaxControlToolkit.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.bootstrap.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.jQuery.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.MSAjax.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.WebForms.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.Web.Infrastructure.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.DocumentObjectModel.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.Rendering.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.RtfRendering.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\msgbox.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.charting.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\WebGrease.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.pdb
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.xml
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.xml
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.xml
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.xml
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.xml
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.pdb
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.xml
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.AssemblyReference.cache
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CoreCompileInputs.cache
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CopyComplete
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.dll
+\\10.92.184.24\WebApp\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.pdb
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll.config
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.pdb
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe.config
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.rsp
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.exe
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.rsp
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CSharp.Core.targets
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.VisualBasic.Core.targets
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.AppContext.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Collections.Immutable.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Diagnostics.StackTrace.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.Primitives.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Reflection.Metadata.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe.config
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.rsp
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe.config
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AjaxControlToolkit.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.bootstrap.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.jQuery.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.MSAjax.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.WebForms.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.Web.Infrastructure.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.DocumentObjectModel.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.Rendering.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.RtfRendering.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\msgbox.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.charting.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\WebGrease.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.pdb
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.xml
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.xml
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.xml
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.xml
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.xml
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.pdb
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.xml
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.AssemblyReference.cache
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CoreCompileInputs.cache
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CopyComplete
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.dll
+\\10.92.184.24\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.pdb
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll.config
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MATERIAL_IN_OUT.pdb
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.exe.config
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csc.rsp
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.exe
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\csi.rsp
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.CSharp.Core.targets
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\Microsoft.VisualBasic.Core.targets
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.AppContext.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Collections.Immutable.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Diagnostics.StackTrace.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.IO.FileSystem.Primitives.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\System.Reflection.Metadata.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.exe.config
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\vbc.rsp
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\roslyn\VBCSCompiler.exe.config
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AjaxControlToolkit.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.bootstrap.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\AspNet.ScriptManager.jQuery.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.MSAjax.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.ScriptManager.WebForms.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.Web.Infrastructure.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.DocumentObjectModel.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.Rendering.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\MigraDoc.RtfRendering.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\msgbox.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.charting.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\pdfsharp.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\WebGrease.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.pdb
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ClosedXML.xml
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\DocumentFormat.OpenXml.xml
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\ExcelNumberFormat.xml
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.Web.Optimization.xml
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Newtonsoft.Json.xml
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.pdb
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.xml
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csprojResolveAssemblyReference.cache
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.pdb

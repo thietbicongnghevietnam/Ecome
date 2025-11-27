@@ -1,0 +1,106 @@
+﻿using MATERIAL_IN_OUT.AppCode;
+using System;
+using System.Data;
+using System.IO;
+using System.Net.Mail;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.Rendering;
+using System.Diagnostics;
+using System.Globalization;
+using System.Xml;
+using System.Xml.XPath;
+using MigraDoc.DocumentObjectModel.Tables;
+using MigraDoc.DocumentObjectModel.Shapes;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace MATERIAL_IN_OUT
+{
+    public partial class SiteMaster : MasterPage
+    {
+        public string RolePage = null;
+        public  DataTable dt = new DataTable();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+            if ((string)Session["UserName"] == null && (string)Session["password"] == null && (string)Session["Name"] == null && (string)Session["CostCenter"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                DataTable dt = DataConn.StoreFillDS("SP_Login_GetName", CommandType.StoredProcedure, Session["UserName"].ToString());
+                string UserName = dt.Rows[0]["FullName"].ToString();
+                if (UserName.ToString() != "")
+                {
+                    lblUsername.Text = UserName.ToString();
+                    LoadMenu();
+                }
+            }
+
+        }
+        public void LoadMenu()
+        {
+            DataTable dt = DataConn.StoreFillDS("SP_Login_GetName", CommandType.StoredProcedure, Session["UserName"].ToString());
+            string RolePage = dt.Rows[0]["RolePage"].ToString();
+
+                if (RolePage == "Material")
+                {
+
+                    linkTranfer.Visible = false;
+                    linkUser.Visible = false;
+                    linkIssueControl.Enabled = true;
+                    linkInvoice.Visible = false;
+                    linkTranfer.ForeColor =  System.Drawing.Color.DarkGray;
+                    linkUser.ForeColor = System.Drawing.Color.DarkGray;
+                    linkInvoice.ForeColor = System.Drawing.Color.DarkGray;
+
+            }
+                else if (RolePage == "Tranfer")
+                {
+
+                    linkIssueControl.Enabled = false;
+                    linkTranfer.Enabled = true;
+                    linkUser.Visible = false;
+                    linkInvoice.Visible = false;    
+                    linkIssueControl.ForeColor = System.Drawing.Color.DarkGray;
+                    linkUser.ForeColor = System.Drawing.Color.DarkGray;
+                    linkInvoice.ForeColor = System.Drawing.Color.DarkGray;
+                 }
+
+                else if (RolePage == "Both1")
+                {
+                    linkTranfer.Enabled = true;
+                    linkUser.Visible = false;
+                    linkInvoice.Visible = false;
+                    linkIssueControl.Enabled = true;
+                    linkUser.ForeColor = System.Drawing.Color.DarkGray;
+                    linkInvoice.ForeColor  = System.Drawing.Color.DarkGray;
+                 }
+
+
+                else if (RolePage == "Both2")
+                {
+                    linkTranfer.Enabled = false;
+                    linkUser.Visible = false;
+                    linkInvoice.Enabled = true;
+                    linkIssueControl.Enabled = true;
+                    linkUser.ForeColor = System.Drawing.Color.DarkGray;
+                    linkTranfer.ForeColor = System.Drawing.Color.DarkGray;
+                }
+
+            else if (RolePage == "Admin")
+                {
+                    linkIssueControl.Enabled = true;
+                    linkTranfer.Enabled = true;
+                    linkUser.Enabled = true;
+                    linkInvoice.Enabled = true;
+            }
+
+            
+        }
+    }
+}

@@ -1,0 +1,101 @@
+﻿
+using ClosedXML.Excel;
+using MATERIAL_IN_OUT.AppCode;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+using System.Web.Services;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace MATERIAL_IN_OUT
+{
+    public partial class Commercial_Invoice : System.Web.UI.Page
+    {
+        public DataTable dtDetailRQ = new DataTable();
+        
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+
+                string invoice = Request.QueryString["Invoice"].ToString();
+                LoadDataRQ(invoice);
+            }
+        }
+        protected void LoadDataRQ(string Invoice)
+        {
+            string StrPlant = "";
+            dtDetailRQ = DataConn.FillStore("SP_Invoice_DetailInvoicePrint", CommandType.StoredProcedure, Invoice);
+            if (dtDetailRQ.Rows.Count > 0)
+            {
+                lblvendor_To.Text = dtDetailRQ.Rows[0]["Vendor_BillTo"].ToString();
+                lblVendorName.Text = dtDetailRQ.Rows[0]["VendorName_BillTo"].ToString();
+                lblVendorAddress.Text = dtDetailRQ.Rows[0]["Vendor_AddressTo"].ToString();
+                lblVendorPICTo.Text = dtDetailRQ.Rows[0]["Vendor_PIC_To"].ToString();
+
+                lblVendorNameShip.Text = dtDetailRQ.Rows[0]["Ship_To_PartyName"].ToString();
+                lblVendorAddressShip.Text = dtDetailRQ.Rows[0]["Address_ShipParty"].ToString();
+                lblVendorPICShip.Text = dtDetailRQ.Rows[0]["Attn_ShipParty"].ToString();
+                lblDate.Text = dtDetailRQ.Rows[0]["Date_Invoice"].ToString();
+                lblCarrier.Text = dtDetailRQ.Rows[0]["Carrier"].ToString();
+                lblCurrency.Text = dtDetailRQ.Rows[0]["Currentcy"].ToString();
+                lblDestination.Text = dtDetailRQ.Rows[0]["Destination"].ToString();
+                lblFeight.Text = dtDetailRQ.Rows[0]["Freight"].ToString();
+                lblInvoiceNo.Text = dtDetailRQ.Rows[0]["Invoice_No"].ToString();
+                lblNote.Text = dtDetailRQ.Rows[0]["Note"].ToString();
+                lblPayment.Text = dtDetailRQ.Rows[0]["Payment"].ToString();
+                lblDescription.Text = dtDetailRQ.Rows[0]["Description"].ToString();
+                lblTrade.Text = dtDetailRQ.Rows[0]["Trade_Tearm"].ToString();
+            }
+            DataTable dt = DataConn.FillStore("SP_Invoice_PlantPrint", CommandType.StoredProcedure, Invoice);
+            if (dt.Rows.Count > 0) // Liệt kê Plant theo RQ Có trường hợp nhiều RQ Materia
+            {
+                for (int j = 0; j < dt.Rows.Count; j++)
+                {
+
+                    StrPlant = StrPlant + ',' + dt.Rows[j]["Plant"].ToString();
+
+                }
+                if (StrPlant != "")
+                {
+                    int index = StrPlant.Length - 1;
+                    StrPlant = StrPlant.Substring(1, index);// lOẠI bo dau, strStore = strStore.Substring(2,));// lOẠI bo dau,
+                }
+                this.lblPlant.Text = StrPlant;
+
+            }
+        }
+
+        protected void bttDownload_Click(object sender, EventArgs e)
+        {
+            DataTable dtDowload = DataConn.FillStore("SP_Invoice_DetailInvoicePrint", CommandType.StoredProcedure,lblInvoiceNo.Text.ToString());
+            if (dtDowload.Rows.Count > 0)
+            {
+                using (XLWorkbook wb = new XLWorkbook())
+                {
+                    wb.Worksheets.Add(dtDowload, "Download_InvoiceCommution");
+                    Response.Clear();
+                    Response.Buffer = true;
+                    Response.Charset = "";
+                    Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    Response.AddHeader("content-disposition", "attachment;filename=Download_CommutionInvoice.xlsx");
+                    using (MemoryStream MyMemoryStream = new MemoryStream())
+                    {
+                        wb.SaveAs(MyMemoryStream);
+                        MyMemoryStream.WriteTo(Response.OutputStream);
+                        Response.Flush();
+                        Response.End();
+                    }
+                }
+
+            }
+
+        }
+    }
+}

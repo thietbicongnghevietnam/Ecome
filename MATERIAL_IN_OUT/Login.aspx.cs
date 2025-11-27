@@ -1,0 +1,179 @@
+﻿using MATERIAL_IN_OUT.AppCode;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.IO;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.OleDb;
+using System.Data.Common;
+using System.Net.Mail;
+using System.Diagnostics;
+using System.Globalization;
+using System.Xml;
+using System.Xml.XPath;
+using System.Net;
+using System.Text;
+using System.Configuration;
+using System.Collections;
+using System.Web.Security;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+namespace MATERIAL_IN_OUT
+{
+    public partial class Login : System.Web.UI.Page
+    {
+        public string RoleDept = "";
+
+        public string strStore = "" ;
+        public string StoreMaterial = "";
+
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                Session["UserName"] = null;
+                Session["password"] = null;
+                Session["Name"] = null;
+                Session["CostCenter"] = null;
+                Session["Role_Aproved_RQ"] = null;
+                Session["Role_Aproved_Store"] = null;
+            }
+        }
+        protected void bttLogin_Click1(object sender, EventArgs e)
+        {
+            if (txtUserName.Text == "" && this.txtPassword.Text == "")
+            {
+                lblMessge.Text = "Please input username and password!";
+                txtPassword.Focus();
+                txtUserName.Focus();
+            }
+            else if (txtUserName.Text == "" && txtPassword.Text != "")
+            {
+                lblMessge.Text = "Please input username!";
+                txtUserName.Focus();
+            }
+            else if (this.txtUserName.Text != "" && txtPassword.Text == "")
+            {
+                lblMessge.Text = "Please input password!";
+                txtPassword.Focus();
+            }
+            else if (txtPassword.Text != "" && txtUserName.Text != " ")
+            {
+                DataTable dt = DataConn.StoreFillDS("SP_Login_New", CommandType.StoredProcedure, this.txtUserName.Text.Trim(), this.txtPassword.Text.Trim());
+               // try
+               // {
+                    if (dt.Rows.Count == 0)
+                    {
+                        lblMessge.Text = "Account or password invalid!";
+                         this.txtUserName.Focus();
+                    }
+                    else
+                    {
+                        Session["UserName"] = dt.Rows[0]["UserLogin"].ToString().Trim();
+                        Session["Name"] = dt.Rows[0]["FullName"].ToString().Trim();
+                        Session["CostCenter"] = dt.Rows[0]["Dept"].ToString().Trim();
+                        
+
+                        //1. Định nghĩa Stock của kho material
+                        DataTable dtmaterial = DataConn.StoreFillDS("SP_Login_ShowStock_InOut", CommandType.StoredProcedure, this.txtUserName.Text, this.txtPassword.Text);
+                        if(dtmaterial.Rows.Count > 0 )
+                        {
+                            for (int j = 0; j < dtmaterial.Rows.Count; j++)
+                            {
+                                if (dtmaterial.Rows[j]["RoleStore"].ToString().Trim() == "STORE" && dtmaterial.Rows[j]["RoleStore"].ToString().Trim() != "Tranfer")
+                                {
+                                    strStore = strStore + ',' + dtmaterial.Rows[j]["Stock"].ToString();
+                                }
+                            }
+                            if (strStore != "")
+                            {
+                                int index = strStore.Length - 1;
+                                strStore = strStore.Substring(1, index);// lOẠI bo dau, strStore = strStore.Substring(2,));// lOẠI bo dau,
+                            }
+                           // Truyền Stock để show RQ các trang tiếp theo
+                            
+                            if(strStore!="")
+                            {
+                                Session["Stock"] = strStore;
+                            }
+                            else
+                            {
+                                Session["Stock"] = "";
+                            }
+                            Session["RoleOutStock"] = dtmaterial.Rows[0]["RoleStore"].ToString();
+                            Session["Role_Dept"] = dt.Rows[0]["RoleDept"].ToString();
+                            Session["Role_Aproved_Dept"] = dtmaterial.Rows[0]["RoleAprovedRQ"].ToString();
+                            Session["Role_Aproved_Stock"] = dtmaterial.Rows[0]["RoleAprovedStock"].ToString();
+
+                            //Session["RoleMakeRQ"] = dtmaterial.Rows[0]["RoleRQ"].ToString();
+
+                        }
+                        else
+                        {
+                        Session["RoleOutStock"] = "";
+                        Session["Role_Dept"] = "";
+                        Session["Role_Aproved_Dept"] = "";
+                        Session["Role_Aproved_Stock"] = "";
+
+                    }
+
+                    //___________________________
+
+                    //1. Định nghĩa Stock của kho Tranfer.
+                    DataTable dtTranfer = DataConn.StoreFillDS("SP_Login_ShowStock_Tranfer", CommandType.StoredProcedure, this.txtUserName.Text, this.txtPassword.Text);
+                        if(dtTranfer.Rows.Count>0)
+                        {
+                            for (int j = 0; j < dtTranfer.Rows.Count; j++)
+                            {
+                                if (dtTranfer.Rows[j]["RoleStore"].ToString().Trim() == "STORE" && dtTranfer.Rows[j]["RoleStore"].ToString().Trim() != "Material")
+                                {
+                                    StoreMaterial = StoreMaterial + ',' + dtTranfer.Rows[j]["Stock"].ToString();
+                                }
+                            }
+                            if (StoreMaterial != "")
+                            {
+                                int index = StoreMaterial.Length - 1;
+                                StoreMaterial = StoreMaterial.Substring(1, index);// lOẠI bo dau, strStore = strStore.Substring(2,));// lOẠI bo dau,
+                            }
+                            if (StoreMaterial != "")
+                            {
+                                Session["StockFrom"] = StoreMaterial;
+                                Session["StockTo"] = StoreMaterial;
+                            }
+                            else
+                            {
+                                Session["StockFrom"] = "";
+                                Session["StockTo"] = "";
+                            }
+
+                          
+                        }
+                        else
+                    {
+                        Session["StockFrom"] = "";
+                        Session["StockTo"] = "";
+                    }
+                       
+                        //___________________________
+                       // Session["Role_Dept"] = dt.Rows[0]["RoleDept"].ToString();
+                        Session["Role_Page"] = dt.Rows[0]["RolePage"].ToString();
+                        //Response.Redirect("Material_Issues_FormA.aspx", false);
+                        Response.Redirect("Index.aspx", false);
+                        lblMessge.Text = "Login sucessfully";
+                        
+                    }
+               // }
+                //catch (Exception ex)
+                //{
+                  //  ex.ToString();
+                   // lblMessge.Text = "Login have error!!!";
+                //}
+            }
+        }
+    }
+}

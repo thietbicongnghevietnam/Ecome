@@ -1,0 +1,122 @@
+﻿
+using MATERIAL_IN_OUT.AppCode;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+using System.Web.Services;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+
+namespace MATERIAL_IN_OUT
+{
+    public partial class ControlRQ_Invoice : System.Web.UI.Page
+    {
+        public DataTable dtListRQ = new DataTable();
+        public DataTable dtInvoice = new DataTable();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                LoadRQ_Material();
+                BindDept();
+                BindVendor();
+                ListInvoice();
+                //txtDateVoucher.Value = DateTime.Now.ToString("dd/MM/yyyy");
+
+            }
+        }
+        public void LoadRQ_Material()
+        {
+            dtListRQ = DataConn.FillStore("SP_Invoice_RQMaterial", CommandType.StoredProcedure);
+        }
+
+        public void ListInvoice()
+        {
+            dtInvoice = DataConn.FillStore("SP_Invoice_ListInvoice", CommandType.StoredProcedure);
+        }
+        protected void BindVendor()
+        {
+            DataTable dt = new DataTable();
+            dt = DataConn.FillStore("SP_Invoice_VendorMaster", CommandType.StoredProcedure);
+            if (dt.Rows.Count > 0)
+            {
+                ddlVendor.Items.Clear();
+                DataRow dr = dt.NewRow();
+                dr[0] = "--Select Vendor--";
+                dt.Rows.InsertAt(dr, 0);
+                ddlVendor.DataTextField = "VendorCode";
+                ddlVendor.DataValueField = "VendorCode";
+                ddlVendor.DataSource = dt;
+                ddlVendor.DataBind();
+            }
+
+
+        }
+        protected void BindDept()
+        {
+            DataTable dt = new DataTable();
+            dt = DataConn.DataTable_Sql("select CostCenter,DeptName from  [dbo].[tbl_Dept]");
+            if (dt.Rows.Count > 0)
+            {
+                ddlDept.Items.Clear();
+                DataRow dr = dt.NewRow();
+                dr[0] = "--Select Dept--";
+                dt.Rows.InsertAt(dr, 0);
+                ddlDept.DataTextField = "DeptName";
+                ddlDept.DataValueField = "CostCenter";
+                ddlDept.DataSource = dt;
+                ddlDept.DataBind();
+            }
+
+        }
+
+        protected void ddlDept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string DateVourcher = txtDateVoucher.Value.ToString();
+            string VendorCode = ddlVendor.SelectedValue.ToString(); 
+            string DeptCode = ddlDept.SelectedValue.ToString();
+            dtListRQ = DataConn.FillStore("[SP_Invoice_SearhRQMaterial]", CommandType.StoredProcedure, VendorCode, DeptCode, DateVourcher);
+        }
+
+        protected void ddlVendor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string DateVourcher = txtDateVoucher.Value.ToString();
+            string VendorCode = ddlVendor.SelectedValue.ToString();
+            string DeptCode = ddlDept.SelectedValue.ToString();
+            dtListRQ = DataConn.FillStore("[SP_Invoice_SearhRQMaterial]", CommandType.StoredProcedure, VendorCode, DeptCode, DateVourcher);
+        }
+
+        protected void bttSearch_Click(object sender, EventArgs e)
+        {
+            string DateVourcher = txtDateVoucher.Value.ToString();
+            string VendorCode = ddlVendor.SelectedValue.ToString();
+            string DeptCode = ddlDept.SelectedValue.ToString();
+            dtListRQ = DataConn.FillStore("[SP_Invoice_SearhRQMaterial]", CommandType.StoredProcedure, VendorCode, DeptCode, DateVourcher);
+        }
+
+        protected void bttViewReport_ServerClick(object sender, EventArgs e)
+        {
+           
+
+        }
+        protected void ViewRQMaterial(int index)
+        {
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("index = " +
+                 index);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+    }
+}
