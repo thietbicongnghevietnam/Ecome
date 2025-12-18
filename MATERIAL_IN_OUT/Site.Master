@@ -148,6 +148,13 @@
                             <li>
                                 <asp:HyperLink ID="linkUser" runat="server" NavigateUrl="~/ControlUser.aspx" CssClass="has-arrow fa big-icon fa-user" Text=" Control User"></asp:HyperLink>
                             </li>
+                            <li>
+                               <%-- <asp:HyperLink ID="linkPrice" runat="server" NavigateUrl="~/ControlPriceSAP.aspx" CssClass="has-arrow fa fa-cloud-upload big-icon" Text="Upload Price SAP"></asp:HyperLink>--%>
+                                <a href="/ControlPriceSAP2.aspx" target="_blank" class="has-arrow fa fa-cloud-upload big-icon"> Upload Price SAP </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" class="has-arrow fa fa-cloud-upload big-icon"> History change Price</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

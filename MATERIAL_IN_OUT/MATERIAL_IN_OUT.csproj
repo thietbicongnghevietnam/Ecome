@@ -154,8 +154,26 @@
     <Content Include="ADD LIBRARY PDF&amp; MSG\pdfsharp.charting.dll" />
     <Content Include="ADD LIBRARY PDF&amp; MSG\pdfsharp.dll" />
     <Content Include="Changepassword.aspx" />
+    <Content Include="ControlPriceSAP.aspx" />
+    <Content Include="ControlPriceSAP2.aspx" />
     <Content Include="Download.aspx" />
     <Content Include="Control_ExchangeRate.aspx" />
+    <Content Include="LibNew\adminlte.min.css" />
+    <Content Include="LibNew\adminlte.min.js" />
+    <Content Include="LibNew\all.min.css" />
+    <Content Include="LibNew\bootstrap.bundle.min.js" />
+    <Content Include="LibNew\bootstrap.min.css" />
+    <Content Include="LibNew\dataTables.bootstrap4.min.css" />
+    <Content Include="LibNew\dataTables.bootstrap4.min.js" />
+    <Content Include="LibNew\dataTables.responsive.min.js" />
+    <Content Include="LibNew\jquery-3.6.4.min.js" />
+    <Content Include="LibNew\jquery-ui.css" />
+    <Content Include="LibNew\jquery-ui.min.js" />
+    <Content Include="LibNew\jquery.dataTables.min.js" />
+    <Content Include="LibNew\responsive.bootstrap4.min.css" />
+    <Content Include="LibNew\responsive.bootstrap4.min.js" />
+    <Content Include="LibNew\toastr.min.css" />
+    <Content Include="LibNew\toastr.min.js" />
     <Content Include="ReviseInvoice.aspx" />
     <Content Include="Create_Invoice.aspx" />
     <Content Include="css\datapicker\bootstrap-datepicker.js" />
@@ -265,6 +283,8 @@
     <Content Include="img\Reject.png" />
     <Content Include="PackingList.aspx" />
     <Content Include="PUR_Control_InOut_CDS.aspx" />
+    <Content Include="Scripts\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\WebForms\toastr.js" />
     <Content Include="css\Timeline.css" />
@@ -463,6 +483,20 @@
       <DependentUpon>Changepassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Data\Connect.cs" />
+    <Compile Include="ControlPriceSAP.aspx.cs">
+      <DependentUpon>ControlPriceSAP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlPriceSAP.aspx.designer.cs">
+      <DependentUpon>ControlPriceSAP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPriceSAP2.aspx.cs">
+      <DependentUpon>ControlPriceSAP2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlPriceSAP2.aspx.designer.cs">
+      <DependentUpon>ControlPriceSAP2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Download.aspx.cs">
       <DependentUpon>Download.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

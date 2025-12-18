@@ -629,6 +629,8 @@ H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\N
 H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Antlr3.Runtime.pdb
 H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.AspNet.FriendlyUrls.xml
 H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csprojResolveAssemblyReference.cache
 H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.dll
 H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.pdb
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.AssemblyReference.cache
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CoreCompileInputs.cache
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Debug\MATERIAL_IN_OUT.csproj.CopyComplete

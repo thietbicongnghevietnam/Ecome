@@ -225,6 +225,8 @@
                     <asp:TreeView ID="treeRQ_OutMateial" ForeColor="#000066" runat="server" OnSelectedNodeChanged="treeRQ_OutMateial_SelectedNodeChanged">
                     </asp:TreeView>
                   </div>
+
+
                 </div>
                 
             <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
@@ -321,6 +323,7 @@
                                 <asp:Button ID="bttTempFile" CssClass="btn btn-info" Text="TempUpload" runat="server" OnClick="bttTempFile_Click" />
                                 <asp:Button ID="bttPrint"  OnClientClick="openInNewTab()"   CssClass="btn btn-info" Text="Down PDF" runat="server" OnClick="bttPrint_Click" />
                                 <asp:Button ID ="bttDownExcel" CssClass="btn btn-info"  runat  ="server" OnClick ="bttDownExcel_Click"   Text ="Down Excel"/>
+                                <asp:Button ID ="bttCheckPrice" CssClass="btn btn-info"  runat  ="server" OnClick ="bttCheckPrice_Click"   Text ="Update SAP Price"/>
                                </div>
                          
                             <div class="pull-right">
