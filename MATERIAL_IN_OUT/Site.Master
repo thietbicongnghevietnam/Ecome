@@ -153,7 +153,7 @@
                                 <a href="/ControlPriceSAP2.aspx" target="_blank" class="has-arrow fa fa-cloud-upload big-icon"> Upload Price SAP </a>
                             </li>
                             <li>
-                                <a href="#" target="_blank" class="has-arrow fa fa-cloud-upload big-icon"> History change Price</a>
+                                <a href="/frmHistoryChangePrice.aspx" target="_blank" class="has-arrow fa fa-cloud-upload big-icon"> History change Price</a>
                             </li>
                         </ul>
                     </nav>

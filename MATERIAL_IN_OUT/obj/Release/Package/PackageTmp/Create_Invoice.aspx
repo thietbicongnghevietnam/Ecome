@@ -87,6 +87,7 @@
             border: 1px solid #ccc;
         }
     </style>
+    <script src="Scripts/jquery.min.js"></script>
     <div class="mailbox-view-area mg-tb-15">
         <div class="container-fluid">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -99,9 +100,11 @@
                                 </button>
                             </div>
                             <div class="row">
-                                <center>  <asp:Label ID ="Label1" runat ="server" Font-Bold ="true"  Font-Underline ="true" Font-Size ="25px"> COMMERCIAL INVOICE</asp:Label> <br />
-                                           <p style ="color:brown"> (RQ Material:<asp:Label ID  ="lblRQ_Show" runat ="server"   Font-Size ="Small"></asp:Label>) </p>
-                                    </center>
+                                <center>
+                                    <asp:Label ID="Label1" runat="server" Font-Bold="true" Font-Underline="true" Font-Size="25px"> COMMERCIAL INVOICE</asp:Label>
+                                    <br />
+                                    <p style="color: brown">(RQ Material:  <asp:Label ID="lblRQ_Show" runat="server" Font-Size="Small"></asp:Label>) </p>
+                                </center>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-md-6 col-sm-6 col-xs-12" style="left: 0px; top: 0px">
@@ -124,7 +127,7 @@
                                         <table data-toggle="table">
                                             <thead>
                                                 <tr>
-                                                    <th><b>BILL- TO PARTRY</b></th>
+                                                    <th><b>BILL- TO PARTY</b></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -137,14 +140,19 @@
                                                             <asp:Label ID="lblNameVendor_to" CssClass="lable" runat="server"></asp:Label><br />
                                                         </div>
                                                         <div class="col-75">
+                                                            <asp:Label runat="server" CssClass="tittle" Font-Bold="true" Text="Address: "></asp:Label>
+                                                        </div>
+                                                        <div class="col-75">
                                                             <asp:Label ID="lblAddressVendor_To" CssClass="lable" runat="server"></asp:Label><br />
                                                         </div>
                                                         <div class="col-75">
-                                                            <asp:Label runat="server" CssClass="tittle" Font-Bold="true" Text="Attn: "></asp:Label>
-                                                            <br />
+                                                            <asp:Label ID="lblPIC_vendorTo" CssClass="lable" runat="server"></asp:Label>
+                                                        </div>
+                                                        <div class="col-25">
+                                                            <b>Attn:</b>
                                                         </div>
                                                         <div class="col-75">
-                                                            <asp:Label ID="lblPIC_vendorTo" CssClass="lable" runat="server"></asp:Label>
+                                                            <asp:TextBox ID="txtAttn_BIllTO" class="textbox" runat="server"></asp:TextBox>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -154,7 +162,7 @@
 
 
                                         <div class="col-25">
-                                            <asp:Label runat="server" Font-Bold="true" CssClass="tittle" Text="Plant:"></asp:Label>
+                                            <asp:Label runat="server" Font-Bold="true" Text="Plant:"></asp:Label>
                                         </div>
                                         <div class="col-75">
                                             <asp:Label ID="lblPlant" Font-Bold="true" CssClass="lable" runat="server"></asp:Label>
@@ -169,6 +177,7 @@
 
                                         <div class="col-25">
                                             <asp:Label runat="server" Font-Bold="true" CssClass="tittle" Text="TRADE TERMS :"></asp:Label>
+
                                         </div>
                                         <div class="col-75">
                                             <asp:DropDownList ID="ddlTrade_Tearm" CssClass="droplist" runat="server"></asp:DropDownList>
@@ -197,6 +206,7 @@
                                             <asp:TextBox ID="txtPONumber" class="textbox" runat="server"></asp:TextBox>
                                         </div>
 
+                                        <br />
 
                                     </div>
 
@@ -206,11 +216,10 @@
                                     <div class="panel-body">
 
                                         <div class="col-75">
-                                            <asp:Label runat="server" Font-Bold="true" CssClass="tittle" Text="NO:" ForeColor="Blue" Font-Size="18px"></asp:Label>
+                                            <asp:Label runat="server" Font-Bold="true" CssClass="tittle" Text="NO: " ForeColor="Blue" Font-Size="18px"></asp:Label>
                                             <asp:Label ID="lblInvoiceNO" Font-Bold="true" CssClass="lable" ForeColor="Blue" Font-Size="18px" runat="server"></asp:Label>
+                                            <asp:HiddenField ID="hdfInvoicePrint" runat="server" />
                                         </div>
-
-
 
 
                                         <div class="col-75">
@@ -264,9 +273,6 @@
                                                             <textarea id="txtAddress_Shipment" class="Area" runat="server"></textarea>
                                                         </div>
 
-
-
-
                                                         <div class="col-25">
                                                             <asp:Label runat="server" Font-Bold="true" CssClass="tittle" Text="Attn: "></asp:Label>
                                                         </div>
@@ -294,7 +300,7 @@
                                             <asp:TextBox ID="txtCarrier" class="textbox" runat="server"></asp:TextBox>
                                         </div>
                                         <div class="col-25">
-                                            <asp:Label runat="server" Font-Bold="true" CssClass="tittle" Text="  Remask:"></asp:Label>
+                                            <asp:Label runat="server" Font-Bold="true" CssClass="tittle" Text="Remark:"></asp:Label>
                                         </div>
                                         <div class="col-75">
                                             <asp:TextBox ID="txtRemark" class="textbox" runat="server"></asp:TextBox>
@@ -334,22 +340,22 @@
                                                         <%=rows["Material"].ToString()%>
                                                     </td>
                                                     <td>
-                                                        <%=rows["Material"].ToString()%>
+                                                        <%=rows["ItemDescription"].ToString()%>
                                                     </td>
                                                     <td>
-                                                        <%=rows["Country_Origin"].ToString()%>
+                                                        <%=rows["CountryofOrigin"].ToString()%>
                                                     </td>
                                                     <td>
                                                         <%=rows["IssueQty"].ToString()%>
                                                     </td>
                                                     <td>
-                                                        <%=rows["UnitPrice_ST"].ToString()%>
+                                                        <%=string.IsNullOrEmpty(rows["UnitPrice_AC"].ToString())?"":Math.Round(decimal.Parse(rows["UnitPrice_AC"].ToString()), 5).ToString("C").Replace("$","")%>
+                                                        <%--<%=rows["UnitPrice_AC"].ToString()%>--%>
                                                     </td>
                                                     <td>
-                                                        <%=rows["Amount_ST"].ToString()%>
+                                                        <%=string.IsNullOrEmpty(rows["Amount_AC"].ToString())?"":Math.Round(decimal.Parse(rows["Amount_AC"].ToString()), 2).ToString("C").Replace("$","")%>
+                                                        <%--<%=rows["Amount_AC"].ToString()%>--%>
                                                     </td>
-
-
                                                 </tr>
                                                 <% } %>
                                             </tbody>
@@ -362,15 +368,20 @@
                         </div>
                         <div class="panel-footer">
                             <div class="btn-group">
-                                <asp:Button ID="bttDownload" CssClass="btn btn-info" Text="Download" runat="server" OnClick="bttDownload_Click" />
+                                <div class="col-lg-12" style="float: left; font-size: 25px;">
+                                    <asp:Button ID="bttDownload" CssClass="btn btn-info" Text="Download" runat="server" OnClick="bttDownload_Click" />
+                                    &nbsp;
+                                  <asp:Button ID="bttExportInvoice" runat="server" Text="PDF Invoice" CssClass="btn btn-info" OnClick="bttExportInvoice_Click" />
+                                    &nbsp;
+                                  <asp:Button ID="bttSaveInvoice" CssClass="btn btn-info" Text="Save Invoice" runat="server" OnClick="bttSaveInvoice_Click" />
 
-                                <asp:Button ID="bttExportInvoice" runat="server" Text="PDF Invoice" CssClass="btn btn-info" OnClick="bttExportInvoice_Click" />
-                                <asp:Button ID="bttSaveInvoice" CssClass="btn btn-info" Text="Save Invoice" runat="server" OnClick="bttSaveInvoice_Click" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="Scripts/jquery.min.js"></script>
+        </div>
+        
 </asp:Content>

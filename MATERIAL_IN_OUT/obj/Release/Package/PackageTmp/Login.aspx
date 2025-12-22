@@ -76,7 +76,8 @@
                 </div>
                 <div class="hpanel">
                     <div class="panel-body">
-                        <form action="#" id="loginForm">
+                       <%-- <form action="#" id="loginForm">--%>
+                        <div id="loginForm">
                             <div class="form-group">
                                 <label class="control-label" for="username">Username</label>
                                 <asp:TextBox ID ="txtUserName" runat ="server"  class="form-control" placeholder="Please enter you username." title="Please enter you username"></asp:TextBox>
@@ -94,8 +95,8 @@
                             
                           <asp:Button ID ="bttLogin" runat ="server" class="btn btn-success btn-block loginbtn" 
                                 OnClick="bttLogin_Click1" Text ="LOGIN"  />
-                         
-                        </form>
+                       </div>  
+                       <%-- </form>--%>
                     </div>
                 </div>
             </div>

@@ -152,7 +152,6 @@
                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                 <input id="txtDateInput" type="text" class="form-control" placeholder="dd-mm-yyyy"  runat ="server"/>
 
-
                                             </div>
                                         </div>
                                     </div>
@@ -218,25 +217,18 @@
             <div class="col-md-3 col-md-3 col-sm-3 col-xs-12" style="left: 0px; top: 0px">
 
                 <div class="panel-body">
-                    <a class="btn btn-success compose-btn btn-block m-b-md">Control Request Issue</a>
-                    <div class="sparkline10-graph">
-                        <div class="adminpro-content">
-                            <asp:TreeView ID="treeNOT_Approved" runat="server" OnSelectedNodeChanged="treeNOT_Approved_SelectedNodeChanged">
-                            </asp:TreeView>
-                        </div>
-                    </div>
+                     <a class="btn btn-success compose-btn btn-block m-b-md">Control Request Issue</a>
+                    
+                    <asp:TreeView ID="treeRQ_InMaterial" runat="server" ForeColor="Blue" OnSelectedNodeChanged="treeRQ_InMaterial_SelectedNodeChanged">
+                    </asp:TreeView>
+               
+                    <asp:TreeView ID="treeRQ_OutMateial" ForeColor="#000066" runat="server" OnSelectedNodeChanged="treeRQ_OutMateial_SelectedNodeChanged">
+                    </asp:TreeView>
+                  </div>
 
-                    <hr>
-                    <div class="sparkline10-graph">
-                        <div class="adminpro-content">
-
-                            <asp:TreeView ID="treeApproved" runat="server" OnSelectedNodeChanged="treeApproved_SelectedNodeChanged">
-                            </asp:TreeView>
-                        </div>
-                    </div>
 
                 </div>
-            </div>
+                
             <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
                 <div class="hpanel email-compose mailbox-view mg-b-15">
                     <div class="data-table-area mg-tb-15">
@@ -267,26 +259,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <%int i = 1;%>
-                                                <%foreach (System.Data.DataRow rows in dt_IssueMaterial.Rows)
+                                                   <asp:Repeater runat="server" ID="dtIssueMaterial">
+                                                    <ItemTemplate>
+                                                        <tr>
+                                                            <td><%#Eval("No") %></td>
+                                                            <td><%#Eval("RequestNo") %></td>
+                                                            <td><%#Eval("Material") %></td>
+                                                            <td><%#Eval("DateVoucher") %></td>
+                                                            <td><%#Eval("Sloc") %></td>
+                                                            <td><%#Eval("IssueQty") %></td>
+                                                             <td><%#Eval("UnitPrice_ST") %></td>
+                                                            <td><%#Eval("Amount_ST") %></td>
+                                                             <td><%#Eval("UnitPrice_AC") %></td>
+                                                            <td><%#Eval("Amount_AC") %></td>
+                                                            <td><%#Eval("Note") %></td>
+                                                            <td><%#Eval("Status_RQ") %></td>
+                                                        </tr>
 
-                                                    {%>
-                                                <tr>
-                                                    <td><%= i++%></td>
-                                                    <td><%=rows["RequestNo"].ToString() %></td>
-                                                    <td><%=rows["Material"].ToString() %></td>
-                                                    <td><%=rows["DateVoucher"].ToString() %></td>
-                                                    <td><%=rows["Sloc"].ToString() %></td>
-                                                    <td><%=rows["IssueQty"].ToString() %></td>
-                                                    <td><%=rows["UnitPrice_ST"].ToString() %></td>
-                                                    <td><%=rows["Amount_ST"].ToString() %></td>
-                                                    <td><%=rows["UnitPrice_AC"].ToString() %></td>
-                                                    <td><%=rows["Amount_AC"].ToString() %></td>
-                                                    <td><%=rows["Note"].ToString() %></td>
-                                                    <td><%=rows["Status_RQ"].ToString() %></td>
+                                                   
 
-                                                </tr>
-                                                <% } %>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                               
                                             </tbody>
                                         </table>
                                     </div>
@@ -323,19 +317,24 @@
                         </div>
 
                         <div class="panel-footer">
-                            <div class="btn-group">
+                            <div class="btn-group" style ="font-size:25px;">
                                 <asp:FileUpload ID="FileUpload1" CssClass="btn btn-default"   runat="server" />
-                                <asp:Button ID="bttUpload" CssClass="btn btn-info"  runat="server" Text="Upload(File B)" OnClick="bttUpload_Click" />
-                                <asp:Button ID="bttTempFile" CssClass="btn btn-info" Text="Download Tempfile" runat="server" OnClick="bttTempFile_Click" />
-                                <asp:Button ID="bttPrint"  OnClientClick="openInNewTab()"   CssClass="btn btn-info" Text="Export PDF" runat="server" OnClick="bttPrint_Click" />
-                            </div>
+                                <asp:Button ID="bttUpload"   CssClass="btn btn-info "   runat="server" Text="Upload(File B)" OnClick="bttUpload_Click" /> 
+                                <asp:Button ID="bttTempFile" CssClass="btn btn-info" Text="TempUpload" runat="server" OnClick="bttTempFile_Click" />
+                                <asp:Button ID="bttPrint"  OnClientClick="openInNewTab()"   CssClass="btn btn-info" Text="Down PDF" runat="server" OnClick="bttPrint_Click" />
+                                <asp:Button ID ="bttDownExcel" CssClass="btn btn-info"  runat  ="server" OnClick ="bttDownExcel_Click"   Text ="Down Excel"/>
+                                <asp:Button ID ="bttCheckPrice" CssClass="btn btn-info"  runat  ="server" OnClick ="bttCheckPrice_Click"   Text ="Update SAP Price"/>
+                               </div>
+                         
                             <div class="pull-right">
                                 <div class="btn-group" >
-                                    <asp:Button ID="bttApproved" CssClass="btn btn-info" runat="server" OnClick="bttApproved_Click" />
-                                    <asp:Button ID="bttReject" CssClass="btn btn-info" Text="Reject" runat="server" OnClick="bttReject_Click" />
-                                    <asp:Button ID="bttReset" CssClass="btn btn-info" Text="Reset" runat="server" OnClick="bttReset_Click" />
-                                    <button type="button" class="btn btn-info" id="Comment" onclick="openAdd('<%=hdfRequest.Value.ToString()%>','<%=hdfRoleDeptUpdate.Value.ToString()%>','<%=hdfRoleupdate.Value.ToString()%>','<%=hdfUserUpdate.Value.ToString()%>')">Comment</button>
-                                    
+                                    <%--<div class="col-lg-8"  style ="float:left; font-size:25px;">--%>
+                                    <asp:Button ID="bttApproved" CssClass="btn btn-info" runat="server" OnClick="bttApproved_Click" />&nbsp;
+                                    <asp:Button ID="bttReject" CssClass="btn btn-info" Text="Reject" runat="server" OnClick="bttReject_Click" />&nbsp;
+                                    <asp:Button ID="bttReset" CssClass="btn btn-warning" Text="Reset" runat="server" OnClick="bttReset_Click" />&nbsp;
+                                    <asp:Button ID="bttDelete" CssClass="btn btn-danger" Text="Delete" runat="server"  OnClick ="bttDelete_Click" />
+                                   <button type="button" id="Comment" onclick="openAdd('<%=hdfRequest.Value.ToString()%>','<%=hdfControlRQ.Value.ToString()%>','<%=hdfControlACC.Value.ToString()%>','<%=hdfControlStore.Value.ToString()%>','<%=hdfUserUpdate.Value.ToString()%>')" class="btn btn-info">Comment</button>
+                                    <%--</div>--%>
                                 </div>
                             </div>
                         </div>
@@ -353,10 +352,10 @@
                                     <div class="panel-heading">
                                         Comments -  ( RequestNo:
                                     <asp:Label ID="lblRequestUpdate" runat="server"></asp:Label>)
+                                          <asp:HiddenField ID  ="hdfRQ_UpdateComent" runat ="server" />
                                     </div>
                                     <div class="panel-body">
                                         <textarea id="txt_Comment" runat="server" class="form-control" placeholder="Write a comment..." rows="3"></textarea>
-
                                         <br>
                                         <button type="button" id="bttSend" class="btn btn-info pull-right" runat="server" onserverclick="bttSend_Click">Send </button>
                                         <button type="button" class="btn btn-info pull-right" data-dismiss="modal">Close</button>
@@ -371,21 +370,31 @@
                 </div>
 
             </div>
-            <asp:HiddenField ID="hdfRoleDeptUpdate" runat="server" />
-            <asp:HiddenField ID="hdfRoleupdate" runat="server" />
-            <asp:HiddenField ID="hdfRequest" runat="server" />
-            <asp:HiddenField ID="hdfUserUpdate" runat="server" />
-        </div>
-    </div>
-    
-    <script type="text/javascript"> 
-        function openAdd(lbl_RQ, RoleDept, Role, User) {
+               <asp:HiddenField ID="hdfRoleRQ_UpdateComment" runat="server" />
+                <asp:HiddenField ID="hdfRoleACC_UpdateComment" runat="server" />
+                <asp:HiddenField ID="hdfRoleSTORE_UpdateComment" runat="server" />
+                <asp:HiddenField ID="HiddenField2" runat="server" />
+                <asp:HiddenField ID="hdfRoleupdate" runat="server" />
+                <asp:HiddenField ID="hdfRequest" runat="server" />
+                <asp:HiddenField ID="hdfUserUpdate" runat="server" />
+                <asp:HiddenField ID="hdfControlRQ" runat="server" />
+                <asp:HiddenField ID="hdfControlStore" runat="server" />
+                <asp:HiddenField ID="hdfControlACC" runat="server" />
+                <asp:HiddenField ID="hdftreeview" runat="server" />
 
-            $('#<%=lblRequestUpdate.ClientID%>').html(lbl_RQ);
-            $('#<%=hdfRoleDeptUpdate.ClientID%>').html(RoleDept);
-            $('#<%=hdfRoleDeptUpdate.ClientID%>').html(Role);
+        
+   </div>
+      <</div>
+          
+    <script type="text/javascript"> 
+        function openAdd(lbl_RQ, RoleRQ, RoleACC, RoleStock, User) {
+            $('#<%=lblRequestUpdate.ClientID%>').val(lbl_RQ);
+            $('#<%=hdfRoleRQ_UpdateComment.ClientID%>').val(RoleRQ);
+            $('#<%=hdfRoleACC_UpdateComment.ClientID%>').val(RoleACC);
+            $('#<%=hdfRoleSTORE_UpdateComment.ClientID%>').val(RoleStock);
             $('#<%=hdfUserUpdate.ClientID%>').html(User);
-            //            debugger;
+            $('#<%=hdfRQ_UpdateComent.ClientID%>').val(lbl_RQ);
+
             $('#myNew').modal('show');
         }
     </script>

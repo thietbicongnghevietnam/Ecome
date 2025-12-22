@@ -158,6 +158,7 @@
     <Content Include="ControlPriceSAP2.aspx" />
     <Content Include="Download.aspx" />
     <Content Include="Control_ExchangeRate.aspx" />
+    <Content Include="frmHistoryChangePrice.aspx" />
     <Content Include="LibNew\adminlte.min.css" />
     <Content Include="LibNew\adminlte.min.js" />
     <Content Include="LibNew\all.min.css" />
@@ -271,7 +272,6 @@
     <Content Include="images\Reject.png" />
     <Content Include="images\user_2.jpg" />
     <Content Include="img\Approved.png" />
-    <Content Include="img\logo\Thumbs.db" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -510,6 +510,13 @@
     </Compile>
     <Compile Include="Control_ExchangeRate.aspx.designer.cs">
       <DependentUpon>Control_ExchangeRate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmHistoryChangePrice.aspx.cs">
+      <DependentUpon>frmHistoryChangePrice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmHistoryChangePrice.aspx.designer.cs">
+      <DependentUpon>frmHistoryChangePrice.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReviseInvoice.aspx.cs">
       <DependentUpon>ReviseInvoice.aspx</DependentUpon>

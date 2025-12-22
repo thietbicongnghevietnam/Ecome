@@ -1,18 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ControlUser.aspx.cs" Inherits="MATERIAL_IN_OUT.ControlUser" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    
-        
         <%--<div class="container-fluid">--%>
        <div class="mailbox-view-area mg-tb-15">
                 <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            
                                       <asp:LinkButton ID="lnkUMateral" runat="server" Text=" User Issue IN-OUT" OnClick="lnkUMateral_Click"></asp:LinkButton><%--</li>--%>
                                             &nbsp&nbsp&nbsp
                                             <asp:LinkButton ID="lnkUTranfer" runat="server" Text="UserTranfer" OnClick="lnkUTranfer_Click"></asp:LinkButton><%--</li>--%>
-
                                 
                                     <asp:MultiView ID="mvtUserIssueMaterial" runat="server">
                                         <asp:View ID="vUserIssue" runat="server">
@@ -23,8 +19,10 @@
                                                         <div class="row">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                 <center>
-                                                             <asp:Label ID ="lblContent" runat ="server"  Font-Size ="25px"   Text ="List User Issue In-Out" Font-Bold ="true" ></asp:Label>
-                                                          </center>
+                                                             <asp:Label ID = "lblContent" runat ="server"  Font-Size ="25px" Text ="List User Issue In-Out" Font-Bold ="true" >
+
+                                                             </asp:Label>
+                                                            </center>
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -188,7 +186,7 @@
                                                                                         <asp:Label ID="lblUserLogin" runat="server" Text='<%#Eval("UserLogin") %>'></asp:Label></td>
                                                                                     <td><%#Eval("FullName") %></td>
                                                                                     <td><%#Eval("Password") %></td>
-                                                                                    <td><%#Eval("CostCenter") %></td>
+                                                                                    <td><%#Eval("Dept") %></td>
                                                                                     <td><%#Eval("DeptName") %></td>
                                                                                     <td><%#Eval("Email") %></td>
                                                                                     <td><%#Eval("RoleName") %></td>
@@ -227,9 +225,9 @@
                                                     <div class="container-fluid">
                                                         <div class="row">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                <center>
+                                                              <center>
                                                              <asp:Label ID ="lblTitle" runat ="server"  Font-Size ="30px"   Text ="List User Tranfer" Font-Bold ="true" ></asp:Label>
-                                                          </center>
+                                                             </center>
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -394,7 +392,7 @@
                                                                                         <asp:Label ID="lblUser_Tranfer" runat="server" Text='<%#Eval("UserLogin") %>'></asp:Label></td>
                                                                                     <td><%#Eval("FullName") %></td>
                                                                                     <td><%#Eval("Password") %></td>
-                                                                                    <td><%#Eval("CostCenter") %></td>
+                                                                                    <td><%#Eval("Dept") %></td>
                                                                                     <td><%#Eval("DeptName") %></td>
                                                                                     <td><%#Eval("Email") %></td>
                                                                                     <td><%#Eval("RoleName") %></td>

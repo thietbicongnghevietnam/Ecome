@@ -148,6 +148,7 @@
                 </div>
             </div>
         </div>
+            </div>
        
         <div class="calender-area mg-tb-30">
             <div class="container-fluid">

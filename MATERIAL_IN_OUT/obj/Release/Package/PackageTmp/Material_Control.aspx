@@ -12,7 +12,6 @@
                 </div>
                 <div class="hpanel">
                     <div class="panel-body" style=" background:#faf2f2">
-
                         <div class="form-group">
                             <label class="control-label" for="Master">Type Master</label>
                             <asp:DropDownList ID="ddlMasterType" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlMasterType_SelectedIndexChanged" AutoPostBack ="true"></asp:DropDownList>
@@ -21,17 +20,12 @@
                         <div class="form-group">
                             <label class="control-label" for="Master">TypeID:</label>
                             <asp:Label ID="lblTypeID" runat="server" CssClass="form-control"></asp:Label>
-                             
-
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="Master">Decription:</label>
                             <asp:Label ID="lblDecription" runat="server" Height =" 60px"  CssClass="form-control"></asp:Label>
-
                         </div>
-
                        <p style ="text-align:center"> <asp:Button ID="bttChosenType" runat="server" CssClass=" btn btn-primary " Text="Chosen Reason Type" OnClick="bttChosenType_Click" /></p> <br />
-                    
                         <p style ="text-align:center"> <asp:Label ID ="lblForm"  style ="font-family: Times New Roman; text-align:center; font-size:20px"  runat ="server"></asp:Label></p> <br />
 
                     </div>

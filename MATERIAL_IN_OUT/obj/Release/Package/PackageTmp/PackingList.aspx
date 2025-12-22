@@ -42,29 +42,29 @@
                                                     <br />
                                                     <asp:Label ID="lblVendorName" runat="server"></asp:Label>
                                                     <br />
-                                                    <asp:Label ID="lblVendorAddress" runat="server"></asp:Label>
+                                                  <b> Address:</b> &nbsp;  <asp:Label ID="lblVendorAddress" runat="server"></asp:Label>
                                                     <br />
-                                                    <asp:Label ID="lblVendorPICTo" runat="server"></asp:Label>
+                                                   <b>Attn:</b> &nbsp; <asp:Label ID="lblVendorPICTo" runat="server"></asp:Label>
 
                                                 </td>
                                             </tr>
                                         </tbody>
 
                                     </table>
-                                    <b>Plant:<asp:Label ID="lblPlant" runat="server"></asp:Label>
+                                    <b>Plant: &nbsp;<asp:Label ID="lblPlant" runat="server"></asp:Label>
                                     </b>
                                     <br />
-                                    <b>Currency:<asp:Label ID="lblCurrency" runat="server"></asp:Label>
+                                    <b>Currency: &nbsp;<asp:Label ID="lblCurrency" runat="server"></asp:Label>
                                     </b>
                                     <br />
-                                    <b>Trade Term
+                                    <b>Trade Term &nbsp;
                                         <asp:Label ID="lblTrade" runat="server"></asp:Label>
                                     </b>
                                     <br />
-                                    <b>Freight:<asp:Label ID="lblFeight" runat="server"></asp:Label>
+                                    <b>Freight:&nbsp;<asp:Label ID="lblFeight" runat="server"></asp:Label>
                                     </b>
                                     <br />
-                                    <b>Payment:<asp:Label ID="lblPayment" runat="server"></asp:Label>
+                                    <b>Payment: &nbsp;<asp:Label ID="lblPayment" runat="server"></asp:Label>
                                     </b>
                                     <br />
                                     <br />
@@ -91,25 +91,25 @@
                                                     <asp:Label ID="lblVendorCodeShip" runat="server"></asp:Label>
                                                 </b>
                                                     <br />
-                                                    <asp:Label ID="lblVendorNameShip" runat="server"></asp:Label>
+                                                     <asp:Label ID="lblVendorNameShip" runat="server"></asp:Label>
                                                     <br />
-                                                    <asp:Label ID="lblVendorAddressShip" runat="server"></asp:Label>
+                                                 <b>Address:</b> &nbsp; <asp:Label ID="lblVendorAddressShip" runat="server"></asp:Label>
                                                     <br />
-                                                    <asp:Label ID="lblVendorPICShip" runat="server"></asp:Label>
+                                                  <b>Attn: </b> &nbsp; <asp:Label ID="lblVendorPICShip" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
                                         </tbody>
 
                                     </table>
-                                    <b>Destination:
+                                    <b>Destination:&nbsp;
                                         <asp:Label ID="lblDestination" runat="server"></asp:Label>
                                     </b>
                                     <br />
-                                    <b>Carrier: 
-                                        <asp:Label ID="lblCarrier" runat="server"></asp:Label>
+                                    <b>Carrier: &nbsp;
+                                          <asp:Label ID="lblCarrier" runat="server"></asp:Label>
                                     </b>
                                     <br />
-                                    <b>PO Number: 
+                                    <b>PO Number: &nbsp;
                                         <asp:Label ID="lblPONo" runat="server"></asp:Label></b>
                                     <br />
                                     <br />
@@ -129,11 +129,12 @@
                                                     <table id="dtPackList" data-toggle="table">
                                                         <tr >
                                                             <th data-field="id">Number</th>
-                                                            <th>ItemNo./Cust Item No.</th>
+                                                            <th>ItemNo</th>
                                                             <th>Item Description</th>
                                                             <th>Country of origin</th>
-                                                            <th>Total Qty</th>
+                                                            <th>Qty</th>
                                                             <th>NO. OF CTN</th>
+                                                            <th>NO OF PALLET</th>
                                                             <th>NET WGT(KG)</th>
                                                             <th>GRS WGT(KG)</th>
                                                             <th>CTN NO</th>
@@ -151,12 +152,11 @@
                                                         
                                                     </td>
                                                     <td>
-                                                        <%# Eval("Item_No") %>
-
+                                                        <%# Eval("Item_Decription") %>
                                                         
                                                     </td>
                                                     <td>
-                                                       <%# Eval("Destination") %>
+                                                       <%# Eval("CountryofOrigin") %>
                                                         
                                                     </td>
                                                     <td>
@@ -166,6 +166,11 @@
                                                     <td>
                                                         <div class="form-outline">
                                                             <asp:TextBox ID="txtNO_OF_CTN" CssClass="form-control" Text='<%#Eval("NO_OF_CTN")%>' runat="server"></asp:TextBox>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-outline">
+                                                            <asp:TextBox ID="txtNO_OF_PALLET" CssClass="form-control" Text='<%#Eval("NO_OF_PALLET")%>' runat="server"></asp:TextBox>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -186,8 +191,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="form-outline">
-
-                                                            <asp:TextBox ID="txtDimensions_L" CssClass="form-control" Text='<%#Eval("[DimensionsL*W*H]")%>'  runat="server"></asp:TextBox>
+                                                            <asp:TextBox ID="txtDimensions_L" CssClass="form-control" Text='<%#Eval("DimensionsL*W*H")%>'  runat="server"></asp:TextBox>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -220,11 +224,20 @@
                     </div>
                     <div class="panel-footer">
                         <div class="btn-group">
-                            <input type="button" id ="bttPrint" onclick="printDiv('DivPrint')" class="btn btn-info" value="Print" />
-                            &nbsp; 
+                        <div class="col-lg-12"  style ="float:right; font-size:25px;">
+                            <asp:FileUpload ID ="fUpload" CssClass="btn btn-default"  runat ="server" />
+                                  &nbsp;
+                                <asp:Button ID="bttUpload" runat="server" Text="Upload" CssClass="btn btn-info"  OnClick ="bttUpload_Click" />
+                                  &nbsp;
+                                <asp:Button ID="bttTemUpload" runat="server" Text="Tem File Upload" CssClass="btn btn-info"  OnClick ="bttTemUpload_Click" />
+                                  &nbsp;
+                                 <input type="button" id ="bttPrint" onclick="printDiv('DivPrint')" class="btn btn-info" value="Print" />
+                                 &nbsp;
                                 <asp:Button ID="bttDownload" CssClass="btn btn-info" Text="Download" runat="server" OnClick="bttDownload_Click" />
-                            &nbsp; 
+                                  &nbsp;
                                 <asp:Button ID="bttSave" runat="server" Text="Save" CssClass="btn btn-info" OnClick="bttSave_Click" />
+                             
+                                </div>
                         </div>
                     </div>
 
