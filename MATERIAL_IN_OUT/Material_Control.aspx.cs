@@ -72,7 +72,7 @@ namespace MATERIAL_IN_OUT
         {
 
             DataTable dt2 = new DataTable();
-            dt2 = DataConn.DataTable_Sql("select a.TypeID, a.TypeName, a.Decription  from[dbo].[tbl_TypeMater] a  where a.TypeID = '" + ddlMasterType.SelectedValue.ToString() + "' ");
+            dt2 = DataConn.DataTable_Sql("select a.TypeID, a.TypeName, a.Decription,a.NameTemplate  from[dbo].[tbl_TypeMater] a  where a.TypeID = '" + ddlMasterType.SelectedValue.ToString() + "' ");
             if (dt2.Rows.Count > 0)
             {
                 lblDecription.Text = dt2.Rows[0]["Decription"].ToString();
@@ -80,28 +80,46 @@ namespace MATERIAL_IN_OUT
                 Session["TypeID"] = lblTypeID.Text;
                 Session["NameType"] = dt2.Rows[0]["TypeName"].ToString();
                 string stringToCheck = lblTypeID.Text.ToString();
-                string[] stringArrayA = {"1", "6", "9", "12", "14", "15", "16", "17", "19", "22", "24", "25" };
-                string[] stringArrayB = { "2", "3", "4", "5", "7", "8", "10", "11", "13", "18", "20", "21", "23" };
-                foreach (string x in stringArrayA)
-                {
 
-                    if (stringToCheck.Contains(x))
-                    {
-                        Response.Redirect("Material_Issues_FormA.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr=", false);
-                        
-                        break;
-                    }
-                    
+                string NameTemplate = dt2.Rows[0]["NameTemplate"].ToString();
+
+                //mater nam 2022
+                //string[] stringArrayA = {"1", "6", "9", "12", "14", "15", "16", "17", "19", "22", "24", "25" };
+                //string[] stringArrayB = { "2", "3", "4", "5", "7", "8", "10", "11", "13", "18", "20", "21", "23" };
+
+
+                //matet nam 2025
+                //string[] stringArrayA = { "1", "5", "8", "11", "13", "14", "15", "17", "20", "22", "23", "24" };
+                //string[] stringArrayB = { "2", "3", "4", "6", "7", "9", "10", "12", "16", "18", "19", "21", "23" };
+                //foreach (string x in stringArrayA)
+                //{
+
+                //    if (stringToCheck.Contains(x))
+                //    {
+                //        Response.Redirect("Material_Issues_FormA.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr=", false);
+
+                //        break;
+                //    }
+
+                //}
+
+                //foreach (string x in stringArrayB)
+                //{
+                //    if (stringToCheck.Contains(x))
+                //    {
+                //        Response.Redirect("Material_Issue_FormB.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr=", false);
+                //        break;
+                //    }
+
+                //}
+
+                if (NameTemplate == "A")
+                {
+                    Response.Redirect("Material_Issues_FormA.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr=", false);
                 }
-
-                foreach (string x in stringArrayB)
+                else 
                 {
-                    if (stringToCheck.Contains(x))
-                    {
-                        Response.Redirect("Material_Issue_FormB.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr=", false);
-                        break;
-                    }
-                    
+                    Response.Redirect("Material_Issue_FormB.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr=", false);
                 }
 
             }
