@@ -375,58 +375,139 @@ namespace MATERIAL_IN_OUT
         protected global::System.Web.UI.WebControls.Label lblIN;
 
         /// <summary>
-        /// lblPlant control.
+        /// lblCC_VR01 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPlant;
+        protected global::System.Web.UI.WebControls.Label lblCC_VR01;
 
         /// <summary>
-        /// lblPlantName control.
+        /// lblCC_VE01 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPlantName;
+        protected global::System.Web.UI.WebControls.Label lblCC_VE01;
 
         /// <summary>
-        /// lblAcount control.
+        /// lblCC_VG01 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAcount;
+        protected global::System.Web.UI.WebControls.Label lblCC_VG01;
 
         /// <summary>
-        /// lblAccountName control.
+        /// lblCC_V501 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAccountName;
+        protected global::System.Web.UI.WebControls.Label lblCC_V501;
 
         /// <summary>
-        /// lblCostCenter control.
+        /// lblCC_VB01 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCostCenter;
+        protected global::System.Web.UI.WebControls.Label lblCC_VB01;
 
         /// <summary>
-        /// lblCostCenterName control.
+        /// lblQtyVR01 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCostCenterName;
+        protected global::System.Web.UI.WebControls.Label lblQtyVR01;
+
+        /// <summary>
+        /// lblQtyVE01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblQtyVE01;
+
+        /// <summary>
+        /// lblQtyVG01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblQtyVG01;
+
+        /// <summary>
+        /// lblQtyV501 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblQtyV501;
+
+        /// <summary>
+        /// lblQtyVB01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblQtyVB01;
+
+        /// <summary>
+        /// lblAmtVR01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAmtVR01;
+
+        /// <summary>
+        /// lblAmtVE01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAmtVE01;
+
+        /// <summary>
+        /// lblAmtVG01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAmtVG01;
+
+        /// <summary>
+        /// lblAmtV501 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAmtV501;
+
+        /// <summary>
+        /// lblAmtVB01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAmtVB01;
 
         /// <summary>
         /// lblVendorCode control.

@@ -1803,24 +1803,62 @@ namespace MATERIAL_IN_OUT
             dtIssueMaterial.DataSource = dt_IssueMaterial;
             dtIssueMaterial.DataBind();
             dt_Comment = DataConn.FillStore("SP_Issue_Material_Comment_Load_B", CommandType.StoredProcedure, RQ);
+
+            DataTable dtTong = DataConn.FillStore("SP_Issue_Material_Search_B_tongplant", CommandType.StoredProcedure, RQ);
+
             if (dt_IssueMaterial.Rows.Count > 0)
             {
-
-                lblPlant.Text = dt_IssueMaterial.Rows[0]["Plant"].ToString();
-                lblPlantName.Text = dt_IssueMaterial.Rows[0]["NamePlant"].ToString();
-                //  txtVoucherDate.Value.ToString() = dt_IssueMaterial.Rows[0]["DateVoucher"].ToString();
+                //lblPlant.Text = dt_IssueMaterial.Rows[0]["Plant"].ToString();
+                //lblPlantName.Text = dt_IssueMaterial.Rows[0]["NamePlant"].ToString();
+                
                 lblMvTYpe.Text = dt_IssueMaterial.Rows[0]["MvType"].ToString();
                 lblIN.Text = dt_IssueMaterial.Rows[0]["MvName"].ToString();
-                lblCostCenter.Text = dt_IssueMaterial.Rows[0]["CostCenter"].ToString();
-                lblCostCenterName.Text = dt_IssueMaterial.Rows[0]["DeptName"].ToString();
+                //lblCostCenter.Text = dt_IssueMaterial.Rows[0]["CostCenter"].ToString();
+                //lblCostCenterName.Text = dt_IssueMaterial.Rows[0]["DeptName"].ToString();
                 lblVendorCode.Text = "Vendor:" + dt_IssueMaterial.Rows[0]["VendorCode"].ToString();
                 lblvendorName.Text = dt_IssueMaterial.Rows[0]["VendorName"].ToString();
-                lblAcount.Text = dt_IssueMaterial.Rows[0]["AccountCost"].ToString();
-                lblAccountName.Text = dt_IssueMaterial.Rows[0]["AccountName"].ToString();
+                //lblAcount.Text = dt_IssueMaterial.Rows[0]["AccountCost"].ToString();
+                //lblAccountName.Text = dt_IssueMaterial.Rows[0]["AccountName"].ToString();
                 hdfStock.Value = dt_IssueMaterial.Rows[0]["Sloc"].ToString();
                 hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
                 hdfUserUpdate.Value = Session["UserName"].ToString();
                 lblRequest.Text = dt_IssueMaterial.Rows[0]["TypeName"].ToString();
+
+                if (dtTong.Rows.Count > 0)
+                {
+                    DataRow r = dtTong.Rows[0];
+
+                    lblQtyVR01.Text = r["Qty_VR01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VR01"]).ToString("#,##0.00");
+                    lblQtyVE01.Text = r["Qty_VE01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VE01"]).ToString("#,##0.00");
+                    lblQtyVG01.Text = r["Qty_VG01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VG01"]).ToString("#,##0.00");
+                    lblQtyV501.Text = r["Qty_V501"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_V501"]).ToString("#,##0.00");
+                    lblQtyVB01.Text = r["Qty_VB01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VB01"]).ToString("#,##0.00");
+
+                    lblAmtVR01.Text = r["Amt_VR01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VR01"]).ToString("#,##0.00");
+                    lblAmtVE01.Text = r["Amt_VE01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VE01"]).ToString("#,##0.00");
+                    lblAmtVG01.Text = r["Amt_VG01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VG01"]).ToString("#,##0.00");
+                    lblAmtV501.Text = r["Amt_V501"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_V501"]).ToString("#,##0.00");
+                    lblAmtVB01.Text = r["Amt_VB01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VB01"]).ToString("#,##0.00");
+
+                }
+
+
+                //old 1
+                //lblPlant.Text = dt_IssueMaterial.Rows[0]["Plant"].ToString();
+                //lblPlantName.Text = dt_IssueMaterial.Rows[0]["NamePlant"].ToString();
+                ////  txtVoucherDate.Value.ToString() = dt_IssueMaterial.Rows[0]["DateVoucher"].ToString();
+                //lblMvTYpe.Text = dt_IssueMaterial.Rows[0]["MvType"].ToString();
+                //lblIN.Text = dt_IssueMaterial.Rows[0]["MvName"].ToString();
+                //lblCostCenter.Text = dt_IssueMaterial.Rows[0]["CostCenter"].ToString();
+                //lblCostCenterName.Text = dt_IssueMaterial.Rows[0]["DeptName"].ToString();
+                //lblVendorCode.Text = "Vendor:" + dt_IssueMaterial.Rows[0]["VendorCode"].ToString();
+                //lblvendorName.Text = dt_IssueMaterial.Rows[0]["VendorName"].ToString();
+                //lblAcount.Text = dt_IssueMaterial.Rows[0]["AccountCost"].ToString();
+                //lblAccountName.Text = dt_IssueMaterial.Rows[0]["AccountName"].ToString();
+                //hdfStock.Value = dt_IssueMaterial.Rows[0]["Sloc"].ToString();
+                //hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
+                //hdfUserUpdate.Value = Session["UserName"].ToString();
+                //lblRequest.Text = dt_IssueMaterial.Rows[0]["TypeName"].ToString();
 
                 Loadstatus(RQ);
 
@@ -2006,26 +2044,64 @@ namespace MATERIAL_IN_OUT
                 DataTable dt_IssueMaterial = new DataTable();
                 dt_IssueMaterial = DataConn.FillStore("SP_Issue_Material_Search_B", CommandType.StoredProcedure, Request_NO);
                 dt_Comment = DataConn.FillStore("SP_Issue_Material_Comment_Load_B", CommandType.StoredProcedure, Request_NO);
+
+                DataTable dtTong = DataConn.FillStore("SP_Issue_Material_Search_B_tongplant", CommandType.StoredProcedure, Request_NO);
+
                 dtIssueMaterial.DataSource = dt_IssueMaterial;
                 dtIssueMaterial.DataBind();
                 if (dt_IssueMaterial.Rows.Count > 0)
                 {
 
-                    lblPlant.Text = dt_IssueMaterial.Rows[0]["Plant"].ToString();
-                    lblPlantName.Text = dt_IssueMaterial.Rows[0]["NamePlant"].ToString();
-                    // lblVoucherDate.Text = dt_IssueMaterial.Rows[0]["DateVoucher"].ToString();
+                    //lblPlant.Text = dt_IssueMaterial.Rows[0]["Plant"].ToString();
+                    //lblPlantName.Text = dt_IssueMaterial.Rows[0]["NamePlant"].ToString();                    
                     lblMvTYpe.Text = dt_IssueMaterial.Rows[0]["MvType"].ToString();
                     lblIN.Text = dt_IssueMaterial.Rows[0]["MvName"].ToString();
-                    lblCostCenter.Text = dt_IssueMaterial.Rows[0]["CostCenter"].ToString();
-                    lblCostCenterName.Text = dt_IssueMaterial.Rows[0]["DeptName"].ToString();
+                    //lblCostCenter.Text = dt_IssueMaterial.Rows[0]["CostCenter"].ToString();
+                    //lblCostCenterName.Text = dt_IssueMaterial.Rows[0]["DeptName"].ToString();
                     lblVendorCode.Text = "Vendor:" + dt_IssueMaterial.Rows[0]["VendorCode"].ToString();
                     lblvendorName.Text = dt_IssueMaterial.Rows[0]["VendorName"].ToString();
-                    lblAcount.Text = dt_IssueMaterial.Rows[0]["AccountCost"].ToString();
-                    lblAccountName.Text = dt_IssueMaterial.Rows[0]["AccountName"].ToString();
+                    //lblAcount.Text = dt_IssueMaterial.Rows[0]["AccountCost"].ToString();
+                    //lblAccountName.Text = dt_IssueMaterial.Rows[0]["AccountName"].ToString();
                     hdfStock.Value = dt_IssueMaterial.Rows[0]["Sloc"].ToString();
                     hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
                     hdfUserUpdate.Value = Session["UserName"].ToString();
                     lblRequest.Text = dt_IssueMaterial.Rows[0]["TypeName"].ToString();
+
+                    if (dtTong.Rows.Count > 0)
+                    {
+                        DataRow r = dtTong.Rows[0];
+
+                        lblQtyVR01.Text = r["Qty_VR01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VR01"]).ToString("#,##0.00");
+                        lblQtyVE01.Text = r["Qty_VE01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VE01"]).ToString("#,##0.00");
+                        lblQtyVG01.Text = r["Qty_VG01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VG01"]).ToString("#,##0.00");
+                        lblQtyV501.Text = r["Qty_V501"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_V501"]).ToString("#,##0.00");
+                        lblQtyVB01.Text = r["Qty_VB01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VB01"]).ToString("#,##0.00");
+
+                        lblAmtVR01.Text = r["Amt_VR01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VR01"]).ToString("#,##0.00");
+                        lblAmtVE01.Text = r["Amt_VE01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VE01"]).ToString("#,##0.00");
+                        lblAmtVG01.Text = r["Amt_VG01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VG01"]).ToString("#,##0.00");
+                        lblAmtV501.Text = r["Amt_V501"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_V501"]).ToString("#,##0.00");
+                        lblAmtVB01.Text = r["Amt_VB01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VB01"]).ToString("#,##0.00");
+
+                    }
+
+                    //old 2
+                    //lblPlant.Text = dt_IssueMaterial.Rows[0]["Plant"].ToString();
+                    //lblPlantName.Text = dt_IssueMaterial.Rows[0]["NamePlant"].ToString();
+                    //// lblVoucherDate.Text = dt_IssueMaterial.Rows[0]["DateVoucher"].ToString();
+                    //lblMvTYpe.Text = dt_IssueMaterial.Rows[0]["MvType"].ToString();
+                    //lblIN.Text = dt_IssueMaterial.Rows[0]["MvName"].ToString();
+                    //lblCostCenter.Text = dt_IssueMaterial.Rows[0]["CostCenter"].ToString();
+                    //lblCostCenterName.Text = dt_IssueMaterial.Rows[0]["DeptName"].ToString();
+                    //lblVendorCode.Text = "Vendor:" + dt_IssueMaterial.Rows[0]["VendorCode"].ToString();
+                    //lblvendorName.Text = dt_IssueMaterial.Rows[0]["VendorName"].ToString();
+                    //lblAcount.Text = dt_IssueMaterial.Rows[0]["AccountCost"].ToString();
+                    //lblAccountName.Text = dt_IssueMaterial.Rows[0]["AccountName"].ToString();
+                    //hdfStock.Value = dt_IssueMaterial.Rows[0]["Sloc"].ToString();
+                    //hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
+                    //hdfUserUpdate.Value = Session["UserName"].ToString();
+                    //lblRequest.Text = dt_IssueMaterial.Rows[0]["TypeName"].ToString();
+
                     if (Session["RoleOutStock"].ToString().Trim() == "STORE" && Session["Role_Dept"].ToString().Trim() != "")
                     {
                         Loadstatus(Request_NO);

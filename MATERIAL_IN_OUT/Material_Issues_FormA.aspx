@@ -158,7 +158,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="float: left; margin-left: 20px; left: 0px; top: 0px;">
 
-                    <table class="table table-bordered table-striped table-hover">
+                    <%--<table class="table table-bordered table-striped table-hover">
                         <tbody>
 
                             <tr>
@@ -174,8 +174,7 @@
 
                                             </div>
                                         </div>
-                                    </div>
-                                    <%--<asp:TextBox ID="txtDateVoucher" CssClass="form-control" AutoPostBack="true" runat="server" type="date" />--%>
+                                    </div>                                   
                                 </td>
 
                             </tr>
@@ -228,7 +227,83 @@
                                     <asp:Label ID="lblvendorName" runat="server"></asp:Label></td>
                             </tr>
                         </tbody>
+                    </table>--%>
+
+                       <table class="table table-bordered table-striped table-hover">
+                        <tbody>
+
+                            <!-- Voucher Date -->
+                            <tr>
+                                <td colspan="2"><b>Voucher Date (dd/MM/yyyy)</b></td>
+                                <td colspan="5">
+                                    <%--<asp:Label ID="lblVoucherDate" runat="server"></asp:Label>--%>
+                                     <div class="date-picker-inner">
+                                      <div class="form-group data-custon-pick" id="data_2">
+                                          <div class="input-group date">
+                                              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                              <input id="txtDateInput" type="text" class="form-control" placeholder="dd-mm-yyyy"  runat ="server"/>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                                </td>
+                            </tr>
+
+                            <!-- MV Type -->
+                            <tr>
+                                <td colspan="2"><b>MV Type</b></td>
+                                <td colspan="5">
+                                    <asp:Label ID="lblMvTYpe" runat="server"></asp:Label>
+                                    -
+                                    <asp:Label ID="lblIN" runat="server"></asp:Label>
+                                </td>
+                            </tr>
+
+                            <!-- Cost Center Header -->
+                            <tr>
+                                <td colspan="2"><b>Cost center</b></td>
+                                <td><asp:Label ID="lblCC_VR01" runat="server" Text="VR01" /></td>
+                                <td><asp:Label ID="lblCC_VE01" runat="server" Text="VE01" /></td>
+                                <td><asp:Label ID="lblCC_VG01" runat="server" Text="VG01" /></td>
+                                <td><asp:Label ID="lblCC_V501" runat="server" Text="V501" /></td>
+                                <td><asp:Label ID="lblCC_VB01" runat="server" Text="VB01" /></td>
+                            </tr>
+
+                            <!-- Quantity -->
+                            <tr>
+                                <td colspan="2"><b>Quantity</b></td>
+                                <td><asp:Label ID="lblQtyVR01" runat="server" /></td>
+                                <td><asp:Label ID="lblQtyVE01" runat="server" /></td>
+                                <td><asp:Label ID="lblQtyVG01" runat="server" /></td>
+                                <td><asp:Label ID="lblQtyV501" runat="server" /></td>
+                                <td><asp:Label ID="lblQtyVB01" runat="server" /></td>
+                            </tr>
+
+                            <!-- Amount -->
+                            <tr>
+                                <td colspan="2"><b>Amount (ST)</b></td>
+                                <td><asp:Label ID="lblAmtVR01" runat="server" /></td>
+                                <td><asp:Label ID="lblAmtVE01" runat="server" /></td>
+                                <td><asp:Label ID="lblAmtVG01" runat="server" /></td>
+                                <td><asp:Label ID="lblAmtV501" runat="server" /></td>
+                                <td><asp:Label ID="lblAmtVB01" runat="server" /></td>
+                            </tr>
+
+                            <!-- Vendor -->
+                            <tr>
+                                <td colspan="2">
+                                    <b>
+                                        <asp:Label ID="lblVendorCode" runat="server"></asp:Label>
+                                    </b>
+                                </td>
+                                <td colspan="5">                                                               
+                                    <asp:Label ID="lblvendorName" runat="server"></asp:Label>
+                                </td>
+                            </tr>
+
+                        </tbody>
                     </table>
+
                     <asp:HiddenField ID="hdfStock" runat="server" />
                 </div>
             </div>

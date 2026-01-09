@@ -7,7 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>E:\Material_Issue_INOUT_Deloy</_PublishTargetUrl>
-    <History>True|2025-12-23T06:18:49.4909585Z;True|2025-12-22T13:00:13.2613562+07:00;False|2025-12-22T12:54:11.1578058+07:00;False|2025-12-22T12:49:20.9582817+07:00;False|2025-12-22T12:44:55.3116139+07:00;False|2025-12-22T12:36:16.0426169+07:00;False|2025-12-22T11:59:28.6498943+07:00;False|2025-12-22T11:58:54.2481704+07:00;False|2025-12-22T11:56:27.9989548+07:00;True|2022-06-13T09:55:43.7039226+07:00;</History>
+    <History>True|2026-01-05T08:12:48.3435775Z;True|2025-12-23T13:18:49.4909585+07:00;True|2025-12-22T13:00:13.2613562+07:00;False|2025-12-22T12:54:11.1578058+07:00;False|2025-12-22T12:49:20.9582817+07:00;False|2025-12-22T12:44:55.3116139+07:00;False|2025-12-22T12:36:16.0426169+07:00;False|2025-12-22T11:59:28.6498943+07:00;False|2025-12-22T11:58:54.2481704+07:00;False|2025-12-22T11:56:27.9989548+07:00;True|2022-06-13T09:55:43.7039226+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -42,10 +42,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/14/2022 09:24:03</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>12/23/2025 13:18:28</publishTime>
+      <publishTime>01/05/2026 15:12:44</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>12/23/2025 13:18:28</publishTime>
+      <publishTime>01/05/2026 15:12:44</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.bootstrap.dll">
       <publishTime>06/14/2022 09:24:03</publishTime>
@@ -66,10 +66,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/14/2022 09:24:05</publishTime>
     </File>
     <File Include="bin/MATERIAL_IN_OUT.dll">
-      <publishTime>12/23/2025 13:18:20</publishTime>
+      <publishTime>01/05/2026 15:12:39</publishTime>
     </File>
     <File Include="bin/MATERIAL_IN_OUT.pdb">
-      <publishTime>12/23/2025 13:18:20</publishTime>
+      <publishTime>01/05/2026 15:12:39</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
       <publishTime>06/14/2022 09:24:06</publishTime>
@@ -1011,7 +1011,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/28/2022 09:07:02</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>12/23/2025 13:18:22</publishTime>
+      <publishTime>01/05/2026 15:12:40</publishTime>
     </File>
     <File Include="PUR_Control_InOut_CDS.aspx">
       <publishTime>07/29/2022 08:55:22</publishTime>

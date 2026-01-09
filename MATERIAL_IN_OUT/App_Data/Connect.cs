@@ -87,7 +87,9 @@ namespace MATERIAL_IN_OUT.AppCode
         static DataConn()
         {
             // source = @"Data Source=ADMINISTRATOR;Initial Catalog=PRICE_SANCTION;User ID=sa;Password=cvn@2019";
-            source = @"Data Source=10.92.186.30;Initial Catalog=Issue_MaterialInOut;User ID=sa;Password=Psnvdb2013";
+            //source = @"Data Source=10.92.186.30;Initial Catalog=Issue_MaterialInOut;User ID=sa;Password=Psnvdb2013";
+
+            source = @"Data Source=192.168.128.1;Initial Catalog=Issue_MaterialInOut;User ID=sa;Password=Psnvdb2013";
             //source = @"Data Source=.\;Initial Catalog=Issue_MaterialInOut;Integrated Security=True";
 
             con = new SqlConnection(source);
