@@ -1,0 +1,54 @@
+G:\Procurement\38. IT project (Procurement)\FY2025\5. Scrap management system\LOG\SAMPLE SCRAP TOOL(OCT.25)
+
+"DefaultConnection": "Server=LT-DE2302026;Database=ScrapSystem;Integrated Security=True;TrustServerCertificate=True;"
+
+============  // Dieu kien upload // ==========
+1. Dieu kien upload : Form B
++ truong hop upload manual bat buoc phai chon TypeID
++ TypeID trong fil upload = TypeID user chon khi upload  (up theo tung issue out)
++ truong hop file upload co so request NO = RQ_Reset thì se update lai thong tin
++ MVT (201..) phai co trong mater: [Issue_MaterialInOut].[dbo].[tbl_MV_Master]
++ CountryOfOrgin & ItemDescription bat buoc phai co
++ stored: [SP_MaterialIssue_GetPrice_SAP]  (bat buoc phai co trong bang mater gia SAP)
+	select   Plant ,Component, a.Price_STD from [dbo].[tbl_Material_PriceSAP] a where Component = @Material and  Plant = @Plant
+if (dtPrice.Rows.Count > 0)
+ {
+     UnitPriceST = float.Parse(dtPrice.Rows[0]["Price_STD"].ToString());
+     Amount = (float)Math.Round((UnitPriceST * Qty), 2);
+ }
+***** xac nhan lai voi ke toan *** gia lay tu file upload excel la gia ST
+***** gia tu file excel chi la gia ACtual
+==> vay file mater tu sap phai duoc upload tu truoc*****
+
+
+
+
+===========issue in out
+1. check sap price 
+---form B : bttCheckPrice_Click
+Check_user_update_price_sap
+Select_Issue_Material_Report_B
+Update_Issue_Material_Report_B  => update ban ghi nao thay doi gia thi update cot: Flag_price_sap
+
+---form A
+SeSelect_Issue_Material_Report_A
+Update_Issue_Material_Report_A
+
+
+A. bang:  ---- them cot Flag_price_sap --- khi gia thay doi
+	[tbl_RQ_MaterialIssueB] 
+	[tbl_RQ_MaterialIssue]
+
+B. stored loaddata- search:	change mau khi cot thay doi gia
+	SP_Issue_Material_Search_B
+	SP_Issue_Material_Search
+
+2. nut export scrap list
+	stored: Export_ScrapList_Report_B
+
+3. nut update gia neu sai so voi SAP: btnUpdate_PriceST  **** chua viet (kong can cho tung ma => update all luon ==> phan quyen)
+
+
+	
+
+

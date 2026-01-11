@@ -24,6 +24,12 @@
             font-weight: bold;
         }
     </style>
+<style>
+    table tbody tr.price-sap td {
+        background-color: #f8d7da !important; /* đỏ nhạt */
+        /*color: #842029;*/ /* chữ đỏ đậm */
+    }
+</style>
     <div class="mailbox-view-area mg-tb-15">
         <div class="container-fluid">
             <div class="row">
@@ -349,14 +355,21 @@
                                                     <th>Issue Qty</th>
                                                     <th>Unit Price(ST)</th>
                                                     <th>Amount(ST)</th>
+
+                                                    <th>Costcenter</th>
+                                                    <th>AccountCost</th>
+
                                                     <th>Reason</th>
                                                     <th>Status</th>
+                                                    <th>Flag</th>
+                                                    <%--<th style="text-align:center">--%>
+                                                        <%--<input type="checkbox" onclick="toggleAll(this)" />--%>
+                                                    <%--</th>--%>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            
-                                                <asp:Repeater runat="server" ID="dtIssueMaterial">
+                                                <%--<asp:Repeater runat="server" ID="dtIssueMaterial">
                                                     <ItemTemplate>
                                                         <tr>
                                                             <td><%#Eval("No") %></td>
@@ -367,8 +380,43 @@
                                                             <td><%#Eval("IssueQty") %></td>
                                                              <td><%#Eval("UnitPrice_ST") %></td>
                                                             <td><%#Eval("Amount_ST") %></td>
+
+                                                            <td><%#Eval("CostCenter") %></td>
+                                                            <td><%#Eval("AccountCost") %></td>
+
                                                             <td><%#Eval("Note") %></td>
                                                             <td><%#Eval("Status_RQ") %></td>
+                                                        </tr>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>--%>
+                                                <asp:Repeater runat="server" ID="dtIssueMaterial">
+                                                    <ItemTemplate>
+                                                        <tr class='<%# Eval("Flag_price_sap") != DBNull.Value 
+                                                                && Convert.ToInt32(Eval("Flag_price_sap")) == 1 
+                                                                ? "price-sap" 
+                                                                : "" %>'>
+                                                            <td><%#Eval("No") %></td>
+                                                            <td><%#Eval("RequestNo") %></td>
+                                                            <td><%#Eval("Material") %></td>
+                                                            <td><%#Eval("DateVoucher") %></td>
+                                                            <td><%#Eval("Sloc") %></td>
+                                                            <td><%#Eval("IssueQty") %></td>
+                                                             <td><%#Eval("UnitPrice_ST") %></td>
+                                                            <td><%#Eval("Amount_ST") %></td>
+
+                                                            <td><%#Eval("CostCenter") %></td>
+                                                            <td><%#Eval("AccountCost") %></td>
+
+                                                            <td><%#Eval("Note") %></td>
+                                                            <td><%#Eval("Status_RQ") %></td>
+                                                            <td><%# Eval("Flag_price_sap") %></td>
+                                                            <!-- CHECKBOX -->
+                                                            <%--<td style="text-align:center">
+                                                                <asp:CheckBox ID="chkSelect" runat="server" />
+                                                                <asp:HiddenField ID="hdID" 
+                                                                                 runat="server" 
+                                                                                 Value='<%# Eval("ID") %>' />
+                                                            </td>--%>
                                                         </tr>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
@@ -413,6 +461,7 @@
                                 <asp:Button ID="bttTempFile" class="btn btn-info" Text="Download Tempfile" runat="server" OnClick="bttTempFile_Click" />
                                 <asp:Button ID="bttPrint" OnClientClick="openInNewTab()" CssClass="btn btn-info" Text="Report PDF" runat="server" OnClick="bttPrint_Click" />
                                 <asp:Button ID ="bttDownExcel" CssClass="btn btn-info" OnClick ="bttDownExcel_Click"  runat  ="server"  Text ="Download Excel"/>
+                                <asp:Button ID="bttCheckPrice" CssClass="btn btn-info" runat="server" OnClick="bttCheckPrice_Click" Text="Check SAP Price" />
                                 
                                 <%--OnClick="bttPrint_Click"--%>
                             </div>
@@ -484,7 +533,7 @@
         </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
     <script type="text/javascript"> 
         function openAdd(lbl_RQ, RoleRQ, RoleACC, RoleStock, User) {
             $('#<%=lblRequestUpdate.ClientID%>').val(lbl_RQ);
@@ -498,6 +547,16 @@
         }
 
     </script>
+    <script>
+        //function toggleAll(source) {
+        //    let boxes = document.querySelectorAll('input[type=checkbox][id*="chkSelect"]');
+        //    for (let i = 0; i < boxes.length; i++) {
+        //        boxes[i].checked = source.checked;
+        //    }
+        //}
+    </script>
+
+
 </asp:Content>
 
 

@@ -92,6 +92,9 @@ namespace MATERIAL_IN_OUT.AppCode
             source = @"Data Source=192.168.128.1;Initial Catalog=Issue_MaterialInOut;User ID=sa;Password=Psnvdb2013";
             //source = @"Data Source=.\;Initial Catalog=Issue_MaterialInOut;Integrated Security=True";
 
+            //LT-DE2302026
+            //source = @"Data Source=LT-DE2302026;Initial Catalog=Issue_MaterialInOut;Integrated Security=True";
+
             con = new SqlConnection(source);
             try
 
