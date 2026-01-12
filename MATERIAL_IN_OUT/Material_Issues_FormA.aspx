@@ -481,6 +481,12 @@
                                    
                             </div>
                         </div>
+                        <div class="panel-footer">
+                            <div class="btn-group" style="font-size: 25px;">
+                                <asp:Button ID="Button1" CssClass="btn btn-info " runat="server" Text="Export Scrap List" OnClick="btnExport_ScrapList" />
+                                <asp:Button ID="Button2" CssClass="btn btn-info " runat="server" Text="Updat Price ST" OnClick="btnUpdate_PriceST" />
+                            </div>
+                        </div>
                         <asp:HiddenField ID="hdfStatus_Upload" runat="server" />
 
 

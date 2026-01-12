@@ -3245,8 +3245,6 @@ namespace MATERIAL_IN_OUT
             else 
             {
                 //check xem user update gia moi co phai la bo phan hay khong?
-                int count_update = 0;
-                string check_mater = "";
                 DataTable dt_check = new DataTable();
                 dt_check = DataConn.FillStore("Check_user_update_price_sap2", CommandType.StoredProcedure, UserID); //****
                 //neu la bo phan cho phep updata gia moi theo SAP
@@ -3265,33 +3263,14 @@ namespace MATERIAL_IN_OUT
                         // float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
                         //****** truong hop nay phai update sang ca Scrap neu co  **** ten sanction ****
                         float Amount_ST = qty_issue * UnitPrice_ST;
-                        dt_update = DataConn.FillStore("Update_Issue_Material_Report_B2", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID);
-                        if (dt_update.Rows[0][0].ToString() == "9")   //truong hop khong co trong mater
-                        {
-                            check_mater = material;
-
-                            break;
-                        }
-                        else if (dt_update.Rows[0][0].ToString() == "2")
-                        {
-                            //ban ghi update gia
-                            count_update = count_update + 1;
-                        }
-
+                        dt_update = DataConn.FillStore("Update_Issue_Material_Report_B2", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID); 
                     }
-                    if (count_update > 0 && check_mater == "")
+                    if (dt_ReportAll.Rows.Count> 0)
                     {
                         Search(treeRQ_InMaterial.SelectedNode.Value.ToString(), Session["Role_Aproved_Dept"].ToString().Trim(), Session["Role_Dept"].ToString().Trim());
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + count_update, true);
-
-                    }
-                    else if (check_mater != "")
-                    {
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');" + check_mater, true);
-                    }
-                    else
-                    {
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Khong ban ghi nao update gia!');", true);
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + dt_ReportAll.Rows.Count, true);
+                        //****  viec update gia xong co gui lai mail cho ke toan de phe duyet lai khong????
+                        //****  truong hop co scrap se update lai thong tin ve bang scrap  ***//
                     }
                 }
                 else
@@ -3523,14 +3502,11 @@ namespace MATERIAL_IN_OUT
                 {
                     Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
                 }
-
-
             }
             if (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() == "STORE")
             {
                 dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
                 Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
-
             }
 
             if (hdfControlACC.Value.ToString().Trim() == "ACC-CHECK" && Session["Role_Dept"].ToString().Trim() == "ACC-CHECK")
@@ -3566,7 +3542,6 @@ namespace MATERIAL_IN_OUT
             }
             if (hdfControlStore.Value.ToString() == "STORE" && Session["RoleOutStock"].ToString().Trim() == "STORE")
             {
-
                 if (treeRQ_OutMateial.SelectedNode == null)
                 {
                     if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
@@ -3574,7 +3549,6 @@ namespace MATERIAL_IN_OUT
                         if (hdfControlRQ.Value == "")
                         {
                             dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["RoleOutStock"].ToString().Trim());
-
                         }
                         else
                         {
@@ -3585,7 +3559,6 @@ namespace MATERIAL_IN_OUT
                         {
                             Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
                         }
-
                     }
                     else
                     {
@@ -3597,13 +3570,7 @@ namespace MATERIAL_IN_OUT
                 {
                     Request_NO = treeRQ_OutMateial.SelectedNode.Value.ToString();
                 }
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
-
-           
-
-           
-
             string relativePath = "mau sraplist.xlsx";
             string localPath = Server.MapPath(relativePath);
 
@@ -3686,10 +3653,10 @@ namespace MATERIAL_IN_OUT
                     worksheet.Cells[row, 2].Value = dataRow["Plant"];
                     worksheet.Cells[row, 3].Value = dataRow["Sloc"];
                     worksheet.Cells[row, 4].Value = dataRow["CostCenter"];
-                    worksheet.Cells[row, 5].Value = "";// dataRow["NameCost"];   //xac nhan lai voi bo phan ***
+                    worksheet.Cells[row, 5].Value = dataRow["NameCode"];   //xac nhan lai voi bo phan ***link tu scarp ** co the sai
 
                     worksheet.Cells[row, 6].Value = dataRow["Material"]; //
-
+                     
                     worksheet.Cells[row, 7].Value = dataRow["IssueQty"];
                     worksheet.Cells[row, 8].Value = dataRow["UnitPrice_ST"];
                     worksheet.Cells[row, 9].Value = dataRow["Amount_ST"];
@@ -3700,7 +3667,7 @@ namespace MATERIAL_IN_OUT
 
                     worksheet.Cells[row, 12].Value = "";// dataRow["Remark"];  //cot remark //xac nhan lai voi bo phan ***
 
-                    worksheet.Cells[row, 13].Value = "";// dataRow["VendorName"];//xac nhan lai voi bo phan ***
+                    worksheet.Cells[row, 13].Value = dataRow["VendorName"];//xac nhan lai voi bo phan *** link voi bang mater [tbl_VendorMaster]
                     worksheet.Cells[row, 14].Value = "";// dataRow["ScrapSloc"]; //xac nhan lai voi bo phan ***
 
                     worksheet.Cells[row, 15].Value = ""; //so palet
@@ -3709,7 +3676,7 @@ namespace MATERIAL_IN_OUT
                     worksheet.Cells[row, 17].Value = "";//dataRow["Reason"]; //reason 17
                     worksheet.Cells[row, 18].Value = dataRow["RQDeptID"];   //bo phan 18
                     worksheet.Cells[row, 19].Value = dataRow["TypeID"];  //phai link sang bang mater type
-                    worksheet.Cells[row, 20].Value = dataRow["MvType"];
+                    worksheet.Cells[row, 20].Value = dataRow["MvType"];  //link select top 1 MVTypeCode from [Issue_MaterialInOut].[dbo].[tbl_MV_Master]
                     //[ScrapSystem].[dbo].[MaterMVT_PUS]  //lay ra habl hoac rosh 
                     worksheet.Cells[row, 21].Value = "";// dataRow["MoveType"];  //lay ra habl hoac rosh  ??? dua vao mater nao de lay dung???
 
@@ -3929,22 +3896,21 @@ namespace MATERIAL_IN_OUT
             }
         }
 
-        protected void btnSavePrice_Click(object sender, EventArgs e)
-        {
-            int issueID = int.Parse(Request.Form["txtID"]);
-            decimal priceST = decimal.Parse(Request.Form["txtPriceST"]);
-            decimal priceAC = decimal.Parse(Request.Form["txtPriceAC"]);
+        //protected void btnSavePrice_Click(object sender, EventArgs e)
+        //{
+        //    int issueID = int.Parse(Request.Form["txtID"]);
+        //    decimal priceST = decimal.Parse(Request.Form["txtPriceST"]);
+        //    decimal priceAC = decimal.Parse(Request.Form["txtPriceAC"]);
 
-            DataConn.FillStore(
-                "SP_Issue_Material_Update_Price",
-                CommandType.StoredProcedure,
-                issueID,
-                priceST,
-                priceAC
-            );
-
-            LoadData(); // reload grid
-        }
+        //    DataConn.FillStore(
+        //        "SP_Issue_Material_Update_Price",
+        //        CommandType.StoredProcedure,
+        //        issueID,
+        //        priceST,
+        //        priceAC
+        //    );
+        //    LoadData(); // reload grid
+        //}
 
     }
 

@@ -4,6 +4,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using MATERIAL_IN_OUT.AppCode;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.Rendering;
+using OfficeOpenXml;
 using System;
 using System.Data;
 using System.Drawing;
@@ -3352,8 +3353,215 @@ namespace MATERIAL_IN_OUT
             }
             }
         }
-
         protected void bttCheckPrice_Click(object sender, EventArgs e) 
+        {
+            DataTable dt_ReportAll = new DataTable();
+            string Request_NO = "";
+            Public_Dept = Session["CostCenter"].ToString().Trim();
+            string UserID = Session["UserName"].ToString();
+            ///////////////////////////////1. Lấy thông tin RQ cua Make RQ va STORE///////////////////////////////
+            if (hdfControlRQ.Value.ToString().Trim() == "RQ" && Session["Role_Dept"].ToString().Trim() == "RQ")
+            {
+
+                if (treeRQ_InMaterial.SelectedNode == null)
+                {
+                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                    {
+                        if (hdfControlRQ.Value == "")
+                        {
+                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+
+                        }
+
+
+                        if (dtTreeRQ.Rows.Count > 0)
+                        {
+                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        Request_NO = Session["RequestID_1RQ"].ToString();
+                    }
+                }
+                else
+                {
+                    Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
+                }
+                ////2
+                //dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                //if (dtPreEmail.Rows.Count > 0)
+                //{
+                //    for (int i = 0; i < dtPreEmail.Rows.Count; i++)
+                //    {
+                //        if (Email_Pres == null || Email_Pres == "")
+                //        {
+                //            Email_Pres = dtPreEmail.Rows[i]["Email"].ToString();
+
+                //        }
+                //        else
+                //        {
+                //            Email_Pres = Email_Pres + ',' + dtPreEmail.Rows[i]["Email"].ToString();
+
+                //        }
+                //    }
+                //}
+
+            }
+            if (hdfControlACC.Value.ToString().Trim() == "ACC-CHECK" && Session["Role_Dept"].ToString().Trim() == "ACC-CHECK")
+            {
+                if (treeRQ_InMaterial.SelectedNode == null)
+                {
+                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                    {
+
+                        if (hdfControlRQ.Value == "")
+                        {
+                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+
+                        }
+
+                        if (dtTreeRQ.Rows.Count > 0)
+                        {
+                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        Request_NO = Session["RequestID_1RQ"].ToString();
+                    }
+                }
+                else
+                {
+                    Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
+                }
+                //dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                //if (dtPreEmail.Rows.Count > 0)
+                //{
+                //    for (int i = 0; i < dtPreEmail.Rows.Count; i++)
+                //    {
+                //        if (Email_Pres == null || Email_Pres == "")
+                //        {
+                //            Email_Pres = dtPreEmail.Rows[i]["Email"].ToString();
+
+                //        }
+                //        else
+                //        {
+                //            Email_Pres = Email_Pres + ',' + dtPreEmail.Rows[i]["Email"].ToString();
+
+                //        }
+                //    }
+                //}
+            }
+            if (hdfControlStore.Value.ToString() == "STORE" && Session["RoleOutStock"].ToString().Trim() == "STORE")
+            {
+                if (treeRQ_OutMateial.SelectedNode == null)
+                {
+                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                    {
+                        if (hdfControlRQ.Value == "")
+                        {
+                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["RoleOutStock"].ToString().Trim());
+                        }
+
+                        if (dtTreeRQ.Rows.Count > 0)
+                        {
+                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                        }
+
+                    }
+                    else
+                    {
+                        Request_NO = Session["RequestID_1RQ"].ToString();
+                    }
+                    //(Session["UserName"].ToString(), Request_NO);
+                }
+                else
+                {
+                    Request_NO = treeRQ_OutMateial.SelectedNode.Value.ToString();
+                }
+                //dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), hdfControlStore.Value.ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                //if (dtPreEmail.Rows.Count > 0)
+                //{
+                //    for (int i = 0; i < dtPreEmail.Rows.Count; i++)
+                //    {
+                //        if (Email_Pres == null || Email_Pres == "")
+                //        {
+                //            Email_Pres = dtPreEmail.Rows[i]["Email"].ToString();
+
+                //        }
+                //        else
+                //        {
+                //            Email_Pres = Email_Pres + ',' + dtPreEmail.Rows[i]["Email"].ToString();
+                //        }
+                //    }
+                //}
+            }
+            if (Request_NO == "" || Request_NO == null)
+            {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Choose RQ in list control RQ again.');", true);
+                return;
+            }
+            else 
+            {
+                //check xem user update gia moi nay co phai ke toan khong?
+                int count_update = 0;
+                string check_mater = "";
+                DataTable dt_check = new DataTable();
+                dt_check = DataConn.FillStore("Check_user_update_price_sap", CommandType.StoredProcedure, UserID);
+                //Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] where UserLogin='2012757' and RoleDept='ACC-CHECK' and RoleID=1
+                //--2007600_ACC  ke toan leve1
+                if (dt_check.Rows[0][0].ToString() == "1")
+                {
+                    //update gia theo request no
+                    DataTable dt_update = new DataTable();
+                    dt_ReportAll = DataConn.FillStore("Select_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO);
+                    for (int i = 0; i < dt_ReportAll.Rows.Count; i++)
+                    {
+                        string material = dt_ReportAll.Rows[i]["Material"].ToString();
+                        string plant = dt_ReportAll.Rows[i]["Plant"].ToString();
+                        float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
+                        float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                        float Amount_ST = qty_issue * UnitPrice_ST;
+
+                        dt_update = DataConn.FillStore("Update_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID);
+                        if (dt_update.Rows[0][0].ToString() == "9")   //truong hop khong co trong mater
+                        {
+                            check_mater = material;
+
+                            break;
+                        }
+                        else if (dt_update.Rows[0][0].ToString() == "2")
+                        {
+                            //ban ghi update gia
+                            count_update = count_update + 1;
+                        }
+                    }
+                    if (count_update > 0 && check_mater == "")
+                    {
+                        Search(treeRQ_InMaterial.SelectedNode.Value.ToString(), Session["Role_Aproved_Dept"].ToString().Trim(), Session["Role_Dept"].ToString().Trim());
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + count_update, true);
+
+                    }
+                    else if (check_mater != "")
+                    {
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');" + check_mater, true);
+                    }
+                    else
+                    {
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Khong ban ghi nao update gia!');", true);
+                    }
+                }
+                else
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('User khong co quyen Check gia!');", true);
+                    return;
+                }
+
+            }
+        }
+
+        protected void btnUpdate_PriceST(object sender, EventArgs e)
         {
             DataTable dt_ReportAll = new DataTable();
             string Request_NO = "";
@@ -3505,59 +3713,41 @@ namespace MATERIAL_IN_OUT
 
                 }
             }
+
             if (Request_NO == "" || Request_NO == null)
             {
                 Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Choose RQ in list control RQ again.');", true);
                 return;
             }
-            else 
+            else
             {
-                //check xem user update gia moi nay co phai ke toan khong?
-                int count_update = 0;
-                string check_mater = "";
+                //check xem user update gia moi co phai la bo phan hay khong?
                 DataTable dt_check = new DataTable();
-                dt_check = DataConn.FillStore("Check_user_update_price_sap", CommandType.StoredProcedure, UserID);
-                //Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] where UserLogin='2012757' and RoleDept='ACC-CHECK' and RoleID=1
-                //--2007600_ACC  ke toan leve1
+                dt_check = DataConn.FillStore("Check_user_update_price_sap2", CommandType.StoredProcedure, UserID); //****
+                //neu la bo phan cho phep updata gia moi theo SAP
                 if (dt_check.Rows[0][0].ToString() == "1")
                 {
                     //update gia theo request no
                     DataTable dt_update = new DataTable();
-                    dt_ReportAll = DataConn.FillStore("Select_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO);
+                    //loc dieu kien cac ma co gia thay doi theo co Flag_price_sap = 1
+                    dt_ReportAll = DataConn.FillStore("Select_Issue_Material_Report_A2", CommandType.StoredProcedure, Request_NO);
                     for (int i = 0; i < dt_ReportAll.Rows.Count; i++)
                     {
                         string material = dt_ReportAll.Rows[i]["Material"].ToString();
                         string plant = dt_ReportAll.Rows[i]["Plant"].ToString();
                         float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
-                        float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                        float UnitPrice_ST = 0;  //update gia moi theo bang mater SAP
+                        // float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                        //****** truong hop nay phai update sang ca Scrap neu co  **** ten sanction ****
                         float Amount_ST = qty_issue * UnitPrice_ST;
-
-                        dt_update = DataConn.FillStore("Update_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID);
-                        if (dt_update.Rows[0][0].ToString() == "9")   //truong hop khong co trong mater
-                        {
-                            check_mater = material;
-
-                            break;
-                        }
-                        else if (dt_update.Rows[0][0].ToString() == "2")
-                        {
-                            //ban ghi update gia
-                            count_update = count_update + 1;
-                        }
+                        dt_update = DataConn.FillStore("Update_Issue_Material_Report_A2", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID);
                     }
-                    if (count_update > 0 && check_mater == "")
+                    if (dt_ReportAll.Rows.Count > 0)
                     {
                         Search(treeRQ_InMaterial.SelectedNode.Value.ToString(), Session["Role_Aproved_Dept"].ToString().Trim(), Session["Role_Dept"].ToString().Trim());
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + count_update, true);
-
-                    }
-                    else if (check_mater != "")
-                    {
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');" + check_mater, true);
-                    }
-                    else
-                    {
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Khong ban ghi nao update gia!');", true);
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + dt_ReportAll.Rows.Count, true);
+                        //****  viec update gia xong co gui lai mail cho ke toan de phe duyet lai khong????
+                        //****  truong hop co scrap se update lai thong tin ve bang scrap  ***//
                     }
                 }
                 else
@@ -3565,12 +3755,287 @@ namespace MATERIAL_IN_OUT
                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('User khong co quyen Check gia!');", true);
                     return;
                 }
+            }
+        }
+
+        protected void btnExport_ScrapList(object sender, EventArgs e)
+        {
+            Public_Dept = Session["CostCenter"].ToString().Trim();
+            DataTable dt_ReportAll = new DataTable();
+            DataTable dt_Status = new DataTable();
+            string Request_NO = "";
+            Public_Dept = Session["CostCenter"].ToString().Trim();
+            ///////////////////////////////1. Lấy thông tin RQ cua Make RQ va STORE///////////////////////////////
+            if (hdfControlRQ.Value.ToString().Trim() == "RQ" && Session["Role_Dept"].ToString().Trim() == "RQ")
+            {
+                if (treeRQ_InMaterial.SelectedNode == null)
+                {
+                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                    {
+                        if (hdfControlRQ.Value == "")
+                        {
+                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+
+                        }
+
+
+                        if (dtTreeRQ.Rows.Count > 0)
+                        {
+                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        Request_NO = Session["RequestID_1RQ"].ToString();
+                    }
+                }
+                else
+                {
+                    Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
+                }
+
+                //2
+                //dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                //if (dtPreEmail.Rows.Count > 0)
+                //{
+                //    for (int i = 0; i < dtPreEmail.Rows.Count; i++)
+                //    {
+                //        if (Email_Pres == null || Email_Pres == "")
+                //        {
+                //            Email_Pres = dtPreEmail.Rows[i]["Email"].ToString();
+
+                //        }
+                //        else
+                //        {
+                //            Email_Pres = Email_Pres + ',' + dtPreEmail.Rows[i]["Email"].ToString();
+
+                //        }
+                //    }
+                //}
 
             }
+            if (hdfControlACC.Value.ToString().Trim() == "ACC-CHECK" && Session["Role_Dept"].ToString().Trim() == "ACC-CHECK")
+            {
+                if (treeRQ_InMaterial.SelectedNode == null)
+                {
+                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                    {
 
+                        if (hdfControlRQ.Value == "")
+                        {
+                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
 
+                        }
 
+                        if (dtTreeRQ.Rows.Count > 0)
+                        {
+                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        Request_NO = Session["RequestID_1RQ"].ToString();
+                    }
+                }
+                else
+                {
+                    Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
+                }
+                //dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                //if (dtPreEmail.Rows.Count > 0)
+                //{
+                //    for (int i = 0; i < dtPreEmail.Rows.Count; i++)
+                //    {
+                //        if (Email_Pres == null || Email_Pres == "")
+                //        {
+                //            Email_Pres = dtPreEmail.Rows[i]["Email"].ToString();
 
+                //        }
+                //        else
+                //        {
+                //            Email_Pres = Email_Pres + ',' + dtPreEmail.Rows[i]["Email"].ToString();
+
+                //        }
+                //    }
+                //}
+            }
+            if (hdfControlStore.Value.ToString() == "STORE" && Session["RoleOutStock"].ToString().Trim() == "STORE")
+            {
+
+                if (treeRQ_OutMateial.SelectedNode == null)
+                {
+                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                    {
+                        if (hdfControlRQ.Value == "")
+                        {
+                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["RoleOutStock"].ToString().Trim());
+                        }
+
+                        if (dtTreeRQ.Rows.Count > 0)
+                        {
+                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        Request_NO = Session["RequestID_1RQ"].ToString();
+                    }
+                    //(Session["UserName"].ToString(), Request_NO);
+                }
+                else
+                {
+                    Request_NO = treeRQ_OutMateial.SelectedNode.Value.ToString();
+                }
+               
+                //dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), hdfControlStore.Value.ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                //if (dtPreEmail.Rows.Count > 0)
+                //{
+                //    for (int i = 0; i < dtPreEmail.Rows.Count; i++)
+                //    {
+                //        if (Email_Pres == null || Email_Pres == "")
+                //        {
+                //            Email_Pres = dtPreEmail.Rows[i]["Email"].ToString();
+
+                //        }
+                //        else
+                //        {
+                //            Email_Pres = Email_Pres + ',' + dtPreEmail.Rows[i]["Email"].ToString();
+                //        }
+                //    }
+                //}
+            }
+
+            string relativePath = "mau sraplist.xlsx";
+            string localPath = Server.MapPath(relativePath);
+            // Đường dẫn để lưu file Excel mới
+            string newFileName = "Export_Scraplist.xlsx"; // Tên file mới
+            string newFilePath = Server.MapPath("Template/" + newFileName); // Đường dẫn đầy đủ
+            // Gọi phương thức để xử lý file Excel và lưu file mới
+            ProcessExcelFile3(localPath, newFilePath, Request_NO);
+            // Tải xuống file mới
+            DownloadFile(newFilePath, newFileName);
         }
+
+        private void DownloadFile(string filePath, string fileName)
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+
+            if (fileInfo.Exists)
+            {
+                // Đặt các header cho tải xuống
+                Response.Clear();
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
+                Response.AddHeader("Content-Length", fileInfo.Length.ToString());
+
+                // Ghi nội dung file vào response
+                Response.WriteFile(fileInfo.FullName);
+                Response.End();
+            }
+            else
+            {
+                Response.Write("File không tồn tại.");
+            }
+        }
+
+        static void ProcessExcelFile3(string filePath, string newFilePath, string Request_NO)
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+
+            // Đảm bảo file tồn tại
+            if (!fileInfo.Exists)
+            {
+                throw new FileNotFoundException("File không tồn tại", filePath);
+            }
+
+            // Tạo file mới để lưu kết quả
+            FileInfo newFileInfo = new FileInfo(newFilePath);
+
+            DataTable dtexcel = new DataTable();
+            {
+                dtexcel = DataConn.FillStore("Export_ScrapList_Report_A", CommandType.StoredProcedure, Request_NO);
+            }
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var package = new ExcelPackage(fileInfo))
+            {
+                var worksheet = package.Workbook.Worksheets["Form B"];
+                //ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                //worksheet.Cells["D5"].Value = tungay;// "Thông tin mới";
+
+                //if (worksheet == null)
+                //{
+                //    throw new Exception("Không tìm thấy sheet 'Sheet1' trong file Excel.");
+                //}
+
+                int row = 12;
+                int i = 0;
+                DateTime currentDate = DateTime.Today;
+                string monthString = DateTime.Today.ToString("MM");
+
+                worksheet.Cells[8, 3].Value = monthString;
+                worksheet.Cells[9, 3].Value = dtexcel.Rows[0]["RQDeptID"].ToString();// bophan;  //lay tu dtexcel ["RQDeptID"]
+
+                foreach (DataRow dataRow in dtexcel.Rows)
+                {
+                    i++;
+                    worksheet.Cells[row, 1].Value = i;
+                    worksheet.Cells[row, 2].Value = dataRow["Plant"];
+                    worksheet.Cells[row, 3].Value = dataRow["Sloc"];
+                    worksheet.Cells[row, 4].Value = dataRow["CostCenter"];
+                    worksheet.Cells[row, 5].Value = dataRow["NameCode"];   //xac nhan lai voi bo phan ***link tu scarp ** co the sai
+
+                    worksheet.Cells[row, 6].Value = dataRow["Material"]; //
+
+                    worksheet.Cells[row, 7].Value = dataRow["IssueQty"];
+                    worksheet.Cells[row, 8].Value = dataRow["UnitPrice_ST"];
+                    worksheet.Cells[row, 9].Value = dataRow["Amount_ST"];
+
+                    worksheet.Cells[row, 10].Value = "";// dataRow["UnitPrice_AC"]; //form A khong co
+                    worksheet.Cells[row, 11].Value = "";// dataRow["Amount_AC"];    //form A khong co
+
+
+                    worksheet.Cells[row, 12].Value = "";// dataRow["Remark"];  //cot remark //xac nhan lai voi bo phan ***
+
+                    worksheet.Cells[row, 13].Value = dataRow["VendorName"];//xac nhan lai voi bo phan *** link voi bang mater [tbl_VendorMaster]
+                    worksheet.Cells[row, 14].Value = "";// dataRow["ScrapSloc"]; //xac nhan lai voi bo phan ***
+
+                    worksheet.Cells[row, 15].Value = ""; //so palet
+                    worksheet.Cells[row, 16].Value = ""; //so sanction
+
+                    worksheet.Cells[row, 17].Value = "";//dataRow["Reason"]; //reason 17
+                    worksheet.Cells[row, 18].Value = dataRow["RQDeptID"];   //bo phan 18
+                    worksheet.Cells[row, 19].Value = dataRow["TypeID"];  //phai link sang bang mater type
+                    worksheet.Cells[row, 20].Value = dataRow["MvType"];  //link select top 1 MVTypeCode from [Issue_MaterialInOut].[dbo].[tbl_MV_Master]
+                    //[ScrapSystem].[dbo].[MaterMVT_PUS]  //lay ra habl hoac rosh 
+                    worksheet.Cells[row, 21].Value = "";// dataRow["MoveType"];  //lay ra habl hoac rosh  ??? dua vao mater nao de lay dung???
+
+                    //[Issue_MaterialInOut].[dbo].[tbl_ACC_Master]
+                    worksheet.Cells[row, 22].Value = "";// dataRow["AccountCost"]; link sang bang mater
+                    worksheet.Cells[row, 34].Value = dataRow["VendorCode"]; //[Vendor]
+
+                    row++;
+                }
+                //Xóa validation của toàn workbook
+                //foreach (var ws in package.Workbook.Worksheets)
+                //{
+                //    for (int v = ws.DataValidations.Count - 1; v >= 0; v--)
+                //    {
+                //        ws.DataValidations.Remove(ws.DataValidations[v]);
+                //    }
+                //}
+                // xoa worksheet
+                var validations = worksheet.DataValidations;
+                for (int v = validations.Count - 1; v >= 0; v--)
+                {
+                    validations.Remove(validations[v]);
+                }
+
+                // Lưu vào file mới
+                package.SaveAs(newFileInfo);
+            }
+        }
+
     }
 }
