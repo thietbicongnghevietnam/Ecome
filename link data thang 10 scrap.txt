@@ -21,32 +21,76 @@ if (dtPrice.Rows.Count > 0)
 ==> vay file mater tu sap phai duoc upload tu truoc*****
 
 
-
-
-===========issue in out
+=========== // Check issue in out // =============
 1. check sap price 
 ---form B : bttCheckPrice_Click
 Check_user_update_price_sap
 Select_Issue_Material_Report_B
-Update_Issue_Material_Report_B  => update ban ghi nao thay doi gia thi update cot: Flag_price_sap
+Update_Issue_Material_Report_B  => update ban ghi nao thay doi gia thi update cot: Flag_price_sap & insert histoy
 
 ---form A
-SeSelect_Issue_Material_Report_A
-Update_Issue_Material_Report_A
+Select_Issue_Material_Report_A  (chua co)***
+Update_Issue_Material_Report_A	(chua co)***
 
 
-A. bang:  ---- them cot Flag_price_sap --- khi gia thay doi
+A. bang:  ---- them cot Flag_price_sap --- khi gia thay doi ***
 	[tbl_RQ_MaterialIssueB] 
 	[tbl_RQ_MaterialIssue]
 
-B. stored loaddata- search:	change mau khi cot thay doi gia
+B. stored loaddata- search:	change mau khi cot thay doi gia ***
 	SP_Issue_Material_Search_B
 	SP_Issue_Material_Search
 
-2. nut export scrap list
-	stored: Export_ScrapList_Report_B
+2. nut export scrap list  *****
+	stored: Export_ScrapList_Report_B 	(chua co)***
+		Export_ScrapList_Report_A	(chua co)***
+dataRow["NameCode"];   //xac nhan lai voi bo phan ***
+dataRow["VendorName"];//xac nhan lai voi bo phan *** link voi bang mater [tbl_VendorMaster]
+dataRow["Remark"];  //cot remark //xac nhan lai voi bo phan ***
+dataRow["TypeID"];  //phai link sang bang mater type
+dataRow["MvType"];  //link select top 1 MVTypeCode from [Issue_MaterialInOut].[dbo].[tbl_MV_Master]
+dataRow["MoveType"];  //lay ra habl hoac rosh  ??? dua vao mater nao de lay dung???
 
-3. nut update gia neu sai so voi SAP: btnUpdate_PriceST  **** chua viet (kong can cho tung ma => update all luon ==> phan quyen)
+
+3. nut update gia neu sai so voi SAP: btnUpdate_PriceST  (***user bo phan phan quyen level 3 moi duoc update gia ***)
+	update theo bang mater : tbl_Material_PriceSAP
+
+Check_user_update_price_sap2		(check user bo phan level 3 moi duoc update gia) (RoleID=3)
+Select_Issue_Material_Report_B2		(loc ra ma co gia thay doi)
+Update_Issue_Material_Report_B2		(update gia & Flag_price_sap=2)
+
+Select_Issue_Material_Report_A2
+Update_Issue_Material_Report_A2
+
+//****  viec update gia xong co gui lai mail cho ke toan de phe duyet lai khong????  ***//
+//****  truong hop co scrap se update lai thong tin ve bang scrap  ***//
+
+4. phan gui mail
+SP_Issue_Material_NextUser (sau khi ke toan gui mail level 3 )   **** test lại đoan gửi mail out dept
+=> left  join tbl_UserStock_IssueMaterial g on a.UserLogin = g.UserName 
+						  where   g.RoleID = 1 and  g.RoleDept = 'STORE' and g.Stock = @Stock 
+
+SP_BindPreviewtUser (truong hop gui mail => lui)
+
+5. truong hop reject
+SP_Issue_Material_Reject  => update trang thai = NG
+==> gui lai mail cho nguoi phia truoc
+
+6. nut delete
+
+7. nut reset
+
+8. lay ra user thuoc kho stock ???  ==> left  join tbl_UserStock_IssueMaterial g on a.UserLogin = g.UserName
+nguoi thuoc kho stock thi Menu khong hien form A va B tren menu doc
+//1. Định nghĩa Stock của kho material
+//1. Định nghĩa Stock của kho Tranfer.
+Session["RoleOutStock"] = dtmaterial.Rows[0]["RoleStore"].ToString();
+Session["Role_Dept"] = dt.Rows[0]["RoleDept"].ToString();
+Session["Role_Aproved_Dept"] = dtmaterial.Rows[0]["RoleAprovedRQ"].ToString();
+Session["Role_Aproved_Stock"] = dtmaterial.Rows[0]["RoleAprovedStock"].ToString();
+
+
+==> xem lai phan reject cua ke toan???
 
 
 	
