@@ -63,3 +63,8 @@ H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\R
 H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Release\MATERIAL_IN_OUT.csproj.CopyComplete
 H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Release\MATERIAL_IN_OUT.dll
 H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\obj\Release\MATERIAL_IN_OUT.pdb
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\EPPlus.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.IO.RecyclableMemoryStream.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\System.ComponentModel.Annotations.dll
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\EPPlus.xml
+H:\Desktops\code suport 2020\Dao\June.2022_MaterialTranfer\MATERIAL_IN_OUT\bin\Microsoft.IO.RecyclableMemoryStream.xml

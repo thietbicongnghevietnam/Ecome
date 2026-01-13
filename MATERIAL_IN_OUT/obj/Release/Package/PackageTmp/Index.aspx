@@ -40,13 +40,19 @@
                             </div>
                             <ul class="list-inline cus-product-sl-rp">
                                 <li>
-                                    <h5><i class="fa fa-circle" style="color: #24caa1;"></i>Issue Material (Form A)</h5>
+                                    <h5><i class="fa fa-circle" style="color: #24caa1;"></i>
+                                        <a href="/Material_Issues_FormA.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr=">Issue Material (Form A)</a>
+                                    </h5>
                                 </li>
                                 <li>
-                                    <h5><i class="fa fa-circle" style="color: #00b5c2;"></i>Issue Material (Form B)</h5>
+                                    <h5><i class="fa fa-circle" style="color: #00b5c2;"></i>
+                                        <a href="/Material_Issue_FormB.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr=">Issue Material (Form B)</a>
+                                    </h5>
                                 </li>
                                 <li>
-                                    <h5><i class="fa fa-circle" style="color: #ff7f5a;"></i>Tranfer Material</h5>
+                                    <h5><i class="fa fa-circle" style="color: #ff7f5a;"></i>
+                                        <a href="#">Tranfer Material</a>
+                                    </h5>
                                 </li>
                             </ul>
                             <div id="morris-area-chart" style="height: 356px;"></div>

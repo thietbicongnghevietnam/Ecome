@@ -1,0 +1,668 @@
+From request: G:\IT\02.Request Form\12.System request (Form phát triển hệ thống mới hoặc thay đổi hệ thống).xlsx
+KPI: W:\Other\03.Policy\2025\DEV	(A chung)
+W:\13.Develop\5.Document\9.Preparation	(Anh chung)
+W:\13.Develop\5.Document\9.Preparation\Dev_Plan_2025
+W:\13.Develop\9.Explanation\FY2025  (Anh chung 13.01.2025 )
+
+W:\13.Develop\9.Explanation\FY2025	(Anh chung)
+W:\13.Develop\8.Project Preparation\FY2026_Preparation 	(Anh chung)
+
+quangtrung.le@vn.panasonic.com
+quangquy.bui@vn.panasonic.com
+quangchuong.le@vn.panasonic.com
+
+1. Add one more weight check for accessories part for DSC (le quyen)
+
+2. Modify printing serial no on name Plate label for DSC (le quyen)
+
+3. Change format label same PAPVN's request for SMT   (trang & a quang & Lan do)
+
+4. 
+
+
+loi web stored timeout:  SearchReceivingCardStorage
+
+
+Psnv@2024
+http://192.168.128.131:8031/swagger/index.html
+=========
+192.168.128.131\Admin
+sa1
+Psnvdb2026@@
+
+ban giao:	W:\13.Develop\1.Sources\TuanAnh\DocumentandReport\Handover
+
+1. He thong nhan su:
+W:\13.Develop\1.Sources\TuanAnh\DocumentandReport\Copy of JobTuanAnh.xlsx
+
+**** job tuan anh
+W:\13.Develop\1.Sources\TuanAnh\DocumentandReport\Handover
+
+
+2. W:\13.Develop\1.Sources\TuanAnh\DocumentandReport\0.SAPTranfer
+
+3. list job run server
+Link :W:\13.Develop\1.Sources\TuanAnh\DocumentandReport\0.SAPTranfer\List job run on server.xlsx
+
+192.168.128.130\admin
+Psnv@2024
+
+10.209.11.76
+r3user
+P$nm123456
+
+1.AutoDataBackflushToSAP :	C:\0.Service_SWMS_GR\AutoDataBackflushToSAP
+<value>\\10.209.11.76\r3batch\Auto_BF\PMD_MCS</value>
+<value>r3user</value>
+<value>P$nm123456</value>
+****chua test
+2.AutoDataDAToSAP 		C:\0.Service_SWMS_GR\AutoDataDAToSAP
+3.AutoDataInvoiceToSAP    	C:\0.Service_SWMS_GR\AutoDataInvoiceToSAP			(OK)	\\10.75.27.41\r3batch\FOSS\GR_SMT
+stored:
+	transferdatatosap/getdatainvoice	(GetDataDAToSAP )
+	transferdatatosap/updatestatusinvoice	(UpdateStatusDataInvoiceToSap)
+
+4.AutoKittingDIPToSAP		C:\0.Service_SWMS_Kitting\AutoKittingDIPToSAP
+5.AutoUpdateDA			C:\Auto_UploadDA_usingService
+6.AutoUpdatePOPending		C:\Auto_UploadPOPending
+7.AutoUpdateQM			C:\Auto_UploadQM	
+8.AutoKittingOutsideToSAP	C:\0.Service_SWMS_Kitting\AutoKittingOutsideToSAP	(15phut)		
+
+------ .22
+9.Auto kitting FA (other cate)  (311_313) (da sua ok)
+10.Auto kitting FA (other cate)  (314)  (da sua ok)
+11.Auto kitting FA VR01 (311_313)		(da sua ok)
+12.Auto kitting FA VR01 (314)			(da sua ok)	
+13.Auto ROHS IQC					(ok)
+14.AutoKitting610_NG_IQC			(ok)				
+15.PMD_auto_GR					(ok=> chua co VV01,VE01 **PMG khong dung???)
+
+16.API_PEM(10.92.184.22:8027)	C:\WebApp\API_InternalPSNV	(public ok .22)
+\\10.209.11.76\r3batch\IoT\SMT_TF\VB01	
+\\10.209.11.76\r3batch\IoT\SMT_BF\VB01	
+
+17.GET_GR_Error_SMT_Tool
+18.ExportGR_Err
+
+
+-----------chuc nang revert kitting card tren PDA-----
+@PUT('/kitting/revertkittingcard')
+tblQtyRCKittingRef
+
+---luu history:n stored
+CreateStorageTicketDetail  ==> insert vao bang: tblStorageTicketDetail  => ly do :  @reasonOutStorage = 'revert kitting',
+
+
+----------
+	------ Huong san MCS 
+	select * from tblReceivingCard where Barcode='238476;DPPE1110ZA/X1;80;5P40;VB01;VZ025;PJ'
+	select * from tblBlockReceivingCard where ReceivingCardID=238476
+	select * from tblBlock where BlockID=98020   --block bi xoa => doi trang thai
+
+	------------------------- // -----------------
+	select * from tblBlockReceivingCard where BlockID=98020
+	select * from tblBlock where Name='2.B10C.3.02'
+	--select top 10 * from tblRack where RackID='10796'
+
+
+-----------revert receving card----------nguyen thi diep
+  select top 100 * from tblReceivingCard where Material='F1H1E106A170' and ReceivingCardID in (245903,245926)
+  --DAInvNo in ('OS-079286') --ReceivingCardID in (245787,245790)
+  select * from [dbo].[tblInvoiceItemDetail] where InvoiceDetailID  in ('125629')
+  select * from tblPOPending where PONo in (4500298802)
+
+
+====store xuat hang invoice 1 tieng 1 lan ===
+GetDataInvoiceToSAP
+ FROM [SWMS_DEV].[dbo].[tblReceivingCard] rc where rc.ReceivingType = 1 and DAInvId=34222
+ FROM [SWMS_DEV].[dbo].[tblInvoice] where InvoiceID=34222 order by CreatedDate desc
+  select * from [dbo].[tblInvoiceDetail] where InvoiceID=34222
+select * from [dbo].[tblInvoiceItemDetail] where InvoiceDetailID  in ('110829','110830')
+
+--update  [dbo].[tblInvoiceItemDetail] set Status=2 where InvoiceDetailID  in ('110829','110830')
+--Status=3
+  FROM [SWMS_DEV].[dbo].[tblTimeGRToSap] where ItemDetailID in (166300,166301)
+  --update [SWMS_DEV].[dbo].[tblTimeGRToSap] set Type=0 where ItemDetailID in (166300,166301)
+
+-====== hang invoice
+--  FROM [SWMS_DEV].[dbo].[tblInvoiceDetail] where InvoiceDetailID=112583
+--  FROM [SWMS_DEV].[dbo].[tblInvoiceItemDetail] where InvoiceDetailID='112583'
+  FROM [SWMS_DEV].[dbo].[tblPOPending] where PONo='4500294040' and Item='00001'
+ -- update [SWMS_DEV].[dbo].[tblPOPending] set GRQuantity=0,SUB=810 where PONo='4500294040' and Item='00001'
+------------------- // //-----------
+select * from tblReceivingCard where Barcode='225335;F1L1A105A112;13500;9210;VE01;VF174Y;'
+select top 10* FROM [SWMS_DEV].[dbo].[tblInvoiceDetail] where Material='F1L1A105A112' and DeliveryDate='2025-05-22' and InvoiceDetailID=117177
+select * from [dbo].[tblInvoiceItemDetail] where InvoiceDetailID  in ('117177')
+ --FROM [SWMS_DEV].[dbo].[tblInvoice] where InvoiceID=34222 order by CreatedDate desc
+  --select * from [dbo].[tblInvoiceDetail] where InvoiceID=34222
+
+ select * FROM [SWMS_DEV].[dbo].[tblPOPending] where PONo='4500298860' and Item like '%00013%'
+
+
+
+====store hang DA 1 tieng 1 lan ===
+ FROM [SWMS_DEV].[dbo].[tblInvoiceItemDetail] where InvoiceDetailID='112583'
+FROM [SWMS_DEV].[dbo].[tblDAItemDetail] where PONo in ('4500293366','4500294040')
+ FROM [SWMS_DEV].[dbo].[tblDADetail] where Material='B1KAC0000281'
+ FROM [SWMS_DEV].[dbo].[tblDA] -- where DANo in ('IJP250404RQ') --DAID=64857
+
+
+=======hang auto GR ======
++ hang nay auto theo ngay tao kitting card: 15 phut chay 1 lan
++ hang cuoi thang MCS se in ngay dau thang  (MCS chon ngay tao kitting card. chon ngay dau thang => se khong can khoa auto)
+
+
+
+buoc 1: uninstal	-> check service da mat chua
+buoc 2: doi config
+buoc 3: instal	-> check xem da chay chua
+
+(neu khong duoc thi chay bang quyen Admin)
+doi het dia chi cu thanh moi:
+ <value>r3user2</value>
+ <value>Abcd1234</value>
+ <value>\\10.75.27.41\r3batch\Auto_BF\PMD_MCS</value>
+
+
+========================== phan API phong pem =====
+tim kiem:
+public class UserCredential
+{
+    public const string SourcePath = "\\\\10.75.27.41\\r3batch\\IoT";
+    public const string SourcePath_slave = "\\\\10.75.27.41\\r3batch\\IoT_Slave";
+    public const string DevSourcePath = "\\\\10.75.27.41\\r3batch\\Auto_BF";
+    public const string Domain = "japan";
+    public const string User = "r3user2";
+    public const string Password = "Abcd1234";
+}
+doi sau do public lai len con .22
+
+========================== auto back flus =====  (khong phai sua gi)
+
+
+=======bang ke hoach kitting =======
+select * from [dbo].[tblDataKittingFA] where  Plant='VV01' and Category='TV' and Deliverydate='2024-10-24' and Material='TUX5ZE0681'  
+--select  * from tblKittingList where Deliverydate='2024-10-22' and Plant='VV01' and KittingTimeType is not null and KittingType='0'
+-------------lay theo bang type kitting tblKittingListDetail  --- ***********************
+--select distinct KittingTypeDetail from tblKittingListDetail --where Material='THE5ZC036J'
+--select distinct KittingTimeType from tblKittingList
+----- ************************************************** -------------
+select * from tblKittingListDetail ktld left join tblKittingList ktl ON ktld.KittingListID = ktl.ID 
+where ktl.Deliverydate='2024-10-24' and ktl.Plant='VV01'  and ktld.Material='TUX5ZE0681'-- and ktld.KittingStatus=1 --and ktld.ReservationNo in ('0786365907','0786370434')
+select * from tblKittingCard where KittingListDetailId in  (
+83412,
+83472,
+83578
+)
+
+
+=====================// kitting card fist in firt out //===========
+SELECT TOP (1000)* FROM [SWMS_DEV].[dbo].[tblReceivingCard] where Material = 'H3007-3J00-P' and Status = 0 and CurrentQuantity > 0 --ReceivingCardID = 220056
+select * FROM [SWMS_DEV].[dbo].[tblKittingList] where Plant = 'VG01' and Category = 'MW' and Deliverydate = '2025-05-19' and Model = 'NE-1878BBQ-V4' and Quantity=30
+select *   FROM [SWMS_DEV].[dbo].[tblBlockReceivingCard] where ReceivingCardID = 217907
+select *  FROM [SWMS_DEV].[dbo].[tblBlock] where BlockID = 96169
+
+
+
+===========// GR  PDA loi DA invocie khong ton tai //====  *** DA chua duoc truyen vao bang DA
+ [Route("deliveryplan/search")]
+--cach test: truyen lan luot tung gia tri vao
+--exec SearchDAInv 0,'','','21025281','2500000513','','4500300691','9','H1607-3K20',120,'false',1,10 --
+
+select top 10* FROM [SWMS_DEV].[dbo].[tblDAItemDetail] where DADetailID in(193680,194870) --PONo in ('4500293366','4500294040')
+select top 10* FROM [SWMS_DEV].[dbo].[tblDADetail] where Material='H1607-3K20' and DeliveryDate='2025-05-21'
+select top 10* FROM [SWMS_DEV].[dbo].[tblDA] where DAID in (
+67098,
+67237
+)
+select top 10* FROM [SWMS_DEV].[dbo].[tblDA] (nolock) where DANo='2500000513' 
+
+
+
+
+
+===============//MAP sua va update map tren web tool//============   --dung san  ,2000902  user Dung san
+layoutController.cs
+public async Task<IActionResult> SaveZoneChange
+await _apiService.CreateWidget(request);
+
+stored tao rack:	 [dbo].[CreateRack1]
+stored delette rack: 	[dbo].[DeleteRackById] @id BIGINT
+
+
+ -------------- // check loi khong vao duoc MAP tang 2 //----------------------
+ select * FROM [SWMS_DEV].[dbo].[tblZone] where FloorID='10058'
+select * FROM [SWMS_DEV].[dbo].[tblRack] where PIC='2015201' and RackID in (10810,10811)  --PIC='2000902' and Status<>1 order by UpdatedDate desc -- 
+select * FROM [SWMS_DEV].[dbo].[tblBlock] where Status<>1 and --[Name] in ('2.B39B.1.01','2.B39B.1.02','2.B39B.1.05','2.B39B.1.03') and
+RackID in (
+'10810',
+'10811'
+) and Name in ('2.P09H.1.01','2.P09G.1.01')
+select  top 100* FROM [SWMS_DEV].[dbo].[tblWidget] where ParentID=632 and UpdatedBy=2000902 order by UpdatedDate desc
+---LinkID
+select  top 1000* from tblZone where ZoneID in (71,72,73) and FloorID='10058'  --ZoneName : Zone 13,Zone 14,Zone 15
+---xoa rack   s.23B.325
+--dung san  ,2000902
+select top 100 * from tblBlock  where [Name] like '%S23B%' and CONVERT(date,UpdatedDate)='2025-05-21'
+--select  top 100 * FROM [SWMS_DEV].[dbo].[tblRack]
+
+---------------------- *****   [dbo].[DeleteRackById] @id BIGINT *********------------------
+select * FROM [SWMS_DEV].[dbo].[tblRack] where RackID=454  --PIC='2015201' --and RackID in (10810,10811)
+
+select  top 100* FROM [SWMS_DEV].[dbo].[tblWidget] where LinkID=454 
+
+select * FROM tblBlock b
+		INNER JOIN tblRack r ON b.RackID = r.RackID
+		WHERE r.RackID = 454
+
+---xoa rack   s.23B.325
+--dung san  ,2000902  --xoa ngay '2025-05-21' 
+select top 100 * from tblBlock  where [Name] like '%S23B%' and CONVERT(date,UpdatedDate)='2025-05-21' --454
+select * FROM [SWMS_DEV].[dbo].[tblRack] where RackID=454 
+
+
+ ------------------ du 4 code P10C --------
+select  * FROM [SWMS_DEV].[dbo].[tblRack]  where RackID=10815
+select top 100 * from tblBlock  where [Name] like '%P10C%'
+select  top 100* FROM [SWMS_DEV].[dbo].[tblWidget] where LinkID=10815 
+
+
+
+------------------ thieu code  P10D--------
+select  * FROM [SWMS_DEV].[dbo].[tblRack]  where RackID=10816
+select top 100 * from tblBlock  where [Name] like '%P10D%'
+select  top 100* FROM [SWMS_DEV].[dbo].[tblWidget] where LinkID=10816 
+
+
+----------------------Map kim dung ---- dang bi lap gia code ------    2.B34B.1.01
+select  * FROM [SWMS_DEV].[dbo].[tblRack]  where RackID=10834
+select top 100 * from tblBlock  where [Name] like '%B34B%' and Status<>1 order by Name asc
+select  top 100* FROM [SWMS_DEV].[dbo].[tblWidget] where LinkID=10834 
+
+
+--------------// loi change vi tri luu kho trung bang block ----
+------------ // huong san khong luu kho gia 222b === stored bi trung ban ghi khi change vi tri luu kho : ALTER PROCEDURE [dbo].[CombineLocation] 
+select * from tblReceivingCard where Barcode='229270;DVYT1009ZAK/X1;618;9C20;VE01;VF180;DSC'
+select * from tblBlockReceivingCard where ReceivingCardID=229270
+select * from tblBlock where BlockID=105457
+select * from tblRack where RackID=10822
+
+---sau khi doi sang vi tri moi
+select * from tblBlock where BlockID=105436
+select * from tblRack where RackID=10819
+
+
+-------- vi tri cu 2.S24A.2.01
+--doi vi tri sang 2.S22B.1.02
+----------------chuyen vi tri khi luu kho
+----------------- loi block bi trung khi ma xoa rack di roi, ma block van chua duoc xoa 
+-------dan den loi khi thay doi vi tri luu kho bao loi
+select * from tblBlock where Name like '%2.S22B%' --order by Name asc
+
+select * from tblBlock where RackID='456'
+select * from tblRack where RackID in (
+456,10819
+)
+select  top 100* FROM [SWMS_DEV].[dbo].[tblWidget] where LinkID=456
+
+--->chuyen vi tri khi luu kho****update trang thai xoa trong bang tblZoneReceivingCardn => sau khi insert vao bang moi tblBlockReceivingCard
+select top 10 * from tblZoneReceivingCard where ReceivingCardID in ('229270')
+
+------lay authen tu API va API de test ----
+//192.168.128.131:8010/storage/combinelocation
+---Header: {content-type: application/json, 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMjAwOTUyMSIsIm5hbWVpZCI6IjIwMDk1MjEiLCJuYmYiOjE3NDg4MjkxMzksImV4cCI6MTc1NDg1OTEzOSwiaWF0IjoxNzQ4ODI5MTM5fQ.WkimVODLFYZCLrbmAgROYkn1UpdZ-SRdhPvweCWBchE, version: 2025.04.25+1}
+
+--exec  CombineLocation '229270','2.S22B.1.02',''
+SELECT * FROM tblBlock WHERE STATUS = 0 and Name='2.S22B.1.02'
+SELECT ZoneID FROM tblZone WHERE STATUS = 0 AND ZoneName = '2.S22B.1.02'
+
+
+
+
+==============// tao QR code in rack
+
+layout/infogenqr
+
+
+================// lay thong tin may in kitting card
+/printerdevice/getall
+GetAllPrinterDevice
+bang: tblPrinterDevice
+
+===========// ****** check code SMWH ****** //==============
+
+===========// doan nem ra loi tren PDA //==============
+throw ValidationError(type: ValidationErrorType.kittingListNotExist);
+ten loi: kittingListNotExist
+file loi: error_entity.dart
+
+============= // load kiting  //==================
+***** [Route("layout/smartwarehouskittingemap")] ======store load kitting tren PDA 
+GetKittingListDetailsNew					*****=> log cho nay
+GetQtyTempANDKititng
+GetLocationAndQtyMateral
+GetMissingItem  (DM_FreeLocation(nolock) where TTcheck2 != 'nothing')
+ //Tuấn Anh thêm
+GetReceivingCardByMaterialTA (Lay material)
+
+var path = await SWMSSuggestKitting(list?.Distinct().ToList());
+GetFloorByFloorCode
+var cachedlayout = _cacheService.GetCache<LayoutDetailResponseVM>(cacheKey);
+
+===>MapLayoutDetail   (********)
+GetWidgetByFloor	==> load Dequy tu long
+GetFloorById
+GetZonesByFloorId1
+GetTrolleyById
+GetRacksByZoneId1
+
+*****scan kitting card		=======// in kitting card tren may in //==============
+***** bam tao nutkiting card tren may in ******
+ [Route("kitting/createkittingcard")]  (kitting card control)
+GetMaterialISInspection
+GetRCByStoreByMaterial
+GetQtyStoredByMaterial
+GetKittingListDetailById
+GetReceivingCardDetailByKeys
+GetMaterialRosh
+GetReceivingCardByMaterial2
+GetReceivingCardByReceivingCardId
+GetTypeFrequencyByKey
+GetQMByKT
+GetPOSMCSByRCID 	@rcid
+GetKittingListById
+
+GetKittingListDetailByIdCustom		==>tblKittingListDetail,tblKittingList,tblTypeFrequency,tblQM      tao kitting card:	CreateKittingCard_UpdateBarcode
+GetKittingListById
+
+
+ //Tuấn Anh comment
+//Đây có phải lặp không ?
+GetReceivingCardByKeys
+GetReceivingCardDetailByKeys
+
+
+
+
+file kittingcardcontroller.cs
+[Route("kitting/createkittingcard")]
+lay list QC:	GetMaterialISInspection
+getstored:		GetRCByStoreByMaterial		
+....		:	GetKittingListDetailById		(lay ra kittiing list detail)
+....		:	GetKittingListDetailByIdCustom	tblKittingListDetail,tblKittingList,tblTypeFrequency,tblQM
+
+insert kitting card:	CreateKittingCard_UpdateBarcode
+fa:	KittingType = 0
+dip:	KittingType = 1
+outside:	KittingType = 3
+
+
+
+
+
+
+================// check list kitting tren PDA //==================
+@GET('/kitting/getkittinglistbykey')  	kittingCardController.cs
+strored: GetKittingListById	=> lay thong tin tu kitting list: tblKittingList
+
+----------------------// start test //------------------
+select * from [dbo].[tblDataKittingFA] where Deliverydate='2025-05-14' and Plant='VG01' and  Material='L5HEZYY00013'  
+
+select  * from tblKittingList where Deliverydate='2025-05-14' and Plant='VG01' and KittingTimeType is not null and KittingType='0'
+
+select * from tblKittingListDetail ktld left join tblKittingList ktl ON ktld.KittingListID = ktl.ID 
+where ktl.Deliverydate='2025-05-14' and ktl.Plant='VG01' and ktld.KittingStatus=0 and ktld.PicUser='2009849'  --and ktld.Material='TUX5ZE0681'-- and ktld.KittingStatus=1 --and ktld.ReservationNo in ('0786365907','0786370434')
+--barcode kitting list co id o sau: NE-1064CCDH-V4;MW1;14/05/2025;19:54;N1;VG01;MW;MW;R;KittingList;165366
+select * from tblKittingCard where KittingListDetailId in  (
+'991222'
+)
+----------------------// end test //------------------
+
+
+----------------// loi receving card chua duoc luu kho //  -----------> [dbo].[GetLocationByRCId]  --GetLocationByRCId '209774'
+ return _apiService.getLocationByReId(rcId);
+--------------------- nguyen huong --   (kiem tra bang Block trang thai)
+select * from tblReceivingCard where Barcode='209774;PNLV226CE0RA31-ZC;3024;1182;VR01;VF159;DECT'
+select * from tblBlockReceivingCard where ReceivingCardID=209774
+select top 10 * from tblBlock where BlockID=98031 
+
+
+
+=================//luu kho //============
+ [Route("receivingcard/checkrc")]
+ @GET('/receivingcard/read')
+
+==== // Tuấn Anh thêm check Same material
+[dbo].[StoreCheckSameMaterial] --StoreCheckSameMaterial '2.B46A.1.04',216979
+
+**** check vao bang mater: DataSimilarPart  neu co ma do se khong cho luu cung 1 vi tri  ****
+
+
+================= // load web storage //===========
+API:
+[Get("/storage/search")]
+stored : SearchReceivingCardStorage			-- SearchReceivingCardStorage '','','2025-06-02',NULL,'',false,false,'PNHR2566ZD/AS','','','',1,20
+
+-- SearchReceivingCardStorage '','','2025-10-15',NULL,'',false,false,'PNQX9326ZA/V1','','','',1,20
+loi van con tren web: WHERE (rc.STATUS = 0 or  rc.CurrentQuantity=0 and rc.Status=1)
+
+FROM [SWMS_DEV].[dbo].[tblPlanOrder] where Material='PNKM1168ZC1/AS' and PlanOrderNumber='2025052904' order by CreatedDate desc
+
+----------------- Hang Plan order cua PMG  ------------
+select * from [dbo].[tblDataKittingFA] where Deliverydate='2025-05-29' and  Material='PNKM1168ZC1/AS'  --Model='1WW55Z85AEG' and --and ReservationNo='0786365907' --and Material='TPDX0033' 
+select * from tblKittingListDetail ktld left join tblKittingList ktl ON ktld.KittingListID = ktl.ID 
+where ktl.Deliverydate='2025-05-29'   and ktld.Material='PNKM1168ZC1/AS' and ktl.KittingType=0 and ktld.ID=1067113
+
+select * from  tblKittingCard where KittingListDetailId in  (
+1067113
+)
+
+select * from tblReceivingCard where Barcode='229379;PNKM1168ZC1/AS;100;11A0;VR01;;DP'
+--select * from tblReceivingCardDetail where ReceivingCardID='229379'
+
+---Hang Plan order cua PMG --- ban scan card cua PMG sau do scan Receving card ---> luu kho binh thuong --> kitting
+
+--[{"ID":"2025052904","Quantity":100.0,"ReceiptDate":"2025-06-02T00:00:00"}]
+--select * FROM [SWMS_DEV].[dbo].[tblDAItemDetail] 
+ --FROM [SWMS_DEV].[dbo].[tblDADetail] where Material='B1KAC0000281'
+ --FROM [SWMS_DEV].[dbo].[tblDA] -- where DANo in ('IJP250404RQ') --DAID=64857
+
+
+============// load web back flush //====
+  [Get("/goodreceipt/searchbackflush")]
+[Route("goodreceipt/searchbackflush")]
+stroed: SearchBackFlush
+[dbo].[SearchBackFlush] --'','','','','','','',1,20
+
+
+========//revert receving card //=================
+ @PUT('/receivingcard/revert')
+  Future<void> revertReceivingCard(@Query('id') int id);
+
+public async Task<IEnumerable<SuccessObjResponseVM>> RevertReceivingCard(long id, bool isRVWeb)
+
+stored: Revert_ReceivingCard
+
+
+
+==================// kitting tang 1 pap dip //================
+2005576 : nguyen thi minh tan kitting tang 1 pap dip
+get kiting 
+ @GET('/layout/smartwarehouskittingemap')
+ http://192.168.128.131:8010/layout/smartwarehouskittingemap?
+
+@GET('/material/getmaterialbylocation')
+check fist
+ @GET('/block/getlocationbyrcid')
+
+check trung TA
+@GET('/receivingcard/searchTA')
+
+
+2007175 : Chu thi Hue
+khong vao duoc kitting
+
+
+
+================== // bam vao kitting load tren PDA danh sach //====================
+--GetKittingListDetailsNew '2002135',null,'','','',null,null,null,0,0,'','','','','2024-11-09','0',null,1,'',0,1,200
+[dbo].[GetFloors]
+/layout/layoutdetail
+
+
+====// Nhap kho MCS //===============
+
+
+
+====// load GR tren web //===============
+[Get("/goodreceipt/getgoodreceipts")]
+GoodReceiptController
+ALTER PROCEDURE [dbo].[GetAllGoodReceipt_AddNewField] @date AS DATETIME = NULL --GetAllGoodReceipt_AddNewField null,'',null,'',0,'','','','',0,1,2000
+
+
+====// load supply kitting PDA //=============
+barcode supply: A393C-3856-MW-V4;MW3;09/05/2025;06:00;N1;VG01;MW;MW;R;KittingList;160896
+@GET('/kitting/getkittinglistbykey')
+stored: GetKittingListById
+
+
+====// load check list kitting PDA //======
+API: 
+/kitting/getkittinglistbykey
+GetKittingListById 
+GetKittingListDetailByKTLId
+
+@GET('/kitting/searchkittinglistdetail')
+GetKittingListDetails
+CountGetDataKittingListDetails
+
+
+====// load kitting PDA //=============
+ [Route("kitting/searchkittinglistdetail")] tren API
+GetKittingListDetails
+GetKittingListDetailsAllByParentId
+
+***** [Route("layout/smartwarehouskittingemap")] ======store load kitting tren PDA 
+GetKittingListDetailsNew
+ALTER PROCEDURE [dbo].[GetKittingListDetailsNew] @userid AS NVARCHAR(50) --GetKittingListDetailsNew '2008111',null,'','','',null,null,null,0,0,'','','','','2025-05-09','0',null,1,'',0,1,200
+
+
+====// load kitting report tren web //=============
+ [Get("/kitting/searchkittingreport")]
+ALTER PROCEDURE [dbo].[GetAllKittingReport]
+-- chay stored nhanh => API thi cham
+--GetAllKittingReport '','','','','','','','','0','2025-05-05',NULL,NULL,NULL,NULL,NULL,'','','','',1,9999
+ 
+****tiep theo lay ra Position **********
+GetLastLotByMaterial
+GetLocationFIFOByMaterialSloc
+
+
+=======8.5.2025 // loi ban GR co barcode cham //======
+@GET('/deliveryplan/search')	=> strored: SearchDAInv
+ALTER PROCEDURE [dbo].[SearchDAInv] --SearchDAInv 0,'null,'','','4500294895','3','H1155CE73EU-P','400','0','false',1,10
+--exec SearchDAInv 0,'','','','','','4500297532','25','DPGT2816YA/X1',100,'false',1,10 -- Tuấn Anh
+--exec SearchDAInv 0,'','','','','','4500294895','00003','N2JCA0000147',80,'false',1,10
+union cac bang tblDA & tblInvoice
+
+=======9.5.2025 // loi khong fix duoc vi tri location temp
+select * from [dbo].[DM_FreeLocation] where mahang='DPKM1156ZA1W/X1' --and Invoice='P-I20250430-001'
+select * from tblReceivingCard where Barcode='214067;DPKM1156ZA1W/X1;540;5P10;VB01;VF149;PJ'
+--update tblReceivingCard set TemporaryAreaCode='notyet' where Barcode='214067;DPKM1156ZA1W/X1;540;5P10;VB01;VF149;PJ'
+
+
+
+=======8.5.2025 // loi change pic o rack khong duoc //======  
+select top 100 * FROM [SWMS_DEV].[dbo].[tblRack] where RackCode like '%B11C%'	==> do 1 truong ****JIT null*****
+nam trong : layoutController.cs
+SaveZoneChange
+
+web
+ public async Task<IActionResult> UpdateRack(RackViewModel rack)
+[Put("/rack/update")]
+
+API
+var currentRack = await _context.GetRackByIdAsync(requests.RackID);
+return await _context.UpdateRackAsync(jsonData, _currentUserService.Id);
+
+
+
+
+FROM [SWMS_DEV].[dbo].[tblZone] where FloorID='10058'
+FROM [SWMS_DEV].[dbo].[tblRack] where PIC='2015120'  
+ FROM [SWMS_DEV].[dbo].[tblBlock] where Status<>1 and --[Name] in ('2.B39B.1.01','2.B39B.1.02','2.B39B.1.05','2.B39B.1.03') and
+RackID in ()
+FROM [SWMS_DEV].[dbo].[tblWidget] where ParentID=632
+  --LinkID='10058'
+ALTER PROCEDURE [dbo].[GetWidgetByFloor]	 --GetWidgetByFloor '10058'  (de quy)  ==> lay ra all vi tri
+
+
+================== // scan receving card input location //====================
+GetBlockByRackIds
+GetBlockReceivingCardByRCs
+[SWMS_DEV].[dbo].[tblBlock] in=> rack
+[SWMS_DEV].[dbo].[tblRack] in=> roll
+roll in => floor
+tblFloor INNER JOIN tblWidget on LinkID = FloorID AND Level = 1
+
+FROM tblBlockReceivingCard 
+
+
+================== // stored - lay out //====================
+view / layout/index
+nhay sang API
+
+
+================== // PDA - lay out //====================  ***pending: 2015120
+kitting report
+lay user kitting
+vao PDA/ kitting / chon map /  emap_kitting_controller.dart /
+// Map
+  @GET('/floor/getfloors')
+  Future<List<FloorMapInfoResponseModel>?> getListFloorMap();
+
+@GET('/layout/layoutdetail')
+  Future<NewMapWidgetResponseModel> getEMapUI({
+    @Query('id') int? floorId,
+  });
+
+nhay sang API
+
+============= // -------- Inventory ---------- //==================
+@POST('/inventory/createbalanceqty')  (khong co)
+
+public async Task<SuccessObjResponseVM> BalanceRC(BalanceRCRequest requests)
+var manuals = await _context.GetALLBalanceQtyManualExists();
+
+ALTER PROCEDURE [dbo].[GetALLBalanceQtyManualForExists]
+AS
+BEGIN
+	SELECT * FROM tblBalanceApp  where Status = 0
+END
+
+--ton kho sap : user up file excel
+---[SWMS_DEV].[dbo].[tblSAPStock]
+
+
+
+
+-------------------//  loi GR 14.11.2025 //--------------- thua 1 receving card dan den bi (-) khi in receving card
+select * from tblReceivingCard where Material='F1L1H470A201' and CurrentQuantity > 0 and DAInvNo like '%OS-082111%'  order by ReceivingCardID desc--and Status <> 1
+
+--- tblReceivingCard set Status=1 where Material='F1L1H470A201' and CurrentQuantity > 0 and DAInvNo like '%OS-082111%' and ReceivingCardID=336501  --and ReceivingCardID=336501
+
+
+-- select * FROM [SWMS_DEV].[dbo].[tblInvoice] where InvoiceID=40373 order by CreatedDate desc
+--  select * from [dbo].[tblInvoiceDetail] where InvoiceID in (
+--40373
+--  ) and TrackingNumber='29H-45344' and Material='F1L1H470A201'
+
+select * from [dbo].[tblInvoiceItemDetail] where InvoiceDetailID  in ('157563')
+
+
+ 
+
+
+
+

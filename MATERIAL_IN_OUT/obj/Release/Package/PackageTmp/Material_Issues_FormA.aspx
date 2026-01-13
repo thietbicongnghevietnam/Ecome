@@ -24,6 +24,12 @@
             font-weight: bold;
         }
     </style>
+<style>
+    table tbody tr.price-sap td {
+        background-color: #f8d7da !important; /* đỏ nhạt */
+        /*color: #842029;*/ /* chữ đỏ đậm */
+    }
+</style>
     <div class="mailbox-view-area mg-tb-15">
         <div class="container-fluid">
             <div class="row">
@@ -158,7 +164,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="float: left; margin-left: 20px; left: 0px; top: 0px;">
 
-                    <table class="table table-bordered table-striped table-hover">
+                    <%--<table class="table table-bordered table-striped table-hover">
                         <tbody>
 
                             <tr>
@@ -174,8 +180,7 @@
 
                                             </div>
                                         </div>
-                                    </div>
-                                    <%--<asp:TextBox ID="txtDateVoucher" CssClass="form-control" AutoPostBack="true" runat="server" type="date" />--%>
+                                    </div>                                   
                                 </td>
 
                             </tr>
@@ -228,7 +233,83 @@
                                     <asp:Label ID="lblvendorName" runat="server"></asp:Label></td>
                             </tr>
                         </tbody>
+                    </table>--%>
+
+                       <table class="table table-bordered table-striped table-hover">
+                        <tbody>
+
+                            <!-- Voucher Date -->
+                            <tr>
+                                <td colspan="2"><b>Voucher Date (dd/MM/yyyy)</b></td>
+                                <td colspan="5">
+                                    <%--<asp:Label ID="lblVoucherDate" runat="server"></asp:Label>--%>
+                                     <div class="date-picker-inner">
+                                      <div class="form-group data-custon-pick" id="data_2">
+                                          <div class="input-group date">
+                                              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                              <input id="txtDateInput" type="text" class="form-control" placeholder="dd-mm-yyyy"  runat ="server"/>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                                </td>
+                            </tr>
+
+                            <!-- MV Type -->
+                            <tr>
+                                <td colspan="2"><b>MV Type</b></td>
+                                <td colspan="5">
+                                    <asp:Label ID="lblMvTYpe" runat="server"></asp:Label>
+                                    -
+                                    <asp:Label ID="lblIN" runat="server"></asp:Label>
+                                </td>
+                            </tr>
+
+                            <!-- Cost Center Header -->
+                            <tr>
+                                <td colspan="2"><b>Cost center</b></td>
+                                <td><asp:Label ID="lblCC_VR01" runat="server" Text="VR01" /></td>
+                                <td><asp:Label ID="lblCC_VE01" runat="server" Text="VE01" /></td>
+                                <td><asp:Label ID="lblCC_VG01" runat="server" Text="VG01" /></td>
+                                <td><asp:Label ID="lblCC_V501" runat="server" Text="V501" /></td>
+                                <td><asp:Label ID="lblCC_VB01" runat="server" Text="VB01" /></td>
+                            </tr>
+
+                            <!-- Quantity -->
+                            <tr>
+                                <td colspan="2"><b>Quantity</b></td>
+                                <td><asp:Label ID="lblQtyVR01" runat="server" /></td>
+                                <td><asp:Label ID="lblQtyVE01" runat="server" /></td>
+                                <td><asp:Label ID="lblQtyVG01" runat="server" /></td>
+                                <td><asp:Label ID="lblQtyV501" runat="server" /></td>
+                                <td><asp:Label ID="lblQtyVB01" runat="server" /></td>
+                            </tr>
+
+                            <!-- Amount -->
+                            <tr>
+                                <td colspan="2"><b>Amount (ST)</b></td>
+                                <td><asp:Label ID="lblAmtVR01" runat="server" /></td>
+                                <td><asp:Label ID="lblAmtVE01" runat="server" /></td>
+                                <td><asp:Label ID="lblAmtVG01" runat="server" /></td>
+                                <td><asp:Label ID="lblAmtV501" runat="server" /></td>
+                                <td><asp:Label ID="lblAmtVB01" runat="server" /></td>
+                            </tr>
+
+                            <!-- Vendor -->
+                            <tr>
+                                <td colspan="2">
+                                    <b>
+                                        <asp:Label ID="lblVendorCode" runat="server"></asp:Label>
+                                    </b>
+                                </td>
+                                <td colspan="5">                                                               
+                                    <asp:Label ID="lblvendorName" runat="server"></asp:Label>
+                                </td>
+                            </tr>
+
+                        </tbody>
                     </table>
+
                     <asp:HiddenField ID="hdfStock" runat="server" />
                 </div>
             </div>
@@ -274,14 +355,21 @@
                                                     <th>Issue Qty</th>
                                                     <th>Unit Price(ST)</th>
                                                     <th>Amount(ST)</th>
+
+                                                    <th>Costcenter</th>
+                                                    <th>AccountCost</th>
+
                                                     <th>Reason</th>
                                                     <th>Status</th>
+                                                    <th>Flag</th>
+                                                    <%--<th style="text-align:center">--%>
+                                                        <%--<input type="checkbox" onclick="toggleAll(this)" />--%>
+                                                    <%--</th>--%>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            
-                                                <asp:Repeater runat="server" ID="dtIssueMaterial">
+                                                <%--<asp:Repeater runat="server" ID="dtIssueMaterial">
                                                     <ItemTemplate>
                                                         <tr>
                                                             <td><%#Eval("No") %></td>
@@ -292,8 +380,43 @@
                                                             <td><%#Eval("IssueQty") %></td>
                                                              <td><%#Eval("UnitPrice_ST") %></td>
                                                             <td><%#Eval("Amount_ST") %></td>
+
+                                                            <td><%#Eval("CostCenter") %></td>
+                                                            <td><%#Eval("AccountCost") %></td>
+
                                                             <td><%#Eval("Note") %></td>
                                                             <td><%#Eval("Status_RQ") %></td>
+                                                        </tr>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>--%>
+                                                <asp:Repeater runat="server" ID="dtIssueMaterial">
+                                                    <ItemTemplate>
+                                                        <tr class='<%# Eval("Flag_price_sap") != DBNull.Value 
+                                                                && Convert.ToInt32(Eval("Flag_price_sap")) == 1 
+                                                                ? "price-sap" 
+                                                                : "" %>'>
+                                                            <td><%#Eval("No") %></td>
+                                                            <td><%#Eval("RequestNo") %></td>
+                                                            <td><%#Eval("Material") %></td>
+                                                            <td><%#Eval("DateVoucher") %></td>
+                                                            <td><%#Eval("Sloc") %></td>
+                                                            <td><%#Eval("IssueQty") %></td>
+                                                             <td><%#Eval("UnitPrice_ST") %></td>
+                                                            <td><%#Eval("Amount_ST") %></td>
+
+                                                            <td><%#Eval("CostCenter") %></td>
+                                                            <td><%#Eval("AccountCost") %></td>
+
+                                                            <td><%#Eval("Note") %></td>
+                                                            <td><%#Eval("Status_RQ") %></td>
+                                                            <td><%# Eval("Flag_price_sap") %></td>
+                                                            <!-- CHECKBOX -->
+                                                            <%--<td style="text-align:center">
+                                                                <asp:CheckBox ID="chkSelect" runat="server" />
+                                                                <asp:HiddenField ID="hdID" 
+                                                                                 runat="server" 
+                                                                                 Value='<%# Eval("ID") %>' />
+                                                            </td>--%>
                                                         </tr>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
@@ -338,6 +461,7 @@
                                 <asp:Button ID="bttTempFile" class="btn btn-info" Text="Download Tempfile" runat="server" OnClick="bttTempFile_Click" />
                                 <asp:Button ID="bttPrint" OnClientClick="openInNewTab()" CssClass="btn btn-info" Text="Report PDF" runat="server" OnClick="bttPrint_Click" />
                                 <asp:Button ID ="bttDownExcel" CssClass="btn btn-info" OnClick ="bttDownExcel_Click"  runat  ="server"  Text ="Download Excel"/>
+                                <asp:Button ID="bttCheckPrice" CssClass="btn btn-info" runat="server" OnClick="bttCheckPrice_Click" Text="Check SAP Price" />
                                 
                                 <%--OnClick="bttPrint_Click"--%>
                             </div>
@@ -355,6 +479,12 @@
                                 <button type="button" id="Comment" onclick="openAdd('<%=hdfRequest.Value.ToString()%>','<%=hdfControlRQ.Value.ToString()%>','<%=hdfControlACC.Value.ToString()%>','<%=hdfControlStore.Value.ToString()%>','<%=hdfUserUpdate.Value.ToString()%>')" class="btn btn-info">Comment</button>
                                 </div>
                                    
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="btn-group" style="font-size: 25px;">
+                                <asp:Button ID="Button1" CssClass="btn btn-info " runat="server" Text="Export Scrap List" OnClick="btnExport_ScrapList" />
+                                <asp:Button ID="Button2" CssClass="btn btn-info " runat="server" Text="Updat Price ST" OnClick="btnUpdate_PriceST" />
                             </div>
                         </div>
                         <asp:HiddenField ID="hdfStatus_Upload" runat="server" />
@@ -409,7 +539,7 @@
         </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
     <script type="text/javascript"> 
         function openAdd(lbl_RQ, RoleRQ, RoleACC, RoleStock, User) {
             $('#<%=lblRequestUpdate.ClientID%>').val(lbl_RQ);
@@ -423,6 +553,16 @@
         }
 
     </script>
+    <script>
+        //function toggleAll(source) {
+        //    let boxes = document.querySelectorAll('input[type=checkbox][id*="chkSelect"]');
+        //    for (let i = 0; i < boxes.length; i++) {
+        //        boxes[i].checked = source.checked;
+        //    }
+        //}
+    </script>
+
+
 </asp:Content>
 
 

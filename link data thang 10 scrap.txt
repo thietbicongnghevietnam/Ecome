@@ -1,5 +1,7 @@
 G:\Procurement\38. IT project (Procurement)\FY2025\5. Scrap management system\LOG\SAMPLE SCRAP TOOL(OCT.25)
 
+W:\13.Develop\9.Explanation\FY2025
+
 "DefaultConnection": "Server=LT-DE2302026;Database=ScrapSystem;Integrated Security=True;TrustServerCertificate=True;"
 
 ============  // Dieu kien upload // ==========
@@ -8,7 +10,7 @@ G:\Procurement\38. IT project (Procurement)\FY2025\5. Scrap management system\LO
 + TypeID trong fil upload = TypeID user chon khi upload  (up theo tung issue out)
 + truong hop file upload co so request NO = RQ_Reset thì se update lai thong tin
 + MVT (201..) phai co trong mater: [Issue_MaterialInOut].[dbo].[tbl_MV_Master]
-+ CountryOfOrgin & ItemDescription bat buoc phai co
++ CountryOfOrgin & ItemDescription bat buoc phai co  (*** khong bat buoc**)
 + stored: [SP_MaterialIssue_GetPrice_SAP]  (bat buoc phai co trong bang mater gia SAP)
 	select   Plant ,Component, a.Price_STD from [dbo].[tbl_Material_PriceSAP] a where Component = @Material and  Plant = @Plant
 if (dtPrice.Rows.Count > 0)
@@ -92,7 +94,50 @@ Session["Role_Aproved_Stock"] = dtmaterial.Rows[0]["RoleAprovedStock"].ToString(
 
 ==> xem lai phan reject cua ke toan???
 
+9. ke toan phe duyet level 3  : -- Riêng phòng PUR thì update phần lưu kho là những người làm RQ sau khi kế toán approved thành công(OK) ****** bo dieu kien nay
+	+ SP_BindPreviewtUser  ==> gui lai mai
+	+  ***** if (dtCheckDept.Rows[0]["RQDeptID"].ToString() == "PUR")// PHONG PUR THI TU DONG APROVED RQ PHAN OUTSTOCK  *****
+//ke toan out luon : -- Riêng phòng PUR thì update phần lưu kho là những người làm RQ sau khi kế toán approved thành công(OK)
+int rowPUR = DataConn.ExecuteStore("SP_Issue_Material_Approved_PUR_B", CommandType.StoredProcedure, Request_NO, hdfControlACC.Value.ToString().Trim(), RoleApproved.ToString().Trim());
+//  SendEmail_Prv(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
 
+---- // *****khong phai phong PUR //----------thi phan phe duyet se day vao bang:  tbl_UserStock_IssueMaterial
+
+10. Danh muc phong ban : tbl_DeptMaster
+IF @RoleApprovedRQ = 3 
+	begin
+	print '--vao out DEPT'
+	 select   UserLogin  , FullName , a.Dept, Email,a.RoleDept as RoleRQ, ''  as RoleStore,a.RoleID as RoleAprovedRQ,'' as RoleAprovedStock,
+	c.RoleName,a.RoleDept as RoleRQ, g.RoleDept  as RoleStore,a.RolePage, g.Stock, convert(date ,a.DateCreate,101) as DateCreate ,a.[FlagDelete]
+	from [dbo].[tbl_UserIssueRQ] a 
+	inner join tbl_DeptMaster b on a.Dept = b.DeptCode  
+	inner join tbl_RoleMaster c on  a.RoleID = c.RoleID
+	 left  join tbl_UserStock_IssueMaterial g on a.UserLogin = g.UserName 
+	where   g.RoleID = 1 and  g.RoleDept = 'STORE' and g.Stock = @Stock 
+	print '3-CC'
+	end						  						  							 						 						 								  													   	   
+
+----tets
+ FROM [Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] --where Dept='IT'  ---and UserLogin like '%2007600%'
+  
+  where Dept='ACC'  and UserLogin like '%2007600%'
+
+  ---delete [Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] where Dept='ACC' and ID=2429
+
+ ---- update [Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] set Email='thingoc1.nguyen@vn.panasonic.com' where Dept='ACC' and UserLogin like '%2007600%'
+  --2007600_ACC
+  --thingoc1.nguyen@vn.panasonic.com
+  --nhuminh.nguyen@vn.panasonic.com
+
+  --Dept='PUR' and UserLogin like '%2010919%'
+
+  ---****************** //------------- Dept='IT' and RolePage='Admin' //--------
+  ---truong hop khong phai PUR thi ??? user nao OUT stock ????
+--2013168_1
+--2013168_2
+--2013168_3
+
+---select *   FROM [Issue_MaterialInOut].[dbo].[tbl_UserStock_IssueMaterial]
 	
 
 
