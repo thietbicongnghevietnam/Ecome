@@ -267,7 +267,7 @@
 
                             <!-- Cost Center Header -->
                             <tr>
-                                <td colspan="2"><b>Cost center</b></td>
+                                <td colspan="2"><b>Plan</b></td>
                                 <td><asp:Label ID="lblCC_VR01" runat="server" Text="VR01" /></td>
                                 <td><asp:Label ID="lblCC_VE01" runat="server" Text="VE01" /></td>
                                 <td><asp:Label ID="lblCC_VG01" runat="server" Text="VG01" /></td>
@@ -484,7 +484,7 @@
                         <div class="panel-footer">
                             <div class="btn-group" style="font-size: 25px;">
                                 <asp:Button ID="Button1" CssClass="btn btn-info " runat="server" Text="Export Scrap List" OnClick="btnExport_ScrapList" />
-                                <asp:Button ID="Button2" CssClass="btn btn-info " runat="server" Text="Updat Price ST" OnClick="btnUpdate_PriceST" />
+                                <%--<asp:Button ID="Button2" CssClass="btn btn-info " runat="server" Text="Updat Price ST" OnClick="btnUpdate_PriceST" />--%>
                             </div>
                         </div>
                         <asp:HiddenField ID="hdfStatus_Upload" runat="server" />

@@ -23,6 +23,11 @@ if (dtPrice.Rows.Count > 0)
 ==> vay file mater tu sap phai duoc upload tu truoc*****
 
 
+1****. Dieu kien upload : Form A    
+if (Public_Dept != "PUR") // Nếu Phòng PUR có thể upload tất cả các kho bộ phận khác vẫn phải theo danh sách kho.
+===== // chi co PUR moi duoc upload form A   ************** (bo dieu kien nay di===> co else trong if)
+
+
 =========== // Check issue in out // =============
 1. check sap price 
 ---form B : bttCheckPrice_Click
@@ -117,27 +122,19 @@ IF @RoleApprovedRQ = 3
 	print '3-CC'
 	end						  						  							 						 						 								  													   	   
 
-----tets
- FROM [Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] --where Dept='IT'  ---and UserLogin like '%2007600%'
-  
-  where Dept='ACC'  and UserLogin like '%2007600%'
+---------------------- // 14.01.2026 //-----------------
+bang: them 2 cot: Type_Rosh_Halb, Reason, Namecode , (STprice)
+tbl_RQ_MaterialIssueB
+tbl_RQ_MaterialIssue
 
-  ---delete [Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] where Dept='ACC' and ID=2429
+stored:
+Export_ScrapList_Report_A  => them cot : RQDeptID
+Export_ScrapList_Report_B
 
- ---- update [Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] set Email='thingoc1.nguyen@vn.panasonic.com' where Dept='ACC' and UserLogin like '%2007600%'
-  --2007600_ACC
-  --thingoc1.nguyen@vn.panasonic.com
-  --nhuminh.nguyen@vn.panasonic.com
 
-  --Dept='PUR' and UserLogin like '%2010919%'
 
-  ---****************** //------------- Dept='IT' and RolePage='Admin' //--------
-  ---truong hop khong phai PUR thi ??? user nao OUT stock ????
---2013168_1
---2013168_2
---2013168_3
 
----select *   FROM [Issue_MaterialInOut].[dbo].[tbl_UserStock_IssueMaterial]
+ 
 	
 
 
