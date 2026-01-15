@@ -101,6 +101,7 @@
                     <th>Plant</th>
                     <th>Material</th>
                     <th>QtyIssue</th>                 
+                    <th>QtyStock</th>                 
                     <th>Price OLD</th>
                     <th>Amount OLD</th>
                     <th>Price NEW</th>
@@ -120,6 +121,7 @@
         <td><%= rows["Plant"].ToString() %></td>
         <td><%= rows["Material"].ToString() %></td>
         <td><%= rows["QtyIssue"].ToString() %></td>
+        <td><%= rows["QtyStock"].ToString() %></td>
         <td><%= rows["giacu"].ToString() %></td>
         <td><%= rows["amountcu"].ToString() %></td>
         <td><%= rows["giamoi"].ToString() %></td>
@@ -135,6 +137,7 @@
                     <th>Plant</th>
                     <th>Material</th>
                     <th>QtyIssue</th>                 
+                    <th>QtyStock</th>                 
                     <th>Price OLD</th>
                     <th>Amount OLD</th>
                     <th>Price NEW</th>

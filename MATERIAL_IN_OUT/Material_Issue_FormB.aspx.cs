@@ -810,9 +810,9 @@ namespace MATERIAL_IN_OUT
                                     LoadButton_IN(Request_NO, RoleApproved.ToString().Trim(), hdfControlACC.Value.ToString().Trim());
                                     DataTable dtCheckDept = new DataTable();
                                     dtCheckDept = DataConn.StoreFillDS("SP_Issue_Material_CheckDeptPUR_B", CommandType.StoredProcedure, Request_NO);
-                                    if (dtCheckDept.Rows[0]["RQDeptID"].ToString() == "PUR")// PHONG PUR THI TU DONG APROVED RQ PHAN OUTSTOCK
+                                    if (dtCheckDept.Rows[0]["RQDeptID"].ToString() == "PUS")// PHONG PUR THI TU DONG APROVED RQ PHAN OUTSTOCK
                                     {
-                                        int rowPUR = DataConn.ExecuteStore("SP_Issue_Material_Approved_PUR_B", CommandType.StoredProcedure, Request_NO, hdfControlACC.Value.ToString().Trim(), RoleApproved.ToString().Trim());
+                                        //int rowPUR = DataConn.ExecuteStore("SP_Issue_Material_Approved_PUR_B", CommandType.StoredProcedure, Request_NO, hdfControlACC.Value.ToString().Trim(), RoleApproved.ToString().Trim());
                                       //  SendEmail_Prv(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
                                         Loadstatus(Request_NO);
                                     }
@@ -901,7 +901,9 @@ namespace MATERIAL_IN_OUT
                                     //  string Subject = "SUBMITED REQUEST- SCM REQUEST ON PRICE TRANSACTION SYS";
                                     string Subject = " [Issue Out] - Request Approval for " + Request_NO;
                                     string Comment = txt_Comment.Value;
-                                  //  SendEmail_Prv(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
+                                    //****15.01.2026 rule ke toan dua => sau khi level 3 stock phe duyet thi se gui mail cho : incharge, level3 bo phan, ke toan (all 3 level)
+                                    SendEmail_Prv(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
+
                                     Search(Request_NO, RoleApproved.ToString().Trim(), hdfControlStore.Value.ToString().Trim());
                                     LoadButton_Out(Request_NO, RoleApproved.ToString().Trim(), hdfControlStore.Value.ToString().Trim());
                                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('This request has  approved sucessfully');", true);
@@ -1186,12 +1188,13 @@ namespace MATERIAL_IN_OUT
 
             if (Session["RoleOutStock"].ToString().Trim() == "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ")
             {
-                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+                //dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
                 Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
             }
             string titleReport = "Report Issue IN-OUT Material";
 
-            if (Public_Dept != "PUR") // Nếu không phải PUR thì không cần hiển thị phần out SAP
+            if (Public_Dept != "PUS") // Nếu không phải PUR thì không cần hiển thị phần out SAP
             {
                 dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report_B", CommandType.StoredProcedure, Request_NO);
                 dt_Status = DataConn.StoreFillDS("SP_Issue_Material_RQStatus_B", CommandType.StoredProcedure, Request_NO);
@@ -1228,7 +1231,7 @@ namespace MATERIAL_IN_OUT
                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.error('NG! Please contact to IT member support');", true);
                 }
             }
-            if (Public_Dept == "PUR") // Nếu không phải PUR thì không cần hiển thị phần out SAP
+            if (Public_Dept == "PUS") // Nếu không phải PUR thì không cần hiển thị phần out SAP
             {
 
                 dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report_PUR", CommandType.StoredProcedure, Request_NO);
@@ -2680,21 +2683,22 @@ namespace MATERIAL_IN_OUT
         }
         public void Upload()
         {
-
-            string TypeRQID =Session["TypeID"].ToString().Trim();  //==> truong hop upload manual bat buoc phai chon TypeID
-            Public_Dept = Session["CostCenter"].ToString().Trim();
-            System.Data.OleDb.OleDbConnection MyConnection;
-            System.Data.DataSet DtSet;
-            System.Data.OleDb.OleDbDataAdapter MyCommand;
-            DataTable dt = new DataTable();
-            dt = null;
-            if (FileUpload1.HasFile)
+            try
             {
-                string strFileType = Path.GetExtension(FileUpload1.FileName).ToLower();
-                string path = FileUpload1.PostedFile.FileName;
-                string link_path = Server.MapPath("~/Upload_Request/" + DateTime.Now.ToString("yyyyMMdd") + "_" + FileUpload1.FileName);
-               // if (FileUpload1.FileName == "UploadMaterialInOut_B.xlsx" || FileUpload1.FileName == "UploadMaterialInOut_B.xls")
-               // {
+                string TypeRQID = Session["TypeID"].ToString().Trim();  //==> truong hop upload manual bat buoc phai chon TypeID
+                Public_Dept = Session["CostCenter"].ToString().Trim();
+                System.Data.OleDb.OleDbConnection MyConnection;
+                System.Data.DataSet DtSet;
+                System.Data.OleDb.OleDbDataAdapter MyCommand;
+                DataTable dt = new DataTable();
+                dt = null;
+                if (FileUpload1.HasFile)
+                {
+                    string strFileType = Path.GetExtension(FileUpload1.FileName).ToLower();
+                    string path = FileUpload1.PostedFile.FileName;
+                    string link_path = Server.MapPath("~/Upload_Request/" + DateTime.Now.ToString("yyyyMMdd") + "_" + FileUpload1.FileName);
+                    // if (FileUpload1.FileName == "UploadMaterialInOut_B.xlsx" || FileUpload1.FileName == "UploadMaterialInOut_B.xls")
+                    // {
                     FileUpload1.SaveAs(link_path);
                     //Connection String to Excel Workbook            
                     if (strFileType.Trim() == ".xls")
@@ -2720,230 +2724,230 @@ namespace MATERIAL_IN_OUT
                         MyConnection.Close();
                     }
 
-                    string sql_ = ""; 
+                    string sql_ = "";
                     string sql_Reset = "";
                     if (dt.Rows.Count > 0)
                     {
                         DataTable DtIssuse = new DataTable();
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        //RequestNo,PartNo,MOQ,LeadTime,CustomerCode, Deadline,Remask,Peson_Incharge,Date_Incharge,Insert_user,Update_Date
-                        string TypeRQ = null; string Material = null; string Sloc = null; float Qty = 0; string Mvtype = null; string Plant = null; string Account = null; float UnitPriceST = 0;
-                        float UnitActual = 0; string CostCenter = null; string VendorCode = null; string Note = null; string DateVoucher = null; float Amount = 0; float Amount_Actual = 0;
-                        string MVContent = null; string RQ_Reset = null; string CountryOfOrgin = null; string ItemDescription = null;
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            //RequestNo,PartNo,MOQ,LeadTime,CustomerCode, Deadline,Remask,Peson_Incharge,Date_Incharge,Insert_user,Update_Date
+                            string TypeRQ = null; string Material = null; string Sloc = null; float Qty = 0; string Mvtype = null; string Plant = null; string Account = null; float UnitPriceST = 0;
+                            float UnitActual = 0; string CostCenter = null; string VendorCode = null; string Note = null; string DateVoucher = null; float Amount = 0; float Amount_Actual = 0;
+                            string MVContent = null; string RQ_Reset = null; string CountryOfOrgin = null; string ItemDescription = null;
 
-                        string Type_Rosh_Halb = "";
-                        float STprice_ = 0;
-                        string Reason = "";
-                        string Namecode = "";
-                        
-
-                        if (dt.Rows[i][0].ToString() != "")
-                        {
-                            TypeRQ = dt.Rows[i][0].ToString();
-                        }
-                        else
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning(This data Type RQ at row :(" + (i + 1).ToString() + ") is null');", true);
-
-                            return;
-                        }
-                        if (dt.Rows[i][1].ToString() != "")
-                        {
-                            Material = dt.Rows[i][1].ToString();
-                        }
-                        else
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Material at row :(" + (i + 1).ToString() + ") is null');", true);
-                            return;
-                        }
-
-                        if (dt.Rows[i][2].ToString() != "")
-                        {
-                            Type_Rosh_Halb = dt.Rows[i][2].ToString();
-                        }
-                        else 
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Rosh & Halb at row :(" + (i + 1).ToString() + ") is null');", true);
-                            return;
-                        }
-
-                        if (dt.Rows[i][3].ToString() != "")
-                        {
-                            Sloc = dt.Rows[i][3].ToString();
-                        }
-                        else
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Sloc at row :(" + (i + 1).ToString() + ") is null');", true);
-                            return;
-                        }
-
-                        if (dt.Rows[i][4].ToString() != "")
-                        {
-                            Qty = float.Parse(dt.Rows[i][4].ToString());
-                        }
-                        else
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Qty at row :(" + (i + 1).ToString() + ") is null');", true);
-
-                            return;
-                        }
-
-                        if (dt.Rows[i][5].ToString() != "")   //STprice_ ???
-                        {
-
-                            float STprice2 = float.Parse(dt.Rows[i][5].ToString().Trim());
-                            STprice_ = (float)Math.Round((STprice2), 5);
-                        }
-                        else
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data STprice_ at row :(" + (i + 1).ToString() + ") is null');", true);
-                            return;
-                        }
+                            string Type_Rosh_Halb = "";
+                            float STprice_ = 0;
+                            string Reason = "";
+                            string Namecode = "";
 
 
-                        if (dt.Rows[i][6].ToString() != "")
-                        {
-
-                            float UnitActual_ = float.Parse(dt.Rows[i][6].ToString().Trim());
-                            UnitActual = (float)Math.Round((UnitActual_), 5);
-                        }
-                        else
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Amount_Actual at row :(" + (i + 1).ToString() + ") is null');", true);
-                            return;
-                        }
-
-                        if (dt.Rows[i][7].ToString() != "")
-                        {
-                            Mvtype = dt.Rows[i][7].ToString();
-                        }
-                        else
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data MVType at row :(" + (i + 1).ToString() + ") is null');", true);
-                            return;
-                        }
-
-                        //check ton tai trong [tbl_MV_Master] khong ???  8. MVContent = Out
-                        if (dt.Rows[i][8].ToString() != "")
-                        {
-                            MVContent = dt.Rows[i][8].ToString();
-                            DataTable dtCheckMV = new DataTable();
-                            dtCheckMV = DataConn.StoreFillDS("SP_Issue_Material_Check_MVType", CommandType.StoredProcedure, Mvtype.Trim(), MVContent.Trim());
-                            // Kiểm tra MV-TypeName không đúng Mv TypeID`
-                            if (int.Parse(dtCheckMV.Rows[0]["TotalMV"].ToString()) == 0)
+                            if (dt.Rows[i][0].ToString() != "")
                             {
-                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data MVName at row :(" + (i + 1).ToString() + ") is incorrect with MVType.');", true);
+                                TypeRQ = dt.Rows[i][0].ToString();
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning(This data Type RQ at row :(" + (i + 1).ToString() + ") is null');", true);
+
                                 return;
                             }
-                        }
-                        else
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data MVContent at row :(" + (i + 1).ToString() + ") is null');", true);
-                            return;
-                        }
+                            if (dt.Rows[i][1].ToString() != "")
+                            {
+                                Material = dt.Rows[i][1].ToString();
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Material at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
 
-                        if (dt.Rows[i][9].ToString() != "")   //9. Plant
-                        {
-                            Plant = dt.Rows[i][9].ToString();
-                        }
-                        else
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Plant at row :(" + (i + 1).ToString() + ") is null');", true);
-                            return;
-                        }
+                            if (dt.Rows[i][2].ToString() != "")
+                            {
+                                Type_Rosh_Halb = dt.Rows[i][2].ToString();
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Rosh & Halb at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
 
-                        if (dt.Rows[i][10].ToString() != "")   //10. costcenter
-                        {
-                            CostCenter = dt.Rows[i][10].ToString();
-                        }
-                        else
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Cost Center at row :(" + (i + 1).ToString() + ") is null');", true);
-                            return;
-                        }
+                            if (dt.Rows[i][3].ToString() != "")
+                            {
+                                Sloc = dt.Rows[i][3].ToString();
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Sloc at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
+
+                            if (dt.Rows[i][4].ToString() != "")
+                            {
+                                Qty = float.Parse(dt.Rows[i][4].ToString());
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Qty at row :(" + (i + 1).ToString() + ") is null');", true);
+
+                                return;
+                            }
+
+                            if (dt.Rows[i][5].ToString() != "")   //STprice_ ???
+                            {
+
+                                float STprice2 = float.Parse(dt.Rows[i][5].ToString().Trim());
+                                STprice_ = (float)Math.Round((STprice2), 5);
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data STprice_ at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
 
 
-                        if (dt.Rows[i][11].ToString() != "")   //11. namecode
-                        {
-                            Namecode = dt.Rows[i][11].ToString();
-                        }
-                        else
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Namecode at row :(" + (i + 1).ToString() + ") is null');", true);
-                            return;
-                        }
+                            if (dt.Rows[i][6].ToString() != "")
+                            {
 
-                        Reason = dt.Rows[i][12].ToString();   //11. Reason
-                        
+                                float UnitActual_ = float.Parse(dt.Rows[i][6].ToString().Trim());
+                                UnitActual = (float)Math.Round((UnitActual_), 5);
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Amount_Actual at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
 
-                        //13. vendor code                       
-                        string TypeCheck = TypeRQID;
-                        string[] stringTypeID = { "2", "3", "4", "5", "8", "21" }; // Những Type sẽ phải điền Vendorcode
+                            if (dt.Rows[i][7].ToString() != "")
+                            {
+                                Mvtype = dt.Rows[i][7].ToString();
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data MVType at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
 
-                        string vendorCodeValue = dt.Rows[i][13].ToString().Trim();
+                            //check ton tai trong [tbl_MV_Master] khong ???  8. MVContent = Out
+                            if (dt.Rows[i][8].ToString() != "")
+                            {
+                                MVContent = dt.Rows[i][8].ToString();
+                                DataTable dtCheckMV = new DataTable();
+                                dtCheckMV = DataConn.StoreFillDS("SP_Issue_Material_Check_MVType", CommandType.StoredProcedure, Mvtype.Trim(), MVContent.Trim());
+                                // Kiểm tra MV-TypeName không đúng Mv TypeID`
+                                if (int.Parse(dtCheckMV.Rows[0]["TotalMV"].ToString()) == 0)
+                                {
+                                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data MVName at row :(" + (i + 1).ToString() + ") is incorrect with MVType.');", true);
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data MVContent at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
 
-                        // Kiểm tra TypeCheck có nằm trong danh sách hay không
-                        bool isRequireVendorCode = stringTypeID.Contains(TypeCheck);
+                            if (dt.Rows[i][9].ToString() != "")   //9. Plant
+                            {
+                                Plant = dt.Rows[i][9].ToString();
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Plant at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
 
-                        if (isRequireVendorCode && string.IsNullOrEmpty(vendorCodeValue))
-                        {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Vendor code at row :(" + (i + 1).ToString() + ") is null');", true);
-                            return;
-                        }
+                            if (dt.Rows[i][10].ToString() != "")   //10. costcenter
+                            {
+                                CostCenter = dt.Rows[i][10].ToString();
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Cost Center at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
 
-                        // Luôn lấy VendorCode
-                        VendorCode = vendorCodeValue;
 
-                        //foreach (string x in stringTypeID)
-                        //{
-                        //    int CheckTrung = string.Compare(TypeCheck.ToString().ToUpper().Trim(), x.ToUpper().Trim());
+                            if (dt.Rows[i][11].ToString() != "")   //11. namecode
+                            {
+                                Namecode = dt.Rows[i][11].ToString();
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Namecode at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
 
-                        //    if (CheckTrung == 0)
-                        //    {
-                        //        if (dt.Rows[i][9].ToString() != "")
-                        //        {
-                        //            VendorCode = dt.Rows[i][13].ToString();
-                        //        }
-                        //        else
-                        //        {
-                        //            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Vendor code at row :(" + (i + 1).ToString() + ") is null');", true);
-                        //            return;
-                        //        }
-                        //        break;
-                        //    }
+                            Reason = dt.Rows[i][12].ToString();   //11. Reason
 
-                        //}
 
-                        Note = dt.Rows[i][14].ToString();  //14.note
-                     CountryOfOrgin = dt.Rows[i][15].ToString();
-                     ItemDescription = dt.Rows[i][16].ToString();
-                        
+                            //13. vendor code                       
+                            string TypeCheck = TypeRQID;
+                            string[] stringTypeID = { "2", "3", "4", "5", "8", "21" }; // Những Type sẽ phải điền Vendorcode
 
-                     RQ_Reset = dt.Rows[i][17].ToString();  //17. so request no reset
+                            string vendorCodeValue = dt.Rows[i][13].ToString().Trim();
 
-                        //bo check gia tu trong mater sap pirce   *****
-                        //DataTable dtPrice = new DataTable();
-                        //dtPrice = DataConn.StoreFillDS("SP_MaterialIssue_GetPrice_SAP", CommandType.StoredProcedure, Plant, Material);
-                        //if (dtPrice.Rows.Count > 0)
-                        //{
-                        //    UnitPriceST = float.Parse(dtPrice.Rows[0]["Price_STD"].ToString());
-                        //    Amount = (float)Math.Round((UnitPriceST * Qty), 2);
-                        //}
-                        //else
-                        //{
-                        //    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Upload NG... Reason is material (" + Material + ") of (" + Plant + ") not exits at table link SAP at row :(" + (i + 1).ToString() + ") ');", true);
-                        //    return;
-                        //}
+                            // Kiểm tra TypeCheck có nằm trong danh sách hay không
+                            bool isRequireVendorCode = stringTypeID.Contains(TypeCheck);
 
-                        UnitPriceST = STprice_;
-                        Amount = (float)Math.Round((UnitPriceST * Qty), 2);
+                            if (isRequireVendorCode && string.IsNullOrEmpty(vendorCodeValue))
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Vendor code at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
 
-                        Amount_Actual = (float)Math.Round((UnitActual * Qty), 2);
+                            // Luôn lấy VendorCode
+                            VendorCode = vendorCodeValue;
 
-                        txtDateInput.Value = DateTime.Now.ToString("dd/MM/yyyy");
+                            //foreach (string x in stringTypeID)
+                            //{
+                            //    int CheckTrung = string.Compare(TypeCheck.ToString().ToUpper().Trim(), x.ToUpper().Trim());
 
-                        if (txtDateInput.Value.ToString() == "")
+                            //    if (CheckTrung == 0)
+                            //    {
+                            //        if (dt.Rows[i][9].ToString() != "")
+                            //        {
+                            //            VendorCode = dt.Rows[i][13].ToString();
+                            //        }
+                            //        else
+                            //        {
+                            //            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Vendor code at row :(" + (i + 1).ToString() + ") is null');", true);
+                            //            return;
+                            //        }
+                            //        break;
+                            //    }
+
+                            //}
+
+                            Note = dt.Rows[i][14].ToString();  //14.note
+                            CountryOfOrgin = dt.Rows[i][15].ToString();
+                            ItemDescription = dt.Rows[i][16].ToString();
+
+
+                            RQ_Reset = dt.Rows[i][17].ToString();  //17. so request no reset
+
+                            //bo check gia tu trong mater sap pirce   *****
+                            //DataTable dtPrice = new DataTable();
+                            //dtPrice = DataConn.StoreFillDS("SP_MaterialIssue_GetPrice_SAP", CommandType.StoredProcedure, Plant, Material);
+                            //if (dtPrice.Rows.Count > 0)
+                            //{
+                            //    UnitPriceST = float.Parse(dtPrice.Rows[0]["Price_STD"].ToString());
+                            //    Amount = (float)Math.Round((UnitPriceST * Qty), 2);
+                            //}
+                            //else
+                            //{
+                            //    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Upload NG... Reason is material (" + Material + ") of (" + Plant + ") not exits at table link SAP at row :(" + (i + 1).ToString() + ") ');", true);
+                            //    return;
+                            //}
+
+                            UnitPriceST = STprice_;
+                            Amount = (float)Math.Round((UnitPriceST * Qty), 2);
+
+                            Amount_Actual = (float)Math.Round((UnitActual * Qty), 2);
+
+                            txtDateInput.Value = DateTime.Now.ToString("dd/MM/yyyy");
+
+                            if (txtDateInput.Value.ToString() == "")
                             {
 
                                 Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Please chosen Date Voucher.');", true);
@@ -2971,7 +2975,7 @@ namespace MATERIAL_IN_OUT
                             string StockUser = Session["Stock"].ToString().Trim();
                             string DateInsert = DateTime.Now.ToString("dd/MM/yyyy");
 
-                            if (Public_Dept != "PUR") // Nếu Phòng PUR có thể upload tất cả các kho bộ phận khác vẫn phải theo danh sách kho.
+                            if (Public_Dept != "PUS") // Nếu Phòng PUR có thể upload tất cả các kho bộ phận khác vẫn phải theo danh sách kho.
                             {
                                 if (!StockUser.Contains(stringToCheck))
                                 {
@@ -3004,51 +3008,51 @@ namespace MATERIAL_IN_OUT
                                 }
                                 else // Đúng định dạng của RQ
                                 {
-                                        DataTable dtCheckMV = DataConn.DataTable_Sql("select count(isnull(MVTypeCode,0)) as CheckMV from tbl_MV_Master  where  MVTypeCode =  '" + Mvtype + "'  and TypeID  = '" + TypeRQ + "'");
-                                        if (int.Parse(dtCheckMV.Rows[0]["CheckMV"].ToString()) > 0)
-                                        {
-                                            DataTable dtCheckRQ = DataConn.DataTable_Sql("select count(isnull(RequestNo,0)) as CheckRQ from tbl_RQ_MaterialIssueB  where  [RequestNo]  = '" + RQ_Reset + "'");
+                                    DataTable dtCheckMV = DataConn.DataTable_Sql("select count(isnull(MVTypeCode,0)) as CheckMV from tbl_MV_Master  where  MVTypeCode =  '" + Mvtype + "'  and TypeID  = '" + TypeRQ + "'");
+                                    if (int.Parse(dtCheckMV.Rows[0]["CheckMV"].ToString()) > 0)
+                                    {
+                                        DataTable dtCheckRQ = DataConn.DataTable_Sql("select count(isnull(RequestNo,0)) as CheckRQ from tbl_RQ_MaterialIssueB  where  [RequestNo]  = '" + RQ_Reset + "'");
 
-                                            if (TypeRQ != "" && RQ_Reset != "") // Upload RQ
+                                        if (TypeRQ != "" && RQ_Reset != "") // Upload RQ
+                                        {
+                                            if (int.Parse(dtCheckRQ.Rows[0]["CheckRQ"].ToString()) > 0)
                                             {
-                                                if (int.Parse(dtCheckRQ.Rows[0]["CheckRQ"].ToString()) > 0)
-                                                {
-                                                    sql_Reset = sql_Reset + " UPDATE tbl_RQ_MaterialIssueB ";
-                                                    sql_Reset = sql_Reset + " SET  [TypeID] = '" + TypeRQ + "'  ,[IssueQty] =  " + Qty + " ,[UnitPrice_ST] = " + UnitPriceST + "  ,[MvType] = '" + Mvtype + "',Type_Rosh_Halb = '" + Type_Rosh_Halb + "',Reason = '" + Reason + "',Reason = '" + Namecode + "',";
-                                                    sql_Reset = sql_Reset + "MvName =  '" + MVContent + "' ,[Plant] = '" + Plant + "' ,Note = N'" + Note + "'  ,DateVoucher =  '" + DateVoucher + "'  ,Amount_ST = " + Amount + "  ,VendorCode = '" + VendorCode + "' ,CostCenter = '" + CostCenter + "' ,Sloc = '" + Sloc + "',";
-                                                    sql_Reset = sql_Reset + "UserUpdate = '" + Session["UserName"].ToString() + "',[DateUpdate] = '" + DateTime.Now.ToString() + "', Amount_AC = '" + Amount_Actual + "'," ;
-                                                     sql_Reset = sql_Reset + "CountryofOrigin = '" + CountryOfOrgin + "', ItemDescription  = '" + ItemDescription + "'";
-                                                     sql_Reset = sql_Reset + "Where RequestNo  = '" + RQ_Reset + "' and Material = '" + Material + "' and  Status_RQ = 'Pending'  ";
-                                                    Session["RQ_UploadB"] = RQ_Reset;
-                                                }
-                                                else
-                                                {
-                                                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('NG.Upload because not exits RQ at row :(" + (i + 1).ToString() + ") for Type RQID');", true);
-                                                    return;
-                                                }
+                                                sql_Reset = sql_Reset + " UPDATE tbl_RQ_MaterialIssueB ";
+                                                sql_Reset = sql_Reset + " SET  [TypeID] = '" + TypeRQ + "'  ,[IssueQty] =  " + Qty + " ,[UnitPrice_ST] = " + UnitPriceST + "  ,[MvType] = '" + Mvtype + "',Type_Rosh_Halb = '" + Type_Rosh_Halb + "',Reason = '" + Reason + "',Namecode = '" + Namecode + "',";
+                                                sql_Reset = sql_Reset + "MvName =  '" + MVContent + "' ,[Plant] = '" + Plant + "' ,Note = N'" + Note + "'  ,DateVoucher =  '" + DateVoucher + "'  ,Amount_ST = " + Amount + "  ,VendorCode = '" + VendorCode + "' ,CostCenter = '" + CostCenter + "' ,Sloc = '" + Sloc + "',";
+                                                sql_Reset = sql_Reset + "UserUpdate = '" + Session["UserName"].ToString() + "',[DateUpdate] = '" + DateTime.Now.ToString() + "', Amount_AC = '" + Amount_Actual + "',";
+                                                sql_Reset = sql_Reset + "CountryofOrigin = '" + CountryOfOrgin + "', ItemDescription  = '" + ItemDescription + "',Flag_price_sap  = '" + 0 + "'";
+                                                sql_Reset = sql_Reset + "Where RequestNo  = '" + RQ_Reset + "' and Material = '" + Material + "' and  Status_RQ = 'Pending'  ";
+                                                Session["RQ_UploadB"] = RQ_Reset;
                                             }
                                             else
                                             {
-                                                if (TypeRQ != "" || Material != "" || Sloc != "" || Mvtype != "" || Plant != "" || CostCenter != "")
-                                                {
-                                                    sql_ = sql_ + " INSERT INTO tbl_RQ_MaterialIssueB ([RequestNo],[Material],[TypeID], [IssueQty],UserCreate,[UnitPrice_ST],[MvType],[Plant],Note,DateVoucher,Amount_ST,UnitPrice_AC,Amount_AC , VendorCode,CostCenter,Sloc,MvName,RQDeptID,CountryofOrigin,ItemDescription,Type_Rosh_Halb,Reason,NameCode) ";
-                                                    sql_ = sql_ + " VALUES( '" + Request_NO + "','" + Material + "','" + TypeRQ + "'," + Qty + ",'" + Session["UserName"].ToString() + "'," + UnitPriceST + " ,'" + Mvtype + "','" + Plant + "' ,N'" + Note + "', '" + DateVoucher + "'," + Amount + "," + UnitActual + "," + Amount_Actual + ",'" + VendorCode + "','" + CostCenter + "','" + Sloc + "','" + MVContent + "','" + Public_Dept + "','" + CountryOfOrgin + "','" + ItemDescription + "','" + Type_Rosh_Halb + "','" + Reason + "','" + Namecode + "') ";
-                                                    Session["RQ_UploadB"] = Request_NO;
-                                                }
+                                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('NG.Upload because not exits RQ at row :(" + (i + 1).ToString() + ") for Type RQID');", true);
+                                                return;
                                             }
                                         }
                                         else
                                         {
-                                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data (MVType or AccountCode ) not correct  at row :(" + (i + 1).ToString() + ") for Type RQID');", true);
-                                            return;
+                                            if (TypeRQ != "" || Material != "" || Sloc != "" || Mvtype != "" || Plant != "" || CostCenter != "")
+                                            {
+                                                sql_ = sql_ + " INSERT INTO tbl_RQ_MaterialIssueB ([RequestNo],[Material],[TypeID], [IssueQty],UserCreate,[UnitPrice_ST],[MvType],[Plant],Note,DateVoucher,Amount_ST,UnitPrice_AC,Amount_AC , VendorCode,CostCenter,Sloc,MvName,RQDeptID,CountryofOrigin,ItemDescription,Type_Rosh_Halb,Reason,NameCode) ";
+                                                sql_ = sql_ + " VALUES( '" + Request_NO + "','" + Material + "','" + TypeRQ + "'," + Qty + ",'" + Session["UserName"].ToString() + "'," + UnitPriceST + " ,'" + Mvtype + "','" + Plant + "' ,N'" + Note + "', '" + DateVoucher + "'," + Amount + "," + UnitActual + "," + Amount_Actual + ",'" + VendorCode + "','" + CostCenter + "','" + Sloc + "','" + MVContent + "','" + Public_Dept + "','" + CountryOfOrgin + "','" + ItemDescription + "','" + Type_Rosh_Halb + "','" + Reason + "','" + Namecode + "') ";
+                                                Session["RQ_UploadB"] = Request_NO;
+                                            }
                                         }
-                                 }
+                                    }
+                                    else
+                                    {
+                                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data (MVType or AccountCode ) not correct  at row :(" + (i + 1).ToString() + ") for Type RQID');", true);
+                                        return;
+                                    }
+                                }
 
                             }
                         }
                     }
-                    
-                    if ( sql_ != "")
+
+                    if (sql_ != "")
                     {
                         DataConn.Execute_NonSQL(sql_);
                         Load_Treeview_Management();
@@ -3056,7 +3060,7 @@ namespace MATERIAL_IN_OUT
                         Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Upload successful....');", true);
                         hdfStatus_Upload.Value = "OK";
                     }
-                    else if ( sql_Reset != "")
+                    else if (sql_Reset != "")
                     {
                         DataConn.Execute_NonSQL(sql_Reset);
                         Load_Treeview_Management();
@@ -3069,21 +3073,28 @@ namespace MATERIAL_IN_OUT
                         Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('NG.Upload unsuccessful ....');", true);
                         LoadData();
                     }
-              //  }
-               // else
-               // {
-              //      Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Please you change the name of the excel file with the name: UploadMaterialInOut_B');", true);
-               // }
-                // Delete file upload
-                if (System.IO.File.Exists(link_path))
+                    //  }
+                    // else
+                    // {
+                    //      Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Please you change the name of the excel file with the name: UploadMaterialInOut_B');", true);
+                    // }
+                    // Delete file upload
+                    if (System.IO.File.Exists(link_path))
+                    {
+                        System.IO.File.Delete(link_path);
+                    }
+                }
+                else
                 {
-                    System.IO.File.Delete(link_path);
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Please check data excel file !!!');", true);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Please check data excel file !!!');", true);
+
+                throw ex;
             }
+            
 
         }
         protected void bttTempFile_Click(object sender, EventArgs e)
@@ -3438,8 +3449,76 @@ namespace MATERIAL_IN_OUT
             }
             if (Request_NO == "" || Request_NO == null)
             {
-                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Choose RQ in list control RQ again.');", true);
-                return;
+                //Public_Dept
+                //truong hop ke toan ho tro check gia cho bo phan
+                string typeform = "B";
+                DataTable dt_unitno = DataConn.FillStore("get_max_requestno_checkprice", CommandType.StoredProcedure, Public_Dept, typeform);
+                if (dt_unitno.Rows.Count > 0)
+                {
+                    //truong hop co so unit no
+                    Request_NO = dt_unitno.Rows[0][0].ToString();
+                    int count_update = 0;
+                    string check_mater = "";
+                    DataTable dt_check = new DataTable();
+                    dt_check = DataConn.FillStore("Check_user_update_price_sap", CommandType.StoredProcedure, UserID);
+                    //Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] where UserLogin='2012757' and RoleDept='ACC-CHECK' and RoleID=1
+                    //--2007600_ACC  ke toan leve1
+                    if (dt_check.Rows[0][0].ToString() == "1")
+                    {
+                        //update gia theo request no
+                        DataTable dt_update = new DataTable();
+                        dt_ReportAll = DataConn.FillStore("Select_Issue_Material_Report_B", CommandType.StoredProcedure, Request_NO);
+                        for (int i = 0; i < dt_ReportAll.Rows.Count; i++)
+                        {
+                            string material = dt_ReportAll.Rows[i]["Material"].ToString();
+                            string plant = dt_ReportAll.Rows[i]["Plant"].ToString();
+                            float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
+                            float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                            float Amount_ST = qty_issue * UnitPrice_ST;
+                            string sloc = dt_ReportAll.Rows[i]["Sloc"].ToString();
+
+                            dt_update = DataConn.FillStore("Update_Issue_Material_Report_B", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID, sloc);
+                            if (dt_update.Rows[0][0].ToString() == "9")   //truong hop khong co trong mater
+                            {
+                                check_mater = material;
+
+                                break;
+                            }
+                            else if (dt_update.Rows[0][0].ToString() == "2")
+                            {
+                                //ban ghi update gia
+                                count_update = count_update + 1;
+                            }
+
+                        }
+                        if (count_update > 0 && check_mater == "")
+                        {
+                            //Search(treeRQ_InMaterial.SelectedNode.Value.ToString(), Session["Role_Aproved_Dept"].ToString().Trim(), Session["Role_Dept"].ToString().Trim());
+                            Search(Request_NO, "1", "RQ");
+                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + count_update, true);
+
+                        }
+                        else if (check_mater != "")
+                        {
+                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');" + check_mater, true);
+                        }
+                        else
+                        {
+                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Khong ban ghi nao update gia!');", true);
+                        }
+                    }
+                    else
+                    {
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('User khong co quyen Check gia!');", true);
+                        return;
+                    }
+
+                }
+                else 
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Choose RQ in list control RQ again.');", true);
+                    return;
+                }               
             }
             else 
             {
@@ -3450,7 +3529,7 @@ namespace MATERIAL_IN_OUT
                 int count_update = 0;
                 string check_mater = "";
                 DataTable dt_check = new DataTable();
-                dt_check = DataConn.FillStore("Check_user_update_price_sap", CommandType.StoredProcedure, UserID);
+                dt_check = DataConn.FillStore("Check_user_update_price_sap_ACC", CommandType.StoredProcedure, UserID);
                 //Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] where UserLogin='2012757' and RoleDept='ACC-CHECK' and RoleID=1
                 //--2007600_ACC  ke toan leve1
                 if (dt_check.Rows[0][0].ToString() == "1")
@@ -3465,8 +3544,11 @@ namespace MATERIAL_IN_OUT
                         float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
                         float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
                         float Amount_ST = qty_issue * UnitPrice_ST;
+                        string sloc = dt_ReportAll.Rows[i]["Sloc"].ToString();
 
-                        dt_update = DataConn.FillStore("Update_Issue_Material_Report_B", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID);
+                        dt_update = DataConn.FillStore("Update_Issue_Material_Report_B", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID, sloc);
+
+                        //dt_update = DataConn.FillStore("Update_Issue_Material_Report_B", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID);
                         if (dt_update.Rows[0][0].ToString() == "9")   //truong hop khong co trong mater
                         {
                             check_mater = material;

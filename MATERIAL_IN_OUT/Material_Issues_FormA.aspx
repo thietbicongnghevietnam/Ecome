@@ -361,7 +361,7 @@
 
                                                     <th>Reason</th>
                                                     <th>Status</th>
-                                                    <th>Flag</th>
+                                                    <%--<th>Flag</th>--%>
                                                     <%--<th style="text-align:center">--%>
                                                         <%--<input type="checkbox" onclick="toggleAll(this)" />--%>
                                                     <%--</th>--%>
@@ -409,7 +409,7 @@
 
                                                             <td><%#Eval("Note") %></td>
                                                             <td><%#Eval("Status_RQ") %></td>
-                                                            <td><%# Eval("Flag_price_sap") %></td>
+                                                            <%--<td><%# Eval("Flag_price_sap") %></td>--%>
                                                             <!-- CHECKBOX -->
                                                             <%--<td style="text-align:center">
                                                                 <asp:CheckBox ID="chkSelect" runat="server" />

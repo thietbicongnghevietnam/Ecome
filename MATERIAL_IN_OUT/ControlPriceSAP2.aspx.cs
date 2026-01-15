@@ -151,6 +151,8 @@ namespace MATERIAL_IN_OUT
                             string Component = "";
                             float Price_STD = 0;
                             float price2 = 0;
+                            string sloc = "";
+                            string type_material = "";
                             //string userid = "2012757";
                             string userid = Session["UserName"].ToString();
 
@@ -160,10 +162,12 @@ namespace MATERIAL_IN_OUT
                                 Plant = dtExcelData.Rows[i][1].ToString();
                                 Component = dtExcelData.Rows[i][5].ToString();
                                 Price_STD = float.Parse(dtExcelData.Rows[i][30].ToString());
-                                price2 = float.Parse(dtExcelData.Rows[i][41].ToString());
+                                price2 = float.Parse(dtExcelData.Rows[i][41].ToString());  // gia tri ton kho 
+                                sloc = dtExcelData.Rows[i][2].ToString();
+                                type_material = dtExcelData.Rows[i][4].ToString();
 
                                 //kiem tra xem tren csdl co chua? chua co thi moi them
-                                dt_checkupload = DataConn.StoreFillDS("Update_price_SAP", System.Data.CommandType.StoredProcedure, Plant, Component, Price_STD, price2, userid);
+                                dt_checkupload = DataConn.StoreFillDS("Update_price_SAP", System.Data.CommandType.StoredProcedure, Plant, Component, Price_STD, price2, userid, sloc, type_material);
                                 if (dt_checkupload.Rows[0][0].ToString() == "1")
                                 {
                                     countlap = countlap + 1;

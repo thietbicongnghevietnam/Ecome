@@ -106,9 +106,11 @@ Session["Role_Aproved_Stock"] = dtmaterial.Rows[0]["RoleAprovedStock"].ToString(
 int rowPUR = DataConn.ExecuteStore("SP_Issue_Material_Approved_PUR_B", CommandType.StoredProcedure, Request_NO, hdfControlACC.Value.ToString().Trim(), RoleApproved.ToString().Trim());
 //  SendEmail_Prv(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
 
----- // *****khong phai phong PUR //----------thi phan phe duyet se day vao bang:  tbl_UserStock_IssueMaterial
+---- // *****khong phai phong PUR //------all phong ban se phe duyet level3
+----> thi phan phe duyet se day vao bang:  tbl_UserStock_IssueMaterial
+//****15.01.2026 rule ke toan dua => sau khi level 3 stock phe duyet thi se gui mail cho : incharge, level3 bo phan, ke toan (all 3 level)
 
-10. Danh muc phong ban : tbl_DeptMaster
+10. Danh muc phong ban : tbl_DeptMaster  ==> khop voi mater scrap
 IF @RoleApprovedRQ = 3 
 	begin
 	print '--vao out DEPT'
@@ -131,10 +133,30 @@ stored:
 Export_ScrapList_Report_A  => them cot : RQDeptID
 Export_ScrapList_Report_B
 
+---------------------- // 15.01.2026 //-----------------
+bang: tbl_Material_PriceSAP 		(them 2 cot : StockQty,Sloc)
+---- update [Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] set Dept='PUS' where Dept='PUR'
+[dbo].[Check_user_update_price_sap]	(user check gia phai co trong mater)
+[Update_price_SAP] 			(phai them cot sloc va user)
+[dbo].[Select_PriceSAP_IssueOut]	(all)
+get_max_requestno_checkprice		lay so requeet no moi nhat
+Select_Issue_Material_Report_B		(them cot sloc)
+Select_Issue_Material_Report_A
+
+Update_Issue_Material_Report_A		--ke toan check gia : @plant,@material,@sloc,@UnitPrice_ST, qty   (5 dieu kien)
+Update_Issue_Material_Report_B		--ke toan check gia : @plant,@material,@sloc,@UnitPrice_ST, qty   (5 dieu kien)
+
+Select_hisorty_changepriceSAP
+Select_hisorty_changepriceSAP_loc
+
+Check_user_update_price_sap_ACC		(them moi)
+
+
+  
 
 
 
- 
+
 	
 
 

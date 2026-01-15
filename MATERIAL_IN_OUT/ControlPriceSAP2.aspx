@@ -139,7 +139,9 @@
                     <th>Plant</th>
                     <th>Material</th>
                     <th>Price_STD</th>                          
-                    <th>Price2</th>                          
+                    <th>Stock</th>                          
+                    <th>Sloc</th>                          
+                    <th>Material_Type</th>                          
                     <th>Date Insert</th>                          
                     <th>Action</th>
                  </tr>
@@ -157,7 +159,9 @@
                                         <td><%=rows["Plant"].ToString() %></td>
                                         <td><%=rows["Component"].ToString() %></td>
                                         <td><%=rows["Price_STD"].ToString() %></td>                                                    
-                                        <td><%=rows["Price2"].ToString() %></td>                                                    
+                                        <td><%=rows["StockQty"].ToString() %></td>                                                    
+                                        <td><%=rows["Sloc"].ToString() %></td>                                                    
+                                        <td><%=rows["Material_Type"].ToString() %></td>                                                    
                                         <td><%=rows["Updatetime"].ToString() %></td>                                                    
                                         <td>
        

@@ -1016,7 +1016,7 @@ namespace MATERIAL_IN_OUT
 
                             string StockUser = Session["Stock"].ToString().Trim();
 
-                            if (Public_Dept != "PUR") // Nếu Phòng PUR có thể upload tất cả các kho bộ phận khác vẫn phải theo danh sách kho.
+                            if (Public_Dept != "PUS") // Nếu Phòng PUR có thể upload tất cả các kho bộ phận khác vẫn phải theo danh sách kho.
                             {
                                 if (!StockUser.Contains(stringToCheck))
                                 {
@@ -1058,10 +1058,10 @@ namespace MATERIAL_IN_OUT
                                             if (int.Parse(dtCheckRQ.Rows[0]["CheckRQ"].ToString()) > 0)
                                             {
                                                 sql_Reset = sql_Reset + " UPDATE tbl_RQ_MaterialIssue ";
-                                                sql_Reset = sql_Reset + " SET  [TypeID] = '" + TypeRQ + "'  ,[IssueQty] =  " + Qty + " ,[UnitPrice_ST] = " + UnitPriceST + "  ,[MvType] = '" + Mvtype + "',Type_Rosh_Halb = '" + Type_Rosh_Halb + "',Reason = '" + Reason + "',Reason = '" + Namecode + "',";
+                                                sql_Reset = sql_Reset + " SET  [TypeID] = '" + TypeRQ + "'  ,[IssueQty] =  " + Qty + " ,[UnitPrice_ST] = " + UnitPriceST + "  ,[MvType] = '" + Mvtype + "',Type_Rosh_Halb = '" + Type_Rosh_Halb + "',Reason = '" + Reason + "',Namecode = '" + Namecode + "',";
                                                 sql_Reset = sql_Reset + "MvName =  '" + MVName + "' ,[Plant] = '" + Plant + "' ,Note = N'" + Note + "',DateVoucher =  '" + DateVoucher + "' ,Amount_ST = " + Amount + "  ,VendorCode = '" + VendorCode + "' ,CostCenter = '" + CostCenter + "' ,Sloc = '" + Sloc + "',";
-                                                sql_Reset = sql_Reset + "[UserUpdate] = '" + Session["UserName"].ToString() + "',[DateUpdate] = '" + DateTime.Now.ToString() + "'";
-                                                sql_Reset = sql_Reset + "[CountryofOrigin] = '" + CountryOfOrgin + "', [ItemDescription]  = '" +ItemDescription + "'";
+                                                sql_Reset = sql_Reset + "[UserUpdate] = '" + Session["UserName"].ToString() + "',[DateUpdate] = '" + DateTime.Now.ToString() + "',";
+                                                sql_Reset = sql_Reset + "[CountryofOrigin] = '" + CountryOfOrgin + "', [ItemDescription]  = '" +ItemDescription + "',Flag_price_sap  = '" + 0 + "'";
                                               sql_Reset = sql_Reset + "Where[RequestNo]  = '" + RQ_Reset + "' and [Material] = '" + Material + "'  and  Status_RQ = 'Pending' ";
                                                 Session["RQ_Upload"] = RQ_Reset;
                                             }
@@ -2263,9 +2263,9 @@ namespace MATERIAL_IN_OUT
                                     LoadButton_IN(Request_NO, RoleApproved.ToString().Trim(), hdfControlACC.Value.ToString().Trim());
                                     DataTable dtCheckDept = new DataTable();
                                     dtCheckDept = DataConn.StoreFillDS("SP_Issue_Material_CheckDeptPUR", CommandType.StoredProcedure, Request_NO);
-                                    if (dtCheckDept.Rows[0]["RQDeptID"].ToString() == "PUR")// PHONG PUR THI TU DONG APROVED RQ PHAN OUTSTOCK
+                                    if (dtCheckDept.Rows[0]["RQDeptID"].ToString() == "PUS")// PHONG PUR THI TU DONG APROVED RQ PHAN OUTSTOCK
                                     {
-                                        int rowPUR = DataConn.ExecuteStore("SP_Issue_Material_Approved_PUR", CommandType.StoredProcedure, Request_NO, hdfControlACC.Value.ToString().Trim(), RoleApproved.ToString().Trim());
+                                        //int rowPUR = DataConn.ExecuteStore("SP_Issue_Material_Approved_PUR", CommandType.StoredProcedure, Request_NO, hdfControlACC.Value.ToString().Trim(), RoleApproved.ToString().Trim());
                                         //  SendEmail_Prv(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
                                         Loadstatus(Request_NO);
                                         Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('This request has approved sucessfully');", true);
@@ -2357,7 +2357,8 @@ namespace MATERIAL_IN_OUT
                                     //  string Subject = "SUBMITED REQUEST- SCM REQUEST ON PRICE TRANSACTION SYS";
                                     string Subject = " [Issue Out] - Request Approval for " + Request_NO;
                                     string Comment = txt_Comment.Value;
-                                    //SendEmail_Prv(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
+                                    //****15.01.2026 rule ke toan dua => sau khi level 3 stock phe duyet thi se gui mail cho : incharge, level3 bo phan, ke toan (all 3 level)
+                                    SendEmail_Prv(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
                                     Search(Request_NO, RoleApproved.ToString().Trim(), hdfControlStore.Value.ToString().Trim());
                                     LoadButton_Out(Request_NO, RoleApproved.ToString().Trim(), hdfControlStore.Value.ToString().Trim());
                                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('This request has  approved sucessfully');", true);
@@ -2639,7 +2640,7 @@ namespace MATERIAL_IN_OUT
             }
 
             string titleReport = "Report Issue IN-OUT Material";
-            if (Public_Dept != "PUR") // Nếu không phải PUR thì không cần hiển thị phần out SAP
+            if (Public_Dept != "PUS") // Nếu không phải PUR thì không cần hiển thị phần out SAP
             {
                 dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report", CommandType.StoredProcedure, Request_NO);
                 dt_Status = DataConn.StoreFillDS("SP_Issue_Material_RQStatus", CommandType.StoredProcedure, Request_NO);
@@ -2672,7 +2673,7 @@ namespace MATERIAL_IN_OUT
                     File.Delete(link_report);
                 }
             }
-            if (Public_Dept == "PUR") // Nếu PUR thì hiển thị phần out stock
+            if (Public_Dept == "PUS") // Nếu PUR thì hiển thị phần out stock
 
             {
                 dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report_PUR", CommandType.StoredProcedure, Request_NO);
@@ -3532,8 +3533,74 @@ namespace MATERIAL_IN_OUT
             }
             if (Request_NO == "" || Request_NO == null)
             {
-                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Choose RQ in list control RQ again.');", true);
-                return;
+                //ke toan co the check giup bo phan truoc
+                string typeform = "A";
+                DataTable dt_unitno = DataConn.FillStore("get_max_requestno_checkprice", CommandType.StoredProcedure, Public_Dept, typeform);
+                if (dt_unitno.Rows.Count > 0)
+                {
+                    //truong hop co so unit no
+                    Request_NO = dt_unitno.Rows[0][0].ToString();
+                    int count_update = 0;
+                    string check_mater = "";
+                    DataTable dt_check = new DataTable();
+                    dt_check = DataConn.FillStore("Check_user_update_price_sap", CommandType.StoredProcedure, UserID);
+                    //Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] where UserLogin='2012757' and RoleDept='ACC-CHECK' and RoleID=1
+                    //--2007600_ACC  ke toan leve1
+                    if (dt_check.Rows[0][0].ToString() == "1") 
+                    {
+                        //update gia theo request no
+                        DataTable dt_update = new DataTable();
+                        dt_ReportAll = DataConn.FillStore("Select_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO);
+                        for (int i = 0; i < dt_ReportAll.Rows.Count; i++)
+                        {
+                            string material = dt_ReportAll.Rows[i]["Material"].ToString();
+                            string plant = dt_ReportAll.Rows[i]["Plant"].ToString();
+                            float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
+                            float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                            float Amount_ST = qty_issue * UnitPrice_ST;
+                            string sloc = dt_ReportAll.Rows[i]["Sloc"].ToString();
+
+                            dt_update = DataConn.FillStore("Update_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID, sloc);
+                            //dt_update = DataConn.FillStore("Update_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID);
+                            if (dt_update.Rows[0][0].ToString() == "9")   //truong hop khong co trong mater
+                            {
+                                check_mater = material;
+
+                                break;
+                            }
+                            else if (dt_update.Rows[0][0].ToString() == "2")
+                            {
+                                //ban ghi update gia
+                                count_update = count_update + 1;
+                            }
+                        }
+                        if (count_update > 0 && check_mater == "")
+                        {
+                            //Search(treeRQ_InMaterial.SelectedNode.Value.ToString(), Session["Role_Aproved_Dept"].ToString().Trim(), Session["Role_Dept"].ToString().Trim());
+                            Search(Request_NO, "1", "RQ");
+                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + count_update, true);
+
+                        }
+                        else if (check_mater != "")
+                        {
+                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');" + check_mater, true);
+                        }
+                        else
+                        {
+                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Khong ban ghi nao update gia!');", true);
+                        }
+                    }
+                    else
+                    {
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('User khong co quyen Check gia!');", true);
+                        return;
+                    }
+                }
+                else 
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Choose RQ in list control RQ again.');", true);
+                    return;
+                }                
             }
             else 
             {
@@ -3541,7 +3608,7 @@ namespace MATERIAL_IN_OUT
                 int count_update = 0;
                 string check_mater = "";
                 DataTable dt_check = new DataTable();
-                dt_check = DataConn.FillStore("Check_user_update_price_sap", CommandType.StoredProcedure, UserID);
+                dt_check = DataConn.FillStore("Check_user_update_price_sap_ACC", CommandType.StoredProcedure, UserID);
                 //Issue_MaterialInOut].[dbo].[tbl_UserIssueRQ] where UserLogin='2012757' and RoleDept='ACC-CHECK' and RoleID=1
                 //--2007600_ACC  ke toan leve1
                 if (dt_check.Rows[0][0].ToString() == "1")
@@ -3556,8 +3623,10 @@ namespace MATERIAL_IN_OUT
                         float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
                         float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
                         float Amount_ST = qty_issue * UnitPrice_ST;
+                        string sloc = dt_ReportAll.Rows[i]["Sloc"].ToString();
 
-                        dt_update = DataConn.FillStore("Update_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID);
+                        dt_update = DataConn.FillStore("Update_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID, sloc);
+                        //dt_update = DataConn.FillStore("Update_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID);
                         if (dt_update.Rows[0][0].ToString() == "9")   //truong hop khong co trong mater
                         {
                             check_mater = material;
