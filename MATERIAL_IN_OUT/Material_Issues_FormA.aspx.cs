@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -438,6 +439,7 @@ namespace MATERIAL_IN_OUT
         public void LoadData()
         {
             Public_Dept = Session["CostCenter"].ToString().Trim();
+            User_next = Session["UserName"].ToString();
             if (( Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() == "") || (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() == "STORE"))
             {
 
@@ -447,7 +449,18 @@ namespace MATERIAL_IN_OUT
                     {
                         if (hdfControlRQ.Value == "")
                         {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+                            //them stored de gui mail LOG & ke toan => truong hop type = 1   //nguoi cua LOG vao comment
+                            if (Public_Dept == "LOG" && User_next == "2012757")
+                            {
+                                //lay ra so unit no typeID=1
+                                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_BindRQ_Approved", CommandType.StoredProcedure, Public_Dept, Stock, "RQ", User_next, "1");
+                            }
+                            else 
+                            {
+                                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+                            }
+                            //code old
+                            //dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
 
                         }
 
@@ -1201,6 +1214,71 @@ namespace MATERIAL_IN_OUT
             }
 
         }
+
+
+        public void SendEmail_other(string RQ, string UserCurrent, string DeptID, string Stock, string RoleRQ, string RoleApprovedRQ, string RoleStore, string RoleApprovedStore, string subject, string Content_Comment)
+        {
+
+            dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser_other]", CommandType.StoredProcedure, UserCurrent, DeptID, Stock, RoleRQ, RoleApprovedRQ, RoleStore, RoleApprovedStore);
+            if (dtNextMail.Rows.Count > 0)
+            {
+                for (int j = 0; j < dtNextMail.Rows.Count; j++)
+                {
+                    string Request = RQ.ToString().Trim();
+                    string UserNext = dtNextMail.Rows[j]["UserLogin"].ToString();
+                    string DeptNext = dtNextMail.Rows[j]["Dept"].ToString();
+                    string Stock_ = hdfStock.Value.ToString();
+                    string RoleRQ_Next = dtNextMail.Rows[j]["RoleRQ"].ToString();
+                    string RoleAppRQ_Next = dtNextMail.Rows[j]["RoleAprovedRQ"].ToString();
+                    string RoleStore_Next = dtNextMail.Rows[j]["RoleStore"].ToString();
+                    string RoleAppStore_Next = dtNextMail.Rows[j]["RoleAprovedStock"].ToString();
+                    string Email_NextUser = dtNextMail.Rows[j]["Email"].ToString();
+                    System.Net.Mail.SmtpClient objClient = new System.Net.Mail.SmtpClient("157.8.1.131");
+                    subject = subject.Replace('\r', ' ').Replace('\n', ' ');
+                    System.Net.Mail.MailAddress mail = new System.Net.Mail.MailAddress("tax.psnv@vn.panasonic.com", "Issue In-Out Material");
+                    System.Net.Mail.MailMessage objMessage = new System.Net.Mail.MailMessage
+                    {
+                        Priority = MailPriority.High,
+                        IsBodyHtml = true,
+
+                        From = mail,
+                        Subject = subject
+                    };
+                    objMessage.IsBodyHtml = true;
+                    //Get data Header Images to Content of Email
+                    string Header_Email = "";
+                    Header_Email += "";
+                    using (StreamReader reader2 = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Fomat_SendEmail/EmailApproved_A.html")))
+                    {
+                        header_ = reader2.ReadToEnd();
+                    }
+
+                    //header_ = header_.Replace("RQV", DataConn.Encrypt(RQID));
+                    //header_ = header_.Replace("UserV", DataConn.Encrypt(UserNext_));
+                    //header_ = header_.Replace("DeptV", DataConn.Encrypt(Public_Dept));
+                    //header_ = header_.Replace("StockV", DataConn.Encrypt(Kho));
+                    //header_ = header_.Replace("RoleRQV", DataConn.Encrypt(RoleDept));
+                    //header_ = header_.Replace("RoleRQ_AprV", DataConn.Encrypt(RoleApproved));
+                    //header_ = header_.Replace("RoleStoreV", DataConn.Encrypt(RoleOutStock));
+                    //header_ = header_.Replace("RoleStore_AprV", DataConn.Encrypt(RoleApproved_Stock));
+                    header_ = header_.Replace("RQV", Request);
+                    header_ = header_.Replace("UserV", UserNext);
+                    header_ = header_.Replace("DeptV", DeptNext);
+                    header_ = header_.Replace("StockV", Stock_);
+                    header_ = header_.Replace("value5", RoleRQ_Next);
+                    header_ = header_.Replace("RoleRQ_AprV", RoleAppRQ_Next);
+                    header_ = header_.Replace("RoleStoreV", RoleStore_Next);
+                    header_ = header_.Replace("RoleStore_AprV", RoleAppStore_Next);
+
+                    objMessage.Body = header_;
+                    objMessage.To.Add(new MailAddress(Email_NextUser));
+                    objClient.Send(objMessage);
+
+                }
+            }
+
+        }
+
         public void SendEmail_Prv(string RequestID, string DeptID, string user_Current, string subject, string ToEmail, string Content_Comment)
         {
 
@@ -1215,6 +1293,81 @@ namespace MATERIAL_IN_OUT
             {
                 dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString().Trim(), RequestID);
             }
+
+            if (dtPreEmail.Rows.Count > 0)
+            {
+                UserNext = dtPreEmail.Rows[0]["UserLogin"].ToString();
+                RoleNext = dtPreEmail.Rows[0]["RoleID"].ToString();
+                RoleDeptNext = dtPreEmail.Rows[0]["RoleDept"].ToString();
+            }
+            System.Net.Mail.SmtpClient objClient = new System.Net.Mail.SmtpClient("157.8.1.131");
+            subject = subject.Replace('\r', ' ').Replace('\n', ' ');
+            System.Net.Mail.MailAddress mail = new System.Net.Mail.MailAddress("tax.psnv@vn.panasonic.com", "Issue In-Out Material");
+            System.Net.Mail.MailMessage objMessage = new System.Net.Mail.MailMessage();
+            string[] ToEmailList = ToEmail.Split(',');
+
+
+            objMessage.Priority = MailPriority.High;
+            objMessage.IsBodyHtml = true;
+            objMessage.From = mail;
+            objMessage.Subject = subject;
+            objMessage.IsBodyHtml = true;
+            //Get data Header Images to Content of Email
+            string Header_Email = "";
+            Header_Email += "";
+            using (StreamReader reader2 = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Fomat_SendEmail/EmailApproved_A.html")))
+            {
+                header_ = reader2.ReadToEnd();
+            }
+
+            string RQID = RequestID.ToString().Trim();
+            string UserNext_ = UserNext.ToString().Trim();
+            string Kho = hdfStock.Value.ToString();
+            string RoleDept = Session["Role_Dept"].ToString().Trim();
+            string RoleApproved = Session["Role_Aproved_Dept"].ToString().Trim();
+            string RoleOutStock = Session["RoleOutStock"].ToString().Trim();
+            string RoleApproved_Stock = Session["Role_Aproved_Stock"].ToString().Trim();
+            //header_ = header_.Replace("RQV", DataConn.Encrypt(RQID));
+            //header_ = header_.Replace("UserV", DataConn.Encrypt(UserNext_));
+            //header_ = header_.Replace("DeptV", DataConn.Encrypt(Public_Dept));
+            //header_ = header_.Replace("StockV", DataConn.Encrypt(Kho));
+            //header_ = header_.Replace("value5", DataConn.Encrypt(RoleDept));
+            //header_ = header_.Replace("RoleRQ_AprV", DataConn.Encrypt(RoleApproved));
+            //header_ = header_.Replace("RoleStoreV", DataConn.Encrypt(RoleOutStock));
+            //header_ = header_.Replace("RoleStore_AprV", DataConn.Encrypt(RoleApproved_Stock));
+
+            header_ = header_.Replace("RQV", RQID);
+            header_ = header_.Replace("UserV", UserNext_);
+            header_ = header_.Replace("DeptV", Public_Dept);
+            header_ = header_.Replace("StockV", Kho);
+            header_ = header_.Replace("value5", RoleDept);
+            header_ = header_.Replace("RoleRQ_AprV", RoleApproved);
+            header_ = header_.Replace("RoleStoreV", RoleOutStock);
+            header_ = header_.Replace("RoleStore_AprV", RoleApproved_Stock);
+
+            objMessage.Body = header_;
+            foreach (string Email_To in ToEmailList)
+            {
+                objMessage.To.Add(new MailAddress(Email_To));
+                objClient.Send(objMessage);
+            }
+        }
+
+        public void SendEmail_Prv_LOG(string RequestID, string DeptID, string user_Current, string subject, string ToEmail, string Content_Comment)
+        {
+
+            //1 Get Role_Next , User_Next, RoleDept_Next
+            Public_Dept = Session["CostCenter"].ToString().Trim();
+            string UserNext = null; string RoleNext = null; string RoleDeptNext = null;
+            //if (Session["RoleOutStock"].ToString().Trim() != "" && Session["Role_Aproved_Stock"].ToString().Trim() != "")
+            //{
+            //    dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["RoleOutStock"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString().Trim(), RequestID);
+            //}
+            //if (Session["Role_Dept"].ToString().Trim() != "" && Session["Role_Aproved_Dept"].ToString().Trim() != "")
+            //{
+            //    dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString().Trim(), RequestID);
+            //}
+            dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser_other]", CommandType.StoredProcedure, "", DeptID, Stock, "RQ", "1", "", "");
 
             if (dtPreEmail.Rows.Count > 0)
             {
@@ -2113,8 +2266,16 @@ namespace MATERIAL_IN_OUT
                             {
                                 //  string Subject = "SUBMITED REQUEST- SCM REQUEST ON PRICE TRANSACTION SYS";
                                 string Subject = " [Issue Out] - Request Approval for " + Request_NO;
-                                string Comment = txt_Comment.Value;
+                                string Comment = txt_Comment.Value;                                
                                 SendEmail_Next(Request_NO, Session["UserName"].ToString(), Public_Dept, hdfStock.Value.ToString(), hdfControlRQ.Value.ToString(), RoleApproved.ToString().Trim(), "", "", Subject, Comment);
+
+                                //bo sung viec gui mail cho LOG va ke toan neu typecheck =1 (1.Other Issue Materials) 19.01.2026
+                                if (lblRequest.Text == "1.Other Issue Materials")
+                                {
+                                    //gui mail cho ket toan va LOG de xac nhan
+                                    SendEmail_other(Request_NO, Session["UserName"].ToString(), Public_Dept, hdfStock.Value.ToString(), hdfControlRQ.Value.ToString(), RoleApproved.ToString().Trim(), "", "", Subject, Comment);
+                                }
+
                                 Search(Request_NO, RoleApproved.ToString().Trim(), hdfControlRQ.Value.ToString().Trim());
                                 LoadButton_IN(Request_NO, RoleApproved.ToString().Trim(), hdfControlRQ.Value.ToString().Trim());
                                 Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('This request has submited sucessfully');", true);
@@ -2409,8 +2570,20 @@ namespace MATERIAL_IN_OUT
                         Role = Session["Role_Aproved_Dept"].ToString();
                         RoleDept = Role_RQ;
                     }
+                    int row = 0;
+                    if (Session["UserName"].ToString() == "2012757")
+                    {
+                        //user LOG -- chang LOG 
+                         row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update2", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
+                    }
+                    else 
+                    {
+                         row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
+                    }
 
-                    int row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
+                    //int row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
+
+
                     if (row == 0)
                     {
                         string Subject = " Request for comment-" + Request_NO + ".";
@@ -2426,6 +2599,13 @@ namespace MATERIAL_IN_OUT
                             {
                                 SendEmail_Prv(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
                             }
+
+                            if (lblRequest.Text == "1.Other Issue Materials")
+                            {
+                                //gui mail cho ket toan va LOG de xac nhan   
+                                SendEmail_Prv_LOG(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
+                            }
+
                         }
                         Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('This comment has been sent sucessfully');", true);
                     }

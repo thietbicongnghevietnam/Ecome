@@ -152,9 +152,27 @@ Select_hisorty_changepriceSAP_loc
 Check_user_update_price_sap_ACC		(them moi)
 
 
----------------------- // 16.01.2026 //-----------------
+---------------------- // 19.01.2026 //-----------------   1.Other Issue Materials     *******
+1. viet them ham: SendEmail_other
+stored: SP_Issue_Material_NextUser_other
+if (lblRequest.Text == "1.Other Issue Materials")
+{
+    //gui mail cho ket toan va LOG de xac nhan
+    SendEmail_other(Request_NO, Session["UserName"].ToString(), Public_Dept, hdfStock.Value.ToString(), hdfControlRQ.Value.ToString(), RoleApproved.ToString().Trim(), "", "", Subject, Comment);
+}
 
-  
+2. stored:  [SP_Issue_Material_BindRQ_Approved] 'LOG','2020','RQ','2012757','1'
+  [dbo].[tbl_User_OtherissueMaterial]	(them stored de gui mail LOG & ke toan => truong hop type = 1)
+
+3. sua doan loaddata()
+//them stored de gui mail LOG & ke toan => truong hop type = 1   //nguoi cua LOG vao comment
+if (Public_Dept == "LOG" && User_next == "2012757")
+	 dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_BindRQ_Approved", CommandType.StoredProcedure, Public_Dept, Stock, "RQ", User_next, "1");
+
+
+
+
+
 
 
 

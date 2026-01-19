@@ -256,7 +256,7 @@
 
                             <!-- Cost Center Header -->
                             <tr>
-                                <td colspan="2"><b>Cost center</b></td>
+                                <td colspan="2"><b>Plan</b></td>
                                 <td>
                                     <asp:Label ID="lblCC_VR01" runat="server" Text="VR01" /></td>
                                 <td>
@@ -366,7 +366,7 @@
 
                                                     <th>Reason</th>
                                                     <th>Status</th>
-                                                    <th>Flag</th>
+                                                   <%-- <th>Flag</th>--%>
                                                     <%--<th style="text-align: center">--%>
                                                         <%--<input type="checkbox" class="chk-edit-price" onclick="toggleAll(this)" />--%>
                                                     <%--</th>--%>
@@ -394,7 +394,7 @@
                                                             <td><%# Eval("AccountCost") %></td>
                                                             <td><%# Eval("Note") %></td>
                                                             <td><%# Eval("Status_RQ") %></td>
-                                                            <td><%# Eval("Flag_price_sap") %></td>
+                                                           <%-- <td><%# Eval("Flag_price_sap") %></td>--%>
                                                             <!-- CHECKBOX -->
                                                            <%-- <td style="text-align: center">
                                                                      <asp:CheckBox ID="chkSelect" runat="server" CssClass="chk-edit-price"
@@ -470,7 +470,7 @@
                         <div class="panel-footer">
                             <div class="btn-group" style="font-size: 25px;">
                                 <asp:Button ID="Button1" CssClass="btn btn-info " runat="server" Text="Export Scrap List" OnClick="btnExport_ScrapList" />
-                                <asp:Button ID="Button2" CssClass="btn btn-info " runat="server" Text="Updat Price ST" OnClick="btnUpdate_PriceST" />
+                               <%-- <asp:Button ID="Button2" CssClass="btn btn-info " runat="server" Text="Updat Price ST" OnClick="btnUpdate_PriceST" />--%>
                             </div>
                         </div>
                         

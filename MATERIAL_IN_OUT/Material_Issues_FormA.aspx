@@ -434,19 +434,16 @@
                                     <div class="card-body">
                                         <h4 class="card-title mb-5">Horizontal Comments</h4>
                                         <div class="hori-timeline" dir="ltr">
-                                            <ul class="list-inline events">
+                                           <%-- <ul class="list-inline events">--%>
                                                 <%int j = 1;%>
                                                 <%foreach (System.Data.DataRow rows in dt_Comment.Rows)
                                                     {%>
-                                                <li class="list-inline-item event-list" style="padding-top: 10px">
-                                                    <div class="px-4">
-                                                        <div class="event-date bg-soft-success text-success" style="font-size: 9px; color: black"><%=rows["DateUpdate"].ToString() %></div>
-                                                        <h5 class="font-size-16"><%=rows["FullName"].ToString() %></h5>
-                                                        <p class="text-muted"><%=rows["Content_Comment"].ToString() %></p>
-                                                    </div>
-                                                </li>
+                                                <div class="event-date bg-soft-success text-success" style="font-size: 20px; color: black">
+                                                    <%=rows["FullName"].ToString() %>:<%=rows["DateUpdate"].ToString() %> -> <%=rows["Content_Comment"].ToString() %> 
+
+                                                </div>
                                                 <% } %>
-                                            </ul>
+                                           <%-- </ul>--%>
                                         </div>
                                     </div>
                                 </div>

@@ -1,0 +1,90 @@
+1:41 PM - IT_Minh:
+Em gui lai file
+1:42 PM - PUS1 - PRJ Riem (2180):
+oki e
+4:34 PM - PUS1 - PRJ Riem (2180):
+E ơi! Up deadstock có vấn đề
+PUS1 - PRJ Riem (2180) is available
+4:34 PM - IT_Minh:
+vâng vấn đề gì ạ
+4:34 PM - PUS1 - PRJ Riem (2180):
+
+
+
+4:35 PM - PUS1 - PRJ Riem (2180):
+
+
+
+4:35 PM - PUS1 - PRJ Riem (2180):
+2 file c up
+4:35 PM - PUS1 - PRJ Riem (2180):
+1 NG 1 deadstock
+4:36 PM - PUS1 - PRJ Riem (2180):
+Deadstock nó ko nhận kho c add thêm
+4:37 PM - PUS1 - PRJ Riem (2180):
+Santion ra có cả 1 santion  " NG & Deadstock"????
+4:39 PM - PUS1 - PRJ Riem (2180):
+397	Plant				Material
+398	VE01				DVLB2060ZA/X1
+399	VE01				1RE1DVLD1339ZA-1
+400	VE01				DVQX2516WA/V1
+401	VE01				DVQX2517WA/V1
+402	VE01				F1J1H105A832
+403	VE01				ERJ12YJ222U
+404	VE01				D0GA2R2JA023
+405	VE01				D0GF681JA118
+406	VE01				ERJ3RBD153V
+408	VE01				D0GA333JA070
+420	V501				B0JBSL000101
+421	V501				D0GB222ZA029
+422	V501				D0GB361JA041
+423	V501				D0GF102JA026
+424	V501				D0GF202ZA002
+425	V501				D1BA1401A017
+426	V501				D1BB1501A073
+427	V501				D1BB1601A055
+428	V501				D1BB4701A055
+429	V501				D1BB82R0A055
+430	V501				ERJ2GEJ390X
+431	V501				ERJ3EKF3302V
+432	V501				ERJ3GEYJ152V
+433	V501				F2A1H1000067
+434	V501				K5E502BZ0001
+
+4:39 PM - IT_Minh:
+NG & Deadstock chị đặt sai tên cột rồi ạ
+4:39 PM - IT_Minh:
+phải lùi cột
+4:39 PM - IT_Minh:
+nằm ở cột C và D
+4:40 PM - PUS1 - PRJ Riem (2180):
+để c thử lại
+4:40 PM - IT_Minh:
+vang
+4:51 PM - PUS1 - PRJ Riem (2180):
+e ơi down ra NG deadstock bị lỗi hết
+4:52 PM - IT_Minh:
+vang lỗi thế nào chị mô tả cho em phát
+PUS1 - PRJ Riem (2180) is available
+4:56 PM - PUS1 - PRJ Riem (2180):
+Deadstock có 37 dòng e nhé
+4:57 PM - IT_Minh:
+vang aj
+4:57 PM - IT_Minh:
+sau em check
+4:57 PM - PUS1 - PRJ Riem (2180):
+oki e
+4:57 PM - IT_Minh:
+em dag tiếp FA 1 chút
+4:57 PM - IT_Minh:
+mai la ok
+4:57 PM - IT_Minh:
+chi cứ làm việc khác đi
+4:58 PM - PUS1 - PRJ Riem (2180):
+oki e
+4:58 PM - PUS1 - PRJ Riem (2180):
+C ktra kho 8
+4:59 PM - IT_Minh:
+vang a
+4:59 PM - IT_Minh:
+de em check

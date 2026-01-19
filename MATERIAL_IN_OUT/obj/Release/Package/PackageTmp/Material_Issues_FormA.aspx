@@ -267,7 +267,7 @@
 
                             <!-- Cost Center Header -->
                             <tr>
-                                <td colspan="2"><b>Cost center</b></td>
+                                <td colspan="2"><b>Plan</b></td>
                                 <td><asp:Label ID="lblCC_VR01" runat="server" Text="VR01" /></td>
                                 <td><asp:Label ID="lblCC_VE01" runat="server" Text="VE01" /></td>
                                 <td><asp:Label ID="lblCC_VG01" runat="server" Text="VG01" /></td>
@@ -361,7 +361,7 @@
 
                                                     <th>Reason</th>
                                                     <th>Status</th>
-                                                    <th>Flag</th>
+                                                    <%--<th>Flag</th>--%>
                                                     <%--<th style="text-align:center">--%>
                                                         <%--<input type="checkbox" onclick="toggleAll(this)" />--%>
                                                     <%--</th>--%>
@@ -409,7 +409,7 @@
 
                                                             <td><%#Eval("Note") %></td>
                                                             <td><%#Eval("Status_RQ") %></td>
-                                                            <td><%# Eval("Flag_price_sap") %></td>
+                                                            <%--<td><%# Eval("Flag_price_sap") %></td>--%>
                                                             <!-- CHECKBOX -->
                                                             <%--<td style="text-align:center">
                                                                 <asp:CheckBox ID="chkSelect" runat="server" />
@@ -434,19 +434,16 @@
                                     <div class="card-body">
                                         <h4 class="card-title mb-5">Horizontal Comments</h4>
                                         <div class="hori-timeline" dir="ltr">
-                                            <ul class="list-inline events">
+                                           <%-- <ul class="list-inline events">--%>
                                                 <%int j = 1;%>
                                                 <%foreach (System.Data.DataRow rows in dt_Comment.Rows)
                                                     {%>
-                                                <li class="list-inline-item event-list" style="padding-top: 10px">
-                                                    <div class="px-4">
-                                                        <div class="event-date bg-soft-success text-success" style="font-size: 9px; color: black"><%=rows["DateUpdate"].ToString() %></div>
-                                                        <h5 class="font-size-16"><%=rows["FullName"].ToString() %></h5>
-                                                        <p class="text-muted"><%=rows["Content_Comment"].ToString() %></p>
-                                                    </div>
-                                                </li>
+                                                <div class="event-date bg-soft-success text-success" style="font-size: 20px; color: black">
+                                                    <%=rows["FullName"].ToString() %>:<%=rows["DateUpdate"].ToString() %> -> <%=rows["Content_Comment"].ToString() %> 
+
+                                                </div>
                                                 <% } %>
-                                            </ul>
+                                           <%-- </ul>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -484,7 +481,7 @@
                         <div class="panel-footer">
                             <div class="btn-group" style="font-size: 25px;">
                                 <asp:Button ID="Button1" CssClass="btn btn-info " runat="server" Text="Export Scrap List" OnClick="btnExport_ScrapList" />
-                                <asp:Button ID="Button2" CssClass="btn btn-info " runat="server" Text="Updat Price ST" OnClick="btnUpdate_PriceST" />
+                                <%--<asp:Button ID="Button2" CssClass="btn btn-info " runat="server" Text="Updat Price ST" OnClick="btnUpdate_PriceST" />--%>
                             </div>
                         </div>
                         <asp:HiddenField ID="hdfStatus_Upload" runat="server" />
