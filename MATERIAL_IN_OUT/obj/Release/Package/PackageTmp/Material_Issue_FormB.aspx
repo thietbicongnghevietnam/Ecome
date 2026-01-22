@@ -453,7 +453,7 @@
                                 <asp:Button ID="bttTempFile" CssClass="btn btn-info" Text="TempUpload" runat="server" OnClick="bttTempFile_Click" />
                                 <asp:Button ID="bttPrint" OnClientClick="openInNewTab()" CssClass="btn btn-info" Text="Down PDF" runat="server" OnClick="bttPrint_Click" />
                                 <asp:Button ID="bttDownExcel" CssClass="btn btn-info" runat="server" OnClick="bttDownExcel_Click" Text="Down Excel" />
-                                <asp:Button ID="bttCheckPrice" CssClass="btn btn-info" runat="server" OnClick="bttCheckPrice_Click" Text="Check SAP Price" />
+                                <asp:Button ID="bttCheckPrice" CssClass="btn btn-info" runat="server" OnClick="bttCheckPrice_Click" Text="Check SAP" />
                             </div>
                             <div class="pull-right">
                                 <div class="btn-group">

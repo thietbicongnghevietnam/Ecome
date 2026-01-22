@@ -458,7 +458,7 @@
                                 <asp:Button ID="bttTempFile" class="btn btn-info" Text="Download Tempfile" runat="server" OnClick="bttTempFile_Click" />
                                 <asp:Button ID="bttPrint" OnClientClick="openInNewTab()" CssClass="btn btn-info" Text="Report PDF" runat="server" OnClick="bttPrint_Click" />
                                 <asp:Button ID ="bttDownExcel" CssClass="btn btn-info" OnClick ="bttDownExcel_Click"  runat  ="server"  Text ="Download Excel"/>
-                                <asp:Button ID="bttCheckPrice" CssClass="btn btn-info" runat="server" OnClick="bttCheckPrice_Click" Text="Check SAP Price" />
+                                <asp:Button ID="bttCheckPrice" CssClass="btn btn-info" runat="server" OnClick="bttCheckPrice_Click" Text="Check SAP" />
                                 
                                 <%--OnClick="bttPrint_Click"--%>
                             </div>

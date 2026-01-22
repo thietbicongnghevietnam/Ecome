@@ -110,7 +110,7 @@ int rowPUR = DataConn.ExecuteStore("SP_Issue_Material_Approved_PUR_B", CommandTy
 ----> thi phan phe duyet se day vao bang:  tbl_UserStock_IssueMaterial
 //****15.01.2026 rule ke toan dua => sau khi level 3 stock phe duyet thi se gui mail cho : incharge, level3 bo phan, ke toan (all 3 level)
 
-10. Danh muc phong ban : tbl_DeptMaster  ==> khop voi mater scrap
+****** stored gui mail sau khi ACC pheduet level3: [SP_Issue_Material_NextUser] 
 IF @RoleApprovedRQ = 3 
 	begin
 	print '--vao out DEPT'
@@ -122,7 +122,52 @@ IF @RoleApprovedRQ = 3
 	 left  join tbl_UserStock_IssueMaterial g on a.UserLogin = g.UserName 
 	where   g.RoleID = 1 and  g.RoleDept = 'STORE' and g.Stock = @Stock 
 	print '3-CC'
-	end						  						  							 						 						 								  													   	   
+	end		
+10. out dep 1:
+gui mail cho :
+2013168_1,Incharge
+2013168_2,Check
+2013168_3,Approved
+2007600_ACC,"Nguyen Thi Ngoc"
+2007600_ACC2,"Nguyen Thi Ngoc_MGR"
+2007600_ACC3,"Nguyen Thi Ngoc_GM"
+tiep tuc gui mail cho : [SP_Issue_Material_NextUser] ****  ==> user phai co trong 2 bang ****
+ IF @RoleApprStore = 2 --Ngược lại thì chuyển sang Approved
+			begin
+			   select   UserLogin  , FullName , a.Dept, Email,'' as RoleAprovedRQ,g.RoleID as RoleAprovedStock,
+							c.RoleName,'' as RoleRQ, g.RoleDept  as RoleStore,a.RolePage, g.Stock, convert(date ,a.DateCreate,101) as DateCreate ,a.[FlagDelete]
+							 from [dbo].[tbl_UserIssueRQ] a 
+							 inner join tbl_DeptMaster b on a.Dept = b.DeptCode  
+							 inner join tbl_RoleMaster c on  a.RoleID = c.RoleID
+							 left  join tbl_UserStock_IssueMaterial g on a.UserLogin = g.UserName 
+			  where   g.Stock = @Stock  and g.RoleID = 3  and  g.RoleDept = 'STORE' 
+			  print'2-STORE'
+			end
+
+10. out dep 2:
+SP_BindPreviewtUser  ==> chi gui lai only cho nguoi in charge thoi  ***  => vi @RoleFuntion  = 'RQ'
+
+SP_Issue_Material_NextUser  ==> nguoi phe duet 3
+
+10. out dep 3:
++ SP_BindPreviewtUser
+2013168_1,Incharge
+2013168_2,Check
+2013168_3,Approved
+2007600_ACC,"Nguyen Thi Ngoc"
+2007600_ACC2,"Nguyen Thi Ngoc_MGR"
+2007600_ACC3,"Nguyen Thi Ngoc_GM"
+2015597_1,"Nguyen tuan anh 2"
++ SP_BindPreviewtUser
+2013168_1,Incharge
+2013168_2,Check
++ 
+
+
+
+
+10. Danh muc phong ban : tbl_DeptMaster  ==> khop voi mater scrap
+				  						  							 						 						 								  													   	   
 
 ---------------------- // 14.01.2026 //-----------------
 bang: them 2 cot: Type_Rosh_Halb, Reason, Namecode , (STprice)
@@ -168,6 +213,35 @@ if (lblRequest.Text == "1.Other Issue Materials")
 //them stored de gui mail LOG & ke toan => truong hop type = 1   //nguoi cua LOG vao comment
 if (Public_Dept == "LOG" && User_next == "2012757")
 	 dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_BindRQ_Approved", CommandType.StoredProcedure, Public_Dept, Stock, "RQ", User_next, "1");
+
+
+---------------------- // 20.01.2026 //----------------- bang user
+[dbo].[tbl_UserIssueRQ]			(user dang nhap)
+[dbo].[tbl_UserStock_IssueMaterial]	(user out kho)
+[dbo].[tbl_User_checkPrice]	     	(User ke toan check gia)
+[dbo].[tbl_User_OtherissueMaterial]  	(truong hop LOG & ACC=> check type=1)
+[dbo].[tbl_DeptMaster]			(phai co ten bo phan *** join voi nhau)
+
+---------------------- // 20.01.2026 //----------------- tach outdept
+sua stored
+ [SP_Login_New] '2013168_3','1'  *************
+ [dbo].[SP_Issue_Material_NextUser] 
+ [SP_Login_ShowStock_InOut] '2007600_ACC3','1'
+[SP_Login_GetName]  '2013168_1'
+----------------------- // Cho anh rule chữ ký số 6 -> 9 //--------------
+1:36 PM - IT_Minh:
+bên nào ký nhỉ
+1:37 PM - 0 ACS Ngoc1_0972889273:
+hqua c Lê chưa bảo a à 
+1:37 PM - 0 ACS Ngoc1_0972889273:
+chán bà này
+1:38 PM - 0 ACS Ngoc1_0972889273:
+cứ mặc định cho PMS đã nếu halb thì báo để SCM vào chuyển SAP 
+1:41 PM - IT_Minh:
+ok de anh sua
+
+
+
 
 
 
