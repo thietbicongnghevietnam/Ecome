@@ -62,7 +62,10 @@
              </div>
 
              <div style="float: left; padding-right: 10px;">
-                 <input type="text" id="filterMaterial" runat="server" placeholder="Nhập Material" style="height: 34px;" />
+                 Material: <input type="text" id="filterMaterial" runat="server" placeholder="Nhập Material" style="height: 34px;" />
+             </div>
+              <div style="float: left; padding-right: 10px;">
+                 RequestNO: <input type="text" id="filterRequestNo" runat="server" placeholder="Nhập Request No" style="height: 34px;" />
              </div>
 
              <div style="float: left;">

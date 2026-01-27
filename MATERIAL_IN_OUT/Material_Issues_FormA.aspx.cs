@@ -7,6 +7,7 @@ using MigraDoc.Rendering;
 using OfficeOpenXml;
 using System;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -83,11 +84,19 @@ namespace MATERIAL_IN_OUT
                     hdfControlStore.Value = RoleStore;
                     Public_Dept = Session["CostCenter"].ToString().Trim();
                     Load_TreeView_Search(Session["RequestID_1RQ"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["RoleOutStock"].ToString().Trim());
-                    LoadData_1RQ_FromEmail(Session["RequestID_1RQ"].ToString(), Session["Role_Dept"].ToString(), Session["Role_Aproved_Dept"].ToString(), Session["RoleOutStock"].ToString(), Session["Role_Aproved_Stock"].ToString().Trim());
-                    
+                    if (Dept == "PMS")
+                    {
+                        //out dept
+                        LoadData_1RQ_FromEmail(Session["RequestID_1RQ"].ToString(), Session["Role_Dept"].ToString(), Session["Role_Aproved_Dept"].ToString(), Session["RoleOutStock"].ToString(), Session["Role_Aproved_Dept"].ToString().Trim());  //Session["Role_Aproved_Dept"].ToString().Trim()
+                    }
+                    else 
+                    {
+                        LoadData_1RQ_FromEmail(Session["RequestID_1RQ"].ToString(), Session["Role_Dept"].ToString(), Session["Role_Aproved_Dept"].ToString(), Session["RoleOutStock"].ToString(), Session["Role_Aproved_Stock"].ToString().Trim());
+                    }
+                    //LoadData_1RQ_FromEmail(Session["RequestID_1RQ"].ToString(), Session["Role_Dept"].ToString(), Session["Role_Aproved_Dept"].ToString(), Session["RoleOutStock"].ToString(), Session["Role_Aproved_Stock"].ToString().Trim());                    
                 }
                 else
-                {
+                {                    
                     if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]) && string.IsNullOrEmpty((string)Session["CostCenter"]) && string.IsNullOrEmpty((string)Session["UserName"]) ||
                   string.IsNullOrEmpty((string)Session["Role"]) && string.IsNullOrEmpty((string)Session["Stock"]) && string.IsNullOrEmpty((string)Session["Role_Dept"]))
                     {
@@ -95,7 +104,16 @@ namespace MATERIAL_IN_OUT
                     }
                     else
                     {
-                        Public_Dept = Session["CostCenter"].ToString().Trim();
+                        //out dept
+                        if (Dept == "PMS")
+                        {
+                            Public_Dept = "PMS";
+                        }
+                        else 
+                        {
+                            Public_Dept = Session["CostCenter"].ToString().Trim();
+                        }
+                        //Public_Dept = Session["CostCenter"].ToString().Trim();
                         Load_Treeview_Management();
                         LoadData();
                     }
@@ -341,8 +359,8 @@ namespace MATERIAL_IN_OUT
                 //lblPlant.Text = dt_IssueMaterial.Rows[0]["Plant"].ToString();
                 //lblPlantName.Text = dt_IssueMaterial.Rows[0]["NamePlant"].ToString();
                 ////  txtVoucherDate.Value.ToString() = dt_IssueMaterial.Rows[0]["DateVoucher"].ToString();
-                //lblMvTYpe.Text = dt_IssueMaterial.Rows[0]["MvType"].ToString();
-                //lblIN.Text = dt_IssueMaterial.Rows[0]["MvName"].ToString();
+                lblMvTYpe.Text = dt_IssueMaterial.Rows[0]["MvType"].ToString();
+                lblIN.Text = dt_IssueMaterial.Rows[0]["MvName"].ToString();
                 //lblCostCenter.Text = dt_IssueMaterial.Rows[0]["CostCenter"].ToString();
                 //lblCostCenterName.Text = dt_IssueMaterial.Rows[0]["DeptName"].ToString();
                 //lblVendorCode.Text = "Vendor:" + dt_IssueMaterial.Rows[0]["VendorCode"].ToString();
@@ -775,7 +793,8 @@ namespace MATERIAL_IN_OUT
                     else if (strFileType.Trim() == ".xlsx")
                     {
                         //connString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
-                        MyConnection = new System.Data.OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + link_path + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"");
+                       // MyConnection = new System.Data.OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + link_path + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"");
+                        MyConnection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + link_path + ";" + "Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=1;TypeGuessRows=0;ImportMixedTypes=Text\"");
                         MyCommand = new System.Data.OleDb.OleDbDataAdapter("select * from [Sheet1$] where Material is not null", MyConnection);
                         MyCommand.TableMappings.Add("Table", "TestTable");
                         DtSet = new System.Data.DataSet();
@@ -1027,16 +1046,18 @@ namespace MATERIAL_IN_OUT
 
                             string stringToCheck = Sloc; // Stock in excel file upload
 
-                            string StockUser = Session["Stock"].ToString().Trim();
+                            //string StockUser = Session["Stock"].ToString().Trim();
 
-                            if (Public_Dept != "PUS") // Nếu Phòng PUR có thể upload tất cả các kho bộ phận khác vẫn phải theo danh sách kho.
-                            {
-                                if (!StockUser.Contains(stringToCheck))
-                                {
-                                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Upload NG... You can not upload Stock (" + Sloc + ") in  list stock (" + StockUser + ") you control.');", true);
-                                    return;
-                                }
-                            }                                
+                            //if (Public_Dept != "PUS") // Nếu Phòng PUR có thể upload tất cả các kho bộ phận khác vẫn phải theo danh sách kho.
+                            //{
+                            //    if (!StockUser.Contains(stringToCheck))
+                            //    {
+                            //        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Upload NG... You can not upload Stock (" + Sloc + ") in  list stock (" + StockUser + ") you control.');", true);
+                            //        return;
+                            //    }
+                            //}
+                            //
+                            
                             ////--1. Kiểm tra CostCenter trong file excel phải giống với cost Center của user.
                             //if ((string.Compare(CostCenter.ToString().Trim(), Session["CostCenter"].ToString().Trim())) != 0)
                             //{
@@ -1154,6 +1175,11 @@ namespace MATERIAL_IN_OUT
 
         public void SendEmail_Next(string RQ, string UserCurrent, string DeptID, string Stock, string RoleRQ, string RoleApprovedRQ, string RoleStore, string RoleApprovedStore, string subject, string Content_Comment)
         {
+            //out dept
+            if (DeptID == "PMS")
+            {
+                Stock = "2020"; 
+            }
 
             dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser]", CommandType.StoredProcedure, UserCurrent, DeptID, Stock, RoleRQ, RoleApprovedRQ, RoleStore, RoleApprovedStore);
             if (dtNextMail.Rows.Count > 0)
@@ -1865,6 +1891,10 @@ namespace MATERIAL_IN_OUT
         {
 
             Public_Dept = Session["CostCenter"].ToString().Trim();
+            //if (Public_Dept == "PMS")
+            //{
+
+            //}
 
             string Issue_Incharge = "", Issue_MGR = "", Issue_GM = "", ACC_Check = "", ACC_MGR = "", ACC_GM = "", Out_MGR = "", Out_Incharge = "", Out_GM = "";
             bttReset.Visible = false;
@@ -2446,6 +2476,13 @@ namespace MATERIAL_IN_OUT
                     if (hdfControlStore.Value.ToString().Trim() == "STORE" && Session["RoleOutStock"].ToString().Trim() == "STORE")
                     {
                         string RoleApproved = Session["Role_Aproved_Stock"].ToString().Trim();
+                        //out dep
+                        if (Public_Dept == "PMS")
+                        {
+                            RoleApproved = Session["Role_Aproved_Dept"].ToString().Trim();
+                        }
+                        
+
                         if ((int.Parse(RoleApproved) == 1 && string.Equals(ACC_GM, "") == true) || (int.Parse(RoleApproved) == 1 && string.Equals(ACC_GM, null) == true))
                         {
                             Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Request(OK) -> Check(OK) -> Approve(OK)');", true);
@@ -3376,7 +3413,16 @@ namespace MATERIAL_IN_OUT
             }
             //hdftreeview.Value = treeRQ_OutMateial.SelectedNode.Value.ToString();
             Search(treeRQ_OutMateial.SelectedNode.Value.ToString(), Session["Role_Aproved_Stock"].ToString().Trim(), Session["RoleOutStock"].ToString().Trim());
-            LoadButton_Out(treeRQ_OutMateial.SelectedNode.Value.ToString(), Session["Role_Aproved_Stock"].ToString().Trim(), Session["RoleOutStock"].ToString().Trim());
+            if (Public_Dept == "PMS")
+            {
+                //out dept
+                LoadButton_Out(treeRQ_OutMateial.SelectedNode.Value.ToString(), Session["Role_Aproved_Dept"].ToString().Trim(), Session["RoleOutStock"].ToString().Trim());
+            }
+            else 
+            {
+                LoadButton_Out(treeRQ_OutMateial.SelectedNode.Value.ToString(), Session["Role_Aproved_Stock"].ToString().Trim(), Session["RoleOutStock"].ToString().Trim());
+            }
+            //LoadButton_Out(treeRQ_OutMateial.SelectedNode.Value.ToString(), Session["Role_Aproved_Stock"].ToString().Trim(), Session["RoleOutStock"].ToString().Trim());
 
         }
 

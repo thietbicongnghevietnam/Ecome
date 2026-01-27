@@ -123,9 +123,12 @@ namespace MATERIAL_IN_OUT
 
                         // Lấy danh sách các sheet trong Excel
                         DataTable sheets = excelConn.GetSchema("Tables");
+
                         // Lấy tên sheet đầu tiên (vì chỉ có một sheet)
-                        string sheetName = sheets.Rows[0]["TABLE_NAME"].ToString();
-                        Console.WriteLine("Tên sheet: " + sheetName);
+                        //string sheetName = sheets.Rows[0]["TABLE_NAME"].ToString();
+                        //Console.WriteLine("Tên sheet: " + sheetName);
+
+                        string sheetName = "Sheet1$";
 
                         // Xử lý tên sheet (nếu có ký tự đặc biệt)
                         string sanitizedSheetName = SanitizeSheetName(sheetName);

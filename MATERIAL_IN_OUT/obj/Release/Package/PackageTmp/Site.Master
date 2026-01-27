@@ -155,6 +155,15 @@
                             <li>
                                 <a href="/frmHistoryChangePrice.aspx" target="_blank" class="has-arrow fa fa-cloud-upload big-icon"> History change Price</a>
                             </li>
+                            <li>
+                                <asp:LinkButton 
+                                    ID="lnkDownloadExcel"
+                                    runat="server"
+                                    CssClass="has-arrow fa fa-cloud-upload big-icon"
+                                    OnClick="lnkDownloadExcel_Click">
+                                    Document
+                                </asp:LinkButton>
+                            </li>
                         </ul>
                     </nav>
                 </div>

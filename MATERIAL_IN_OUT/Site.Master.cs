@@ -186,5 +186,19 @@ namespace MATERIAL_IN_OUT
 
 
         }
+
+        protected void lnkDownloadExcel_Click(object sender, EventArgs e)
+        {
+            string filePath = Server.MapPath("~/Template/huongdanIssueInOut.xlsx");
+            string fileName = "Document_Issue_InOut.xlsx";
+
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
+            Response.TransmitFile(filePath);
+            Response.Flush();
+            Response.End();
+        }
+
     }
 }

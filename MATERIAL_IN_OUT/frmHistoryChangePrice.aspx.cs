@@ -27,8 +27,9 @@ namespace MATERIAL_IN_OUT
             string _fromdate = Request.Form[Date1.UniqueID];
             string _todate = Request.Form[ngaychiid.UniqueID];
             string filtertypename = filterMaterial.Value;
+            string rquestNO = filterRequestNo.Value;
 
-            dt = DataConn.StoreFillDS("Select_hisorty_changepriceSAP_loc", System.Data.CommandType.StoredProcedure, _fromdate, _todate, filtertypename);
+            dt = DataConn.StoreFillDS("Select_hisorty_changepriceSAP_loc", System.Data.CommandType.StoredProcedure, _fromdate, _todate, filtertypename, rquestNO);
 
             //string category = dr_filter_Cate.SelectedValue;
             //if (_fromdate == "" || _todate == "")

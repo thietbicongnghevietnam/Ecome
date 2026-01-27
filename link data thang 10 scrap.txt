@@ -228,22 +228,35 @@ sua stored
  [dbo].[SP_Issue_Material_NextUser] 
  [SP_Login_ShowStock_InOut] '2007600_ACC3','1'
 [SP_Login_GetName]  '2013168_1'
------------------------ // Cho anh rule chữ ký số 6 -> 9 //--------------
-1:36 PM - IT_Minh:
-bên nào ký nhỉ
-1:37 PM - 0 ACS Ngoc1_0972889273:
-hqua c Lê chưa bảo a à 
-1:37 PM - 0 ACS Ngoc1_0972889273:
-chán bà này
-1:38 PM - 0 ACS Ngoc1_0972889273:
-cứ mặc định cho PMS đã nếu halb thì báo để SCM vào chuyển SAP 
-1:41 PM - IT_Minh:
-ok de anh sua
+
+
+-----------//PMS  27.01.2026 //-----------tach outdept
+sua code: //out dep
+sua stored: (bo sung them bo phan PMS)  -- bo dieu kien : and a.[Sloc] IN('+@Stock_N+' ) 
+SP_Issue_Material_BindRQ_NOTApproved		
+SP_Issue_Material_BindRQ_NOTApproved_OutStock
+SP_Issue_Material_BindRQ_Approved_OutStock
 
 
 
+ Session["Role_Aproved_Dept"] = RoleRQ_Apr;
+string RoleApproved = Session["Role_Aproved_Stock"].ToString().Trim();
+//out dep
+if (Public_Dept == "PMS")
+{
+    RoleApproved = Session["ole_Aproved_Dept"].ToString().Trim();
+}
+
+//truong hop user log
+//them stored de gui mail LOG & ke toan => truong hop type = 1   //nguoi cua LOG vao comment
+if (Public_Dept == "LOG" && User_next == "2012757")
 
 
+http://10.92.184.24:8095/Material_Issues_FormA.aspx?RQ=RQA-IT-0126-23&User=2000032&Dept=PMS&Stock=&RoleRQ=STORE&RoleRQ_Apr=3&RoleStore=STORE&RoleStore_Apr=
+http://10.92.184.24:8095//Material_Issues_FormA.aspx?RQ=RQA-IT-0126-20&User=2000018&Dept=PMS&Stock=2020&RoleRQ=STORE&RoleRQ_Apr=2&RoleStore=STORE&RoleStore_Apr=
+
+
+dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser]", CommandType.StoredProcedure, UserCurrent, DeptID, Stock, RoleRQ, RoleApprovedRQ, RoleStore, RoleApprovedStore);
 
 
 
