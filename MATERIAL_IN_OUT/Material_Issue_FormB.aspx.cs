@@ -2972,9 +2972,9 @@ namespace MATERIAL_IN_OUT
                             //}
 
                             UnitPriceST = STprice_;
-                            Amount = (float)Math.Round((UnitPriceST * Qty), 2);
+                            Amount = (float)Math.Round((UnitPriceST * Qty), 5);
 
-                            Amount_Actual = (float)Math.Round((UnitActual * Qty), 2);
+                            Amount_Actual = (float)Math.Round((UnitActual * Qty), 5);
 
                             txtDateInput.Value = DateTime.Now.ToString("dd/MM/yyyy");
 

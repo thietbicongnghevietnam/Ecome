@@ -1,5 +1,5 @@
 G:\Procurement\38. IT project (Procurement)\FY2025\5. Scrap management system\LOG\SAMPLE SCRAP TOOL(OCT.25)
-
+W:\13.Develop\9.Explanation\FY2025\Systems Report	(Anh chung)  ==> file tong hop chung (****)
 W:\13.Develop\9.Explanation\FY2025
 
 "DefaultConnection": "Server=LT-DE2302026;Database=ScrapSystem;Integrated Security=True;TrustServerCertificate=True;"
@@ -257,6 +257,15 @@ http://10.92.184.24:8095//Material_Issues_FormA.aspx?RQ=RQA-IT-0126-20&User=2000
 
 
 dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser]", CommandType.StoredProcedure, UserCurrent, DeptID, Stock, RoleRQ, RoleApprovedRQ, RoleStore, RoleApprovedStore);
+
+
+------------ // loi web .24 //----------xoa
+ dt.Columns.AddRange(new DataColumn[4] {
+     new DataColumn("ModelName",typeof(string)),
+     new DataColumn("SerialName",typeof(string)),
+     new DataColumn("Ketqua",typeof(string)),                
+     new DataColumn("InsertDate",typeof(string))                
+ });
 
 
 

@@ -105,7 +105,7 @@
         <div class="row">
             <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 text-center">
                 <%--<p>Panasonic System Networks Viet Nam 2021 </p>--%>
-                <p style="text-align:center;">PSNV - Ver01(27.01.2026)</p>
+                <p style="text-align:center;">PSNV - Ver01(03.02.2026)</p>
             </div>
         </div>
     </div>
