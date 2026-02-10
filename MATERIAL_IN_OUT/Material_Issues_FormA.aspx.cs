@@ -3774,22 +3774,30 @@ namespace MATERIAL_IN_OUT
                     //--2007600_ACC  ke toan leve1
                     if (dt_check.Rows[0][0].ToString() == "1") 
                     {
+                        int row_err = 0;
                         //update gia theo request no
                         DataTable dt_update = new DataTable();
                         dt_ReportAll = DataConn.FillStore("Select_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO);
                         for (int i = 0; i < dt_ReportAll.Rows.Count; i++)
-                        {
+                        {                            
                             string material = dt_ReportAll.Rows[i]["Material"].ToString();
                             string plant = dt_ReportAll.Rows[i]["Plant"].ToString();
-                            float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
-                            float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
-                            float Amount_ST = qty_issue * UnitPrice_ST;
+                            
+                            //float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
+                            //float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                            //float Amount_ST = qty_issue * UnitPrice_ST;
+
+                            decimal qty_issue = decimal.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
+                            decimal UnitPrice_ST = decimal.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                            decimal Amount_ST = qty_issue * UnitPrice_ST;
+
                             string sloc = dt_ReportAll.Rows[i]["Sloc"].ToString();
 
                             dt_update = DataConn.FillStore("Update_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID, sloc);
                             //dt_update = DataConn.FillStore("Update_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID);
                             if (dt_update.Rows[0][0].ToString() == "9")   //truong hop khong co trong mater
                             {
+                                row_err = row_err + 1;
                                 check_mater = material;
 
                                 break;
@@ -3809,7 +3817,7 @@ namespace MATERIAL_IN_OUT
                         }
                         else if (check_mater != "")
                         {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');" + check_mater, true);
+                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');"+ row_err+ "-" + check_mater, true);
                         }
                         else
                         {
@@ -3839,6 +3847,7 @@ namespace MATERIAL_IN_OUT
                 //--2007600_ACC  ke toan leve1
                 if (dt_check.Rows[0][0].ToString() == "1")
                 {
+                    int row_err = 0;
                     //update gia theo request no
                     DataTable dt_update = new DataTable();
                     dt_ReportAll = DataConn.FillStore("Select_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO);
@@ -3846,15 +3855,20 @@ namespace MATERIAL_IN_OUT
                     {
                         string material = dt_ReportAll.Rows[i]["Material"].ToString();
                         string plant = dt_ReportAll.Rows[i]["Plant"].ToString();
-                        float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
-                        float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
-                        float Amount_ST = qty_issue * UnitPrice_ST;
+                        //float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
+                        //float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                        //float Amount_ST = qty_issue * UnitPrice_ST;
+                        decimal qty_issue = decimal.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
+                        decimal UnitPrice_ST = decimal.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                        decimal Amount_ST = qty_issue * UnitPrice_ST;
+
                         string sloc = dt_ReportAll.Rows[i]["Sloc"].ToString();
 
                         dt_update = DataConn.FillStore("Update_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID, sloc);
                         //dt_update = DataConn.FillStore("Update_Issue_Material_Report_A", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID);
                         if (dt_update.Rows[0][0].ToString() == "9")   //truong hop khong co trong mater
                         {
+                            row_err = row_err + 1;
                             check_mater = material;
 
                             break;
@@ -3873,7 +3887,7 @@ namespace MATERIAL_IN_OUT
                     }
                     else if (check_mater != "")
                     {
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');" + check_mater, true);
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');" + row_err +"-" + check_mater, true);
                     }
                     else
                     {

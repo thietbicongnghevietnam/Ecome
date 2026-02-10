@@ -3513,9 +3513,14 @@ namespace MATERIAL_IN_OUT
                         {
                             string material = dt_ReportAll.Rows[i]["Material"].ToString();
                             string plant = dt_ReportAll.Rows[i]["Plant"].ToString();
-                            float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
-                            float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
-                            float Amount_ST = qty_issue * UnitPrice_ST;
+
+                            //float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
+                            //float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                            //float Amount_ST = qty_issue * UnitPrice_ST;
+                            decimal qty_issue = decimal.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
+                            decimal UnitPrice_ST = decimal.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                            decimal Amount_ST = qty_issue * UnitPrice_ST;
+
                             string sloc = dt_ReportAll.Rows[i]["Sloc"].ToString();
 
                             dt_update = DataConn.FillStore("Update_Issue_Material_Report_B", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID, sloc);
@@ -3582,9 +3587,15 @@ namespace MATERIAL_IN_OUT
                     {
                         string material = dt_ReportAll.Rows[i]["Material"].ToString();
                         string plant = dt_ReportAll.Rows[i]["Plant"].ToString();
-                        float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
-                        float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
-                        float Amount_ST = qty_issue * UnitPrice_ST;
+                        
+                        //float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
+                        //float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                        //float Amount_ST = qty_issue * UnitPrice_ST;
+
+                        decimal qty_issue = decimal.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
+                        decimal UnitPrice_ST = decimal.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
+                        decimal Amount_ST = qty_issue * UnitPrice_ST;
+
                         string sloc = dt_ReportAll.Rows[i]["Sloc"].ToString();
 
                         dt_update = DataConn.FillStore("Update_Issue_Material_Report_B", CommandType.StoredProcedure, Request_NO, material, plant, qty_issue, UnitPrice_ST, Amount_ST, UserID, sloc);
