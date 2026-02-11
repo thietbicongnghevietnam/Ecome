@@ -834,16 +834,21 @@ namespace MATERIAL_IN_OUT
                                     LoadButton_IN(Request_NO, RoleApproved.ToString().Trim(), hdfControlACC.Value.ToString().Trim());
                                     DataTable dtCheckDept = new DataTable();
                                     dtCheckDept = DataConn.StoreFillDS("SP_Issue_Material_CheckDeptPUR_B", CommandType.StoredProcedure, Request_NO);
-                                    if (dtCheckDept.Rows[0]["RQDeptID"].ToString() == "PUS")// PHONG PUR THI TU DONG APROVED RQ PHAN OUTSTOCK
-                                    {
-                                        //int rowPUR = DataConn.ExecuteStore("SP_Issue_Material_Approved_PUR_B", CommandType.StoredProcedure, Request_NO, hdfControlACC.Value.ToString().Trim(), RoleApproved.ToString().Trim());
-                                      //  SendEmail_Prv(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
-                                        Loadstatus(Request_NO);
-                                    }
-                                    else
-                                    {
-                                        SendEmail_Next(Request_NO, Session["UserName"].ToString(), Public_Dept, hdfStock.Value.ToString(), hdfControlACC.Value.ToString(), RoleApproved.ToString().Trim(), "", "", Subject, Comment);
-                                    }
+
+                                    //if (dtCheckDept.Rows[0]["RQDeptID"].ToString() == "PUS")// PHONG PUR THI TU DONG APROVED RQ PHAN OUTSTOCK
+                                    //{
+                                    //    //int rowPUR = DataConn.ExecuteStore("SP_Issue_Material_Approved_PUR_B", CommandType.StoredProcedure, Request_NO, hdfControlACC.Value.ToString().Trim(), RoleApproved.ToString().Trim());
+                                    //  //  SendEmail_Prv(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
+                                    //    Loadstatus(Request_NO);
+                                    //}
+                                    //else
+                                    //{
+                                    //    SendEmail_Next(Request_NO, Session["UserName"].ToString(), Public_Dept, hdfStock.Value.ToString(), hdfControlACC.Value.ToString(), RoleApproved.ToString().Trim(), "", "", Subject, Comment);
+                                    //}
+
+                                    Loadstatus(Request_NO);
+                                    SendEmail_Next(Request_NO, Session["UserName"].ToString(), Public_Dept, hdfStock.Value.ToString(), hdfControlACC.Value.ToString(), RoleApproved.ToString().Trim(), "", "", Subject, Comment);
+
                                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('This request has approved sucessfully');", true);
 
                                 }
@@ -1885,13 +1890,16 @@ namespace MATERIAL_IN_OUT
 
                 }
 
+                DataRow lastRow = dt_IssueMaterial.Rows[dt_IssueMaterial.Rows.Count - 1];
+                lblQtyTong.Text = lastRow["IssueQty"] == DBNull.Value ? "" : Convert.ToDecimal(lastRow["IssueQty"]).ToString("#,##0.00");
+                lblAmttong.Text = lastRow["Amount_ST"] == DBNull.Value ? "" : Convert.ToDecimal(lastRow["Amount_ST"]).ToString("#,##0.00");
 
                 //old 1
                 //lblPlant.Text = dt_IssueMaterial.Rows[0]["Plant"].ToString();
                 //lblPlantName.Text = dt_IssueMaterial.Rows[0]["NamePlant"].ToString();
                 ////  txtVoucherDate.Value.ToString() = dt_IssueMaterial.Rows[0]["DateVoucher"].ToString();
-                //lblMvTYpe.Text = dt_IssueMaterial.Rows[0]["MvType"].ToString();
-                //lblIN.Text = dt_IssueMaterial.Rows[0]["MvName"].ToString();
+                lblMvTYpe.Text = dt_IssueMaterial.Rows[0]["MvType"].ToString();
+                lblIN.Text = dt_IssueMaterial.Rows[0]["MvName"].ToString();
                 //lblCostCenter.Text = dt_IssueMaterial.Rows[0]["CostCenter"].ToString();
                 //lblCostCenterName.Text = dt_IssueMaterial.Rows[0]["DeptName"].ToString();
                 //lblVendorCode.Text = "Vendor:" + dt_IssueMaterial.Rows[0]["VendorCode"].ToString();
@@ -2129,12 +2137,16 @@ namespace MATERIAL_IN_OUT
 
                     }
 
+                    DataRow lastRow = dt_IssueMaterial.Rows[dt_IssueMaterial.Rows.Count - 1];
+                    lblQtyTong.Text = lastRow["IssueQty"] == DBNull.Value ? "" : Convert.ToDecimal(lastRow["IssueQty"]).ToString("#,##0.00");
+                    lblAmttong.Text = lastRow["Amount_ST"] == DBNull.Value ? "" : Convert.ToDecimal(lastRow["Amount_ST"]).ToString("#,##0.00");
+
                     //old 2
                     //lblPlant.Text = dt_IssueMaterial.Rows[0]["Plant"].ToString();
                     //lblPlantName.Text = dt_IssueMaterial.Rows[0]["NamePlant"].ToString();
                     //// lblVoucherDate.Text = dt_IssueMaterial.Rows[0]["DateVoucher"].ToString();
-                    //lblMvTYpe.Text = dt_IssueMaterial.Rows[0]["MvType"].ToString();
-                    //lblIN.Text = dt_IssueMaterial.Rows[0]["MvName"].ToString();
+                    lblMvTYpe.Text = dt_IssueMaterial.Rows[0]["MvType"].ToString();
+                    lblIN.Text = dt_IssueMaterial.Rows[0]["MvName"].ToString();
                     //lblCostCenter.Text = dt_IssueMaterial.Rows[0]["CostCenter"].ToString();
                     //lblCostCenterName.Text = dt_IssueMaterial.Rows[0]["DeptName"].ToString();
                     //lblVendorCode.Text = "Vendor:" + dt_IssueMaterial.Rows[0]["VendorCode"].ToString();
@@ -2919,13 +2931,14 @@ namespace MATERIAL_IN_OUT
                             string vendorCodeValue = dt.Rows[i][13].ToString().Trim();
 
                             // Kiểm tra TypeCheck có nằm trong danh sách hay không
-                            bool isRequireVendorCode = stringTypeID.Contains(TypeCheck);
+                            //11.02.2026 ke toan request khong can dieu kien vendor
+                            //bool isRequireVendorCode = stringTypeID.Contains(TypeCheck);
 
-                            if (isRequireVendorCode && string.IsNullOrEmpty(vendorCodeValue))
-                            {
-                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Vendor code at row :(" + (i + 1).ToString() + ") is null');", true);
-                                return;
-                            }
+                            //if (isRequireVendorCode && string.IsNullOrEmpty(vendorCodeValue))
+                            //{
+                            //    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Vendor code at row :(" + (i + 1).ToString() + ") is null');", true);
+                            //    return;
+                            //}
 
                             // Luôn lấy VendorCode
                             VendorCode = vendorCodeValue;

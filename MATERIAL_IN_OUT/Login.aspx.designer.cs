@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MATERIAL_IN_OUT {
-    
-    
-    public partial class Login {
-        
+namespace MATERIAL_IN_OUT
+{
+
+
+    public partial class Login
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace MATERIAL_IN_OUT {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// txtUserName control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace MATERIAL_IN_OUT {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUserName;
-        
+
         /// <summary>
         /// txtPassword control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace MATERIAL_IN_OUT {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
-        
+
         /// <summary>
         /// lblMessge control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace MATERIAL_IN_OUT {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMessge;
-        
+
         /// <summary>
         /// bttLogin control.
         /// </summary>

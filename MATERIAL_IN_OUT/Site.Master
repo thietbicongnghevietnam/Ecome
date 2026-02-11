@@ -91,6 +91,89 @@
     <link href="css/date/datepicker3.css" rel="stylesheet" />
     <link href="css/date/colorpicker.css" rel="stylesheet" />
 
+    <style>
+        /* ===== SIDEBAR NỀN ===== */
+       /* #sidebar {
+            background: linear-gradient(180deg,#004b8d,#0070c0) !important;
+        }
+*/
+      
+
+        /* ===== HEADER TOP ===== */
+        .header-top-area {
+            background: #004b8d !important;
+        }
+
+        .header-right-info .nav-link {
+            color: #ffffff !important;
+        }
+
+        /* ===== BUTTON PRIMARY ===== */
+        .btn-info, .btn-primary {
+            background-color: #0070c0 !important;
+            border-color: #0070c0 !important;
+        }
+
+            .btn-info:hover, .btn-primary:hover {
+                background-color: #004b8d !important;
+            }
+
+        /* ===== CONTENT BACKGROUND ===== */
+        .all-content-wrapper {
+            background-color: #f4f8fb !important;
+        }
+
+        /* ===== DROPDOWN ===== */
+        .dropdown-menu {
+            border-radius: 8px;
+        }
+
+        /* ===== FOOTER (nếu bật lại) ===== */
+        .footer-copy-right {
+            background: #004b8d;
+            color: white;
+        }
+
+        /*#menu1 li a {
+    background-color: #0072C6;*/ /* Xanh Panasonic */
+    /*color: white !important;*/    /* Chữ trắng */
+    /*display: block;
+    padding: 10px 15px;
+    border-radius: 3px;
+    transition: background 0.3s;
+}*/
+
+/* Hover đổi màu nhẹ */
+/*#menu1 li a:hover {
+    background-color: #005DAA;*/ /* Xanh đậm khi hover */
+    /*text-decoration: none;
+    color: white !important;
+}*/
+
+/* Icon màu trắng */
+/*#menu1 li a i {
+    color: white;
+    margin-right: 10px;
+}*/
+
+.brand-text {
+    font-family: 'Roboto', sans-serif; /* hoặc font Panasonic nếu có */
+    font-weight: 200;
+    font-size: clamp(14px, 4vw, 20px); /* cỡ chữ co giãn theo viewport */
+    color: #004b8d;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;       /* Không xuống dòng */
+    overflow: hidden;          /* Ẩn chữ tràn */
+    text-overflow: ellipsis;   /* Hiển thị dấu ... nếu quá dài */
+    text-align: center;
+    padding-top:15px;
+}
+
+.brand-text:hover {
+    color: #0070c0;                      /* Màu xanh nhạt khi hover */
+}      
+    </style>
 
 
 </head>
@@ -99,10 +182,16 @@
         <div class="left-sidebar-pro">
             <nav id="sidebar" class="">
                 <div class="sidebar-header">
-                    <a href="Index.aspx">
-                        <img class="main-logo" src="img/logo/logo.png" alt="" /></a>
-                    <strong>
-                        <img src="img/logo/logo.png" alt="" /></strong>
+                    <a href="Index.aspx" class="brand-text">
+                       <%-- <img class="main-logo" src="img/logo/logo.png" alt="" />--%>
+                        <div class="logo-pro text-center">
+                            
+                                Material Issue In-Out
+                           
+                        </div>
+                    </a>
+                    <%--<strong>
+                        <img src="img/logo/logo.png" alt="" /></strong>--%>
                 </div>
                 <div class="left-custom-menu-adp-wrap comment-scrollbar">
                     <nav class="sidebar-nav left-sidebar-menu-pro">
@@ -117,8 +206,7 @@
                                 <asp:HyperLink ID="linkIssueControl" CssClass="has-arrow fa big-icon fa-desktop mini-click-non" runat="server" Text=" Material In-Out " NavigateUrl="~/Material_Control.aspx"></asp:HyperLink>
                             </li>
 
-                            <li> 
-                                <%--mini-click-non--%>
+                            <li>                              
                                 <asp:HyperLink ID="linkMaterialA" CssClass="has-arrow fa big-icon fa-desktop " runat="server" Text="Material Issue-Form A" NavigateUrl="~/Material_Issues_FormA.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr="></asp:HyperLink>
                             </li>
                             <li>
@@ -136,20 +224,14 @@
         
                              <li>
                                <asp:HyperLink ID="linkIncharge" runat="server" NavigateUrl="~/Control_ExchangeRate.aspx" CssClass="has-arrow fa fa-pencil-square-o " Text="Control Rate Daily"></asp:HyperLink>
-                            </li>
-
-                            
-                           <%--   <li>
-                                <asp:HyperLink ID="linkTranfer" runat="server" CssClass="has-arrow fa big-icon  fa-balance-scale mini-click-non" Text=" Tranfer Material" NavigateUrl="~/TranferMaterial.aspx?RQ_NO=&UserName=&Role=&DeptID=&StockFrom=&StockTo="></asp:HyperLink>
-                            </li>--%>
+                            </li>                                                       
                             <li>
                                 <asp:HyperLink ID="linkDownload" runat="server" CssClass="has-arrow fa big-icon  fa-download" Text=" Download All data" NavigateUrl ="~/Download.aspx"> </asp:HyperLink>
                             </li>
                             <li>
                                 <asp:HyperLink ID="linkUser" runat="server" NavigateUrl="~/ControlUser.aspx" CssClass="has-arrow fa big-icon fa-user" Text=" Control User"></asp:HyperLink>
                             </li>
-                            <li>
-                               <%-- <asp:HyperLink ID="linkPrice" runat="server" NavigateUrl="~/ControlPriceSAP.aspx" CssClass="has-arrow fa fa-cloud-upload big-icon" Text="Upload Price SAP"></asp:HyperLink>--%>
+                            <li>                              
                                 <a href="/ControlPriceSAP2.aspx" target="_blank" class="has-arrow fa fa-cloud-upload big-icon"> Upload Price SAP </a>
                             </li>
                             <li>
@@ -167,6 +249,8 @@
                         </ul>
                     </nav>
                 </div>
+                
+
             </nav>
         </div>
         <!-- Start Welcome area -->
@@ -174,9 +258,14 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="logo-pro">
+                        <%--<div class="logo-pro">
                             <a href="Index.aspx">
                                 <img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                        </div>--%>
+                        <div class="logo-pro text-center">
+                            <a href="Index.aspx" class="brand-text">
+                                Material Issue In-Out
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -273,7 +362,7 @@
                 </div>
             </div>
             <!-- Static Table End -->
-            <div class="footer-copyright-area">
+            <%--<div class="footer-copyright-area">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
@@ -283,7 +372,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
         </div>
 
         <!-- jquery

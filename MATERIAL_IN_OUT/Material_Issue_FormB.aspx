@@ -230,7 +230,7 @@
                             <!-- Voucher Date -->
                             <tr>
                                 <td colspan="2"><b>Voucher Date (dd/MM/yyyy)</b></td>
-                                <td colspan="5">
+                                <td colspan="6">
                                     <%--<asp:Label ID="lblVoucherDate" runat="server"></asp:Label>--%>
                                     <div class="date-picker-inner">
                                         <div class="form-group data-custon-pick" id="data_2">
@@ -247,7 +247,7 @@
                             <!-- MV Type -->
                             <tr>
                                 <td colspan="2"><b>MV Type</b></td>
-                                <td colspan="5">
+                                <td colspan="6">
                                     <asp:Label ID="lblMvTYpe" runat="server"></asp:Label>
                                     -
                                 <asp:Label ID="lblIN" runat="server"></asp:Label>
@@ -267,6 +267,7 @@
                                     <asp:Label ID="lblCC_V501" runat="server" Text="V501" /></td>
                                 <td>
                                     <asp:Label ID="lblCC_VB01" runat="server" Text="VB01" /></td>
+                                <td><asp:Label ID="lblCC_tong" runat="server" Text="Total" /></td>
                             </tr>
 
                             <!-- Quantity -->
@@ -282,6 +283,7 @@
                                     <asp:Label ID="lblQtyV501" runat="server" /></td>
                                 <td>
                                     <asp:Label ID="lblQtyVB01" runat="server" /></td>
+                                <td><asp:Label ID="lblQtyTong" runat="server" /></td>
                             </tr>
 
                             <!-- Amount -->
@@ -297,6 +299,7 @@
                                     <asp:Label ID="lblAmtV501" runat="server" /></td>
                                 <td>
                                     <asp:Label ID="lblAmtVB01" runat="server" /></td>
+                                <td><asp:Label ID="lblAmttong" runat="server" /></td>
                             </tr>
 
                             <!-- Vendor -->
