@@ -55,7 +55,13 @@
                                     </h5>
                                 </li>
                             </ul>
-                            <div id="morris-area-chart" style="height: 356px;"></div>
+                            <div id="morris-area-chart" style="height: 356px;">
+                                 <!-- Hình ảnh phê duyệt điện tử -->
+                                <%--<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                                    <img src="/images/pheduyet.png" alt="Electronic Approval" style="width:500px; height:auto; margin-bottom:10px; padding-top:25px;" />
+                                    
+                                </div>--%>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">

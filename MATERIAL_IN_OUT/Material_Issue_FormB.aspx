@@ -327,7 +327,7 @@
             <div class="col-md-3 col-md-3 col-sm-3 col-xs-12" style="left: 0px; top: 0px">
 
                 <div class="panel-body">
-                    <a class="btn btn-success compose-btn btn-block m-b-md">Control Request Issue</a>
+                    <a class="btn btn-success compose-btn btn-block m-b-md" style="background-color: #004B8D; border-color: #004B8D; color: #fff;">Control Request Issue</a>
 
                     <asp:TreeView ID="treeRQ_InMaterial" runat="server" ForeColor="Blue" OnSelectedNodeChanged="treeRQ_InMaterial_SelectedNodeChanged">
                     </asp:TreeView>

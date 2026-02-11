@@ -47,7 +47,7 @@ namespace MATERIAL_IN_OUT
             DataTable dt = DataConn.StoreFillDS("SP_Login_GetName", CommandType.StoredProcedure, Session["UserName"].ToString());
             string RolePage = dt.Rows[0]["RolePage"].ToString();
 
-                if (RolePage == "Material")
+            if (RolePage == "Material")
                 {
 
                     //linkTranfer.Visible = false;
@@ -156,7 +156,6 @@ namespace MATERIAL_IN_OUT
 
              if (RolePage == "Admin")
                 {
-                
                 if (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["Role_Aproved_Dept"].ToString() == "1") // Quyeen Incharge
                     {
                         linkIssueControl.Visible = true;
