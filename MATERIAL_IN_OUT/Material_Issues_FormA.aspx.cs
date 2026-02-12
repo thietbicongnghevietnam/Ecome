@@ -6,6 +6,7 @@ using MigraDoc.DocumentObjectModel;
 using MigraDoc.Rendering;
 using OfficeOpenXml;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
@@ -43,10 +44,16 @@ namespace MATERIAL_IN_OUT
         public string Role = null;
         public string Public_Dept = "";
         public string Request_NO = "";
+
+
+        string exportTo = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+
+                exportTo = File.ReadAllText(Server.MapPath("~/Template/list_user.txt"));
 
                 string REQUESTID = Request.QueryString["RQ"].ToString();
                 User_next = Request.QueryString["User"].ToString();
@@ -471,8 +478,11 @@ namespace MATERIAL_IN_OUT
                     {
                         if (hdfControlRQ.Value == "")
                         {
+                            List<string> lst = exportTo.Split(',').ToList();
+                            string User_Log = lst[1].ToString();
                             //them stored de gui mail LOG & ke toan => truong hop type = 1   //nguoi cua LOG vao comment
-                            if (Public_Dept == "LOG" && User_next == "2012757")
+                            //if (Public_Dept == "LOG" && User_next == "2012757")  //1*
+                            if (Public_Dept == "LOG" && User_next == User_Log)  //1*
                             {
                                 //lay ra so unit no typeID=1
                                 dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_BindRQ_Approved", CommandType.StoredProcedure, Public_Dept, Stock, "RQ", User_next, "1");
@@ -2623,7 +2633,10 @@ namespace MATERIAL_IN_OUT
                         RoleDept = Role_RQ;
                     }
                     int row = 0;
-                    if (Session["UserName"].ToString() == "2012757")
+                    List<string> lst = exportTo.Split(',').ToList();
+                    string User_Log = lst[0].ToString();
+                    //if (Session["UserName"].ToString() == "2012757")  //1*
+                    if (Session["UserName"].ToString() == User_Log)  //1*
                     {
                         //user LOG -- chang LOG 
                          row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update2", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);

@@ -91,82 +91,318 @@
     <link href="css/date/datepicker3.css" rel="stylesheet" />
     <link href="css/date/colorpicker.css" rel="stylesheet" />
 
+    <style>
+
+        /* ===== HEADER TOP ===== */
+        .header-top-area {
+            background: #004b8d !important;
+        }
+
+        .header-right-info .nav-link {
+            color: #ffffff !important;
+        }
+
+        /* ===== BUTTON PRIMARY ===== */
+        .btn-info, .btn-primary {
+            background-color: #0070c0 !important;
+            border-color: #0070c0 !important;
+        }
+
+            .btn-info:hover, .btn-primary:hover {
+                background-color: #004b8d !important;
+            }
+
+        /* ===== CONTENT BACKGROUND ===== */
+        .all-content-wrapper {
+            background-color: #f4f8fb !important;
+        }
+
+        /* ===== DROPDOWN ===== */
+        .dropdown-menu {
+            border-radius: 8px;
+        }
+
+        /* Main sidebar container */
+#sidebar {
+    background-color: #0062AF !important; /* Panasonic Blue */
+    color: #ffffff !important;
+}
+
+/* Sidebar header */
+.sidebar-header {
+    background-color: #004B87 !important; /* Darker Panasonic Blue */
+    color: #ffffff !important;
+    padding: 15px;
+    height: 57px;
+}
+
+.sidebar-header .brand-text {
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+.logo-pro {
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+/* Navigation menu */
+.sidebar-nav {
+    background-color: #0062AF !important;
+}
+
+/* Fix cho menu1 - background trắng */
+#menu1 {
+    background-color: #0062AF !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.metismenu {
+    background-color: #0062AF !important;
+}
+
+.metismenu li {
+    background-color: #0062AF !important;
+    border: none !important;
+}
+
+.metismenu li a {
+    color: #ffffff !important;
+    background-color: transparent !important;
+    padding: 12px 20px !important;
+    transition: background-color 0.3s ease;
+    display: block !important;
+}
+
+.metismenu li a:hover {
+    background-color: #004B87 !important; /* Darker blue on hover */
+    color: #ffffff !important;
+    border-left: 4px solid #ffffff;
+}
+
+.metismenu li a.active,
+.metismenu li a:active,
+.metismenu li a:focus {
+    background-color: #003D6E !important; /* Even darker for active state */
+    color: #ffffff !important;
+}
+
+/* Icons */
+.metismenu li a i {
+    color: #ffffff !important;
+    margin-right: 10px;
+}
+
+.metismenu li a .mini-click-non {
+    color: #ffffff !important;
+}
+
+/* Scrollbar customization */
+.left-custom-menu-adp-wrap {
+    background-color: #0062AF !important;
+}
+
+.left-sidebar-menu-pro {
+    background-color: #0062AF !important;
+}
+
+.mCSB_container {
+    background-color: #0062AF !important;
+}
+
+/* Link styles - tất cả hyperlinks */
+#linkMaterialA,
+#linkMaterialB,
+#linkPUR_CDS,
+#linkInvoice,
+#linkIncharge,
+#linkDownload,
+#linkUser,
+#lnkDownloadExcel,
+#linkIssueControl {
+    color: #ffffff !important;
+    background-color: transparent !important;
+}
+
+/* Scrollbar styling */
+.mCSB_scrollTools {
+    background-color: rgba(0, 75, 135, 0.3) !important;
+}
+
+.mCSB_dragger_bar {
+    background-color: #ffffff !important;
+}
+
+/* Left sidebar wrapper */
+.left-sidebar-pro {
+    background-color: #0062AF !important;
+}
+
+/* Remove any borders */
+.metismenu li,
+.metismenu li a {
+    border: none !important;
+    border-bottom: none !important;
+}
+        
+
+.brand-text {
+    font-family: 'Roboto', sans-serif; /* hoặc font Panasonic nếu có */
+    font-weight: 100;
+    font-size: clamp(12px, 4vw, 16px); /* cỡ chữ co giãn theo viewport */
+    color: #004b8d;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;       /* Không xuống dòng */
+    overflow: hidden;          /* Ẩn chữ tràn */
+    text-overflow: ellipsis;   /* Hiển thị dấu ... nếu quá dài */
+    text-align: center;
+    padding-top:17px;
+}
+
+.brand-text:hover {
+    color: #0070c0;                      /* Màu xanh nhạt khi hover */
+}  
+
+/* Dropdown menu background luôn xanh Panasonic */
+.dropdown-header-top.author-log.dropdown-menu {
+    background-color: #004B8D !important; /* màu xanh Panasonic */
+    border: none; /* bỏ border nếu có */
+}
+
+/* Chữ menu trắng */
+.dropdown-header-top.author-log.dropdown-menu li a {
+    color: #ffffff !important;
+}
+
+/* Hover mỗi item vẫn sáng hơn */
+.dropdown-header-top.author-log.dropdown-menu li a:hover {
+    background-color: #005BAC !important;
+    color: #ffffff !important;
+}
+
+/* Hover toàn bộ menu item sidebar */
+.metismenu li a:hover,
+.metismenu li a:focus {
+    color: #FFD700 !important; /* màu vàng */
+}
+
+/* Nếu có icon bên trong vẫn đổi màu vàng luôn */
+.metismenu li a:hover i,
+.metismenu li a:focus i {
+    color: #FFD700 !important;
+}
+
+/* Nếu bạn muốn nền menu cũng đổi màu khi hover (tùy chọn) */
+.metismenu li a:hover {
+    background-color: rgba(255, 215, 0, 0.1); /* nền vàng nhạt */
+}
+
+
+/* Tiêu đề table xanh Panasonic */
+#table thead th {
+    background-color: #004B8D; /* nền xanh Panasonic */
+    color: #ffffff;            /* chữ trắng */
+    border-color: #003766;     /* viền xanh đậm hơn (tùy chọn) */
+    text-align: center;        /* canh giữa chữ nếu muốn */
+}
+
+/* Nếu muốn hover row vẫn nổi bật */
+#table tbody tr:hover {
+    background-color: rgba(0, 75, 141, 0.1); /* xanh nhạt khi hover */
+}
+
+
+#sidebarCollapse {
+    margin-left: 20px;  /* cách trái 10px, chỉnh tùy ý */
+    /*margin-top: 5px;*/    /* cách trên 5px, chỉnh tùy ý */
+    /*margin-right: 10px;*/ /* cách phải 10px nếu cần */
+    /*margin-bottom: 5px;*/ /* cách dưới 5px nếu cần */
+}
+
+    </style>
 
 
 </head>
 <body>
     <form runat="server">
         <div class="left-sidebar-pro">
-            <nav id="sidebar" class="">
+            <nav id="sidebar" >
                 <div class="sidebar-header">
-                    <a href="Index.aspx">
-                        <img class="main-logo" src="img/logo/logo.png" alt="" /></a>
-                    <strong>
-                        <img src="img/logo/logo.png" alt="" /></strong>
+                    <a href="Index.aspx" class="brand-text">
+                       <%-- <img class="main-logo" src="img/logo/logo.png" alt="" />--%>
+                        <div class="logo-pro text-center">
+                                E-Approval System 
+                        </div>
+                    </a>
+                    <%--<strong>
+                        <img src="img/logo/logo.png" alt="" /></strong>--%>
                 </div>
                 <div class="left-custom-menu-adp-wrap comment-scrollbar">
                     <nav class="sidebar-nav left-sidebar-menu-pro">
                         <ul class="metismenu" id="menu1">
                             <li>
-                                <a class="has-arrow" href="Index.aspx">
+                                <a href="Index.aspx">
                                     <i class="fa big-icon fa-home icon-wrap"></i>
                                     <span class="mini-click-non">Home</span>
                                 </a>
                             </li>
                             <li>
-                                <asp:HyperLink ID="linkIssueControl" CssClass="has-arrow fa big-icon fa-desktop mini-click-non" runat="server" Text=" Material In-Out " NavigateUrl="~/Material_Control.aspx"></asp:HyperLink>
+                                <asp:HyperLink ID="linkIssueControl" runat="server" NavigateUrl="~/Material_Control.aspx"><i class="fa big-icon fa-desktop mini-click-non"> Material In-Out</i></asp:HyperLink>
                             </li>
 
-                            <li> 
-                                <%--mini-click-non--%>
-                                <asp:HyperLink ID="linkMaterialA" CssClass="has-arrow fa big-icon fa-desktop " runat="server" Text="Material Issue-Form A" NavigateUrl="~/Material_Issues_FormA.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr="></asp:HyperLink>
+                            <li>     
+                                <asp:HyperLink ID="linkMaterialA" runat="server" NavigateUrl="~/Material_Issues_FormA.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr="><i class="fa big-icon fa-desktop"> Material Issue-Form A</i></asp:HyperLink>
                             </li>
                             <li>
-                                <asp:HyperLink ID="linkMaterialB" CssClass="has-arrow fa big-icon fa-desktop " runat="server" Text="Material Issue-Form B" NavigateUrl="~/Material_Issue_FormB.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr="></asp:HyperLink>
+                                <asp:HyperLink ID="linkMaterialB"  runat="server" NavigateUrl="~/Material_Issue_FormB.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr="><i class="fa big-icon fa-desktop"> Material Issue-Form B</i></asp:HyperLink>
                             </li>
                               <li>
-                                <asp:HyperLink ID="linkPUR_CDS" runat="server" NavigateUrl="~/PUR_Control_InOut_CDS.aspx" CssClass="has-arrow fa fa-server" Text=" PUR-Out SAP"></asp:HyperLink>
-
+                                <asp:HyperLink ID="linkPUR_CDS" runat="server" NavigateUrl="~/PUR_Control_InOut_CDS.aspx"><i class="fa fa-server"> PUR-Out SAP</i></asp:HyperLink>
                             </li>
 
                             <li>
-                                <asp:HyperLink ID="linkInvoice" runat="server" NavigateUrl="~/ControlRQ_Invoice.aspx" CssClass="has-arrow fa fa-pencil-square-o " Text=" Commercial Invoice"></asp:HyperLink>
-
+                                <asp:HyperLink ID="linkInvoice" runat="server" NavigateUrl="~/ControlRQ_Invoice.aspx"><i class="fa fa-pencil-square-o"> Commercial Invoice</i></asp:HyperLink>
                             </li>
         
                              <li>
-                               <asp:HyperLink ID="linkIncharge" runat="server" NavigateUrl="~/Control_ExchangeRate.aspx" CssClass="has-arrow fa fa-pencil-square-o " Text="Control Rate Daily"></asp:HyperLink>
+                               <asp:HyperLink ID="linkIncharge" runat="server" NavigateUrl="~/Control_ExchangeRate.aspx"><i class="fa fa-line-chart"> Control Rate Daily</i></asp:HyperLink>
+                            </li>                                                       
+                            <li>
+                                <asp:HyperLink ID="linkDownload" runat="server"  NavigateUrl ="~/Download.aspx"> <i class="fa big-icon fa-download"> Download All data</i></asp:HyperLink>
                             </li>
+                            <li>
+                                <asp:HyperLink ID="linkUser" runat="server" NavigateUrl="~/ControlUser.aspx"><i class="fa big-icon fa-user"> Control User</i></asp:HyperLink>             
+                            </li>
+                            <li>                              
+                                <a href="/ControlPriceSAP2.aspx" target="_blank" class=" fa fa-cloud-upload big-icon"> Upload Price SAP </a>
+                              <%--  <asp:HyperLink ID="linkUploadPriceSAP" runat="server" NavigateUrl="~/ControlPriceSAP2.aspx" Target="_blank">    
+                                    <i class="fa fa-cloud-upload big-icon"> Upload Price SAP</i>
+                                </asp:HyperLink>--%>
 
-                            
-                           <%--   <li>
-                                <asp:HyperLink ID="linkTranfer" runat="server" CssClass="has-arrow fa big-icon  fa-balance-scale mini-click-non" Text=" Tranfer Material" NavigateUrl="~/TranferMaterial.aspx?RQ_NO=&UserName=&Role=&DeptID=&StockFrom=&StockTo="></asp:HyperLink>
-                            </li>--%>
-                            <li>
-                                <asp:HyperLink ID="linkDownload" runat="server" CssClass="has-arrow fa big-icon  fa-download" Text=" Download All data" NavigateUrl ="~/Download.aspx"> </asp:HyperLink>
                             </li>
                             <li>
-                                <asp:HyperLink ID="linkUser" runat="server" NavigateUrl="~/ControlUser.aspx" CssClass="has-arrow fa big-icon fa-user" Text=" Control User"></asp:HyperLink>
-                            </li>
-                            <li>
-                               <%-- <asp:HyperLink ID="linkPrice" runat="server" NavigateUrl="~/ControlPriceSAP.aspx" CssClass="has-arrow fa fa-cloud-upload big-icon" Text="Upload Price SAP"></asp:HyperLink>--%>
-                                <a href="/ControlPriceSAP2.aspx" target="_blank" class="has-arrow fa fa-cloud-upload big-icon"> Upload Price SAP </a>
-                            </li>
-                            <li>
-                                <a href="/frmHistoryChangePrice.aspx" target="_blank" class="has-arrow fa fa-cloud-upload big-icon"> History change Price</a>
+                               <a href="/frmHistoryChangePrice.aspx" target="_blank" 
+                                   class=" big-icon">
+                                   <i class="fa fa-history"></i> History Change Price
+                                </a>
+
                             </li>
                             <li>
                                 <asp:LinkButton 
                                     ID="lnkDownloadExcel"
-                                    runat="server"
-                                    CssClass="has-arrow fa fa-cloud-upload big-icon"
+                                    runat="server"           
                                     OnClick="lnkDownloadExcel_Click">
-                                    Document
+                                    <i class="fa fa-file"></i> Document
                                 </asp:LinkButton>
+
                             </li>
                         </ul>
                     </nav>
                 </div>
+                
+
             </nav>
         </div>
         <!-- Start Welcome area -->
@@ -174,9 +410,14 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="logo-pro">
+                        <%--<div class="logo-pro">
                             <a href="Index.aspx">
                                 <img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                        </div>--%>
+                        <div class="logo-pro text-center">
+                            <a href="Index.aspx" class="brand-text">
+                                Material Issue In-Out
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -273,7 +514,7 @@
                 </div>
             </div>
             <!-- Static Table End -->
-            <div class="footer-copyright-area">
+            <%--<div class="footer-copyright-area">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
@@ -283,7 +524,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
         </div>
 
         <!-- jquery

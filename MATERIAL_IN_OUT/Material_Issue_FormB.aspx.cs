@@ -43,7 +43,7 @@ namespace MATERIAL_IN_OUT
         public static string USER_NAME;
         public object __o;
         public string User_next = "";
-        public string Public_Dept = "";
+        public string Public_Dept = "";        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

@@ -241,7 +241,7 @@
                             <!-- Voucher Date -->
                             <tr>
                                 <td colspan="2"><b>Voucher Date (dd/MM/yyyy)</b></td>
-                                <td colspan="5">
+                                <td colspan="6">
                                     <%--<asp:Label ID="lblVoucherDate" runat="server"></asp:Label>--%>
                                      <div class="date-picker-inner">
                                       <div class="form-group data-custon-pick" id="data_2">
@@ -258,7 +258,7 @@
                             <!-- MV Type -->
                             <tr>
                                 <td colspan="2"><b>MV Type</b></td>
-                                <td colspan="5">
+                                <td colspan="6">
                                     <asp:Label ID="lblMvTYpe" runat="server"></asp:Label>
                                     -
                                     <asp:Label ID="lblIN" runat="server"></asp:Label>
@@ -273,6 +273,7 @@
                                 <td><asp:Label ID="lblCC_VG01" runat="server" Text="VG01" /></td>
                                 <td><asp:Label ID="lblCC_V501" runat="server" Text="V501" /></td>
                                 <td><asp:Label ID="lblCC_VB01" runat="server" Text="VB01" /></td>
+                                <td><asp:Label ID="lblCC_tong" runat="server" Text="Total" /></td>
                             </tr>
 
                             <!-- Quantity -->
@@ -283,6 +284,7 @@
                                 <td><asp:Label ID="lblQtyVG01" runat="server" /></td>
                                 <td><asp:Label ID="lblQtyV501" runat="server" /></td>
                                 <td><asp:Label ID="lblQtyVB01" runat="server" /></td>
+                                <td><asp:Label ID="lblQtyTong" runat="server" /></td>
                             </tr>
 
                             <!-- Amount -->
@@ -293,6 +295,7 @@
                                 <td><asp:Label ID="lblAmtVG01" runat="server" /></td>
                                 <td><asp:Label ID="lblAmtV501" runat="server" /></td>
                                 <td><asp:Label ID="lblAmtVB01" runat="server" /></td>
+                                <td><asp:Label ID="lblAmttong" runat="server" /></td>
                             </tr>
 
                             <!-- Vendor -->
@@ -316,7 +319,7 @@
 
             <div class="col-md-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="panel-body">
-                    <a class="btn btn-success compose-btn btn-block m-b-md">Control Request Issue</a>
+                    <a class="btn btn-success compose-btn btn-block m-b-md" style="background-color: #004B8D; border-color: #004B8D; color: #fff;">Control Request Issue</a>
                     
                     <asp:TreeView ID="treeRQ_InMaterial" runat="server" ForeColor="Blue" OnSelectedNodeChanged="treeRQ_InMaterial_SelectedNodeChanged">
                     </asp:TreeView>
