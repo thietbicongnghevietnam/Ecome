@@ -390,6 +390,13 @@
 
                             </li>
                             <li>
+                               <a href="/frmMaterAB.aspx" target="_blank" 
+                                   class=" big-icon">
+                                   <i class="fa fa-cogs"></i> Master Type ACC
+                                </a>
+
+                            </li>
+                            <li>
                                 <asp:LinkButton 
                                     ID="lnkDownloadExcel"
                                     runat="server"           

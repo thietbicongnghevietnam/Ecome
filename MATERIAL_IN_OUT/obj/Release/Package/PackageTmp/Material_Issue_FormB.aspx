@@ -356,7 +356,7 @@
                                                     <th data-field="id">No.</th>
                                                     <th>RequestNo</th>
                                                     <th>Material</th>
-                                                    <th>Voucher Date</th>
+                                                    <th>Plan</th>
                                                     <th>Sloc</th>
                                                     <th>Issue Qty</th>
                                                     <th>Unit Price(ST)</th>
@@ -386,7 +386,7 @@
                                                             <td><%# Eval("No") %></td>
                                                             <td><%# Eval("RequestNo") %></td>
                                                             <td><%# Eval("Material") %></td>
-                                                            <td><%# Eval("DateVoucher") %></td>
+                                                            <td><%# Eval("Plant") %></td>
                                                             <td><%# Eval("Sloc") %></td>
                                                             <td><%# Eval("IssueQty") %></td>
                                                             <td><%# Eval("UnitPrice_ST") %></td>

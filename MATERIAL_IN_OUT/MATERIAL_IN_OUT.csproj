@@ -171,6 +171,7 @@
     <Content Include="Download.aspx" />
     <Content Include="Control_ExchangeRate.aspx" />
     <Content Include="frmHistoryChangePrice.aspx" />
+    <Content Include="frmMaterAB.aspx" />
     <Content Include="LibNew\adminlte.min.css" />
     <Content Include="LibNew\adminlte.min.js" />
     <Content Include="LibNew\all.min.css" />
@@ -529,6 +530,13 @@
     </Compile>
     <Compile Include="frmHistoryChangePrice.aspx.designer.cs">
       <DependentUpon>frmHistoryChangePrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaterAB.aspx.cs">
+      <DependentUpon>frmMaterAB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMaterAB.aspx.designer.cs">
+      <DependentUpon>frmMaterAB.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReviseInvoice.aspx.cs">
       <DependentUpon>ReviseInvoice.aspx</DependentUpon>

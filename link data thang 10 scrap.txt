@@ -255,18 +255,25 @@ if (Public_Dept == "LOG" && User_next == "2012757")
 http://10.92.184.24:8095/Material_Issues_FormA.aspx?RQ=RQA-IT-0126-23&User=2000032&Dept=PMS&Stock=&RoleRQ=STORE&RoleRQ_Apr=3&RoleStore=STORE&RoleStore_Apr=
 http://10.92.184.24:8095//Material_Issues_FormA.aspx?RQ=RQA-IT-0126-20&User=2000018&Dept=PMS&Stock=2020&RoleRQ=STORE&RoleRQ_Apr=2&RoleStore=STORE&RoleStore_Apr=
 
-
 dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser]", CommandType.StoredProcedure, UserCurrent, DeptID, Stock, RoleRQ, RoleApprovedRQ, RoleStore, RoleApprovedStore);
 
+================= // mater ACC //=============== 27/02/2026 ============== 
+khong tach 2 bang :
+[Issue_MaterialInOut].[dbo].[tbl_TypeMater]	(OK)
+[Issue_MaterialInOut].[dbo].[tbl_ACC_Master]          ==> mater GLaccount
+sua stored: 
+	SP_Issue_Material_Search
+	SP_Issue_Material_Search_B
 
------------- // loi web .24 //----------xoa
- dt.Columns.AddRange(new DataColumn[4] {
-     new DataColumn("ModelName",typeof(string)),
-     new DataColumn("SerialName",typeof(string)),
-     new DataColumn("Ketqua",typeof(string)),                
-     new DataColumn("InsertDate",typeof(string))                
- });
+Select_form_AB
+Select_form_AB_loc
+Insert_Form_AB
+Update_Form_AB
+Delete_from_AB
 
+****** phan export scrap list ben scrap ***** xem lai phan lay GL account  ==> co len de 1 cho tren database cua ke toan:
+Export_ScrapList_tool
+Export_ScrapList_tool2
 
 
 

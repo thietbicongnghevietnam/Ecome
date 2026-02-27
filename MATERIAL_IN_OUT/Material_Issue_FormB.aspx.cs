@@ -2921,7 +2921,16 @@ namespace MATERIAL_IN_OUT
                                 return;
                             }
 
-                            Reason = dt.Rows[i][12].ToString();   //11. Reason
+                            //Reason = dt.Rows[i][12].ToString();   //11. Reason
+                            if (dt.Rows[i][12].ToString() != "")
+                            {
+                                Reason = dt.Rows[i][12].ToString(); //11. Reason
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Reason at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
 
 
                             //13. vendor code                       
@@ -3137,9 +3146,7 @@ namespace MATERIAL_IN_OUT
             {
 
                 throw ex;
-            }
-            
-
+            }            
         }
         protected void bttTempFile_Click(object sender, EventArgs e)
         {
