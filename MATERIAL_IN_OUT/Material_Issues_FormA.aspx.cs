@@ -3573,7 +3573,8 @@ namespace MATERIAL_IN_OUT
                 }
 
             }
-            if (Session["RoleOutStock"].ToString().Trim() == "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ")
+            //if (Session["RoleOutStock"].ToString().Trim() == "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ" ) //old  05.03.2026
+            if (Session["RoleOutStock"].ToString().Trim() == "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() != "STORE")
             {
                 dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
                 Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
