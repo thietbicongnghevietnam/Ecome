@@ -3581,6 +3581,7 @@ namespace MATERIAL_IN_OUT
             }
 
             DataTable dt_ExportExcel = new DataTable();
+            //Request_NO  = "RQB-PUR-1225-1";
             dt_ExportExcel = DataConn.FillStore("SP_Issue_Material_Report", CommandType.StoredProcedure, Request_NO);
 
             if (dt_ExportExcel.Rows.Count > 0)
@@ -4140,160 +4141,171 @@ namespace MATERIAL_IN_OUT
 
         protected void btnExport_ScrapList(object sender, EventArgs e)
         {
-            Public_Dept = Session["CostCenter"].ToString().Trim();
-            DataTable dt_ReportAll = new DataTable();
-            DataTable dt_Status = new DataTable();
-            string Request_NO = "";
-            Public_Dept = Session["CostCenter"].ToString().Trim();
-            ///////////////////////////////1. Lấy thông tin RQ cua Make RQ va STORE///////////////////////////////
-            if (hdfControlRQ.Value.ToString().Trim() == "RQ" && Session["Role_Dept"].ToString().Trim() == "RQ")
+            if (string.IsNullOrWhiteSpace(txtNameSanction.Text))
             {
-                if (treeRQ_InMaterial.SelectedNode == null)
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('No Choose Sanction Name.');", true);
+                return;
+            }
+            else 
+            {
+                string SanctionName = txtNameSanction.Text;
+                //**** update lai ten sanction  //****
+
+                Public_Dept = Session["CostCenter"].ToString().Trim();
+                DataTable dt_ReportAll = new DataTable();
+                DataTable dt_Status = new DataTable();
+                string Request_NO = "";
+                Public_Dept = Session["CostCenter"].ToString().Trim();
+                ///////////////////////////////1. Lấy thông tin RQ cua Make RQ va STORE///////////////////////////////
+                if (hdfControlRQ.Value.ToString().Trim() == "RQ" && Session["Role_Dept"].ToString().Trim() == "RQ")
                 {
-                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                    if (treeRQ_InMaterial.SelectedNode == null)
                     {
-                        if (hdfControlRQ.Value == "")
+                        if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
                         {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+                            if (hdfControlRQ.Value == "")
+                            {
+                                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
 
+                            }
+
+
+                            if (dtTreeRQ.Rows.Count > 0)
+                            {
+                                Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                            }
                         }
-
-
-                        if (dtTreeRQ.Rows.Count > 0)
+                        else
                         {
-                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                            Request_NO = Session["RequestID_1RQ"].ToString();
                         }
                     }
                     else
                     {
-                        Request_NO = Session["RequestID_1RQ"].ToString();
+                        Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
                     }
+
+                    //2
+                    //dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                    //if (dtPreEmail.Rows.Count > 0)
+                    //{
+                    //    for (int i = 0; i < dtPreEmail.Rows.Count; i++)
+                    //    {
+                    //        if (Email_Pres == null || Email_Pres == "")
+                    //        {
+                    //            Email_Pres = dtPreEmail.Rows[i]["Email"].ToString();
+
+                    //        }
+                    //        else
+                    //        {
+                    //            Email_Pres = Email_Pres + ',' + dtPreEmail.Rows[i]["Email"].ToString();
+
+                    //        }
+                    //    }
+                    //}
+
                 }
-                else
+                if (hdfControlACC.Value.ToString().Trim() == "ACC-CHECK" && Session["Role_Dept"].ToString().Trim() == "ACC-CHECK")
                 {
-                    Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
-                }
-
-                //2
-                //dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
-                //if (dtPreEmail.Rows.Count > 0)
-                //{
-                //    for (int i = 0; i < dtPreEmail.Rows.Count; i++)
-                //    {
-                //        if (Email_Pres == null || Email_Pres == "")
-                //        {
-                //            Email_Pres = dtPreEmail.Rows[i]["Email"].ToString();
-
-                //        }
-                //        else
-                //        {
-                //            Email_Pres = Email_Pres + ',' + dtPreEmail.Rows[i]["Email"].ToString();
-
-                //        }
-                //    }
-                //}
-
-            }
-            if (hdfControlACC.Value.ToString().Trim() == "ACC-CHECK" && Session["Role_Dept"].ToString().Trim() == "ACC-CHECK")
-            {
-                if (treeRQ_InMaterial.SelectedNode == null)
-                {
-                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                    if (treeRQ_InMaterial.SelectedNode == null)
                     {
-
-                        if (hdfControlRQ.Value == "")
+                        if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
                         {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
 
+                            if (hdfControlRQ.Value == "")
+                            {
+                                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+
+                            }
+
+                            if (dtTreeRQ.Rows.Count > 0)
+                            {
+                                Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                            }
                         }
-
-                        if (dtTreeRQ.Rows.Count > 0)
+                        else
                         {
-                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
-                        }
-                    }
-                    else
-                    {
-                        Request_NO = Session["RequestID_1RQ"].ToString();
-                    }
-                }
-                else
-                {
-                    Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
-                }
-                //dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
-                //if (dtPreEmail.Rows.Count > 0)
-                //{
-                //    for (int i = 0; i < dtPreEmail.Rows.Count; i++)
-                //    {
-                //        if (Email_Pres == null || Email_Pres == "")
-                //        {
-                //            Email_Pres = dtPreEmail.Rows[i]["Email"].ToString();
-
-                //        }
-                //        else
-                //        {
-                //            Email_Pres = Email_Pres + ',' + dtPreEmail.Rows[i]["Email"].ToString();
-
-                //        }
-                //    }
-                //}
-            }
-            if (hdfControlStore.Value.ToString() == "STORE" && Session["RoleOutStock"].ToString().Trim() == "STORE")
-            {
-
-                if (treeRQ_OutMateial.SelectedNode == null)
-                {
-                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
-                    {
-                        if (hdfControlRQ.Value == "")
-                        {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["RoleOutStock"].ToString().Trim());
-                        }
-
-                        if (dtTreeRQ.Rows.Count > 0)
-                        {
-                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                            Request_NO = Session["RequestID_1RQ"].ToString();
                         }
                     }
                     else
                     {
-                        Request_NO = Session["RequestID_1RQ"].ToString();
+                        Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
                     }
-                    //(Session["UserName"].ToString(), Request_NO);
+                    //dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                    //if (dtPreEmail.Rows.Count > 0)
+                    //{
+                    //    for (int i = 0; i < dtPreEmail.Rows.Count; i++)
+                    //    {
+                    //        if (Email_Pres == null || Email_Pres == "")
+                    //        {
+                    //            Email_Pres = dtPreEmail.Rows[i]["Email"].ToString();
+
+                    //        }
+                    //        else
+                    //        {
+                    //            Email_Pres = Email_Pres + ',' + dtPreEmail.Rows[i]["Email"].ToString();
+
+                    //        }
+                    //    }
+                    //}
                 }
-                else
+                if (hdfControlStore.Value.ToString() == "STORE" && Session["RoleOutStock"].ToString().Trim() == "STORE")
                 {
-                    Request_NO = treeRQ_OutMateial.SelectedNode.Value.ToString();
+
+                    if (treeRQ_OutMateial.SelectedNode == null)
+                    {
+                        if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                        {
+                            if (hdfControlRQ.Value == "")
+                            {
+                                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["RoleOutStock"].ToString().Trim());
+                            }
+
+                            if (dtTreeRQ.Rows.Count > 0)
+                            {
+                                Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                            }
+                        }
+                        else
+                        {
+                            Request_NO = Session["RequestID_1RQ"].ToString();
+                        }
+                        //(Session["UserName"].ToString(), Request_NO);
+                    }
+                    else
+                    {
+                        Request_NO = treeRQ_OutMateial.SelectedNode.Value.ToString();
+                    }
+
+                    //dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), hdfControlStore.Value.ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                    //if (dtPreEmail.Rows.Count > 0)
+                    //{
+                    //    for (int i = 0; i < dtPreEmail.Rows.Count; i++)
+                    //    {
+                    //        if (Email_Pres == null || Email_Pres == "")
+                    //        {
+                    //            Email_Pres = dtPreEmail.Rows[i]["Email"].ToString();
+
+                    //        }
+                    //        else
+                    //        {
+                    //            Email_Pres = Email_Pres + ',' + dtPreEmail.Rows[i]["Email"].ToString();
+                    //        }
+                    //    }
+                    //}
                 }
-               
-                //dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), hdfControlStore.Value.ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
-                //if (dtPreEmail.Rows.Count > 0)
-                //{
-                //    for (int i = 0; i < dtPreEmail.Rows.Count; i++)
-                //    {
-                //        if (Email_Pres == null || Email_Pres == "")
-                //        {
-                //            Email_Pres = dtPreEmail.Rows[i]["Email"].ToString();
 
-                //        }
-                //        else
-                //        {
-                //            Email_Pres = Email_Pres + ',' + dtPreEmail.Rows[i]["Email"].ToString();
-                //        }
-                //    }
-                //}
-            }
-
-            string relativePath = "mau sraplist.xlsx";
-            string localPath = Server.MapPath(relativePath);
-            // Đường dẫn để lưu file Excel mới
-            string newFileName = "Export_Scraplist.xlsx"; // Tên file mới
-            string newFilePath = Server.MapPath("Template/" + newFileName); // Đường dẫn đầy đủ
-            // Gọi phương thức để xử lý file Excel và lưu file mới
-            ProcessExcelFile3(localPath, newFilePath, Request_NO);
-            // Tải xuống file mới
-            DownloadFile(newFilePath, newFileName);
+                string relativePath = "mau sraplist.xlsx";
+                string localPath = Server.MapPath(relativePath);
+                // Đường dẫn để lưu file Excel mới
+                string newFileName = "Export_Scraplist.xlsx"; // Tên file mới
+                string newFilePath = Server.MapPath("Template/" + newFileName); // Đường dẫn đầy đủ
+                                                                                // Gọi phương thức để xử lý file Excel và lưu file mới
+                ProcessExcelFile3(localPath, newFilePath, Request_NO);
+                // Tải xuống file mới
+                DownloadFile(newFilePath, newFileName);
+            }  
         }
 
         private void DownloadFile(string filePath, string fileName)

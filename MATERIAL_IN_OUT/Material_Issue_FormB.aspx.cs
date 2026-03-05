@@ -3659,125 +3659,136 @@ namespace MATERIAL_IN_OUT
 
         protected void btnExport_ScrapList(object sender, EventArgs e) 
         {
-            Public_Dept = Session["CostCenter"].ToString().Trim();
-            DataTable dt_ReportAll = new DataTable();
-            DataTable dt_Status = new DataTable();
-            string Request_NO = "";
-            Public_Dept = Session["CostCenter"].ToString().Trim();
-            ///////////////////////////////1. Lấy thông tin RQ cua Make RQ va STORE///////////////////////////////
-            if (hdfControlRQ.Value.ToString().Trim() == "RQ" && Session["Role_Dept"].ToString().Trim() == "RQ")
+            if (string.IsNullOrWhiteSpace(txtNameSanction.Text))
             {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('No Choose Sanction Name.');", true);
+                return;
+            }
+            else 
+            {
+                string SanctionName = txtNameSanction.Text;
+                //**** update lai ten sanction  //****
 
-                if (treeRQ_InMaterial.SelectedNode == null)
+
+                Public_Dept = Session["CostCenter"].ToString().Trim();
+                DataTable dt_ReportAll = new DataTable();
+                DataTable dt_Status = new DataTable();
+                string Request_NO = "";
+                Public_Dept = Session["CostCenter"].ToString().Trim();
+                ///////////////////////////////1. Lấy thông tin RQ cua Make RQ va STORE///////////////////////////////
+                if (hdfControlRQ.Value.ToString().Trim() == "RQ" && Session["Role_Dept"].ToString().Trim() == "RQ")
                 {
-                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
-                    {
-                        if (hdfControlRQ.Value == "")
-                        {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
 
+                    if (treeRQ_InMaterial.SelectedNode == null)
+                    {
+                        if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                        {
+                            if (hdfControlRQ.Value == "")
+                            {
+                                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+
+                            }
+                            else
+                            {
+                                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), hdfControlRQ.Value);
+
+                            }
+
+                            if (dtTreeRQ.Rows.Count > 0)
+                            {
+                                Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                            }
                         }
                         else
                         {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), hdfControlRQ.Value);
-
-                        }
-
-                        if (dtTreeRQ.Rows.Count > 0)
-                        {
-                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                            Request_NO = Session["RequestID_1RQ"].ToString();
                         }
                     }
                     else
                     {
-                        Request_NO = Session["RequestID_1RQ"].ToString();
+                        Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
                     }
                 }
-                else
+                if (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() == "STORE")
                 {
-                    Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
+                    dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+                    Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
                 }
-            }
-            if (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() == "STORE")
-            {
-                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
-                Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
-            }
 
-            if (hdfControlACC.Value.ToString().Trim() == "ACC-CHECK" && Session["Role_Dept"].ToString().Trim() == "ACC-CHECK")
-            {
-                if (treeRQ_InMaterial.SelectedNode == null)
+                if (hdfControlACC.Value.ToString().Trim() == "ACC-CHECK" && Session["Role_Dept"].ToString().Trim() == "ACC-CHECK")
                 {
-                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                    if (treeRQ_InMaterial.SelectedNode == null)
                     {
-
-                        if (hdfControlRQ.Value == "")
+                        if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
                         {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+
+                            if (hdfControlRQ.Value == "")
+                            {
+                                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+                            }
+                            else
+                            {
+                                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), hdfControlACC.Value);
+
+                            }
+                            if (dtTreeRQ.Rows.Count > 0)
+                            {
+                                Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                            }
                         }
                         else
                         {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), hdfControlACC.Value);
-
-                        }
-                        if (dtTreeRQ.Rows.Count > 0)
-                        {
-                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                            Request_NO = Session["RequestID_1RQ"].ToString();
                         }
                     }
                     else
                     {
-                        Request_NO = Session["RequestID_1RQ"].ToString();
+                        Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
                     }
                 }
-                else
+                if (hdfControlStore.Value.ToString() == "STORE" && Session["RoleOutStock"].ToString().Trim() == "STORE")
                 {
-                    Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
-                }
-            }
-            if (hdfControlStore.Value.ToString() == "STORE" && Session["RoleOutStock"].ToString().Trim() == "STORE")
-            {
-                if (treeRQ_OutMateial.SelectedNode == null)
-                {
-                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                    if (treeRQ_OutMateial.SelectedNode == null)
                     {
-                        if (hdfControlRQ.Value == "")
+                        if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
                         {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["RoleOutStock"].ToString().Trim());
+                            if (hdfControlRQ.Value == "")
+                            {
+                                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["RoleOutStock"].ToString().Trim());
+                            }
+                            else
+                            {
+                                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), hdfControlACC.Value);
+
+                            }
+                            if (dtTreeRQ.Rows.Count > 0)
+                            {
+                                Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                            }
                         }
                         else
                         {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), hdfControlACC.Value);
-
+                            Request_NO = Session["RequestID_1RQ"].ToString();
                         }
-                        if (dtTreeRQ.Rows.Count > 0)
-                        {
-                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
-                        }
+                        //(Session["UserName"].ToString(), Request_NO);
                     }
                     else
                     {
-                        Request_NO = Session["RequestID_1RQ"].ToString();
+                        Request_NO = treeRQ_OutMateial.SelectedNode.Value.ToString();
                     }
-                    //(Session["UserName"].ToString(), Request_NO);
                 }
-                else
-                {
-                    Request_NO = treeRQ_OutMateial.SelectedNode.Value.ToString();
-                }
+                string relativePath = "mau sraplist.xlsx";
+                string localPath = Server.MapPath(relativePath);
+
+                // Đường dẫn để lưu file Excel mới
+                string newFileName = "Export_Scraplist.xlsx"; // Tên file mới
+                string newFilePath = Server.MapPath("Template/" + newFileName); // Đường dẫn đầy đủ
+                                                                                // Gọi phương thức để xử lý file Excel và lưu file mới
+                ProcessExcelFile3(localPath, newFilePath, Request_NO);
+
+                // Tải xuống file mới
+                DownloadFile(newFilePath, newFileName);
             }
-            string relativePath = "mau sraplist.xlsx";
-            string localPath = Server.MapPath(relativePath);
-
-            // Đường dẫn để lưu file Excel mới
-            string newFileName = "Export_Scraplist.xlsx"; // Tên file mới
-            string newFilePath = Server.MapPath("Template/" + newFileName); // Đường dẫn đầy đủ
-                                                                            // Gọi phương thức để xử lý file Excel và lưu file mới
-            ProcessExcelFile3(localPath, newFilePath, Request_NO);
-
-            // Tải xuống file mới
-            DownloadFile(newFilePath, newFileName);
-
         }
 
         private void DownloadFile(string filePath, string fileName)

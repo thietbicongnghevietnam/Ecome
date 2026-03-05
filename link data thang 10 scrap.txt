@@ -287,7 +287,7 @@ trace_SI_SCM_cate
 ***** mai se sua phan hien thi  *** bo phan dieu kien : Insert_Date
 ALTER PROCEDURE [dbo].[SP_Issue_Material_BindRQ_NOTApproved_OutStock]  ---  [SP_Issue_Material_BindRQ_NOTApproved_OutStock] 'PMS','2020','STORE','1','2000123'
 
-elect  distinct a.RequestNo --,Insert_Date
+select  distinct a.RequestNo --,Insert_Date
 				from [dbo].[tbl_RQ_MaterialIssue] a
 				where Status_Delete = 'N' and     (a.Status_RQ = 'Pending' or a.Status_RQ = 'Reject')  
 				   and StatusACC_GM  ='OK'-- and (StatusInchage_Out is NULL or  StatusInchage_Out  = 'NG')
@@ -295,8 +295,23 @@ elect  distinct a.RequestNo --,Insert_Date
 				--order by  Insert_Date desc
 				order by a.RequestNo asc
 
-2.***ALTER PROCEDURE [dbo].[SP_Issue_Material_Report]  -- [SP_Issue_Material_Report] 'RQB-PUS-0226-31'
-dang loi export excel double
+2.***ALTER PROCEDURE 
+[SP_Issue_Material_Report_B] 'RQB-PUR-0126-3'
+[dbo].[SP_Issue_Material_Report]  -- [SP_Issue_Material_Report] 'RQB-PUS-0226-31'
+dang loi export excel double : bo 2 dieu kien join di****
+***phan hien thi .PDF  (mai ***)
+ // Nếu không phải PUR thì không cần hiển thị phần out SAP
+ // Nếu PUR thì hiển thị phần out stock
+
+========= // danh sach mater //===========
+[Issue_MaterialInOut].[dbo].[tbl_Plant]
+[Issue_MaterialInOut].[dbo].[tbl_ACC_Master]	(khong can gan sang type mater roi)****
+[Issue_MaterialInOut].[dbo].[tbl_TypeMater]	(master chinh)****
+[Issue_MaterialInOut].[dbo].[tbl_DeptMaster]	mater bo phan
+[Issue_MaterialInOut].[dbo].[tbl_MV_Master]	mater MVT (555 -> gan voi nhung type nao???/)
+[Issue_MaterialInOut].[dbo].[tbl_VendorMaster]	mater vendor
+
+
 
 
 

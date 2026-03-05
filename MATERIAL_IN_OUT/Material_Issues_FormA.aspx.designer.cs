@@ -681,13 +681,13 @@ namespace MATERIAL_IN_OUT
         protected global::System.Web.UI.WebControls.Button bttDelete;
 
         /// <summary>
-        /// Button1 control.
+        /// btnOpenPopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnOpenPopup;
 
         /// <summary>
         /// hdfStatus_Upload control.
@@ -697,6 +697,24 @@ namespace MATERIAL_IN_OUT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdfStatus_Upload;
+
+        /// <summary>
+        /// txtNameSanction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNameSanction;
+
+        /// <summary>
+        /// btnExport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExport;
 
         /// <summary>
         /// lblRequestUpdate control.

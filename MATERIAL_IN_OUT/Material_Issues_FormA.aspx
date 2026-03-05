@@ -482,9 +482,15 @@
                             </div>
                         </div>
                         <div class="panel-footer">
-                            <div class="btn-group" style="font-size: 25px;">
-                                <asp:Button ID="Button1" CssClass="btn btn-info " runat="server" Text="Export Scrap List" OnClick="btnExport_ScrapList" />
-                                <%--<asp:Button ID="Button2" CssClass="btn btn-info " runat="server" Text="Updat Price ST" OnClick="btnUpdate_PriceST" />--%>
+                           <%-- <div class="btn-group" style="font-size: 25px;">
+                                <asp:Button ID="Button1" CssClass="btn btn-info " runat="server" Text="Export Scrap List" OnClick="btnExport_ScrapList" />   
+                            </div>--%>
+                            <div class="btn-group" style="font-size:25px;">
+                                <asp:Button ID="btnOpenPopup"
+                                    CssClass="btn btn-info"
+                                    runat="server"
+                                    Text="Export Scrap List"
+                                    OnClientClick="showExportPopup(); return false;" />
                             </div>
                         </div>
                         <asp:HiddenField ID="hdfStatus_Upload" runat="server" />
@@ -493,6 +499,36 @@
                         <%-- Modal footer --%>
                     </div>
                 </div>
+
+                <!-- Modal export scrap list -->
+                <div id="exportModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Export Scrap</h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <label>Input Name Sanction</label>
+                                <asp:TextBox ID="txtNameSanction" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="modal-footer">
+                                <asp:Button ID="btnExport"
+                                    runat="server"
+                                    Text="Export"
+                                    CssClass="btn btn-success"
+                                    OnClick="btnExport_ScrapList" />
+
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
                 <div class="modal" id="myNew">
                     <div class="container">
                         <div class="row bootstrap snippets bootdeys">
@@ -560,6 +596,12 @@
         //        boxes[i].checked = source.checked;
         //    }
         //}
+    </script>
+
+    <script>
+        function showExportPopup() {
+            $('#exportModal').modal('show');
+        }
     </script>
 
 
