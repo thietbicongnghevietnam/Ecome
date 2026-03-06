@@ -690,6 +690,15 @@ namespace MATERIAL_IN_OUT
         protected global::System.Web.UI.WebControls.Button btnOpenPopup;
 
         /// <summary>
+        /// btnOpenPopup2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnOpenPopup2;
+
+        /// <summary>
         /// hdfStatus_Upload control.
         /// </summary>
         /// <remarks>
@@ -715,6 +724,24 @@ namespace MATERIAL_IN_OUT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnExport;
+
+        /// <summary>
+        /// txtrequestno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtrequestno;
+
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
 
         /// <summary>
         /// lblRequestUpdate control.

@@ -471,10 +471,25 @@
                             </div>
                         </div>
                         <div class="panel-footer">
-                            <div class="btn-group" style="font-size: 25px;">
+                            <%--<div class="btn-group" style="font-size: 25px;">
                                 <asp:Button ID="Button1" CssClass="btn btn-info " runat="server" Text="Export Scrap List" OnClick="btnExport_ScrapList" />
-                               <%-- <asp:Button ID="Button2" CssClass="btn btn-info " runat="server" Text="Updat Price ST" OnClick="btnUpdate_PriceST" />--%>
+                            </div>--%>
+                            <div class="btn-group" style="font-size:25px;">
+                                <asp:Button ID="btnOpenPopup"
+                                    CssClass="btn btn-info"
+                                    runat="server"
+                                    Text="Export Scrap List"
+                                    OnClientClick="showExportPopup(); return false;" />
                             </div>
+
+                            <div class="btn-group" style="font-size:25px;">
+                                <asp:Button ID="btnOpenPopup2"
+                                    CssClass="btn btn-info"
+                                    runat="server"
+                                    Text="Delete Request"
+                                    OnClientClick="showExportPopup2(); return false;" />
+                            </div>
+
                         </div>
                         
                     </div>
@@ -482,6 +497,63 @@
                 </div>
                 <asp:HiddenField ID="hdfStatus_Upload" runat="server" />
             </div>
+
+            <!-- Modal export scrap list -->
+            <div id="exportModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Export Scrap Form B</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <label>Input Name Sanction</label>
+                            <asp:TextBox ID="txtNameSanction" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+
+                        <div class="modal-footer">
+                            <asp:Button ID="btnExport"
+                                runat="server"
+                                Text="Export"
+                                CssClass="btn btn-success"
+                                OnClick="btnExport_ScrapList" />
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Modal delete requestno -->
+            <div id="exportModal2" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Delete request no!</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <label>Input RequesetNo form B</label>
+                            <asp:TextBox ID="txtrequestno" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+
+                        <div class="modal-footer">
+                            <asp:Button ID="Button2"
+                                runat="server"
+                                Text="Delete"
+                                CssClass="btn btn-success"
+                                OnClick="btnDelete_requestno" />
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <div class="modal fade" id="myNew">
                 <div class="container">
                     <div class="row bootstrap snippets bootdeys">
@@ -552,7 +624,15 @@
         //}
     </script>
 
- 
+    <script>
+         function showExportPopup() {
+             $('#exportModal').modal('show');
+        }
+
+        function showExportPopup2() {
+            $('#exportModal2').modal('show');
+        }
+    </script>
 
 
 

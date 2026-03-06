@@ -284,32 +284,56 @@ trace_SI_SCM
 trace_SI_SCM_cate
 
 
-***** mai se sua phan hien thi  *** bo phan dieu kien : Insert_Date
-ALTER PROCEDURE [dbo].[SP_Issue_Material_BindRQ_NOTApproved_OutStock]  ---  [SP_Issue_Material_BindRQ_NOTApproved_OutStock] 'PMS','2020','STORE','1','2000123'
+================= // PMS //=============== 06/03/2026 ============== 
+SP_Issue_Material_BindRQ_NOTApproved_OutStock 	(bo Insert_Date)==> bo lap ban ghi
+SP_Issue_Material_BindRQ_NOTApproved_OutStock_B	(**** doi tesst xem co bi lap khong???)
+[SP_Issue_Material_Report] 'RQA-IT-0326-47'	(export excel -> bo bot bang mater: tbl_ACC_Master)
 
-select  distinct a.RequestNo --,Insert_Date
-				from [dbo].[tbl_RQ_MaterialIssue] a
-				where Status_Delete = 'N' and     (a.Status_RQ = 'Pending' or a.Status_RQ = 'Reject')  
-				   and StatusACC_GM  ='OK'-- and (StatusInchage_Out is NULL or  StatusInchage_Out  = 'NG')
-				  and  cast (a.Insert_Date as date ) >=   DATEADD(day, 1, EOMONTH(DATEADD(month, -2, GETDATE()))) 
-				--order by  Insert_Date desc
-				order by a.RequestNo asc
-
-2.***ALTER PROCEDURE 
-[SP_Issue_Material_Report_B] 'RQB-PUR-0126-3'
+[SP_Issue_Material_Report_B] 'RQB-PUR-0126-3'	(excel)
 [dbo].[SP_Issue_Material_Report]  -- [SP_Issue_Material_Report] 'RQB-PUS-0226-31'
-dang loi export excel double : bo 2 dieu kien join di****
-***phan hien thi .PDF  (mai ***)
- // Nếu không phải PUR thì không cần hiển thị phần out SAP
- // Nếu PUR thì hiển thị phần out stock
+[SP_Issue_Material_Report_PUR] 'RQA-IT-0326-47'
+
+[SP_Issue_Material_BindRQ_Approved] 'LOG','','RQ','2012757','1'
+[SP_Issue_Material_RQStatus] 'RQA-IT-0326-47'  (zen .pdf)
+SP_Issue_Material_RQStatus_B			(zen .pdf)
+[SP_Issue_Material_RQStatus_PUR] 		(zen .pdf)
+
+update truong sacntion name scraplist : 
+[Export_ScrapList_Report_A]
+Export_ScrapList_Report_B 
+
+//an hien nut delete minh2026
+//Session["Role_Aproved_Dept"].ToString().Trim();
+if ((Session["Role_Dept"].ToString().Trim() == "RQ") && Session["Role_Aproved_Dept"].ToString() == "1")
+{
+ btnOpenPopup2.Visible = true;  //hien nut xoa
+}
+else 
+{
+ btnOpenPopup2.Visible = false; //an nut xoa
+}
+
+****************** pending *****************
++ quan ly xuat bao cao cua bo phan PMS
++ out dep ky:
+	- 1 type request co the co 2 bo phan ky ****
+
++ phan type mater ben PUS phai lay tu ben ACC**** (sua lai phan master)
+
+
 
 ========= // danh sach mater //===========
 [Issue_MaterialInOut].[dbo].[tbl_Plant]
 [Issue_MaterialInOut].[dbo].[tbl_ACC_Master]	(khong can gan sang type mater roi)****
 [Issue_MaterialInOut].[dbo].[tbl_TypeMater]	(master chinh)****
 [Issue_MaterialInOut].[dbo].[tbl_DeptMaster]	mater bo phan
-[Issue_MaterialInOut].[dbo].[tbl_MV_Master]	mater MVT (555 -> gan voi nhung type nao???/)
+[Issue_MaterialInOut].[dbo].[tbl_MV_Master]	mater MVT (555 -> gan voi nhung type nao???/)  // 06.03.2026  ==> bo dieu kien check MVTtypecode trong mater [Issue_MaterialInOut].[dbo].[tbl_MV_Master]
 [Issue_MaterialInOut].[dbo].[tbl_VendorMaster]	mater vendor
+
+
+
+
+
 
 
 

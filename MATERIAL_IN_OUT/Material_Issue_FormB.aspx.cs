@@ -1221,12 +1221,14 @@ namespace MATERIAL_IN_OUT
 
             }
 
-            if (Session["RoleOutStock"].ToString().Trim() == "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ")
+            //if (Session["RoleOutStock"].ToString().Trim() == "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ")  //old  05.03.2026
+            if (Session["RoleOutStock"].ToString().Trim() != "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ")
             {
                 //dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
                 dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
                 Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
             }
+
             string titleReport = "Report Issue IN-OUT Material";
 
             if (Public_Dept != "PUS") // Nếu không phải PUR thì không cần hiển thị phần out SAP
@@ -2168,6 +2170,17 @@ namespace MATERIAL_IN_OUT
                         Loadstatus(Request_NO);
                         LoadButton_IN(Request_NO, Session["Role_Aproved_Dept"].ToString().Trim(), Session["Role_Dept"].ToString().Trim());
 
+                        //an hien nut delete minh2026
+                        //Session["Role_Aproved_Dept"].ToString().Trim();
+                        if ((Session["Role_Dept"].ToString().Trim() == "RQ") && Session["Role_Aproved_Dept"].ToString() == "1")
+                        {
+                            btnOpenPopup2.Visible = true;  //hien nut xoa
+                        }
+                        else
+                        {
+                            btnOpenPopup2.Visible = false; //an nut xoa
+                        }
+
                     }
                 }
                 else
@@ -3061,43 +3074,46 @@ namespace MATERIAL_IN_OUT
                                 }
                                 else // Đúng định dạng của RQ
                                 {
-                                    DataTable dtCheckMV = DataConn.DataTable_Sql("select count(isnull(MVTypeCode,0)) as CheckMV from tbl_MV_Master  where  MVTypeCode =  '" + Mvtype + "'  and TypeID  = '" + TypeRQ + "'");
-                                    if (int.Parse(dtCheckMV.Rows[0]["CheckMV"].ToString()) > 0)
-                                    {
-                                        DataTable dtCheckRQ = DataConn.DataTable_Sql("select count(isnull(RequestNo,0)) as CheckRQ from tbl_RQ_MaterialIssueB  where  [RequestNo]  = '" + RQ_Reset + "'");
+                                    // 06.03.2026  ==> bo dieu kien check MVTtypecode trong mater [Issue_MaterialInOut].[dbo].[tbl_MV_Master]
+                                    //DataTable dtCheckMV = DataConn.DataTable_Sql("select count(isnull(MVTypeCode,0)) as CheckMV from tbl_MV_Master  where  MVTypeCode =  '" + Mvtype + "'  and TypeID  = '" + TypeRQ + "'");
+                                    //if (int.Parse(dtCheckMV.Rows[0]["CheckMV"].ToString()) > 0)
+                                    //{
 
-                                        if (TypeRQ != "" && RQ_Reset != "") // Upload RQ
+                                    //}
+                                    //else
+                                    //{
+                                    //    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data (MVType or AccountCode ) not correct  at row :(" + (i + 1).ToString() + ") for Type RQID');", true);
+                                    //    return;
+                                    //}
+
+                                    DataTable dtCheckRQ = DataConn.DataTable_Sql("select count(isnull(RequestNo,0)) as CheckRQ from tbl_RQ_MaterialIssueB  where  [RequestNo]  = '" + RQ_Reset + "'");
+
+                                    if (TypeRQ != "" && RQ_Reset != "") // Upload RQ
+                                    {
+                                        if (int.Parse(dtCheckRQ.Rows[0]["CheckRQ"].ToString()) > 0)
                                         {
-                                            if (int.Parse(dtCheckRQ.Rows[0]["CheckRQ"].ToString()) > 0)
-                                            {
-                                                sql_Reset = sql_Reset + " UPDATE tbl_RQ_MaterialIssueB ";
-                                                sql_Reset = sql_Reset + " SET  [TypeID] = '" + TypeRQ + "'  ,[IssueQty] =  " + Qty + " ,[UnitPrice_ST] = " + UnitPriceST + "  ,[MvType] = '" + Mvtype + "',Type_Rosh_Halb = '" + Type_Rosh_Halb + "',Reason = '" + Reason + "',Namecode = '" + Namecode + "',";
-                                                sql_Reset = sql_Reset + "MvName =  '" + MVContent + "' ,[Plant] = '" + Plant + "' ,Note = N'" + Note + "'  ,DateVoucher =  '" + DateVoucher + "'  ,Amount_ST = " + Amount + "  ,VendorCode = '" + VendorCode + "' ,CostCenter = '" + CostCenter + "' ,Sloc = '" + Sloc + "',";
-                                                sql_Reset = sql_Reset + "UserUpdate = '" + Session["UserName"].ToString() + "',[DateUpdate] = '" + DateTime.Now.ToString() + "', Amount_AC = '" + Amount_Actual + "',";
-                                                sql_Reset = sql_Reset + "CountryofOrigin = '" + CountryOfOrgin + "', ItemDescription  = '" + ItemDescription + "',Flag_price_sap  = '" + 0 + "'";
-                                                sql_Reset = sql_Reset + "Where RequestNo  = '" + RQ_Reset + "' and Material = '" + Material + "' and  Status_RQ = 'Pending'  ";
-                                                Session["RQ_UploadB"] = RQ_Reset;
-                                            }
-                                            else
-                                            {
-                                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('NG.Upload because not exits RQ at row :(" + (i + 1).ToString() + ") for Type RQID');", true);
-                                                return;
-                                            }
+                                            sql_Reset = sql_Reset + " UPDATE tbl_RQ_MaterialIssueB ";
+                                            sql_Reset = sql_Reset + " SET  [TypeID] = '" + TypeRQ + "'  ,[IssueQty] =  " + Qty + " ,[UnitPrice_ST] = " + UnitPriceST + "  ,[MvType] = '" + Mvtype + "',Type_Rosh_Halb = '" + Type_Rosh_Halb + "',Reason = '" + Reason + "',Namecode = '" + Namecode + "',";
+                                            sql_Reset = sql_Reset + "MvName =  '" + MVContent + "' ,[Plant] = '" + Plant + "' ,Note = N'" + Note + "'  ,DateVoucher =  '" + DateVoucher + "'  ,Amount_ST = " + Amount + "  ,VendorCode = '" + VendorCode + "' ,CostCenter = '" + CostCenter + "' ,Sloc = '" + Sloc + "',";
+                                            sql_Reset = sql_Reset + "UserUpdate = '" + Session["UserName"].ToString() + "',[DateUpdate] = '" + DateTime.Now.ToString() + "', Amount_AC = '" + Amount_Actual + "',";
+                                            sql_Reset = sql_Reset + "CountryofOrigin = '" + CountryOfOrgin + "', ItemDescription  = '" + ItemDescription + "',Flag_price_sap  = '" + 0 + "'";
+                                            sql_Reset = sql_Reset + "Where RequestNo  = '" + RQ_Reset + "' and Material = '" + Material + "' and  Status_RQ = 'Pending'  ";
+                                            Session["RQ_UploadB"] = RQ_Reset;
                                         }
                                         else
                                         {
-                                            if (TypeRQ != "" || Material != "" || Sloc != "" || Mvtype != "" || Plant != "" || CostCenter != "")
-                                            {
-                                                sql_ = sql_ + " INSERT INTO tbl_RQ_MaterialIssueB ([RequestNo],[Material],[TypeID], [IssueQty],UserCreate,[UnitPrice_ST],[MvType],[Plant],Note,DateVoucher,Amount_ST,UnitPrice_AC,Amount_AC , VendorCode,CostCenter,Sloc,MvName,RQDeptID,CountryofOrigin,ItemDescription,Type_Rosh_Halb,Reason,NameCode) ";
-                                                sql_ = sql_ + " VALUES( '" + Request_NO + "','" + Material + "','" + TypeRQ + "'," + Qty + ",'" + Session["UserName"].ToString() + "'," + UnitPriceST + " ,'" + Mvtype + "','" + Plant + "' ,N'" + Note + "', '" + DateVoucher + "'," + Amount + "," + UnitActual + "," + Amount_Actual + ",'" + VendorCode + "','" + CostCenter + "','" + Sloc + "','" + MVContent + "','" + Public_Dept + "','" + CountryOfOrgin + "','" + ItemDescription + "','" + Type_Rosh_Halb + "','" + Reason + "','" + Namecode + "') ";
-                                                Session["RQ_UploadB"] = Request_NO;
-                                            }
+                                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('NG.Upload because not exits RQ at row :(" + (i + 1).ToString() + ") for Type RQID');", true);
+                                            return;
                                         }
                                     }
                                     else
                                     {
-                                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data (MVType or AccountCode ) not correct  at row :(" + (i + 1).ToString() + ") for Type RQID');", true);
-                                        return;
+                                        if (TypeRQ != "" || Material != "" || Sloc != "" || Mvtype != "" || Plant != "" || CostCenter != "")
+                                        {
+                                            sql_ = sql_ + " INSERT INTO tbl_RQ_MaterialIssueB ([RequestNo],[Material],[TypeID], [IssueQty],UserCreate,[UnitPrice_ST],[MvType],[Plant],Note,DateVoucher,Amount_ST,UnitPrice_AC,Amount_AC , VendorCode,CostCenter,Sloc,MvName,RQDeptID,CountryofOrigin,ItemDescription,Type_Rosh_Halb,Reason,NameCode) ";
+                                            sql_ = sql_ + " VALUES( '" + Request_NO + "','" + Material + "','" + TypeRQ + "'," + Qty + ",'" + Session["UserName"].ToString() + "'," + UnitPriceST + " ,'" + Mvtype + "','" + Plant + "' ,N'" + Note + "', '" + DateVoucher + "'," + Amount + "," + UnitActual + "," + Amount_Actual + ",'" + VendorCode + "','" + CostCenter + "','" + Sloc + "','" + MVContent + "','" + Public_Dept + "','" + CountryOfOrgin + "','" + ItemDescription + "','" + Type_Rosh_Halb + "','" + Reason + "','" + Namecode + "') ";
+                                            Session["RQ_UploadB"] = Request_NO;
+                                        }
                                     }
                                 }
 
@@ -3657,6 +3673,36 @@ namespace MATERIAL_IN_OUT
             }
         }
 
+        //minh2026
+        protected void btnDelete_requestno(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtrequestno.Text))
+            {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('No Choose Request Name.');", true);
+                return;
+            }
+            else
+            {
+                //xoa request neu chua ky duyet *** minh2026
+                string requestname = txtrequestno.Text;
+                string userid = Session["UserName"].ToString();
+                string roledept = Session["Role_Dept"].ToString().Trim();
+                string rolestock = Session["Stock"].ToString();
+                //user day ky send request chua? neu chua thi moi cho xoa
+                DataTable dt_update = new DataTable();
+                dt_update = DataConn.StoreFillDS("delete_requestno_level1B", CommandType.StoredProcedure, requestname, rolestock, roledept, userid);
+                if (dt_update.Rows[0][0].ToString() == "0")
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('NG, check again!');", true);
+                    return;
+                }
+                else
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Delete Success !!!');", true);
+                }
+            }
+        }
+
         protected void btnExport_ScrapList(object sender, EventArgs e) 
         {
             if (string.IsNullOrWhiteSpace(txtNameSanction.Text))
@@ -3784,7 +3830,7 @@ namespace MATERIAL_IN_OUT
                 string newFileName = "Export_Scraplist.xlsx"; // Tên file mới
                 string newFilePath = Server.MapPath("Template/" + newFileName); // Đường dẫn đầy đủ
                                                                                 // Gọi phương thức để xử lý file Excel và lưu file mới
-                ProcessExcelFile3(localPath, newFilePath, Request_NO);
+                ProcessExcelFile3(localPath, newFilePath, Request_NO,SanctionName);
 
                 // Tải xuống file mới
                 DownloadFile(newFilePath, newFileName);
@@ -3813,7 +3859,7 @@ namespace MATERIAL_IN_OUT
             }
         }
 
-        static void ProcessExcelFile3(string filePath, string newFilePath, string Request_NO)
+        static void ProcessExcelFile3(string filePath, string newFilePath, string Request_NO, string SanctionName)
         {
             FileInfo fileInfo = new FileInfo(filePath);
 
@@ -3828,7 +3874,7 @@ namespace MATERIAL_IN_OUT
 
             DataTable dtexcel = new DataTable();
             {
-                dtexcel = DataConn.FillStore("Export_ScrapList_Report_B", CommandType.StoredProcedure, Request_NO);
+                dtexcel = DataConn.FillStore("Export_ScrapList_Report_B", CommandType.StoredProcedure, Request_NO, SanctionName);
             }
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -3877,7 +3923,7 @@ namespace MATERIAL_IN_OUT
                     worksheet.Cells[row, 14].Value = "";// dataRow["ScrapSloc"]; //xac nhan lai voi bo phan ***
 
                     worksheet.Cells[row, 15].Value = ""; //so palet
-                    worksheet.Cells[row, 16].Value = ""; //so sanction
+                    worksheet.Cells[row, 16].Value = SanctionName; //so sanction
 
                     worksheet.Cells[row, 17].Value = dataRow["Reason"]; //reason 17
                     worksheet.Cells[row, 18].Value = dataRow["RQDeptID"];   //bo phan 18
@@ -3955,7 +4001,8 @@ namespace MATERIAL_IN_OUT
 
 
             }
-            if (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() == "STORE")
+            //if (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() == "STORE")
+            if (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() != "STORE")     //old  05.03.2026
             {
                 dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
                 Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
