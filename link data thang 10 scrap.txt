@@ -320,6 +320,21 @@ else
 
 + phan type mater ben PUS phai lay tu ben ACC**** (sua lai phan master)
 
+================== // 08-03-2026 //============
+bang: 	tbl_RQ_MaterialIssue 	(cot insertdate = getdate())
+	tbl_RQ_MaterialIssueB	(them cot DocumentNo ,Export_flag_98,Export_flag_99,Export_flag_outscrap)	
+stored:
+	Select_PMS_OutSAP
+	Export_Form_98
+	Export_Tranfer_99
+	Export_Outscrap
+	Update_Document_No
+	Select_PMS_OutSAP_download
+	Select_PMS_OutSAP_search
+
+scrap system:	(chuyen sang mater issue in out typemater -> ke toan )
+Select_form_AB
+Select_form_AB_loc
 
 
 ========= // danh sach mater //===========
@@ -329,6 +344,8 @@ else
 [Issue_MaterialInOut].[dbo].[tbl_DeptMaster]	mater bo phan
 [Issue_MaterialInOut].[dbo].[tbl_MV_Master]	mater MVT (555 -> gan voi nhung type nao???/)  // 06.03.2026  ==> bo dieu kien check MVTtypecode trong mater [Issue_MaterialInOut].[dbo].[tbl_MV_Master]
 [Issue_MaterialInOut].[dbo].[tbl_VendorMaster]	mater vendor
+
+
 
 
 

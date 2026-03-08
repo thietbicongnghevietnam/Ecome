@@ -170,6 +170,7 @@
     <Content Include="ControlPriceSAP2.aspx" />
     <Content Include="Download.aspx" />
     <Content Include="Control_ExchangeRate.aspx" />
+    <Content Include="frmPMSOutSap.aspx" />
     <Content Include="frmHistoryChangePrice.aspx" />
     <Content Include="frmMaterAB.aspx" />
     <Content Include="LibNew\adminlte.min.css" />
@@ -524,6 +525,13 @@
     <Compile Include="Control_ExchangeRate.aspx.designer.cs">
       <DependentUpon>Control_ExchangeRate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmPMSOutSap.aspx.cs">
+      <DependentUpon>frmPMSOutSap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPMSOutSap.aspx.designer.cs">
+      <DependentUpon>frmPMSOutSap.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmHistoryChangePrice.aspx.cs">
       <DependentUpon>frmHistoryChangePrice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -693,6 +701,15 @@
     <Content Include="Upload_Request\UploadTranfer.xlsx" />
     <Content Include="Template\Upload_PackingList.xlsx" />
     <Content Include="Template\UploadMaterInOut_A.xlsx" />
+    <Content Include="Web_old.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web_old.Debug.config">
+      <DependentUpon>Web_old.config</DependentUpon>
+    </Content>
+    <Content Include="Web_old.Release.config">
+      <DependentUpon>Web_old.config</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

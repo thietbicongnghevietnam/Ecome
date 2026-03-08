@@ -369,10 +369,10 @@
                              <li>
                                <asp:HyperLink ID="linkIncharge" runat="server" NavigateUrl="~/Control_ExchangeRate.aspx"><i class="fa fa-line-chart"> Control Rate Daily</i></asp:HyperLink>
                             </li>                                                       
-                            <li>
+                            <li style="display:none">
                                 <asp:HyperLink ID="linkDownload" runat="server"  NavigateUrl ="~/Download.aspx"> <i class="fa big-icon fa-download"> Download All data</i></asp:HyperLink>
                             </li>
-                            <li>
+                            <li style="display:none">
                                 <asp:HyperLink ID="linkUser" runat="server" NavigateUrl="~/ControlUser.aspx"><i class="fa big-icon fa-user"> Control User</i></asp:HyperLink>             
                             </li>
                             <li>                              
@@ -393,6 +393,13 @@
                                <a href="/frmMaterAB.aspx" target="_blank" 
                                    class=" big-icon">
                                    <i class="fa fa-cogs"></i> Master Type ACC
+                                </a>
+
+                            </li>
+                            <li>
+                               <a href="/frmPMSOutSap.aspx" target="_blank" 
+                                   class=" big-icon">
+                                   <i class="fa big-icon fa-download"></i> PMS Out SAP
                                 </a>
 
                             </li>
