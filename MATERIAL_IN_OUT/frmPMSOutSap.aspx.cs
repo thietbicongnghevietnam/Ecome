@@ -1,12 +1,17 @@
-﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.VariantTypes;
 using MATERIAL_IN_OUT.AppCode;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Database;
+using PdfSharp.Drawing.BarCodes;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,7 +21,11 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Input;
+using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Media.Media3D;
+using MigraDoc.DocumentObjectModel.Shapes;
 
 namespace MATERIAL_IN_OUT
 {
@@ -38,10 +47,7 @@ namespace MATERIAL_IN_OUT
                 Response.End();
                 return;
             }
-
-            dt = DataConn.StoreFillDS("Select_PMS_OutSAP", System.Data.CommandType.StoredProcedure);
-
-            
+            dt = DataConn.StoreFillDS("Select_PMS_OutSAP", System.Data.CommandType.StoredProcedure);            
         }
 
         protected void Search_Date_Click(object sender, EventArgs e)
@@ -126,12 +132,14 @@ namespace MATERIAL_IN_OUT
         {
             string Requestno = RequestNoid.Text;
             string TypeName = TypeFormid.Text;
+            string Sanction = sanctionid.Text;
+            string MVT = MVTid.Text;
             string userid = Session["UserName"].ToString();
 
-            if (Requestno != "" && TypeName != "")
+            if (Requestno != "" && TypeName != "" && Sanction !="")
             {
                 DataTable dtexport = DataConn.StoreFillDS("Export_Form_98",
-                    System.Data.CommandType.StoredProcedure, Requestno, TypeName, userid);
+                    System.Data.CommandType.StoredProcedure, Requestno, TypeName, userid, Sanction, MVT);
 
                 if (dtexport.Rows[0][0].ToString() == "1")
                 {
@@ -151,7 +159,7 @@ namespace MATERIAL_IN_OUT
                 else
                 {
                     Page.ClientScript.RegisterStartupScript(Page.GetType(),
-                        "Message", "toastr.error('NG, Check again!');", true);
+                        "Message", "toastr.error('NG, Data null, Check again!');", true);
                 }
             }
             else
@@ -165,12 +173,14 @@ namespace MATERIAL_IN_OUT
         {
             string Requestno = RequestNo4.Text;
             string TypeName = TypeForm4.Text;
+            string Sanction = sanction4.Text;
+            string MVT = MVT4.Text;
             string userid = Session["UserName"].ToString();
 
             if (Requestno != "" && TypeName != "")
             {
                 DataTable dtexport = DataConn.StoreFillDS("Export_Tranfer_99",
-                    System.Data.CommandType.StoredProcedure, Requestno, TypeName, userid);
+                    System.Data.CommandType.StoredProcedure, Requestno, TypeName, userid, Sanction,MVT);
 
                 if (dtexport.Rows[0][0].ToString() == "1")
                 {
@@ -204,12 +214,14 @@ namespace MATERIAL_IN_OUT
         {
             string Requestno = RequestNo5.Text;
             string TypeName = TypeForm5.Text;
+            string Sanction = sanction5.Text;
+            string MVT = MVT5.Text;
             string userid = Session["UserName"].ToString();
 
             if (Requestno != "" && TypeName != "")
             {
                 DataTable dtexport = DataConn.StoreFillDS("Export_Outscrap",
-                    System.Data.CommandType.StoredProcedure, Requestno, TypeName, userid);
+                    System.Data.CommandType.StoredProcedure, Requestno, TypeName, userid, Sanction, MVT);
 
                 if (dtexport.Rows[0][0].ToString() == "1")
                 {
@@ -311,9 +323,7 @@ namespace MATERIAL_IN_OUT
                 string typeForm = Request["typeForm"];
 
                 string tableName = typeForm == "B" ? "tbl_RQ_MaterialIssueB" : "tbl_RQ_MaterialIssue";
-                string sql = $@"SELECT Material, Plant, VendorCode, 
-                        CostCenter, Sloc, IssueQty, UnitPrice_ST, Amount_ST,DocumentNo,NameSacntion
-                        FROM {tableName} WHERE RequestNo = @RequestNo";
+                string sql = $@"SELECT Material, Plant, VendorCode,CostCenter, Sloc, IssueQty, UnitPrice_ST, Amount_ST,DocumentNo,SanctionName FROM {tableName} WHERE RequestNo = @RequestNo";
 
                 var list = new List<object>();
                 using (SqlConnection con = new SqlConnection(DataConn.source))
@@ -335,7 +345,7 @@ namespace MATERIAL_IN_OUT
                             UnitPrice_ST = dr["UnitPrice_ST"].ToString(),
                             Amount_ST = dr["Amount_ST"].ToString(),
                             DocumentNo = dr["DocumentNo"].ToString(),
-                            NameSacntion = dr["NameSacntion"].ToString()
+                            SanctionName = dr["SanctionName"].ToString()
                         });
                     }
                 }
@@ -441,6 +451,94 @@ namespace MATERIAL_IN_OUT
         //    JavaScriptSerializer json = new JavaScriptSerializer();
         //    return json.Serialize(dict);
         //}
+
+        protected void ImportFromExcel(object sender, EventArgs e)
+        {
+            if (!FileUpload.HasFile)
+            {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.error('NG, Ban Chon file!');", true);
+                return;
+            }
+
+            string filePath = Server.MapPath(".") + "\\" + FileUpload.FileName;
+
+            try
+            {
+                FileUpload.SaveAs(filePath);
+
+                DataTable dtExcelData = new DataTable();
+                int count_record = 0;
+
+                using (StreamReader sr = new StreamReader(filePath))
+                {
+                    int rowIndex = 0;
+
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        string[] rows = line.Split(',');
+
+                        if (rowIndex >= 1) // bỏ dòng header
+                        {
+                            if (rows.Length >= 7)
+                            {
+                                string requestno = rows[0].Trim();
+                                string department = rows[1].Trim();
+                                string typeform = rows[4].Trim();
+                                string sanctionname = rows[5].Trim();
+                                string documentno = rows[6].Trim();
+
+                                if (requestno != "" && department != "" && typeform != "" && documentno != "")
+                                {
+                                    DataTable dt_checkupload = DataConn.StoreFillDS(
+                                        "Upload_Document_PMS",
+                                        System.Data.CommandType.StoredProcedure,
+                                        requestno,
+                                        department,
+                                        typeform,
+                                        sanctionname,
+                                        documentno
+                                    );
+
+                                    if (dt_checkupload.Rows.Count > 0 && dt_checkupload.Rows[0][0].ToString() == "1")
+                                    {
+                                        count_record++;
+                                    }
+                                }
+                            }
+                        }
+
+                        rowIndex++;
+                    }
+                }
+
+                if (count_record > 0)
+                {
+                    lblConfirm.Text = "DATA IMPORTED SUCCESSFULLY.";
+                    lblConfirm.Attributes.Add("style", "color:green");
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Message", "alert('OK, SUCCESSFULLY!');", true);
+                    dt = DataConn.StoreFillDS("Select_PMS_OutSAP", System.Data.CommandType.StoredProcedure);
+                }
+                else
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.error('NG, check again!');", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                lblConfirm.Text = "Lỗi : " + ex.Message;
+                lblConfirm.Attributes.Add("style", "color:red");
+            }
+            finally
+            {
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+            }
+
+        }
+
 
 
     }

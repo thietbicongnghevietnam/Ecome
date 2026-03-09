@@ -336,6 +336,15 @@ scrap system:	(chuyen sang mater issue in out typemater -> ke toan )
 Select_form_AB
 Select_form_AB_loc
 
+================== // 09-03-2026 //============
+Select_PMS_OutSAP
+Export_Form_98
+Export_Tranfer_99
+Upload_Document_PMS
+
+gui mail next usser:
+SP_Issue_Material_NextUser
+
 
 ========= // danh sach mater //===========
 [Issue_MaterialInOut].[dbo].[tbl_Plant]

@@ -87,6 +87,24 @@ namespace MATERIAL_IN_OUT
         protected global::System.Web.UI.WebControls.CheckBox chkDownloadDetail;
 
         /// <summary>
+        /// FileUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// RequestNoid control.
         /// </summary>
         /// <remarks>
@@ -103,6 +121,24 @@ namespace MATERIAL_IN_OUT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TypeFormid;
+
+        /// <summary>
+        /// sanctionid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox sanctionid;
+
+        /// <summary>
+        /// MVTid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MVTid;
 
         /// <summary>
         /// Button1 control.
@@ -132,6 +168,24 @@ namespace MATERIAL_IN_OUT
         protected global::System.Web.UI.WebControls.TextBox TypeForm4;
 
         /// <summary>
+        /// sanction4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox sanction4;
+
+        /// <summary>
+        /// MVT4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MVT4;
+
+        /// <summary>
         /// Button2 control.
         /// </summary>
         /// <remarks>
@@ -157,6 +211,24 @@ namespace MATERIAL_IN_OUT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TypeForm5;
+
+        /// <summary>
+        /// sanction5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox sanction5;
+
+        /// <summary>
+        /// MVT5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MVT5;
 
         /// <summary>
         /// Button3 control.

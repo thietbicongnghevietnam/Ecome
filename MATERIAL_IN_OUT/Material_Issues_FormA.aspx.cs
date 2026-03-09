@@ -381,7 +381,7 @@ namespace MATERIAL_IN_OUT
                 //hdfStock.Value = dt_IssueMaterial.Rows[0]["Sloc"].ToString();
                 //hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
                 //hdfUserUpdate.Value = Session["UserName"].ToString();
-                //lblRequest.Text = dt_IssueMaterial.Rows[0]["TypeName"].ToString();
+                lblRequest.Text = dt_IssueMaterial.Rows[0]["TypeName"].ToString();
 
 
 
