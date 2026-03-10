@@ -1227,7 +1227,24 @@ namespace MATERIAL_IN_OUT
                 Stock = "2020"; 
             }
 
-            dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser]", CommandType.StoredProcedure, UserCurrent, DeptID, Stock, RoleRQ, RoleApprovedRQ, RoleStore, RoleApprovedStore);
+            //lay ra Type VMT de phan quyen ky cho OUT dept : 10.03.2026
+            string typeMVT = "";
+            string typeform = "A";
+            DataTable dt_mvt = DataConn.StoreFillDS("[Get_OutDep_MVT_email]", CommandType.StoredProcedure, RQ, typeform);
+            if (dt_mvt.Rows.Count > 0)
+            {
+                typeMVT = dt_mvt.Rows[0][0].ToString();
+            }
+            else 
+            {
+                typeMVT = "";
+            }
+            //chia chu ky out dep theo tung bo phan ky : 10.03.2026 (chu ky outdep => request ke toan )
+            dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser_new]", CommandType.StoredProcedure, UserCurrent, DeptID, Stock, RoleRQ, RoleApprovedRQ, RoleStore, RoleApprovedStore, typeMVT);
+            
+            //old ==> bo phan thuoc PMS se ky het all
+            //dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser]", CommandType.StoredProcedure, UserCurrent, DeptID, Stock, RoleRQ, RoleApprovedRQ, RoleStore, RoleApprovedStore);
+
             if (dtNextMail.Rows.Count > 0)
             {
                 for (int j = 0; j < dtNextMail.Rows.Count; j++)

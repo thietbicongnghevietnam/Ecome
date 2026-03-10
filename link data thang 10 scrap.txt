@@ -342,6 +342,11 @@ Export_Form_98
 Export_Tranfer_99
 Upload_Document_PMS
 
+============ // 10.03.2026 //===========
+Get_OutDep_MVT_email		(lay ra MVT de day len cho OUT dep nao ky)
+[SP_Issue_Material_NextUser_new] '2000020','ACC','2020','ACC-CHECK','3','','','4.1'  (stored ky next mail)
+[SP_Issue_Material_BindRQ_Approved] 'PUS','2020','STORE','2015597_1','1'	(them case store)
+
 gui mail next usser:
 SP_Issue_Material_NextUser
 
