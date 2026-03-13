@@ -336,19 +336,26 @@ scrap system:	(chuyen sang mater issue in out typemater -> ke toan )
 Select_form_AB
 Select_form_AB_loc
 
-================== // 09-03-2026 //============
+================== // 09-03-2026 //============xuat SAP cua PMS
 Select_PMS_OutSAP
 Export_Form_98
 Export_Tranfer_99
 Upload_Document_PMS
+Export_OtherIssueSAP
 
 ============ // 10.03.2026 //===========
 Get_OutDep_MVT_email		(lay ra MVT de day len cho OUT dep nao ky)
 [SP_Issue_Material_NextUser_new] '2000020','ACC','2020','ACC-CHECK','3','','','4.1'  (stored ky next mail)
 [SP_Issue_Material_BindRQ_Approved] 'PUS','2020','STORE','2015597_1','1'	(them case store)
+SP_Issue_Material_BindRQ_Approved_B
 
-gui mail next usser:
+gui mail next usser: (*** sua tach bo phan ky ***)
 SP_Issue_Material_NextUser
+
+============ // 11.03.2026 //===========
+show LOG: trang
+sua them:
+SP_Issue_Material_BindRQ_NOTApproved (LOG)
 
 
 ========= // danh sach mater //===========

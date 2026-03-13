@@ -843,6 +843,8 @@ namespace MATERIAL_IN_OUT
                         string TypeRQ = null; string Material = null; string Sloc = null; float Qty = 0; string Mvtype = null; string Plant = null; float UnitPriceST = 0;
                         string CostCenter = null; string VendorCode = null; string Note = null; string DateVoucher = null; float Amount = 0; string MVName = null; string RQ_Reset = null;
                         string CountryOfOrgin = null; string ItemDescription = null;
+                        string Type_SAP_PMS = "";
+
 
                         string Type_Rosh_Halb = "";
                         float STprice_ = 0;
@@ -975,16 +977,28 @@ namespace MATERIAL_IN_OUT
                             return;
                         }
 
-                        //11. Reason
+                        //12. Reason
                         if (dt.Rows[i][12].ToString() != "")
                         {
-                            Reason = dt.Rows[i][12].ToString(); //11. Reason
+                            Reason = dt.Rows[i][12].ToString(); //12. Reason
                         }
                         else
                         {
                             Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Reason at row :(" + (i + 1).ToString() + ") is null');", true);
                             return;
                         }
+
+                        //18.Type_SAP_PMS
+                        if (dt.Rows[i][18].ToString() != "")
+                        {
+                            Type_SAP_PMS = dt.Rows[i][18].ToString(); //18.Type_SAP_PMS
+                        }
+                        else
+                        {
+                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Type_SAP_PMS at row :(" + (i + 1).ToString() + ") is null');", true);
+                            return;
+                        }
+
 
                         //string TypeCheck = TypeRQID;
                         //    string[] stringTypeID = { "2", "3", "4", "5", "8", "21" }; // Những Type sẽ phải điền Vendorcode
@@ -1148,7 +1162,7 @@ namespace MATERIAL_IN_OUT
                                         sql_Reset = sql_Reset + " SET  [TypeID] = '" + TypeRQ + "'  ,[IssueQty] =  " + Qty + " ,[UnitPrice_ST] = " + UnitPriceST + "  ,[MvType] = '" + Mvtype + "',Type_Rosh_Halb = '" + Type_Rosh_Halb + "',Reason = '" + Reason + "',Namecode = '" + Namecode + "',";
                                         sql_Reset = sql_Reset + "MvName =  '" + MVName + "' ,[Plant] = '" + Plant + "' ,Note = N'" + Note + "',DateVoucher =  '" + DateVoucher + "' ,Amount_ST = " + Amount + "  ,VendorCode = '" + VendorCode + "' ,CostCenter = '" + CostCenter + "' ,Sloc = '" + Sloc + "',";
                                         sql_Reset = sql_Reset + "[UserUpdate] = '" + Session["UserName"].ToString() + "',[DateUpdate] = '" + DateTime.Now.ToString() + "',";
-                                        sql_Reset = sql_Reset + "[CountryofOrigin] = '" + CountryOfOrgin + "', [ItemDescription]  = '" + ItemDescription + "',Flag_price_sap  = '" + 0 + "'";
+                                        sql_Reset = sql_Reset + "[CountryofOrigin] = '" + CountryOfOrgin + "', [ItemDescription]  = '" + ItemDescription + "',[TypeSapPMS]='"+Type_SAP_PMS+"',Flag_price_sap  = '" + 0 + "'";
                                         sql_Reset = sql_Reset + "Where[RequestNo]  = '" + RQ_Reset + "' and [Material] = '" + Material + "'  and  Status_RQ = 'Pending' ";
                                         Session["RQ_Upload"] = RQ_Reset;
                                     }
@@ -1164,8 +1178,8 @@ namespace MATERIAL_IN_OUT
 
                                     if (TypeRQ != "" || Material != "" || Sloc != "" || Mvtype != "" || Plant != "" || CostCenter != "")
                                     {
-                                        sql_ = sql_ + " INSERT INTO tbl_RQ_MaterialIssue ([RequestNo],[Material],[TypeID], [IssueQty],[UnitPrice_ST],[MvType],MvName,[Plant],Note,DateVoucher,Amount_ST , VendorCode,CostCenter,Sloc,UserCreate,RQDeptID,CountryofOrigin,ItemDescription,Type_Rosh_Halb,Reason,NameCode) ";
-                                        sql_ = sql_ + " VALUES( '" + Request_NO + "','" + Material + "','" + TypeRQ + "'," + Qty + "," + UnitPriceST + " ,'" + Mvtype + "','" + MVName + "','" + Plant + "' ,N'" + Note + "', '" + DateVoucher + "'," + Amount + ",'" + VendorCode + "','" + CostCenter + "','" + Sloc + "','" + Session["UserName"].ToString() + "','" + Public_Dept + "','" + CountryOfOrgin + "','" + ItemDescription + "','" + Type_Rosh_Halb + "','" + Reason + "','" + Namecode + "') ";
+                                        sql_ = sql_ + " INSERT INTO tbl_RQ_MaterialIssue ([RequestNo],[Material],[TypeID], [IssueQty],[UnitPrice_ST],[MvType],MvName,[Plant],Note,DateVoucher,Amount_ST , VendorCode,CostCenter,Sloc,UserCreate,RQDeptID,CountryofOrigin,ItemDescription,Type_Rosh_Halb,Reason,NameCode,TypeSapPMS) ";
+                                        sql_ = sql_ + " VALUES( '" + Request_NO + "','" + Material + "','" + TypeRQ + "'," + Qty + "," + UnitPriceST + " ,'" + Mvtype + "','" + MVName + "','" + Plant + "' ,N'" + Note + "', '" + DateVoucher + "'," + Amount + ",'" + VendorCode + "','" + CostCenter + "','" + Sloc + "','" + Session["UserName"].ToString() + "','" + Public_Dept + "','" + CountryOfOrgin + "','" + ItemDescription + "','" + Type_Rosh_Halb + "','" + Reason + "','" + Namecode + "','" + Type_SAP_PMS + "') ";
                                         Session["RQ_Upload"] = Request_NO;
                                     }
                                 }
@@ -1458,11 +1472,11 @@ namespace MATERIAL_IN_OUT
             //}
             dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser_other]", CommandType.StoredProcedure, "", DeptID, Stock, "RQ", "1", "", "");
 
-            if (dtPreEmail.Rows.Count > 0)
+            if (dtNextMail.Rows.Count > 0)
             {
-                UserNext = dtPreEmail.Rows[0]["UserLogin"].ToString();
-                RoleNext = dtPreEmail.Rows[0]["RoleID"].ToString();
-                RoleDeptNext = dtPreEmail.Rows[0]["RoleDept"].ToString();
+                UserNext = dtNextMail.Rows[0]["UserLogin"].ToString();
+                RoleNext = "";// dtPreEmail.Rows[0]["RoleID"].ToString();
+                RoleDeptNext = "";// dtPreEmail.Rows[0]["RoleDept"].ToString();
             }
             System.Net.Mail.SmtpClient objClient = new System.Net.Mail.SmtpClient("157.8.1.131");
             subject = subject.Replace('\r', ' ').Replace('\n', ' ');

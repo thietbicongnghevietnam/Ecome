@@ -61,7 +61,7 @@ namespace MATERIAL_IN_OUT
 
             if (dt.Rows.Count > 0)
             {
-                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('search successfully!');", true);
+                //Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('search successfully!');", true);
                 Date1.Value = _fromdate.ToString();
             }
             else 
@@ -177,7 +177,7 @@ namespace MATERIAL_IN_OUT
             string MVT = MVT4.Text;
             string userid = Session["UserName"].ToString();
 
-            if (Requestno != "" && TypeName != "")
+            if (Requestno != "" && TypeName != "" && Sanction != "")
             {
                 DataTable dtexport = DataConn.StoreFillDS("Export_Tranfer_99",
                     System.Data.CommandType.StoredProcedure, Requestno, TypeName, userid, Sanction,MVT);
@@ -218,7 +218,7 @@ namespace MATERIAL_IN_OUT
             string MVT = MVT5.Text;
             string userid = Session["UserName"].ToString();
 
-            if (Requestno != "" && TypeName != "")
+            if (Requestno != "" && TypeName != "" && Sanction != "")
             {
                 DataTable dtexport = DataConn.StoreFillDS("Export_Outscrap",
                     System.Data.CommandType.StoredProcedure, Requestno, TypeName, userid, Sanction, MVT);
@@ -231,6 +231,47 @@ namespace MATERIAL_IN_OUT
                     if (dtexport.Rows.Count > 0)
                     {
                         ExportToCSV(dtexport, "PMS_ExportOutscrap_" + Requestno + ".csv");
+                    }
+                }
+                else if (dtexport.Rows[0][0].ToString() == "2")
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(),
+                        "Message", "toastr.error('NG, User do not PMS!');", true);
+                }
+                else
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(),
+                        "Message", "toastr.error('NG, Check again!');", true);
+                }
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(),
+                    "Message", "toastr.error('NG, data null!');", true);
+            }
+        }
+
+        public void ExportOtherIssue(object sender, EventArgs e)
+        {
+            string Requestno = RequestNo7.Text;
+            string TypeName = TypeForm7.Text;
+            string Sanction = sanction7.Text;
+            string MVT = MVT7.Text;
+            string userid = Session["UserName"].ToString();
+
+            if (Requestno != "" && TypeName != "" && Sanction != "")
+            {
+                DataTable dtexport = DataConn.StoreFillDS("Export_OtherIssueSAP",
+                    System.Data.CommandType.StoredProcedure, Requestno, TypeName, userid, Sanction, MVT);
+
+                if (dtexport.Rows[0][0].ToString() == "1")
+                {
+                    //DataTable dt = DataConn.StoreFillDS("Select_PMS_OutSAP",
+                    //    System.Data.CommandType.StoredProcedure, Requestno, TypeName);
+
+                    if (dtexport.Rows.Count > 0)
+                    {
+                        ExportToCSV(dtexport, "PMS_ExportOther_" + Requestno + ".csv");
                     }
                 }
                 else if (dtexport.Rows[0][0].ToString() == "2")

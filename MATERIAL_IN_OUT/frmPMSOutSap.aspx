@@ -136,6 +136,11 @@
                         <th>Sanction Name</th>
                         <th>Document No</th>
 
+                        <th>TypeSapPMS</th>
+                        <th>UserCreate</th>
+                        <th>TypeID</th>
+                        <th>commentlog</th>
+
                         <th>Actions</th>
 
                     </tr>
@@ -156,12 +161,18 @@
                         <td><%= rows["SanctionName"].ToString() %></td>
                         <td><%= rows["DocumentNo"].ToString() %></td>
 
+                        <td><%= rows["TypeSapPMS"].ToString() %></td>
+                        <td><%= rows["UserCreate"].ToString() %></td>
+                        <td><%= rows["TypeID"].ToString() %></td>
+                        <td><%= rows["commentlog"].ToString() %></td>
+
                         <td>
+                            <a href="#" class="btn btn-primary" title="Update DocumentNo" onclick="openEditModal6('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Update DocumentNo</a>
                             <a href="#" class="btn btn-info btn-sm" title="Detail" onclick="openEditModal2('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Detail</a>
                             <a href="#" class="btn btn-info btn-sm" title="Out201_98" onclick="openEditModal3('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Out201_98</a>
                             <a href="#" class="btn btn-info btn-sm" title="Tranfer_G98" onclick="openEditModal4('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Tranfer_G99</a>
                             <a href="#" class="btn btn-info btn-sm" title="Out Scrap" onclick="openEditModal5('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Out Scrap</a>
-                            <a href="#" class="btn btn-primary" title="Update DocumentNo" onclick="openEditModal6('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Update DocumentNo</a>
+                            <a href="#" class="btn btn-info btn-sm" title="Out Scrap" onclick="openEditModal7('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Other Type</a>
 
                         </td>
                     </tr>
@@ -177,6 +188,11 @@
                         <th>TypeForm</th>
                         <th>Sanction Name</th>
                         <th>Document No</th>
+
+                        <th>TypeSapPMS</th>
+                        <th>UserCreate</th>
+                        <th>TypeID</th>
+                        <th>commentlog</th>
 
                         <th>Actions</th>
 
@@ -383,6 +399,59 @@
             </div>
         </div>
 
+        <div class="modal" id="myModal7">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="row">
+                            <div>
+                                <h4 class="modal-title" id="headerTag7" style="float: left">Dou you want export Other Issue Out ?</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float: right; margin-left: 300px;">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="ID">RequestNo</label>
+                                <asp:TextBox ID="RequestNo7" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ID">TypeForm</label>
+                                <asp:TextBox ID="TypeForm7" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="ID">Sanction Name</label>
+                                <asp:TextBox ID="sanction7" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ID">MVT</label>
+                                <asp:TextBox ID="MVT7" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                            </div>
+
+                        </div>
+
+                        <!-- Lặp lại thêm các dòng -->
+                    </div>
+
+                    <%-- Modal footer --%>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" runat="server" id="Button5" onserverclick="ExportOtherIssue" class="btn btn-primary">
+                            Export
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="modal" id="myModal6">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -526,8 +595,6 @@
             });
         }
 
-
-
         function openEditModal3(RequestNo, TypeForm, sanctionname) {
             $("#RequestNoid").val(RequestNo);
             $("#TypeFormid").val(TypeForm);
@@ -546,15 +613,19 @@
             $("#sanction5").val(sanctionname);
             $('#myModal5').modal('show');
         }
+
+        function openEditModal7(RequestNo, TypeForm, sanctionname) {
+            $("#RequestNo7").val(RequestNo);
+            $("#TypeForm7").val(TypeForm);
+            $("#sanction7").val(sanctionname);
+            $('#myModal7').modal('show');
+        }
+
         function openEditModal6(RequestNo, TypeForm) {
             $("#RequestNo6").val(RequestNo);
             $("#TypeForm6").val(TypeForm);
             $('#myModal6').modal('show');
         }
-
-
-
-
 
     </script>
 

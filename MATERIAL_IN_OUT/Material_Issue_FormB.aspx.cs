@@ -2809,6 +2809,8 @@ namespace MATERIAL_IN_OUT
                             float UnitActual = 0; string CostCenter = null; string VendorCode = null; string Note = null; string DateVoucher = null; float Amount = 0; float Amount_Actual = 0;
                             string MVContent = null; string RQ_Reset = null; string CountryOfOrgin = null; string ItemDescription = null;
 
+                            string Type_SAP_PMS = "";
+
                             string Type_Rosh_Halb = "";
                             float STprice_ = 0;
                             string Reason = "";
@@ -2951,14 +2953,25 @@ namespace MATERIAL_IN_OUT
                                 return;
                             }
 
-                            //Reason = dt.Rows[i][12].ToString();   //11. Reason
+                            //Reason = dt.Rows[i][12].ToString();   //12. Reason
                             if (dt.Rows[i][12].ToString() != "")
                             {
-                                Reason = dt.Rows[i][12].ToString(); //11. Reason
+                                Reason = dt.Rows[i][12].ToString(); //12. Reason
                             }
                             else
                             {
                                 Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Reason at row :(" + (i + 1).ToString() + ") is null');", true);
+                                return;
+                            }
+
+                            //18.Type_SAP_PMS
+                            if (dt.Rows[i][18].ToString() != "")
+                            {
+                                Type_SAP_PMS = dt.Rows[i][18].ToString(); //18.Type_SAP_PMS
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Type_SAP_PMS at row :(" + (i + 1).ToString() + ") is null');", true);
                                 return;
                             }
 
@@ -3112,7 +3125,7 @@ namespace MATERIAL_IN_OUT
                                             sql_Reset = sql_Reset + " UPDATE tbl_RQ_MaterialIssueB ";
                                             sql_Reset = sql_Reset + " SET  [TypeID] = '" + TypeRQ + "'  ,[IssueQty] =  " + Qty + " ,[UnitPrice_ST] = " + UnitPriceST + "  ,[MvType] = '" + Mvtype + "',Type_Rosh_Halb = '" + Type_Rosh_Halb + "',Reason = '" + Reason + "',Namecode = '" + Namecode + "',";
                                             sql_Reset = sql_Reset + "MvName =  '" + MVContent + "' ,[Plant] = '" + Plant + "' ,Note = N'" + Note + "'  ,DateVoucher =  '" + DateVoucher + "'  ,Amount_ST = " + Amount + "  ,VendorCode = '" + VendorCode + "' ,CostCenter = '" + CostCenter + "' ,Sloc = '" + Sloc + "',";
-                                            sql_Reset = sql_Reset + "UserUpdate = '" + Session["UserName"].ToString() + "',[DateUpdate] = '" + DateTime.Now.ToString() + "', Amount_AC = '" + Amount_Actual + "',";
+                                            sql_Reset = sql_Reset + "UserUpdate = '" + Session["UserName"].ToString() + "',[DateUpdate] = '" + DateTime.Now.ToString() + "',[TypeSapPMS]='"+Type_SAP_PMS+"', Amount_AC = '" + Amount_Actual + "',";
                                             sql_Reset = sql_Reset + "CountryofOrigin = '" + CountryOfOrgin + "', ItemDescription  = '" + ItemDescription + "',Flag_price_sap  = '" + 0 + "'";
                                             sql_Reset = sql_Reset + "Where RequestNo  = '" + RQ_Reset + "' and Material = '" + Material + "' and  Status_RQ = 'Pending'  ";
                                             Session["RQ_UploadB"] = RQ_Reset;
@@ -3127,8 +3140,8 @@ namespace MATERIAL_IN_OUT
                                     {
                                         if (TypeRQ != "" || Material != "" || Sloc != "" || Mvtype != "" || Plant != "" || CostCenter != "")
                                         {
-                                            sql_ = sql_ + " INSERT INTO tbl_RQ_MaterialIssueB ([RequestNo],[Material],[TypeID], [IssueQty],UserCreate,[UnitPrice_ST],[MvType],[Plant],Note,DateVoucher,Amount_ST,UnitPrice_AC,Amount_AC , VendorCode,CostCenter,Sloc,MvName,RQDeptID,CountryofOrigin,ItemDescription,Type_Rosh_Halb,Reason,NameCode) ";
-                                            sql_ = sql_ + " VALUES( '" + Request_NO + "','" + Material + "','" + TypeRQ + "'," + Qty + ",'" + Session["UserName"].ToString() + "'," + UnitPriceST + " ,'" + Mvtype + "','" + Plant + "' ,N'" + Note + "', '" + DateVoucher + "'," + Amount + "," + UnitActual + "," + Amount_Actual + ",'" + VendorCode + "','" + CostCenter + "','" + Sloc + "','" + MVContent + "','" + Public_Dept + "','" + CountryOfOrgin + "','" + ItemDescription + "','" + Type_Rosh_Halb + "','" + Reason + "','" + Namecode + "') ";
+                                            sql_ = sql_ + " INSERT INTO tbl_RQ_MaterialIssueB ([RequestNo],[Material],[TypeID], [IssueQty],UserCreate,[UnitPrice_ST],[MvType],[Plant],Note,DateVoucher,Amount_ST,UnitPrice_AC,Amount_AC , VendorCode,CostCenter,Sloc,MvName,RQDeptID,CountryofOrigin,ItemDescription,Type_Rosh_Halb,Reason,NameCode,TypeSapPMS) ";
+                                            sql_ = sql_ + " VALUES( '" + Request_NO + "','" + Material + "','" + TypeRQ + "'," + Qty + ",'" + Session["UserName"].ToString() + "'," + UnitPriceST + " ,'" + Mvtype + "','" + Plant + "' ,N'" + Note + "', '" + DateVoucher + "'," + Amount + "," + UnitActual + "," + Amount_Actual + ",'" + VendorCode + "','" + CostCenter + "','" + Sloc + "','" + MVContent + "','" + Public_Dept + "','" + CountryOfOrgin + "','" + ItemDescription + "','" + Type_Rosh_Halb + "','" + Reason + "','" + Namecode + "','"+ Type_SAP_PMS + "') ";
                                             Session["RQ_UploadB"] = Request_NO;
                                         }
                                     }
