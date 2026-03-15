@@ -46,7 +46,7 @@ namespace MATERIAL_IN_OUT
         public string Request_NO = "";
 
 
-        string exportTo = "";
+        public string exportTo = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -379,7 +379,8 @@ namespace MATERIAL_IN_OUT
                 //lblAcount.Text = dt_IssueMaterial.Rows[0]["AccountCost"].ToString();
                 //lblAccountName.Text = dt_IssueMaterial.Rows[0]["AccountName"].ToString();
                 //hdfStock.Value = dt_IssueMaterial.Rows[0]["Sloc"].ToString();
-                //hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
+                hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
+                lblRequestUpdate.Text = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
                 //hdfUserUpdate.Value = Session["UserName"].ToString();
                 lblRequest.Text = dt_IssueMaterial.Rows[0]["TypeName"].ToString();
 
@@ -1475,14 +1476,28 @@ namespace MATERIAL_IN_OUT
             if (dtNextMail.Rows.Count > 0)
             {
                 UserNext = dtNextMail.Rows[0]["UserLogin"].ToString();
-                RoleNext = "";// dtPreEmail.Rows[0]["RoleID"].ToString();
-                RoleDeptNext = "";// dtPreEmail.Rows[0]["RoleDept"].ToString();
+                RoleNext = dtNextMail.Rows[0]["RoleID"].ToString();
+                RoleDeptNext = dtNextMail.Rows[0]["RoleDept"].ToString();
+
+                for (int i = 0; i < dtNextMail.Rows.Count; i++)
+                {
+                    if (Email_Pres == null || Email_Pres == "")
+                    {
+                        Email_Pres = dtNextMail.Rows[i]["Email"].ToString();
+                    }
+                    else
+                    {
+                        Email_Pres = Email_Pres + ',' + dtNextMail.Rows[i]["Email"].ToString();
+                    }
+                }
             }
             System.Net.Mail.SmtpClient objClient = new System.Net.Mail.SmtpClient("157.8.1.131");
             subject = subject.Replace('\r', ' ').Replace('\n', ' ');
             System.Net.Mail.MailAddress mail = new System.Net.Mail.MailAddress("tax.psnv@vn.panasonic.com", "Issue In-Out Material");
             System.Net.Mail.MailMessage objMessage = new System.Net.Mail.MailMessage();
-            string[] ToEmailList = ToEmail.Split(',');
+            //string[] ToEmailList = ToEmail.Split(',');
+            //gui cho log va ke toan check comment  **********
+            string[] ToEmailList = Email_Pres.Split(',');
 
 
             objMessage.Priority = MailPriority.High;
@@ -2690,10 +2705,11 @@ namespace MATERIAL_IN_OUT
                         RoleDept = Role_RQ;
                     }
                     int row = 0;
-                    List<string> lst = exportTo.Split(',').ToList();
-                    string User_Log = lst[0].ToString();
+                    List<string> lst1 = exportTo.Split(',').ToList();
+                    string User_Log = lst1[1].ToString();
                     //if (Session["UserName"].ToString() == "2012757")  //1*
-                    if (Session["UserName"].ToString() == User_Log)  //1*
+                    //if (Session["UserName"].ToString() == User_Log)  //1* //khong bat theo USER
+                    if (Public_Dept == "LOG")
                     {
                         //user LOG -- chang LOG 
                          row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update2", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
@@ -2727,7 +2743,7 @@ namespace MATERIAL_IN_OUT
                                 //gui mail cho ket toan va LOG de xac nhan   
                                 SendEmail_Prv_LOG(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
                             }
-
+                            
                         }
                         Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('This comment has been sent sucessfully');", true);
                     }

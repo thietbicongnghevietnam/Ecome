@@ -357,6 +357,23 @@ show LOG: trang
 sua them:
 SP_Issue_Material_BindRQ_NOTApproved (LOG)
 
+public void SendEmail_Prv_LOG
+2011948  --> chang log dang nhap  --> co can bat dieu kien user hay bo phan : LOG  *** bo phan log commetn
+stored: (sua)
+SP_Issue_Material_BindRQ_NOTApproved 'LOG','','RQ','2011948','1'
+
+public void Search()
+//old 2
+bo loc: (oK)
+hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
+lblRequestUpdate.Text = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
+
+
+
+chua co:
+Get_OutDep_MVT_email
+SP_Issue_Material_NextUser_new
+
 
 ========= // danh sach mater //===========
 [Issue_MaterialInOut].[dbo].[tbl_Plant]
