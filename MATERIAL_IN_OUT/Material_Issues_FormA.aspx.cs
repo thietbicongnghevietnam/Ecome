@@ -1476,8 +1476,8 @@ namespace MATERIAL_IN_OUT
             if (dtNextMail.Rows.Count > 0)
             {
                 UserNext = dtNextMail.Rows[0]["UserLogin"].ToString();
-                RoleNext = dtNextMail.Rows[0]["RoleID"].ToString();
-                RoleDeptNext = dtNextMail.Rows[0]["RoleDept"].ToString();
+                //RoleNext = dtNextMail.Rows[0]["RoleID"].ToString();
+                //RoleDeptNext = dtNextMail.Rows[0]["RoleDept"].ToString();
 
                 for (int i = 0; i < dtNextMail.Rows.Count; i++)
                 {
@@ -2706,7 +2706,7 @@ namespace MATERIAL_IN_OUT
                     }
                     int row = 0;
                     List<string> lst1 = exportTo.Split(',').ToList();
-                    string User_Log = lst1[1].ToString();
+                    //string User_Log = lst1[1].ToString();
                     //if (Session["UserName"].ToString() == "2012757")  //1*
                     //if (Session["UserName"].ToString() == User_Log)  //1* //khong bat theo USER
                     if (Public_Dept == "LOG")

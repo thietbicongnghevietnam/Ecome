@@ -218,6 +218,7 @@
                                     <th>NO</th>
                                     <th>Material</th>
                                     <th>Plant</th>
+                                    <th>MVT</th>
                                     <th>Vendor</th>
                                     <th>CostCenter</th>
                                     <th>Sloc</th>
@@ -575,6 +576,7 @@
                         html += "<td>" + (i + 1) + "</td>";  // Số thứ tự bắt đầu từ 1
                         html += "<td>" + data[i].Material + "</td>";
                         html += "<td>" + data[i].Plant + "</td>";
+                        html += "<td>" + data[i].MvType + "</td>";
                         html += "<td>" + data[i].VendorCode + "</td>";
                         html += "<td>" + data[i].CostCenter + "</td>";
                         html += "<td>" + data[i].Sloc + "</td>";
@@ -582,7 +584,7 @@
                         html += "<td>" + data[i].UnitPrice_ST + "</td>";
                         html += "<td>" + data[i].Amount_ST + "</td>";
                         html += "<td>" + data[i].DocumentNo + "</td>";
-                        html += "<td>" + data[i].SanctionName + "</td>";
+                        html += "<td>" + data[i].SanctionName + "</td>";                        
                         html += "</tr>";
                     }
                     $("#detailTableBody").html(html);

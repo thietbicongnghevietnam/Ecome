@@ -364,7 +364,7 @@ namespace MATERIAL_IN_OUT
                 string typeForm = Request["typeForm"];
 
                 string tableName = typeForm == "B" ? "tbl_RQ_MaterialIssueB" : "tbl_RQ_MaterialIssue";
-                string sql = $@"SELECT Material, Plant, VendorCode,CostCenter, Sloc, IssueQty, UnitPrice_ST, Amount_ST,DocumentNo,SanctionName FROM {tableName} WHERE RequestNo = @RequestNo";
+                string sql = $@"SELECT Material, Plant, VendorCode,CostCenter, Sloc, IssueQty, UnitPrice_ST, Amount_ST,DocumentNo,SanctionName,MvType FROM {tableName} WHERE RequestNo = @RequestNo";
 
                 var list = new List<object>();
                 using (SqlConnection con = new SqlConnection(DataConn.source))
@@ -386,7 +386,8 @@ namespace MATERIAL_IN_OUT
                             UnitPrice_ST = dr["UnitPrice_ST"].ToString(),
                             Amount_ST = dr["Amount_ST"].ToString(),
                             DocumentNo = dr["DocumentNo"].ToString(),
-                            SanctionName = dr["SanctionName"].ToString()
+                            SanctionName = dr["SanctionName"].ToString(),
+                            MvType = dr["MvType"].ToString()
                         });
                     }
                 }

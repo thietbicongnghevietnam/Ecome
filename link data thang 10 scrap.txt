@@ -373,6 +373,9 @@ lblRequestUpdate.Text = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
 chua co:
 Get_OutDep_MVT_email
 SP_Issue_Material_NextUser_new
+Select_PMS_OutSAP
+Select_PMS_OutSAP_download
+Select_PMS_OutSAP_search
 
 
 ========= // danh sach mater //===========
