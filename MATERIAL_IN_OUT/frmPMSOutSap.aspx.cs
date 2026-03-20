@@ -57,7 +57,10 @@ namespace MATERIAL_IN_OUT
             string requestno = filterRequestNo.Value;
             string sanctionno = filterSanctionNo.Value;
 
-            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno);
+            string typesapPMS = filterSapPMS.Value;
+
+            //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno);
+            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS);
 
             if (dt.Rows.Count > 0)
             {

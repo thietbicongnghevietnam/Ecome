@@ -78,6 +78,15 @@ namespace MATERIAL_IN_OUT
         protected global::System.Web.UI.HtmlControls.HtmlInputText filterSanctionNo;
 
         /// <summary>
+        /// filterSapPMS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText filterSapPMS;
+
+        /// <summary>
         /// chkDownloadDetail control.
         /// </summary>
         /// <remarks>

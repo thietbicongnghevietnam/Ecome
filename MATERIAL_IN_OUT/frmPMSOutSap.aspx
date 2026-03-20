@@ -72,6 +72,11 @@
                         <input type="text" id="filterSanctionNo" runat="server" placeholder="Input Sanction No" style="height: 34px;" />
                     </div>
 
+                     <div style="float: left; padding-right: 10px;">
+                         TypeSapPMS:
+                         <input type="text" id="filterSapPMS" runat="server" placeholder="Input type sapPMS" style="height: 34px;" />
+                     </div>
+
                     <div style="float: left; padding-right: 10px;">
                         <button class="btn btn-primary" type="button" runat="server" onserverclick="Search_Date_Click">
                             Filter
