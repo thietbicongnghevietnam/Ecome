@@ -377,6 +377,17 @@ Select_PMS_OutSAP
 Select_PMS_OutSAP_download
 Select_PMS_OutSAP_search
 
+hongnhung1.nguyen@vn.panasonic.com
+thila.pham@vn.panasonic.com
+thihong.do@vn.panasonic.com
+
+========= // 25.03.2026 //===========
+stored : SP_Issue_Material_NextUser_other
+bang mail log: tbl_User_OtherissueMaterial
+SP_Issue_Material_Search	(them cot reason)
+SP_Issue_Material_Search_B	(them cot reason)
+
+
 
 ========= // danh sach mater //===========
 [Issue_MaterialInOut].[dbo].[tbl_Plant]

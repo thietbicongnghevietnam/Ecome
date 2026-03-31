@@ -410,7 +410,7 @@
                                                             <td><%#Eval("CostCenter") %></td>
                                                             <td><%#Eval("AccountCost") %></td>
 
-                                                            <td><%#Eval("Note") %></td>
+                                                            <td><%#Eval("Reason") %></td>
                                                             <td><%#Eval("Status_RQ") %></td>
                                                             <%--<td><%# Eval("Flag_price_sap") %></td>--%>
                                                             <!-- CHECKBOX -->

@@ -483,7 +483,7 @@ namespace MATERIAL_IN_OUT
                             string User_Log = lst[1].ToString();
                             //them stored de gui mail LOG & ke toan => truong hop type = 1   //nguoi cua LOG vao comment
                             //if (Public_Dept == "LOG" && User_next == "2012757")  //1*
-                            if (Public_Dept == "LOG" && User_next == User_Log)  //1*
+                            if (Public_Dept == "LOG")  //1*   && User_next == User_Log
                             {
                                 //lay ra so unit no typeID=1
                                 dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_BindRQ_Approved", CommandType.StoredProcedure, Public_Dept, Stock, "RQ", User_next, "1");
@@ -825,6 +825,7 @@ namespace MATERIAL_IN_OUT
                     //connString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
                     // MyConnection = new System.Data.OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + link_path + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"");
                     MyConnection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + link_path + ";" + "Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=1;TypeGuessRows=0;ImportMixedTypes=Text\"");
+
                     MyCommand = new System.Data.OleDb.OleDbDataAdapter("select * from [Sheet1$] where Material is not null", MyConnection);
                     MyCommand.TableMappings.Add("Table", "TestTable");
                     DtSet = new System.Data.DataSet();
