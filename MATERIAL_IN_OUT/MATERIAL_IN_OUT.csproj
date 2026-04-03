@@ -170,6 +170,7 @@
     <Content Include="ControlPriceSAP2.aspx" />
     <Content Include="Download.aspx" />
     <Content Include="Control_ExchangeRate.aspx" />
+    <Content Include="Fomat_SendEmail\FeedBackPMS.html" />
     <Content Include="frmPMSOutSap.aspx" />
     <Content Include="frmHistoryChangePrice.aspx" />
     <Content Include="frmMaterAB.aspx" />

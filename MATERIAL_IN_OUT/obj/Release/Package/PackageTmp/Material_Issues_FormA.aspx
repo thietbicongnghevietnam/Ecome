@@ -363,6 +363,7 @@
                                                     <th>AccountCost</th>
 
                                                     <th>Reason</th>
+                                                    <th>Rosh/Halb</th>
                                                     <th>Status</th>
                                                     <%--<th>Flag</th>--%>
                                                     <%--<th style="text-align:center">--%>
@@ -411,6 +412,7 @@
                                                             <td><%#Eval("AccountCost") %></td>
 
                                                             <td><%#Eval("Reason") %></td>
+                                                            <td><%#Eval("Type_Rosh_Halb") %></td>
                                                             <td><%#Eval("Status_RQ") %></td>
                                                             <%--<td><%# Eval("Flag_price_sap") %></td>--%>
                                                             <!-- CHECKBOX -->

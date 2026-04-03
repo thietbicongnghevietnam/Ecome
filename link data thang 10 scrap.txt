@@ -388,6 +388,45 @@ SP_Issue_Material_Search	(them cot reason)
 SP_Issue_Material_Search_B	(them cot reason)
 
 
+======== // 01.04.2026 //==========
+SP_Issue_Material_Search_B
+SP_Issue_Material_Search
+
+======== // 02.04.2026 //==========
+loi: double do input lan 2 ==> update lai du lieu cung 1 request  ***** xem co truong hop nao bi loi nua khong?
+SP_Issue_Material_BindRQ_Approved_OutStock  => sua : CAST(a.Insert_Date AS date) AS Insert_Date
+
+======== // 03.04.2026 //==========
+[dbo].[Select_PMS_OutSAP]		(StatusACC_GM='OK')  ==> PMS dang muon outdep1 ky => moi hien
+[dbo].[Select_PMS_OutSAP_search2]	(StatusACC_GM='OK')  ==> PMS dang muon outdep1 ky => moi hien
+
+Export_Form_98_MCS
+Export_Tranfer_99_MCS
+them cot: Linkfile,CommentPMS,Export_flag_subscrap  => 2 bang issue
+update_link_path
+them format: Fomat_SendEmail/FeedBackPMS.html
+
+Export_SubIssueSAP_MCS  ==> xác nhận lại format của PMS
+Export_SubIssueSAP	==> xác nhận lại format của PMS
+
+----- check lai luong mail ACCC va anh huong --------- pending tuan sau
+0 ACS Ngoc1_0972889273 is available
+5:12 PM - 0 ACS Ngoc1_0972889273:
+[Issue Out] - Request Approval for RQA-OQC-0426-4
+5:12 PM - 0 ACS Ngoc1_0972889273:
+có mỗi 1 số này mà e nhan đc 10 cái mail
+5:12 PM - 0 ACS Ngoc1_0972889273:
+e để nguyên cho a xem nhé
+5:12 PM - IT_Minh:
+ui để tuần sau anh check lai luồng mail
+5:13 PM - IT_Minh:
+hôm nay xu ly cái PMS 
+5:13 PM - IT_Minh:
+supoort user tiếp
+5:13 PM - 0 ACS Ngoc1_0972889273:
+vang
+
+ 
 
 ========= // danh sach mater //===========
 [Issue_MaterialInOut].[dbo].[tbl_Plant]

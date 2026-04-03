@@ -93,8 +93,7 @@
                             Download Detail
                         </label>
                     </div>
-
-
+                    
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
              
                  <!-- import file excel -->
@@ -122,6 +121,11 @@
 
 
                 </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <div class="horizontal-radio-group">
+     <asp:RadioButton ID="rbPMS" runat="server" GroupName="rblOptions" Text="PMS" Checked="true" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <asp:RadioButton ID="rbMCS" runat="server" GroupName="rblOptions" Text="MCS" />     
+ </div>
 
             </div>
         </div>
@@ -144,7 +148,9 @@
                         <th>TypeSapPMS</th>
                         <th>UserCreate</th>
                         <th>TypeID</th>
-                        <th>commentlog</th>
+                        <th>Commentlog</th>
+                        <th>Linkfile</th>
+                        <th>Comment_PMS</th>
 
                         <th>Actions</th>
 
@@ -170,14 +176,29 @@
                         <td><%= rows["UserCreate"].ToString() %></td>
                         <td><%= rows["TypeID"].ToString() %></td>
                         <td><%= rows["commentlog"].ToString() %></td>
+                        <td>
+                            <% if (!string.IsNullOrEmpty(rows["Linkfile"]?.ToString())) { %>
+                                <a href="javascript:void(0);" onclick="openPathModal('<%= rows["Linkfile"].ToString().Replace(@"\", "\\\\") %>')">Path</a>
+                            <% } %>
+                        </td>
+                        <td><%= rows["CommentPMS"].ToString() %></td>
 
                         <td>
-                            <a href="#" class="btn btn-primary" title="Update DocumentNo" onclick="openEditModal6('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Update DocumentNo</a>
+                            <a href="#" class="btn btn-primary" title="Update Doc" onclick="openEditModal6('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Update_Doc</a>
                             <a href="#" class="btn btn-info btn-sm" title="Detail" onclick="openEditModal2('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Detail</a>
                             <a href="#" class="btn btn-info btn-sm" title="Out201_98" onclick="openEditModal3('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Out201_98</a>
-                            <a href="#" class="btn btn-info btn-sm" title="Tranfer_G98" onclick="openEditModal4('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Tranfer_G99</a>
+
+                            <%--<a href="#" class="btn btn-info btn-sm" title="Tranfer_G99" onclick="openEditModal4('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Tranfer_G99</a>--%>
+                            <% if (rows["TypeSapPMS"] != DBNull.Value && rows["TypeSapPMS"].ToString() == "Scrap") { %>
+                                <a href="#" class="btn btn-info btn-sm" title="Tranfer_G99"
+                                   onclick="openEditModal4('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
+                                   Tranfer_G99
+                                </a>
+                            <% } %>                            
                             <a href="#" class="btn btn-info btn-sm" title="Out Scrap" onclick="openEditModal5('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Out Scrap</a>
                             <a href="#" class="btn btn-info btn-sm" title="Out Scrap" onclick="openEditModal7('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Other Type</a>
+                            <a href="#" class="btn btn-info btn-sm" title="Out Sub" onclick="openEditModal9('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Sub</a>
+                            <a href="#" class="btn btn-info btn-sm" title="feedback" onclick="openEditModal8('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Feedback</a>
 
                         </td>
                     </tr>
@@ -198,12 +219,35 @@
                         <th>UserCreate</th>
                         <th>TypeID</th>
                         <th>commentlog</th>
+                        <th>Linkfile</th>
+                        <th>Comment_PMS</th>
 
                         <th>Actions</th>
 
                     </tr>
                 </tfoot>
             </table>
+        </div>
+
+        <div id="pathModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4>Link Path File</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <input type="text" id="txtPath" class="form-control" placeholder="" />
+                    </div>
+
+                    <div class="modal-footer">
+                       <%-- <button type="button" class="btn btn-success" onclick="savePath()">Save</button>--%>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
         <div class="modal fade" id="detailModal" tabindex="-1">
@@ -458,6 +502,59 @@
             </div>
         </div>
 
+  <div class="modal" id="myModal9">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div>
+                        <h4 class="modal-title" id="headerTag9" style="float: left">Dou you want export Issue Out For Sub ?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float: right; margin-left: 300px;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="ID">RequestNo</label>
+                        <asp:TextBox ID="RequestNo9" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ID">TypeForm</label>
+                        <asp:TextBox ID="TypeForm9" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="ID">Sanction Name</label>
+                        <asp:TextBox ID="sanction9" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ID">MVT</label>
+                        <asp:TextBox ID="MVT9" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+
+                </div>
+
+                <!-- Lặp lại thêm các dòng -->
+            </div>
+
+            <%-- Modal footer --%>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" runat="server" id="Button9" onserverclick="ExportSubIssue" class="btn btn-primary">
+                    Export
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
         <div class="modal" id="myModal6">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -510,6 +607,60 @@
         </div>
 
 
+  <div class="modal" id="myModal8">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div>
+                        <h4 class="modal-title" id="headerTag8" style="float: left">Feedback for User</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float: right; margin-left: 300px;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="ID">RequestNo</label>
+                        <asp:TextBox ID="RequestNo8" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ID">TypeForm</label>
+                        <asp:TextBox ID="TypeForm8" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="ID">Sanction Name</label>
+                        <asp:TextBox ID="sanction8" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ID">Feedback Contents</label>
+                        <asp:TextBox ID="contents_feedback" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+
+                </div>
+
+                <!-- Lặp lại thêm các dòng -->
+            </div>
+
+            <%-- Modal footer --%>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" runat="server" id="Button6" onserverclick="btn_feedback_click" class="btn btn-primary">
+                    Feedback
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     </form>
 
     <%--    <script src="/plugins/jquery/jquery.min.js"></script>
@@ -559,6 +710,11 @@
             });
 
         });
+
+        function openPathModal(pathfile) {
+            $('#txtPath').val(pathfile);   // gán giá trị vào textbox
+            $('#pathModal').modal('show');
+        }
 
         function openEditModal2(requestNo, typeForm) {
             $.ajax({
@@ -626,6 +782,20 @@
             $("#TypeForm7").val(TypeForm);
             $("#sanction7").val(sanctionname);
             $('#myModal7').modal('show');
+        }
+
+        function openEditModal9(RequestNo, TypeForm, sanctionname) {
+            $("#RequestNo9").val(RequestNo);
+            $("#TypeForm9").val(TypeForm);
+            $("#sanction9").val(sanctionname);
+            $('#myModal9').modal('show');
+        }
+
+        function openEditModal8(RequestNo, TypeForm, sanctionname) {
+            $("#RequestNo8").val(RequestNo);
+            $("#TypeForm8").val(TypeForm);
+            $("#sanction8").val(sanctionname);
+            $('#myModal8').modal('show');
         }
 
         function openEditModal6(RequestNo, TypeForm) {

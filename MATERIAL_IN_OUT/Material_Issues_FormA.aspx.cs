@@ -4,6 +4,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using MATERIAL_IN_OUT.AppCode;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.Rendering;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -2953,11 +2954,12 @@ namespace MATERIAL_IN_OUT
                
             }
             //if(Session["RoleOutStock"].ToString().Trim() == "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ") //old  05.03.2026
-            if (Session["RoleOutStock"].ToString().Trim() != "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ")
-            {
-                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
-                Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
-            }
+            //remove doan lay request_no ==> tren da lay ra roi 02.04.2026   **** xem co user out kho nao khong????
+            //if (Session["RoleOutStock"].ToString().Trim() != "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ")
+            //{
+            //    dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+            //    Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+            //}
 
             string titleReport = "Report Issue IN-OUT Material";
             if (Public_Dept != "PUS") // Nếu không phải PUR thì không cần hiển thị phần out SAP
@@ -4232,6 +4234,49 @@ namespace MATERIAL_IN_OUT
                 {
                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Delete Success !!!');", true);
                 }
+            }
+        }
+
+        protected void btnupdate_linkpath(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtpathfile.Text))
+            {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('No Choose Request Name.');", true);
+                return;
+            }
+            else
+            {                
+                string linkpath = txtpathfile.Text;
+                string userid = Session["UserName"].ToString();
+                string roledept = Session["Role_Dept"].ToString().Trim();
+                string rolestock = Session["Stock"].ToString();
+                string typeform = "A";
+
+                //string Request_NO = lblrequest_att.Text.ToString();
+                string Request_NO = hdRequestNo.Value;
+
+                //user day ky send request chua? neu chua thi moi cho xoa
+                DataTable dt_update = new DataTable();
+
+                if (linkpath == "" && Request_NO =="")
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('NG, Link Path or RquestNO is Null NG!');", true);
+                    return;
+                }
+                else 
+                {
+                    dt_update = DataConn.StoreFillDS("update_link_path", CommandType.StoredProcedure, linkpath, rolestock, roledept, userid, typeform, Request_NO);
+                    if (dt_update.Rows[0][0].ToString() == "0")
+                    {
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('NG, check again!');", true);
+                        return;
+                    }
+                    else
+                    {
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('path update Success !!!');", true);
+                    }
+                }
+                
             }
         }
 

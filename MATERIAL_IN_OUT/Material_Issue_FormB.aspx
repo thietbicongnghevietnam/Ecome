@@ -368,6 +368,7 @@
                                                     <th>AccountCost</th>
 
                                                     <th>Reason</th>
+                                                    <th>Rosh/Halb</th>
                                                     <th>Status</th>
                                                    <%-- <th>Flag</th>--%>
                                                     <%--<th style="text-align: center">--%>
@@ -396,6 +397,7 @@
                                                             <td><%# Eval("CostCenter") %></td>
                                                             <td><%# Eval("AccountCost") %></td>
                                                             <td><%# Eval("Reason") %></td>
+                                                            <td><%# Eval("Type_Rosh_Halb") %></td>
                                                             <td><%# Eval("Status_RQ") %></td>
                                                            <%-- <td><%# Eval("Flag_price_sap") %></td>--%>
                                                             <!-- CHECKBOX -->
@@ -490,6 +492,10 @@
                                     OnClientClick="showExportPopup2(); return false;" />
                             </div>
 
+                            <div class="btn-group" style="font-size:25px;">                                
+                                <button type="button" id="update path" onclick="openAdd2('<%=hdfRequest.Value.ToString()%>','<%=hdfControlRQ.Value.ToString()%>')" class="btn btn-info">Attract Link File</button>
+                            </div>
+
                         </div>
                         
                     </div>
@@ -546,6 +552,38 @@
                                 Text="Delete"
                                 CssClass="btn btn-success"
                                 OnClick="btnDelete_requestno" />
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="exportModal3" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Input path file for attack file!</h4>
+                        </div>
+                          <div class="panel-heading">
+                                  RequestNo:
+                            <asp:Label ID="lblrequest_att" runat="server"></asp:Label>      
+                              <asp:HiddenField ID="hdRequestNo" runat="server" />
+                              </div>
+
+                        <div class="modal-body">
+                            <label>Path File:</label>
+                            <asp:TextBox ID="txtpathfile" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+
+                        <div class="modal-footer">                               
+                             <asp:Button ID="Button1"
+                                 runat="server"
+                                 Text="Save"
+                                 CssClass="btn btn-success"
+                                 OnClick="btnupdate_linkpath" />
 
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
@@ -632,6 +670,17 @@
         function showExportPopup2() {
             $('#exportModal2').modal('show');
         }
+
+        function openAdd2(lbl_RQ, RoleRQ) {
+            console.log(lbl_RQ);
+            $('#MainContent_lblrequest_att').text(lbl_RQ);
+
+            // set vào hidden field để gửi về server
+            $('#MainContent_hdRequestNo').val(lbl_RQ);
+
+            $('#exportModal3').modal('show');
+        }
+
     </script>
 
 
