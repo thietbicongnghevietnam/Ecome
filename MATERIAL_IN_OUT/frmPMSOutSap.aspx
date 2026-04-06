@@ -76,6 +76,13 @@
                          TypeSapPMS:
                          <input type="text" id="filterSapPMS" runat="server" placeholder="Input type sapPMS" style="height: 34px;" />
                      </div>
+                     <div style="float: left; padding-right: 10px;">
+                                   <b>Status Out Dept:</b> 
+                                    <asp:DropDownList ID="ddlStatus" runat="server" style="height: 34px;">
+                        <asp:ListItem Text="ALL" Value="ALL" Selected="True"></asp:ListItem>
+                        <asp:ListItem Text="Pending" Value="Pending"></asp:ListItem>
+                        </asp:DropDownList>
+                     </div>
 
                     <div style="float: left; padding-right: 10px;">
                         <button class="btn btn-primary" type="button" runat="server" onserverclick="Search_Date_Click">
@@ -86,12 +93,34 @@
                     <!-- Checkbox + Download All -->
                     <div style="float: left; padding-right: 10px; display: flex; align-items: center; gap: 8px;">
                         <button class="btn btn-primary" type="button" runat="server" onserverclick="Dowload_All_Click">
-                            Download All
+                            Export
                         </button>
+                        
                         <label style="margin: 0; display: flex; align-items: center; gap: 4px; height: 34px; cursor: pointer;">
-                            <asp:CheckBox ID="chkDownloadDetail" runat="server" />
-                            Download Detail
+                            <asp:RadioButton ID="optDownloadDetail" runat="server" GroupName="downloadOption" Checked="true" />
+                            Format pending_done list
                         </label>
+
+                        <label style="margin: 0; display: flex; align-items: center; gap: 4px; height: 34px; cursor: pointer;">
+                            <asp:RadioButton ID="optDownloadTongIssueOut" runat="server" GroupName="downloadOption" />
+                            CSV format tổng(issue out)
+                        </label>
+                        <label style="margin: 0; display: flex; align-items: center; gap: 4px; height: 34px; cursor: pointer;">
+                            <asp:RadioButton ID="optDownloadTong" runat="server" GroupName="downloadOption" />
+                            CSV format tổng (Transfer)
+                        </label>
+                       
+                        <%--<label style="margin: 0; display: flex; align-items: center; gap: 4px; height: 34px; cursor: pointer;">
+                            <asp:CheckBox ID="chkDownloadtong" runat="server" />
+                            CSV format tổng (Transfer)
+                        </label>
+
+                         <label style="margin: 0; display: flex; align-items: center; gap: 4px; height: 34px; cursor: pointer;">
+                             <asp:CheckBox ID="chkDownloadDetail" runat="server" />
+                             Format pending_done list
+                         </label>--%>
+
+
                     </div>
                     
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
@@ -106,12 +135,12 @@
                         <p style="margin-top: 0px; margin-left: 20px;">
                             <input type="button" value="Upload document no" runat="server" onserverclick="ImportFromExcel" class="btn btn-primary" />
 
-                            &nbsp;&nbsp;&nbsp;<%--<input type="button" value="Import DECT" runat="server" onserverclick="ImportFromExcel1" class="btn btn-primary" />--%>
+                           
 
          &nbsp;&nbsp;&nbsp;
-        <%--<button type="button" class="btn btn-primary float-right" style="margin-right: 5px;" runat="server"> --%>
-                            <%--  <i class="fas fa-download"></i>Tải file mẫu upload--%>
-                            <%--</button>--%>
+                            <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;" runat="server" onserverclick="Dowloadtemplate">
+                            Download template
+                            </button>
                         </p>
                         <p>
                             <asp:Label ID="Label1" runat="server"></asp:Label>
@@ -121,11 +150,12 @@
 
 
                 </div>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- <div class="horizontal-radio-group">
-     <asp:RadioButton ID="rbPMS" runat="server" GroupName="rblOptions" Text="PMS" Checked="true" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <asp:RadioButton ID="rbMCS" runat="server" GroupName="rblOptions" Text="MCS" />     
- </div>
+                <b>Type Issue out Dept:</b> &nbsp;&nbsp;&nbsp;&nbsp;
+                 <div class="horizontal-radio-group">
+                     <asp:RadioButton ID="rbPMS" runat="server" GroupName="rblOptions" Text="PMS" Checked="true" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <asp:RadioButton ID="rbMCS" runat="server" GroupName="rblOptions" Text="MCS" />     
+                 </div>
+              
 
             </div>
         </div>
@@ -151,6 +181,7 @@
                         <th>Commentlog</th>
                         <th>Linkfile</th>
                         <th>Comment_PMS</th>
+                        <th>Status Tranfer SAP</th>
 
                         <th>Actions</th>
 
@@ -182,8 +213,10 @@
                             <% } %>
                         </td>
                         <td><%= rows["CommentPMS"].ToString() %></td>
+                        <td><%= rows["Satatu_tranferPMS"].ToString() %></td>
 
                         <td>
+                            <a href="#" class="btn btn-primary" title="Update Status SAP" onclick="openEditModal10('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Update_StatusSAP</a>
                             <a href="#" class="btn btn-primary" title="Update Doc" onclick="openEditModal6('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Update_Doc</a>
                             <a href="#" class="btn btn-info btn-sm" title="Detail" onclick="openEditModal2('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Detail</a>
                             <a href="#" class="btn btn-info btn-sm" title="Out201_98" onclick="openEditModal3('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Out201_98</a>
@@ -221,6 +254,7 @@
                         <th>commentlog</th>
                         <th>Linkfile</th>
                         <th>Comment_PMS</th>
+                        <th>Status Tranfer SAP</th>
 
                         <th>Actions</th>
 
@@ -606,6 +640,57 @@
             </div>
         </div>
 
+        <div class="modal" id="myModal10">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div>
+                        <h4 class="modal-title" id="headerTag10" style="float: left">Do you want to update Status Tranfer SAP ?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float: right; margin-left: 300px;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="ID">RequestNo</label>
+                        <asp:TextBox ID="RequestNo10" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ID">TypeForm</label>
+                        <asp:TextBox ID="TypeForm10" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="ID">Remark<i style="color: red;">(* This field is not null! *)</i></label>
+                        <asp:TextBox ID="DocumentNo10" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <%--<label for="ID">TypeForm</label>
+                <asp:TextBox ID="TextBox4" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>--%>
+                    </div>
+                </div>
+
+                <!-- Lặp lại thêm các dòng -->
+            </div>
+
+            <%-- Modal footer --%>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" runat="server" id="Button7" onserverclick="UpdateDocumentNo10" class="btn btn-primary">
+                    Update
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
   <div class="modal" id="myModal8">
     <div class="modal-dialog modal-lg">
@@ -802,6 +887,12 @@
             $("#RequestNo6").val(RequestNo);
             $("#TypeForm6").val(TypeForm);
             $('#myModal6').modal('show');
+        }
+
+        function openEditModal10(RequestNo, TypeForm) {
+            $("#RequestNo10").val(RequestNo);
+            $("#TypeForm10").val(TypeForm);
+            $('#myModal10').modal('show');
         }
 
     </script>

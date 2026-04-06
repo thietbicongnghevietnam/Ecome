@@ -409,22 +409,40 @@ them format: Fomat_SendEmail/FeedBackPMS.html
 Export_SubIssueSAP_MCS  ==> xác nhận lại format của PMS
 Export_SubIssueSAP	==> xác nhận lại format của PMS
 
------ check lai luong mail ACCC va anh huong --------- pending tuan sau
-0 ACS Ngoc1_0972889273 is available
-5:12 PM - 0 ACS Ngoc1_0972889273:
-[Issue Out] - Request Approval for RQA-OQC-0426-4
-5:12 PM - 0 ACS Ngoc1_0972889273:
-có mỗi 1 số này mà e nhan đc 10 cái mail
-5:12 PM - 0 ACS Ngoc1_0972889273:
-e để nguyên cho a xem nhé
-5:12 PM - IT_Minh:
-ui để tuần sau anh check lai luồng mail
-5:13 PM - IT_Minh:
-hôm nay xu ly cái PMS 
-5:13 PM - IT_Minh:
-supoort user tiếp
-5:13 PM - 0 ACS Ngoc1_0972889273:
-vang
+
+--------------------  // luong gui mai user //-------------------- 
+b1: SendEmail_Next => gui mail leve2 user : SP_Issue_Material_NextUser_new
+	if (lblRequest.Text == "1.Other Issue Materials")
+		//gui mail cho ket toan va LOG de xac nhan
+		SendEmail_other : SP_Issue_Material_NextUser_other  (1phat) = 1 (bo user ke toan) 04.06.2026
+b2: gui mail lever 3 user
+b3: gui mail lever 1 ket toan 	(2phat)
+----luong gui mai ket toan ----
+b1:b2:b3  SendEmail_Next : SP_Issue_Material_NextUser_new 
+----luong gui mai out dept ----
+b1:
+b2:
+b3:SP_BindPreviewtUser
+//****15.01.2026 rule ke toan dua => sau khi level 3 stock phe duyet thi se gui mail cho : incharge, level3 bo phan, ke toan (all 3 level)  *** ke toan dang xem lai
+CodeInchage_Issue
+CodeMGR_Issue		(bo ) 04.06.2026
+CodeGM_Issue		(bo ) 04.06.2026
+
+CodeACC_Check	X2=2
+CodeACC_MGR
+CodeACC_GM
+
+CodeInchage_Out			
+CodeMGR_Out		(bo ) 04.06.2026  ==> [SP_BindPreviewtUser]   (bo ) 04.06.2026
+-------------------------- // end //------------
+log comment: SendEmail_Prv_LOG :  SP_Issue_Material_NextUser_other  (1phat)  (bo user ke toan) 04.06.2026
+ID	UserLogin	Password	FullName	Dept	Email	RoleID	RoleDept	RolePage	DateCreate	FlagDelete
+4	2007600_ACC	1	Nguyen Thi Ngoc	ACC	thingoc1.nguyen@vn.panasonic.com	1	ACC-CHECK	Admin	2022-07-11 10:35:56.557	N
+--------------//---------- //--------------
+
+
+
+Sufix Carton
 
  
 

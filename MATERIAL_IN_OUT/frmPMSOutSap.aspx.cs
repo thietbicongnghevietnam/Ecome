@@ -63,18 +63,21 @@ namespace MATERIAL_IN_OUT
 
             string typesapPMS = filterSapPMS.Value;
 
+            string status_issueout = ddlStatus.SelectedValue;   //and StatusMGR_Out is NULL  //set @sql += ' and StatusMGR_Out is NULL '
+            //ALL       //Pending
+            //if (status_issueout == "ALL")
+            //{
+            //    // lấy tất cả dữ liệu
+            //}
+            //else if (status_issueout == "Pending")
+            //{
+            //    // lọc dữ liệu pending
+            //}
 
-            //if (rbPMS.Checked)
-            //{
-                
-            //}
-            //else if (rbMCS.Checked)
-            //{
-               
-            //}
 
             //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno);
-            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS);
+            //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS);
+            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout);
 
             if (dt.Rows.Count > 0)
             {
@@ -90,6 +93,49 @@ namespace MATERIAL_IN_OUT
 
         }
 
+        protected void Dowloadtemplate(object sender, EventArgs e) 
+        {
+            string _fromdate = Request.Form[Date1.UniqueID];
+            string _todate = Request.Form[ngaychiid.UniqueID];
+            string userid = Session["UserName"].ToString();
+
+            string requestno = filterRequestNo.Value;
+            string sanctionno = filterSanctionNo.Value;
+
+            string typedownload = "0";
+
+            DataTable dtexport = DataConn.StoreFillDS("Select_PMS_OutSAP_download3", System.Data.CommandType.StoredProcedure, _fromdate, _todate, userid, typedownload);
+            if (dtexport.Rows.Count > 0)
+            {
+                if (dtexport.Rows[0][0].ToString() == "1")
+                {
+                    //DataTable dt = DataConn.StoreFillDS("Select_PMS_OutSAP",
+                    //    System.Data.CommandType.StoredProcedure, Requestno, TypeName);
+
+                    if (dtexport.Rows.Count > 0)
+                    {
+                        ExportToCSV(dtexport, "Template_upload_documentNO" + ".csv");
+                    }
+                }
+                else if (dtexport.Rows[0][0].ToString() == "2")
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(),
+                        "Message", "toastr.error('NG, User do not PMS!');", true);
+                }
+                else
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(),
+                        "Message", "toastr.error('NG, Check again!');", true);
+                }
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(),
+                            "Message", "toastr.error('NG,Data null, Check again!');", true);
+            }
+
+        }
+
         protected void Dowload_All_Click(object sender, EventArgs e)
         {
             string _fromdate = Request.Form[Date1.UniqueID];
@@ -99,21 +145,29 @@ namespace MATERIAL_IN_OUT
             string requestno = filterRequestNo.Value;
             string sanctionno = filterSanctionNo.Value;
 
-            bool isDownloadDetail = chkDownloadDetail.Checked;
+            //bool isDownloadDetail = chkDownloadDetail.Checked;
             string typedownload = "0";
 
-            if (isDownloadDetail)
+            if (optDownloadTong.Checked)
             {
-                // Download kèm detail
-                typedownload = "1";
-            }
-            else 
-            {
-                // Download bình thường
+                // CSV format tổng (Transfer)
+                // dieu kien:  cột U trong file pending list mà blank thì xuất toàn bộ ra file csv tổng
+                // chu ky so 8 out dept: CodeMGR_Out Null thi xuat ra 
                 typedownload = "0";
             }
+            else if (optDownloadDetail.Checked)
+            {
+                // Format pending_done list
+                typedownload = "1";
+            }
+            else if (optDownloadTong.Checked) 
+            {
+                //CSV format tổng(issue out)
+                typedownload = "2";
+            }            
 
-            DataTable dtexport = DataConn.StoreFillDS("Select_PMS_OutSAP_download", System.Data.CommandType.StoredProcedure, _fromdate, _todate, userid, typedownload);
+            //DataTable dtexport = DataConn.StoreFillDS("Select_PMS_OutSAP_download", System.Data.CommandType.StoredProcedure, _fromdate, _todate, userid, typedownload);
+            DataTable dtexport = DataConn.StoreFillDS("Select_PMS_OutSAP_download2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, userid, typedownload);
 
             if (dtexport.Rows.Count > 0)
             {
@@ -124,7 +178,7 @@ namespace MATERIAL_IN_OUT
 
                     if (dtexport.Rows.Count > 0)
                     {
-                        ExportToCSV(dtexport, "PMS_dowload_all_issueout" + ".csv");
+                        ExportToCSV(dtexport, "PMS_dowload_issueout" + ".csv");
                     }
                 }
                 else if (dtexport.Rows[0][0].ToString() == "2")
@@ -285,7 +339,7 @@ namespace MATERIAL_IN_OUT
             else 
             {
                 //user PMS
-                if (Requestno != "" && TypeName != "" && Sanction != "")
+                if (Requestno != "" && TypeName != "")  //khong can bat dieu kien && Sanction != ""
                 {
                     DataTable dtexport = DataConn.StoreFillDS("Export_Tranfer_99",
                         System.Data.CommandType.StoredProcedure, Requestno, TypeName, userid, Sanction, MVT);
@@ -458,7 +512,7 @@ namespace MATERIAL_IN_OUT
             else 
             {
                 //user PMS
-                if (Requestno != "" && TypeName != "" && Sanction != "")
+                if (Requestno != "" && TypeName != "")  //khong can bat dieu kien: && Sanction != ""
                 {
                     DataTable dtexport = DataConn.StoreFillDS("Export_OtherIssueSAP",
                         System.Data.CommandType.StoredProcedure, Requestno, TypeName, userid, Sanction, MVT);
@@ -545,7 +599,7 @@ namespace MATERIAL_IN_OUT
             else
             {
                 //user PMS
-                if (Requestno != "" && TypeName != "" && Sanction != "")
+                if (Requestno != "" && TypeName != "")  //khong can dieu kien sanction : && Sanction != ""
                 {
                     DataTable dtexport = DataConn.StoreFillDS("Export_SubIssueSAP",
                         System.Data.CommandType.StoredProcedure, Requestno, TypeName, userid, Sanction, MVT);
@@ -605,6 +659,34 @@ namespace MATERIAL_IN_OUT
             {
                 Page.ClientScript.RegisterStartupScript(Page.GetType(),
                     "Message", "toastr.error('NG, data is not null!');", true);
+            }
+        }
+
+        public void UpdateDocumentNo10(object sender, EventArgs e)
+        {
+            string Requestno = RequestNo10.Text;
+            string TypeName = TypeForm10.Text;
+            string DocumentNo = DocumentNo10.Text;
+            string userid = Session["UserName"].ToString();
+
+            if (Requestno != "" && TypeName != "" && DocumentNo != "")
+            {
+                DataTable dtexport = DataConn.StoreFillDS("Update_Status_TranferSAP", System.Data.CommandType.StoredProcedure, Requestno, TypeName, DocumentNo, userid);
+
+                if (dtexport.Rows[0][0].ToString() == "1")
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Update Document Sucess !!!');", true);
+                    dt = DataConn.StoreFillDS("Select_PMS_OutSAP", System.Data.CommandType.StoredProcedure);
+                }
+                else
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.error('NG, Check again!'); ", true);
+                }
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(),
+                    "Message", "toastr.error('NG, Data is not null!');", true);
             }
         }
 

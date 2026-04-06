@@ -96,6 +96,18 @@ namespace MATERIAL_IN_OUT
             return double.TryParse(value.ToString(), out result) ? result : 0;
         }
 
+        private decimal SafeDecimal(object value)
+        {
+            if (value == null || value == DBNull.Value)
+                return 0;
+
+            decimal result;
+            if (decimal.TryParse(value.ToString(), out result))
+                return result;
+
+            return 0;
+        }
+
         protected void ImportFromExcel(object sender, EventArgs e)
         {
             if (!FileUpload.HasFile || FileUpload.PostedFile.ContentLength == 0)
@@ -130,7 +142,7 @@ namespace MATERIAL_IN_OUT
                 dtBulk.Columns.Add("Plant", typeof(string));
                 dtBulk.Columns.Add("Component", typeof(string));
                 dtBulk.Columns.Add("Material_Type", typeof(string));
-                dtBulk.Columns.Add("Price_STD", typeof(double));
+                dtBulk.Columns.Add("Price_STD", typeof(decimal));
                 dtBulk.Columns.Add("Price2", typeof(double));
                 dtBulk.Columns.Add("Qty", typeof(double));
                 dtBulk.Columns.Add("StockQty", typeof(double));
@@ -151,7 +163,8 @@ namespace MATERIAL_IN_OUT
                     dr["Plant"] = dtExcel.Rows[i][1]?.ToString() ?? "";
                     dr["Component"] = dtExcel.Rows[i][5].ToString();
                     dr["Material_Type"] = dtExcel.Rows[i][4].ToString();
-                    dr["Price_STD"] = SafeDouble(dtExcel.Rows[i][30]);
+                    //dr["Price_STD"] = SafeDouble(dtExcel.Rows[i][30]);
+                    dr["Price_STD"] = SafeDecimal(dtExcel.Rows[i][30]);
                     dr["Price2"] = 0;
                     dr["Qty"] = 0;
                     dr["StockQty"] = SafeDouble(dtExcel.Rows[i][41]);
