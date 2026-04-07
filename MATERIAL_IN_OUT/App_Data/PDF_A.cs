@@ -26,11 +26,13 @@ namespace MATERIAL_IN_OUT
         public static Table Table_Approved;
         public static TextFrame detailFrame;
         public static String TitleReport;
-        public PDF_A(DataTable dt_Data, DataTable dt_Status, String str_Titles)
+        public static String comment_log;
+        public PDF_A(DataTable dt_Data, DataTable dt_Status, String str_Titles, String commentLOG)
         {
             dt = dt_Data;
             dtStatus = dt_Status;
             TitleReport = str_Titles;
+            comment_log = commentLOG;
         }
         public Document CreateDocument()
         {
@@ -96,7 +98,8 @@ namespace MATERIAL_IN_OUT
             DetailReaquest.Format.Font.Size = 14;
             DetailReaquest.AddFormattedText("Panasonic System Network VietNam Co.,Ltd", TextFormat.Bold);
             DetailReaquest.AddSpace(80);
-            DetailReaquest.AddFormattedText("REPORT ISSUE IN-OUT MATERIAL", TextFormat.Bold);
+            //DetailReaquest.AddFormattedText("REPORT ISSUE IN-OUT MATERIAL", TextFormat.Bold);
+            DetailReaquest.AddFormattedText(TitleReport, TextFormat.Bold);
             DetailReaquest.AddLineBreak();
             DetailReaquest.AddText("Plot J1-J2, Thang Long industrial Park");
             DetailReaquest.AddLineBreak();
@@ -341,6 +344,15 @@ namespace MATERIAL_IN_OUT
                 row.Cells[i].VerticalAlignment = VerticalAlignment.Bottom;
             }
             table.SetEdge(0, 0, dt.Columns.Count, 1, Edge.Box, BorderStyle.Single, 0.1, Color.Empty);
+
+            // them comment cho //=============== LOG 07.04.2026
+            Paragraph pComment = Doc.LastSection.AddParagraph();
+            pComment.Format.SpaceBefore = "1cm";
+            pComment.Format.Alignment = ParagraphAlignment.Left;
+
+            // Nội dung comment
+            pComment.AddFormattedText("Comment: ", TextFormat.Bold);
+            pComment.AddText(comment_log);
 
 
         }

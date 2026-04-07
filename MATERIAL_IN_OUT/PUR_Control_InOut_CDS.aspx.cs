@@ -224,7 +224,9 @@ namespace MATERIAL_IN_OUT
             dt_Status = DataConn.StoreFillDS("SP_Issue_Material_RQStatus_PUR", CommandType.StoredProcedure, RQ);
             if (dt_ReportAll.Rows.Count > 0 && dt_Status.Rows.Count > 0)
             {
-                PUR_Report PUR_Report_ = new PUR_Report(dt_ReportAll, dt_Status, titleReport);
+                //PUR_Report PUR_Report_ = new PUR_Report(dt_ReportAll, dt_Status, titleReport);
+                string commentlog = "truonghoplog";
+                PUR_Report PUR_Report_ = new PUR_Report(dt_ReportAll, dt_Status, titleReport, commentlog);
                 // Create a MigraDoc document
                 Document document = PUR_Report_.CreateDocument();
                 document.UseCmykColor = true;

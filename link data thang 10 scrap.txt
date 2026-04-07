@@ -441,6 +441,13 @@ ID	UserLogin	Password	FullName	Dept	Email	RoleID	RoleDept	RolePage	DateCreate	Fl
 --------------//---------- //--------------
 
 
+============ //07.04.2026 //=========
+SP_getcommet_Log	(lay userid log => comment)
+them cot: TypeOutSap	(***them vao 2 bang***)
+SP_get_slockMCS		(phan type MCS) --> lay theo thong tin MCS
+
+
+
 
 Sufix Carton
 

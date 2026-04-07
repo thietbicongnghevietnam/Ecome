@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -837,23 +838,29 @@ namespace MATERIAL_IN_OUT
 
                 string sql_ = "";
                 string sql_Reset = "";
+                //int check_sloc_mcs = 0;
+                string TypeOutSap = ""; //MCS //PMS  //loc theo mater sloc MCS   
+
                 if (dt.Rows.Count > 0)
                 {
                     DataTable DtIssuse = new DataTable();
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         //RequestNo,PartNo,MOQ,LeadTime,CustomerCode, Deadline,Remask,Peson_Incharge,Date_Incharge,Insert_user,Update_Date
-                        string TypeRQ = null; string Material = null; string Sloc = null; float Qty = 0; string Mvtype = null; string Plant = null; float UnitPriceST = 0;
-                        string CostCenter = null; string VendorCode = null; string Note = null; string DateVoucher = null; float Amount = 0; string MVName = null; string RQ_Reset = null;
+                        string TypeRQ = null; string Material = null; string Sloc = null;  string Mvtype = null; string Plant = null; decimal UnitPriceST = 0;
+                        string CostCenter = null; string VendorCode = null; string Note = null; string DateVoucher = null; decimal Amount = 0; string MVName = null; string RQ_Reset = null;
                         string CountryOfOrgin = null; string ItemDescription = null;
                         string Type_SAP_PMS = "";
 
 
                         string Type_Rosh_Halb = "";
-                        float STprice_ = 0;
+                        decimal STprice_ = 0;
                         string Reason = "";
                         string Namecode = "";
 
+                        //float Qty = 0;
+                        decimal Qty = 0;
+                        decimal _Qty = 0;                                             
                         if (dt.Rows[i][0].ToString() != "")
                         {
                             TypeRQ = dt.Rows[i][0].ToString();
@@ -887,16 +894,48 @@ namespace MATERIAL_IN_OUT
                         if (dt.Rows[i][3].ToString() != "")  //3.sloc
                         {
                             Sloc = dt.Rows[i][3].ToString();
+                            //check xem sloc co ton tai kho MCS khong?
+                            //truong hop da ton tai kho MCS roi => thi khong cho phep sloc khac nua?
+                            DataTable dt_sloc_mcs = new DataTable();
+                            dt_sloc_mcs = DataConn.StoreFillDS("SP_get_slockMCS", CommandType.StoredProcedure, Sloc);
+
+                            if (dt_sloc_mcs.Rows[0][0].ToString() == "1")
+                            {                                
+                                if (i >= 1)
+                                {
+                                    if (TypeOutSap == "PMS")
+                                    {
+                                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Sloc MCS_ALL NG check again :(" + (i + 1).ToString() + ") is null');", true);
+                                        return;
+                                    }
+                                }
+                                TypeOutSap = "MCS";
+                            }
+                            else
+                            {
+                                //check_sloc_mcs = check_sloc_mcs + 1;                                
+                                if (i >= 1)
+                                {
+                                    if (TypeOutSap == "MCS")
+                                    {
+                                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Sloc MCS_ALL NG check again :(" + (i + 1).ToString() + ") is null');", true);
+                                        return;
+                                    }
+                                }
+                                TypeOutSap = "PMS";
+                            }
+
                         }
                         else
                         {
                             Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data Sloc at row :(" + (i + 1).ToString() + ") is null');", true);
                             return;
                         }
-
-                        if (dt.Rows[i][4].ToString() != "")  //4.Qty
+                        //07.04.2026 chuyen tuy float sang decimal
+                        if (!string.IsNullOrEmpty(dt.Rows[i][4].ToString()))
                         {
-                            Qty = float.Parse(dt.Rows[i][4].ToString());
+                            _Qty = decimal.Parse(dt.Rows[i][4].ToString(), CultureInfo.InvariantCulture);
+                            Qty = Math.Round(_Qty, 3);
                         }
                         else
                         {
@@ -909,7 +948,7 @@ namespace MATERIAL_IN_OUT
                         {
 
                             float STprice2 = float.Parse(dt.Rows[i][5].ToString().Trim());
-                            STprice_ = (float)Math.Round((STprice2), 5);
+                            STprice_ = (decimal)Math.Round((STprice2), 5);
                         }
                         else
                         {
@@ -1069,7 +1108,7 @@ namespace MATERIAL_IN_OUT
                         //}
 
                         UnitPriceST = STprice_;
-                        Amount = (float)Math.Round((UnitPriceST * Qty), 5);
+                        Amount = (decimal)Math.Round((UnitPriceST * Qty), 5);
 
 
                         txtDateInput.Value = DateTime.Now.ToString("dd/MM/yyyy");
@@ -1165,7 +1204,7 @@ namespace MATERIAL_IN_OUT
                                         sql_Reset = sql_Reset + " SET  [TypeID] = '" + TypeRQ + "'  ,[IssueQty] =  " + Qty + " ,[UnitPrice_ST] = " + UnitPriceST + "  ,[MvType] = '" + Mvtype + "',Type_Rosh_Halb = '" + Type_Rosh_Halb + "',Reason = '" + Reason + "',Namecode = '" + Namecode + "',";
                                         sql_Reset = sql_Reset + "MvName =  '" + MVName + "' ,[Plant] = '" + Plant + "' ,Note = N'" + Note + "',DateVoucher =  '" + DateVoucher + "' ,Amount_ST = " + Amount + "  ,VendorCode = '" + VendorCode + "' ,CostCenter = '" + CostCenter + "' ,Sloc = '" + Sloc + "',";
                                         sql_Reset = sql_Reset + "[UserUpdate] = '" + Session["UserName"].ToString() + "',[DateUpdate] = '" + DateTime.Now.ToString() + "',";
-                                        sql_Reset = sql_Reset + "[CountryofOrigin] = '" + CountryOfOrgin + "', [ItemDescription]  = '" + ItemDescription + "',[TypeSapPMS]='"+Type_SAP_PMS+"',Flag_price_sap  = '" + 0 + "'";
+                                        sql_Reset = sql_Reset + "[CountryofOrigin] = '" + CountryOfOrgin + "', [ItemDescription]  = '" + ItemDescription + "',[TypeSapPMS]='"+Type_SAP_PMS+ "',[TypeOutSap]='" + TypeOutSap + "',Flag_price_sap  = '" + 0 + "'";
                                         sql_Reset = sql_Reset + "Where[RequestNo]  = '" + RQ_Reset + "' and [Material] = '" + Material + "'  and  Status_RQ = 'Pending' ";
                                         Session["RQ_Upload"] = RQ_Reset;
                                     }
@@ -1181,8 +1220,8 @@ namespace MATERIAL_IN_OUT
 
                                     if (TypeRQ != "" || Material != "" || Sloc != "" || Mvtype != "" || Plant != "" || CostCenter != "")
                                     {
-                                        sql_ = sql_ + " INSERT INTO tbl_RQ_MaterialIssue ([RequestNo],[Material],[TypeID], [IssueQty],[UnitPrice_ST],[MvType],MvName,[Plant],Note,DateVoucher,Amount_ST , VendorCode,CostCenter,Sloc,UserCreate,RQDeptID,CountryofOrigin,ItemDescription,Type_Rosh_Halb,Reason,NameCode,TypeSapPMS) ";
-                                        sql_ = sql_ + " VALUES( '" + Request_NO + "','" + Material + "','" + TypeRQ + "'," + Qty + "," + UnitPriceST + " ,'" + Mvtype + "','" + MVName + "','" + Plant + "' ,N'" + Note + "', '" + DateVoucher + "'," + Amount + ",'" + VendorCode + "','" + CostCenter + "','" + Sloc + "','" + Session["UserName"].ToString() + "','" + Public_Dept + "','" + CountryOfOrgin + "','" + ItemDescription + "','" + Type_Rosh_Halb + "','" + Reason + "','" + Namecode + "','" + Type_SAP_PMS + "') ";
+                                        sql_ = sql_ + " INSERT INTO tbl_RQ_MaterialIssue ([RequestNo],[Material],[TypeID], [IssueQty],[UnitPrice_ST],[MvType],MvName,[Plant],Note,DateVoucher,Amount_ST , VendorCode,CostCenter,Sloc,UserCreate,RQDeptID,CountryofOrigin,ItemDescription,Type_Rosh_Halb,Reason,NameCode,TypeSapPMS,TypeOutSap) ";
+                                        sql_ = sql_ + " VALUES( '" + Request_NO + "','" + Material + "','" + TypeRQ + "'," + Qty + "," + UnitPriceST + " ,'" + Mvtype + "','" + MVName + "','" + Plant + "' ,N'" + Note + "', '" + DateVoucher + "'," + Amount + ",'" + VendorCode + "','" + CostCenter + "','" + Sloc + "','" + Session["UserName"].ToString() + "','" + Public_Dept + "','" + CountryOfOrgin + "','" + ItemDescription + "','" + Type_Rosh_Halb + "','" + Reason + "','" + Namecode + "','" + Type_SAP_PMS + "','"+ TypeOutSap + "') ";
                                         Session["RQ_Upload"] = Request_NO;
                                     }
                                 }
@@ -2962,13 +3001,30 @@ namespace MATERIAL_IN_OUT
             //}
 
             string titleReport = "Report Issue IN-OUT Material";
+            
+            string tieude = lblRequest.Text;
+            string commentLOG = "";
+            //string[] parts = tieude.Split('.');
+            //string result = parts.Length > 1 ? parts[1] : "";
+
             if (Public_Dept != "PUS") // Nếu không phải PUR thì không cần hiển thị phần out SAP
             {
                 dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report", CommandType.StoredProcedure, Request_NO);
                 dt_Status = DataConn.StoreFillDS("SP_Issue_Material_RQStatus", CommandType.StoredProcedure, Request_NO);
+
+                DataTable dt_commentLOG = DataConn.StoreFillDS("SP_getcommet_Log", CommandType.StoredProcedure, Request_NO);
+
+                if (dt_commentLOG.Rows[0][0].ToString() != "")
+                {
+                    commentLOG = dt_commentLOG.Rows[0][1].ToString() + ":"+ dt_commentLOG.Rows[0][0].ToString()+ " ("+ dt_commentLOG.Rows[0][2].ToString()+")";
+                }
+                
+
                 if (dt_ReportAll.Rows.Count > 0 && dt_Status.Rows.Count > 0)
                 {
-                    PDF_A DataPDF = new PDF_A(dt_ReportAll, dt_Status, titleReport);
+                    //PDF_A DataPDF = new PDF_A(dt_ReportAll, dt_Status, titleReport);
+                    
+                    PDF_A DataPDF = new PDF_A(dt_ReportAll, dt_Status, tieude, commentLOG);
                     // Create a MigraDoc document
                     Document document = DataPDF.CreateDocument();
                     document.UseCmykColor = true;
@@ -3000,9 +3056,19 @@ namespace MATERIAL_IN_OUT
             {
                 dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report_PUR", CommandType.StoredProcedure, Request_NO);
                 dt_Status = DataConn.StoreFillDS("SP_Issue_Material_RQStatus_PUR", CommandType.StoredProcedure, Request_NO);
+
+                DataTable dt_commentLOG = DataConn.StoreFillDS("SP_getcommet_Log", CommandType.StoredProcedure, Request_NO);
+
+                if (dt_commentLOG.Rows[0][0].ToString() != "")
+                {
+                    commentLOG = dt_commentLOG.Rows[0][1].ToString() + ":" + dt_commentLOG.Rows[0][0].ToString() + " (" + dt_commentLOG.Rows[0][2].ToString() + ")";
+                }
+
                 if (dt_ReportAll.Rows.Count > 0 && dt_Status.Rows.Count > 0)
                 {
-                    PUR_Report  DataPDF = new PUR_Report(dt_ReportAll, dt_Status, titleReport);
+                    //PUR_Report  DataPDF = new PUR_Report(dt_ReportAll, dt_Status, titleReport);
+                    PUR_Report  DataPDF = new PUR_Report(dt_ReportAll, dt_Status, tieude, commentLOG);
+
                     // Create a MigraDoc document
                     Document document = DataPDF.CreateDocument();
                     document.UseCmykColor = true;
