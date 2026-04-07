@@ -976,18 +976,18 @@ namespace MATERIAL_IN_OUT
             Public_Dept = Session["CostCenter"].ToString().Trim();
             Request_NO = hdfRQ_UpdateComent.Value.ToString().Trim();
             string Role_RQ = hdfRoleRQ_UpdateComment.Value.ToString().Trim();
+            //string Request_NO = "RQB-PUR-1225-1";
             string Role_ACC_CHECK = hdfRoleACC_UpdateComment.Value.ToString().Trim();
             string Role_STORE_CHECk = hdfRoleSTORE_UpdateComment.Value.ToString().Trim();
 
 
-            if (Role_RQ == "" && Role_ACC_CHECK == "" && Role_STORE_CHECk == "")
+            if (Request_NO == "")  //Role_RQ == "" && Role_ACC_CHECK == "" && Role_STORE_CHECk == ""
             {
                 Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.error('Please chosen RQ in list control');", true);
                 // ****** pending ngay mai ******
             }
             else
             {
-
                 if (hdfControlRQ.Value.ToString().Trim() == "RQ" && Session["Role_Dept"].ToString().Trim() == "RQ")
                 {
                     dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
@@ -1014,9 +1014,19 @@ namespace MATERIAL_IN_OUT
                         Role = Session["Role_Aproved_Dept"].ToString();
                         RoleDept = Role_RQ;
                     }
+                    int row = 0;
+                    if (Public_Dept == "LOG")
+                    {
+                        //user LOG -- chang LOG 
+                        row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update_B2", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
+                    }
+                    else 
+                    {
+                        row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update_B", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
+                    }
 
+                    //int row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update_B", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
 
-                    int row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update_B", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
                     if (row == 0)
                     {
                         string Subject = " [Issue Out] - Request Comment  for" + Request_NO;

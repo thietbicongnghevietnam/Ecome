@@ -1,0 +1,65 @@
+USE [Issue_MaterialInOut]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_Issue_Material_Comment_Update2]    Script Date: 4/7/2026 11:34:04 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[SP_Issue_Material_Comment_Update2] -- [SP_Issue_Material_Comment_Update2] 'ISD-000001-0821-1'
+	@RequestID nvarchar(500),
+	@Content nvarchar(2000),
+	@User nvarchar(500),
+	@RoleDept nvarchar(10),
+	@Role nvarchar(10)
+	
+AS
+BEGIN
+
+ Declare @CheckInt int, @Fullname nvarchar(300)
+
+  set @Fullname = (select  top 1 FullName from tbl_UserIssueRQ where UserLogin =  @User)
+
+ set @CheckInt  = (select count(*) as Count from [tbl_RQMaterial_Comment]
+				 where  [RQ] = @RequestID and [UserCode] = @Content and [Content_Comment] = @Content and [Role_Dept] = @RoleDept and [Role] =@Role
+				 )
+
+IF (@CheckInt = 0 )
+  BEGIN
+		insert into  [dbo].[tbl_RQMaterial_Comment] 
+		(
+		[RQ],
+		[UserCode],
+		[Content_Comment],
+		[Role_Dept],
+		[Role],
+		[DateUpdate],
+		[FullName],
+		Flag_LOG
+		 )
+		values
+		(
+		@RequestID,
+		@User,
+		N''+@Content,
+		@RoleDept,
+		@Role,
+		getdate(),
+		N''+@FullName
+		,1
+		)
+  END
+	
+END
+
+
+==================
+SELECT TOP (1000) [ID]
+      ,[RQ]
+      ,[UserCode]
+      ,[FullName]
+      ,[Role_Dept]
+      ,[Role]
+      ,[Content_Comment]
+      ,[DateUpdate]
+      ,[Flag_LOG]
+  FROM [Issue_MaterialInOut].[dbo].[tbl_RQ_MaterialB_Comment]

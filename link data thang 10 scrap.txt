@@ -404,7 +404,7 @@ Export_Form_98_MCS
 Export_Tranfer_99_MCS
 them cot: Linkfile,CommentPMS,Export_flag_subscrap  => 2 bang issue
 update_link_path
-them format: Fomat_SendEmail/FeedBackPMS.html
+them format: Fomat_SendEmail/FeedBackPMS.html				(******************** check xem da co file nay len chua**********gui mail feedback)
 
 Export_SubIssueSAP_MCS  ==> xác nhận lại format của PMS
 Export_SubIssueSAP	==> xác nhận lại format của PMS
@@ -445,11 +445,9 @@ ID	UserLogin	Password	FullName	Dept	Email	RoleID	RoleDept	RolePage	DateCreate	Fl
 SP_getcommet_Log	(lay userid log => comment)
 them cot: TypeOutSap	(***them vao 2 bang***)
 SP_get_slockMCS		(phan type MCS) --> lay theo thong tin MCS
-
-
-
-
-Sufix Carton
+=========================================================
+bang: tbl_RQ_MaterialB_Comment 	(them 1 cot: Flag_LOG)
+SP_Issue_Material_Comment_Update_B2
 
  
 
