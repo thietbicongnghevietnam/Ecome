@@ -2888,7 +2888,7 @@ namespace MATERIAL_IN_OUT
           
             ///////////////////////////////1. Lấy thông tin RQ cua Make RQ va STORE///////////////////////////////
             
-            if (hdfControlRQ.Value.ToString().Trim() == "RQ" && Session["Role_Dept"].ToString().Trim() == "RQ")
+            if ( Session["Role_Dept"].ToString().Trim() == "RQ")  //hdfControlRQ.Value.ToString().Trim() == "RQ" &&  ==> bo doan nay : All bo phan co the dowlad PDF
             {
 
                 if (treeRQ_InMaterial.SelectedNode == null)

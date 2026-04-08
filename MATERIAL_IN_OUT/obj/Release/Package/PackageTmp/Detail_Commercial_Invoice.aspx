@@ -24,7 +24,7 @@
                                 <div class="panel-body">
                                     <b>PANASONIC SYSTEM NETWORK VIET NAM CO.,LTD</b>
                                     <br />
-                                    LotJ1/2 Thang Long Industrial Park, Dong Anh district, Hanoi, Vietnam<br />
+                                    LotJ1/2 Thang Long Industrial Park, Thien Loc district, Hanoi, Vietnam<br />
                                     Tel: 84-24-395500057    &nbsp; &nbsp; &nbsp; Fax : 84-24-39550097
                                         <br />
                                     Tax No: 010182423-001

@@ -37,7 +37,7 @@ namespace MATERIAL_IN_OUT
         public DataTable dt_update = new DataTable();
 
         public string listUserMCS = "";
-
+        public string selectedOption = "PMS";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Date1.Value = DateTime.Now.ToString("yyyy-MM-dd");
@@ -50,8 +50,51 @@ namespace MATERIAL_IN_OUT
                 HandleGetDetail();
                 Response.End();
                 return;
+            }            
+
+            if (rbPMS.Checked)
+            {
+                selectedOption = "PMS";
             }
-            dt = DataConn.StoreFillDS("Select_PMS_OutSAP", System.Data.CommandType.StoredProcedure);            
+            else if (rbMCS.Checked)
+            {
+                selectedOption = "MCS";
+            }
+
+            //dt = DataConn.StoreFillDS("Select_PMS_OutSAP", System.Data.CommandType.StoredProcedure);
+            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_new", System.Data.CommandType.StoredProcedure, selectedOption);
+        }
+
+        protected void Radio_CheckedChanged(object sender, EventArgs e)
+        {
+            string _fromdate = Request.Form[Date1.UniqueID];
+            string _todate = Request.Form[ngaychiid.UniqueID];
+            string requestno = filterRequestNo.Value;
+            string sanctionno = filterSanctionNo.Value;
+            string typesapPMS = filterSapPMS.Value;
+            string status_issueout = ddlStatus.SelectedValue;          
+
+            if (rbPMS.Checked)
+            {
+                selectedOption = "PMS";
+            }
+            else if (rbMCS.Checked)
+            {
+                selectedOption = "MCS";
+            }
+            // Xử lý logic ở đây
+            //Response.Write("Bạn chọn: " + selectedOption);
+            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout, selectedOption);
+
+            if (dt.Rows.Count > 0)
+            {
+                //Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('search successfully!');", true);
+                Date1.Value = _fromdate.ToString();
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.error('NG, Data null!');", true);
+            }
         }
 
         protected void Search_Date_Click(object sender, EventArgs e)
@@ -73,11 +116,20 @@ namespace MATERIAL_IN_OUT
             //{
             //    // lọc dữ liệu pending
             //}
+            if (rbPMS.Checked)
+            {
+                selectedOption = "PMS";
+            }
+            else if (rbMCS.Checked)
+            {
+                selectedOption = "MCS";
+            }
 
 
             //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno);
             //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS);
-            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout);
+            //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout);
+            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout, selectedOption);
 
             if (dt.Rows.Count > 0)
             {
@@ -88,9 +140,7 @@ namespace MATERIAL_IN_OUT
             {
                 Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.error('NG, Data null!');", true);
             }
-
             
-
         }
 
         protected void Dowloadtemplate(object sender, EventArgs e) 
@@ -160,14 +210,25 @@ namespace MATERIAL_IN_OUT
                 // Format pending_done list
                 typedownload = "1";
             }
-            else if (optDownloadTong.Checked) 
+            else if (optDownloadTongIssueOut.Checked) 
             {
                 //CSV format tổng(issue out)
                 typedownload = "2";
-            }            
+            }
+
+            if (rbPMS.Checked)
+            {
+                selectedOption = "PMS";
+            }
+            else if (rbMCS.Checked)
+            {
+                selectedOption = "MCS";
+            }
+
+            string status_issueout = ddlStatus.SelectedValue;
 
             //DataTable dtexport = DataConn.StoreFillDS("Select_PMS_OutSAP_download", System.Data.CommandType.StoredProcedure, _fromdate, _todate, userid, typedownload);
-            DataTable dtexport = DataConn.StoreFillDS("Select_PMS_OutSAP_download2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, userid, typedownload);
+            DataTable dtexport = DataConn.StoreFillDS("Select_PMS_OutSAP_download2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, userid, typedownload, selectedOption, status_issueout);
 
             if (dtexport.Rows.Count > 0)
             {

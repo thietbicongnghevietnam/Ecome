@@ -1013,19 +1013,9 @@ namespace MATERIAL_IN_OUT
                     {
                         Role = Session["Role_Aproved_Dept"].ToString();
                         RoleDept = Role_RQ;
-                    }
-                    int row = 0;
-                    if (Public_Dept == "LOG")
-                    {
-                        //user LOG -- chang LOG 
-                        row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update_B2", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
-                    }
-                    else 
-                    {
-                        row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update_B", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
-                    }
-
-                    //int row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update_B", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
+                    }                    
+                    
+                    int row = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update_B", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
 
                     if (row == 0)
                     {
@@ -1136,6 +1126,20 @@ namespace MATERIAL_IN_OUT
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 }
+                //truong hop LOG comment all department
+                int row1 = 0;
+                if (Public_Dept == "LOG")
+                {
+                    //user LOG -- chang LOG 
+                    string Comment = txt_Comment.Value;
+                    //row1 = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update_B2", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), RoleDept, Role);
+                    row1 = DataConn.ExecuteStore("SP_Issue_Material_Comment_Update_B2", CommandType.StoredProcedure, Request_NO, Comment, Session["UserName"].ToString(), "RQ", "1");
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('This comment has been sent sucessfully');", true);
+                    txt_Comment.Value = "";
+                    Search(Request_NO, Role, RoleDept);
+                    LoadButton_Out(Request_NO, Role, RoleDept);
+
+                }
             }
         }
         protected void bttPrint_Click(object sender, EventArgs e)
@@ -1145,7 +1149,7 @@ namespace MATERIAL_IN_OUT
             string Request_NO = "";
             Public_Dept = Session["CostCenter"].ToString().Trim();
             ///////////////////////////////1. Lấy thông tin RQ cua Make RQ va STORE///////////////////////////////
-            if (hdfControlRQ.Value.ToString().Trim() == "RQ" && Session["Role_Dept"].ToString().Trim() == "RQ")
+            if ( Session["Role_Dept"].ToString().Trim() == "RQ") //hdfControlRQ.Value.ToString().Trim() == "RQ" && ==> bo doan nay : All bo phan co the dowlad PDF
             {
 
                 if (treeRQ_InMaterial.SelectedNode == null)
@@ -1269,7 +1273,7 @@ namespace MATERIAL_IN_OUT
                 dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report_B", CommandType.StoredProcedure, Request_NO);
                 dt_Status = DataConn.StoreFillDS("SP_Issue_Material_RQStatus_B", CommandType.StoredProcedure, Request_NO);
 
-                DataTable dt_commentLOG = DataConn.StoreFillDS("SP_getcommet_Log", CommandType.StoredProcedure, Request_NO);
+                DataTable dt_commentLOG = DataConn.StoreFillDS("SP_getcommet_Log_B", CommandType.StoredProcedure, Request_NO);
 
                 if (dt_commentLOG.Rows[0][0].ToString() != "")
                 {
@@ -1317,7 +1321,7 @@ namespace MATERIAL_IN_OUT
                 dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report_PUR", CommandType.StoredProcedure, Request_NO);
                 dt_Status = DataConn.StoreFillDS("SP_Issue_Material_RQStatus_PUR", CommandType.StoredProcedure, Request_NO);
 
-                DataTable dt_commentLOG = DataConn.StoreFillDS("SP_getcommet_Log", CommandType.StoredProcedure, Request_NO);
+                DataTable dt_commentLOG = DataConn.StoreFillDS("SP_getcommet_Log_B", CommandType.StoredProcedure, Request_NO);
 
                 if (dt_commentLOG.Rows[0][0].ToString() != "")
                 {

@@ -449,7 +449,26 @@ SP_get_slockMCS		(phan type MCS) --> lay theo thong tin MCS
 bang: tbl_RQ_MaterialB_Comment 	(them 1 cot: Flag_LOG)
 SP_Issue_Material_Comment_Update_B2
 
- 
+
+*******loi chi riem: 5.Disposition  ==> sai ten so voi mater => khong ACcountCost ******
+
+=============== // 08.04.2025 // ===========
+Sua lai dia chi: 
+SP_getcommet_Log_B			(new)
+
+tach PMS:MCS
+Select_PMS_OutSAP_new			(new)
+Select_PMS_OutSAP_search2_new2		(new)
+Select_PMS_OutSAP_download2		(them tham so) ==> loc lai dieu kien
+SP_Issue_Material_Report_B		(dow excel them cot sloc)
+SP_Issue_Material_Report		(dow excel them cot sloc)
+
+**** sang mai public ***
+
+
+
+
+
 
 ========= // danh sach mater //===========
 [Issue_MaterialInOut].[dbo].[tbl_Plant]

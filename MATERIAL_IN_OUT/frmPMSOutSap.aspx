@@ -152,8 +152,8 @@
                 </div>
                 <b>Type Issue out Dept:</b> &nbsp;&nbsp;&nbsp;&nbsp;
                  <div class="horizontal-radio-group">
-                     <asp:RadioButton ID="rbPMS" runat="server" GroupName="rblOptions" Text="PMS" Checked="true" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     <asp:RadioButton ID="rbMCS" runat="server" GroupName="rblOptions" Text="MCS" />     
+                     <asp:RadioButton ID="rbPMS" runat="server" GroupName="rblOptions" Text="PMS" Checked="true" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <asp:RadioButton ID="rbMCS" runat="server" GroupName="rblOptions" Text="MCS" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged"  />     
                  </div>
               
 
@@ -198,7 +198,12 @@
                         <td><%= rows["RequestNo"].ToString() %></td>
                         <td><%= rows["Department"].ToString() %></td>
                         <td><%= rows["Status_RQ"].ToString() %></td>
-                        <td><%= rows["Status_Approved_OutSAP"].ToString() %></td>
+                        <td>
+                            <%--<%= rows["Status_Approved_OutSAP"].ToString() %>--%>
+                             <%= string.IsNullOrEmpty(rows["Status_Approved_OutSAP"]?.ToString()) 
+                            ? "pending" 
+                            : rows["Status_Approved_OutSAP"].ToString() %>
+                        </td>
                         <td><%= rows["TypeForm"].ToString() %></td>
                         <td><%= rows["SanctionName"].ToString() %></td>
                         <td><%= rows["DocumentNo"].ToString() %></td>

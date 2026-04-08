@@ -107,7 +107,7 @@ namespace MATERIAL_IN_OUT
             DetailReaquest.AddLineBreak();
             DetailReaquest.AddText("Plot J1-J2, Thang Long industrial Park");
             DetailReaquest.AddLineBreak();
-            DetailReaquest.AddText("Dong Anh Dist- Ha Noi");
+            DetailReaquest.AddText("Thien Loc Dist- Ha Noi");
             DetailReaquest.AddLineBreak();
             DetailReaquest.AddLineBreak();
             DetailReaquest.AddFormattedText("Export Date:" + DateTime.Now.ToShortDateString(), TextFormat.NotBold);

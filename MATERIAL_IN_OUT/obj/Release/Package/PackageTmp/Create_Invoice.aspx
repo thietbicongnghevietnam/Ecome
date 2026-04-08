@@ -114,7 +114,7 @@
                                         </div>
 
                                         <div class="col-75">
-                                            LotJ1/2 Thang Long Industrial Park, Dong Anh district, Hanoi, Vietnam<br />
+                                            LotJ1/2 Thang Long Industrial Park, Thien Loc district, Hanoi, Vietnam<br />
                                         </div>
                                         <div class="col-75">
                                             Tel: 84-24-395500057    &nbsp; &nbsp; &nbsp; Fax : 84-24-39550097
