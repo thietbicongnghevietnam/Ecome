@@ -447,6 +447,15 @@ namespace MATERIAL_IN_OUT
         protected global::System.Web.UI.WebControls.TextBox DocumentNo10;
 
         /// <summary>
+        /// DocumentNo11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DocumentNo11;
+
+        /// <summary>
         /// Button7 control.
         /// </summary>
         /// <remarks>

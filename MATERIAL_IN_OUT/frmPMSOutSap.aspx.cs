@@ -702,6 +702,15 @@ namespace MATERIAL_IN_OUT
             string DocumentNo = DocumentNo6.Text;
             string userid = Session["UserName"].ToString();
 
+            if (rbPMS.Checked)
+            {
+                selectedOption = "PMS";
+            }
+            else if (rbMCS.Checked)
+            {
+                selectedOption = "MCS";
+            }
+
             if (Requestno != "" && TypeName != "" && DocumentNo != "")
             {
                 DataTable dtexport = DataConn.StoreFillDS("Update_Document_No", System.Data.CommandType.StoredProcedure, Requestno, TypeName, DocumentNo, userid);
@@ -709,7 +718,7 @@ namespace MATERIAL_IN_OUT
                 if (dtexport.Rows[0][0].ToString() == "1")
                 {
                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Update Document Sucess !!!');", true);
-                    dt = DataConn.StoreFillDS("Select_PMS_OutSAP", System.Data.CommandType.StoredProcedure);
+                    dt = DataConn.StoreFillDS("Select_PMS_OutSAP_new", System.Data.CommandType.StoredProcedure, selectedOption);
                 }
                 else 
                 {
@@ -728,16 +737,28 @@ namespace MATERIAL_IN_OUT
             string Requestno = RequestNo10.Text;
             string TypeName = TypeForm10.Text;
             string DocumentNo = DocumentNo10.Text;
+
+            string Status_Finish_PMS = DocumentNo11.Text;
+
             string userid = Session["UserName"].ToString();
+
+            if (rbPMS.Checked)
+            {
+                selectedOption = "PMS";
+            }
+            else if (rbMCS.Checked)
+            {
+                selectedOption = "MCS";
+            }
 
             if (Requestno != "" && TypeName != "" && DocumentNo != "")
             {
-                DataTable dtexport = DataConn.StoreFillDS("Update_Status_TranferSAP", System.Data.CommandType.StoredProcedure, Requestno, TypeName, DocumentNo, userid);
+                DataTable dtexport = DataConn.StoreFillDS("Update_Status_TranferSAP", System.Data.CommandType.StoredProcedure, Requestno, TypeName, DocumentNo, userid, Status_Finish_PMS);
 
                 if (dtexport.Rows[0][0].ToString() == "1")
                 {
                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Update Document Sucess !!!');", true);
-                    dt = DataConn.StoreFillDS("Select_PMS_OutSAP", System.Data.CommandType.StoredProcedure);
+                    dt = DataConn.StoreFillDS("Select_PMS_OutSAP_new", System.Data.CommandType.StoredProcedure, selectedOption);
                 }
                 else
                 {
@@ -758,6 +779,15 @@ namespace MATERIAL_IN_OUT
             string sanction = sanction8.Text;
             string contentsPMS = contents_feedback.Text;
             string userid = Session["UserName"].ToString();
+
+            if (rbPMS.Checked)
+            {
+                selectedOption = "PMS";
+            }
+            else if (rbMCS.Checked)
+            {
+                selectedOption = "MCS";
+            }
 
             if (Requestno != "" && TypeName != "" && contentsPMS != "")
             {
@@ -807,7 +837,7 @@ namespace MATERIAL_IN_OUT
                 if (dtexport.Rows[0][0].ToString() == "1")
                 {
                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Update Document Sucess !!!');", true);
-                    dt = DataConn.StoreFillDS("Select_PMS_OutSAP", System.Data.CommandType.StoredProcedure);
+                    dt = DataConn.StoreFillDS("Select_PMS_OutSAP_new", System.Data.CommandType.StoredProcedure, selectedOption);
                 }
                 else
                 {
@@ -1003,6 +1033,15 @@ namespace MATERIAL_IN_OUT
                 return;
             }
 
+            if (rbPMS.Checked)
+            {
+                selectedOption = "PMS";
+            }
+            else if (rbMCS.Checked)
+            {
+                selectedOption = "MCS";
+            }
+
             string filePath = Server.MapPath(".") + "\\" + FileUpload.FileName;
 
             try
@@ -1060,7 +1099,7 @@ namespace MATERIAL_IN_OUT
                     lblConfirm.Text = "DATA IMPORTED SUCCESSFULLY.";
                     lblConfirm.Attributes.Add("style", "color:green");
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Message", "alert('OK, SUCCESSFULLY!');", true);
-                    dt = DataConn.StoreFillDS("Select_PMS_OutSAP", System.Data.CommandType.StoredProcedure);
+                    dt = DataConn.StoreFillDS("Select_PMS_OutSAP_new", System.Data.CommandType.StoredProcedure, selectedOption);
                 }
                 else
                 {

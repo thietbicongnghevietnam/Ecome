@@ -182,6 +182,7 @@
                         <th>Linkfile</th>
                         <th>Comment_PMS</th>
                         <th>Status Tranfer SAP</th>
+                        <th>Status_Finish_PMS</th>
 
                         <th>Actions</th>
 
@@ -219,9 +220,9 @@
                         </td>
                         <td><%= rows["CommentPMS"].ToString() %></td>
                         <td><%= rows["Satatu_tranferPMS"].ToString() %></td>
-
+                        <td><%= rows["Status_Finish_PMS"].ToString() %></td>
                         <td>
-                            <a href="#" class="btn btn-primary" title="Update Status SAP" onclick="openEditModal10('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Update_StatusSAP</a>
+                            <a href="#" class="btn btn-primary" title="Update Status SAP" onclick="openEditModal10('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["Satatu_tranferPMS"].ToString() %>','<%= rows["Status_Finish_PMS"].ToString() %>')">Update_StatusSAP</a>
                             <a href="#" class="btn btn-primary" title="Update Doc" onclick="openEditModal6('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Update_Doc</a>
                             <a href="#" class="btn btn-info btn-sm" title="Detail" onclick="openEditModal2('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Detail</a>
                             <a href="#" class="btn btn-info btn-sm" title="Out201_98" onclick="openEditModal3('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Out201_98</a>
@@ -260,7 +261,7 @@
                         <th>Linkfile</th>
                         <th>Comment_PMS</th>
                         <th>Status Tranfer SAP</th>
-
+                        <th>Status_Finish_PMS</th>
                         <th>Actions</th>
 
                     </tr>
@@ -651,7 +652,7 @@
             <div class="modal-header">
                 <div class="row">
                     <div>
-                        <h4 class="modal-title" id="headerTag10" style="float: left">Do you want to update Status Tranfer SAP ?</h4>
+                        <h4 class="modal-title" id="headerTag10" style="float: left">Do you want to update Status PMS ?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float: right; margin-left: 300px;">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -673,12 +674,12 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="ID">Remark<i style="color: red;">(* This field is not null! *)</i></label>
+                        <label for="ID">Status Tranfer SAP<i style="color: red;">(* This field is not null! *)</i></label>
                         <asp:TextBox ID="DocumentNo10" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
                     </div>
                     <div class="col-md-6">
-                        <%--<label for="ID">TypeForm</label>
-                <asp:TextBox ID="TextBox4" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>--%>
+                        <label for="ID">Status_Finish_PMS<i style="color: green;">(* Request is done *)</i></label>
+                <asp:TextBox ID="DocumentNo11" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
                     </div>
                 </div>
 
@@ -894,9 +895,11 @@
             $('#myModal6').modal('show');
         }
 
-        function openEditModal10(RequestNo, TypeForm) {
+        function openEditModal10(RequestNo, TypeForm, DocumentNo10,trangthaifinish) {
             $("#RequestNo10").val(RequestNo);
             $("#TypeForm10").val(TypeForm);
+            $("#DocumentNo10").val(DocumentNo10)
+            $("#DocumentNo11").val(trangthaifinish)
             $('#myModal10').modal('show');
         }
 

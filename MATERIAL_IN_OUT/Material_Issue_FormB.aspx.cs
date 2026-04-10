@@ -956,6 +956,7 @@ namespace MATERIAL_IN_OUT
                                     string Subject = " [Issue Out] - Request Approval for " + Request_NO;
                                     string Comment = txt_Comment.Value;
                                     //****15.01.2026 rule ke toan dua => sau khi level 3 stock phe duyet thi se gui mail cho : incharge, level3 bo phan, ke toan (all 3 level)
+                                    //**** 09.04.2026 Ke toan Ngoc ==> bo all khong gui mail cho ACC
                                     SendEmail_Prv(Request_NO, Public_Dept, Session["UserName"].ToString(), Subject, Email_Pres, Comment);
 
                                     Search(Request_NO, RoleApproved.ToString().Trim(), hdfControlStore.Value.ToString().Trim());
@@ -1609,7 +1610,8 @@ namespace MATERIAL_IN_OUT
                             if ((int.Parse(Role) == 1 && Issue_GM == "OK" && ACC_Check == "") || (int.Parse(Role) == 1 && Issue_GM == "OK" && ACC_Check == null))
                             {
 
-                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
+                                //int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
+                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject_B]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
                                 if (row == 0)
                                 {
 
@@ -4113,9 +4115,9 @@ namespace MATERIAL_IN_OUT
             DataTable dt_ReportAll = new DataTable();
             DataTable dt_Status = new DataTable();
             string Request_NO = "";
-            Public_Dept = Session["CostCenter"].ToString().Trim();
+            //Public_Dept = Session["CostCenter"].ToString().Trim();
             ///////////////////////////////1. Lấy thông tin RQ cua Make RQ va STORE///////////////////////////////
-            if (hdfControlRQ.Value.ToString().Trim() == "RQ" && Session["Role_Dept"].ToString().Trim() == "RQ")
+            if (hdfControlRQ.Value.ToString().Trim() == "RQ" &&  Session["Role_Dept"].ToString().Trim() == "RQ")  //hdfControlRQ.Value.ToString().Trim() == "RQ" && ==> bo hdfControlRQ.Value.ToString().Trim() == "RQ" && ==> cho dowload all 10.04.206
             {
 
                 if (treeRQ_InMaterial.SelectedNode == null)
@@ -4151,12 +4153,14 @@ namespace MATERIAL_IN_OUT
 
             }
             //if (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() == "STORE")
-            if (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() != "STORE")     //old  05.03.2026
-            {
-                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
-                Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
 
-            }
+            //bo 10.04.2024  ==> bo phan PUS khong dowload duoc excel
+            //if (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() != "STORE")     //old  05.03.2026
+            //{
+            //    dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+            //    Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+
+            //}
 
             if (hdfControlACC.Value.ToString().Trim() == "ACC-CHECK" && Session["Role_Dept"].ToString().Trim() == "ACC-CHECK")
             {
@@ -4191,7 +4195,6 @@ namespace MATERIAL_IN_OUT
             }
             if (hdfControlStore.Value.ToString() == "STORE" && Session["RoleOutStock"].ToString().Trim() == "STORE")
             {
-
                 if (treeRQ_OutMateial.SelectedNode == null)
                 {
                     if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))

@@ -344,6 +344,11 @@ namespace MATERIAL_IN_OUT
             DataTable dtTong = DataConn.FillStore("SP_Issue_Material_Search_A_tongplant", CommandType.StoredProcedure, RQ);
             //DataTable dtTong = null;
 
+            hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
+            lblRequestUpdate.Text = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
+            hdfUserUpdate.Value = Session["UserName"].ToString();
+            lblRequest.Text = dt_IssueMaterial.Rows[0]["TypeName"].ToString();
+
             if (dt_IssueMaterial.Rows.Count > 0)
             {
                 if (dtTong.Rows.Count > 0)
@@ -381,10 +386,7 @@ namespace MATERIAL_IN_OUT
                 //lblAcount.Text = dt_IssueMaterial.Rows[0]["AccountCost"].ToString();
                 //lblAccountName.Text = dt_IssueMaterial.Rows[0]["AccountName"].ToString();
                 //hdfStock.Value = dt_IssueMaterial.Rows[0]["Sloc"].ToString();
-                hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
-                lblRequestUpdate.Text = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
-                //hdfUserUpdate.Value = Session["UserName"].ToString();
-                lblRequest.Text = dt_IssueMaterial.Rows[0]["TypeName"].ToString();
+                
 
 
 
@@ -3604,40 +3606,40 @@ namespace MATERIAL_IN_OUT
 
             ///////////////////////////////1. Lấy thông tin RQ cua Make RQ va STORE///////////////////////////////
 
-            if (hdfControlRQ.Value.ToString().Trim() == "RQ" && Session["Role_Dept"].ToString().Trim() == "RQ")
+            if (Session["Role_Dept"].ToString().Trim() == "RQ")   ////bo hdfControlRQ.Value.ToString().Trim() == "RQ" && ==> cho dowload all 10.04.206
             {
-                if (treeRQ_InMaterial.SelectedNode == null)
-                {
-                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
-                    {
-                        if (hdfControlRQ.Value == "")
-                        {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
-                            dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
-                        }
-                        else
-                        {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), hdfControlRQ.Value);
-                            dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), hdfControlRQ.Value.ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
-                        }
+                //if (treeRQ_InMaterial.SelectedNode == null)
+                //{
+                //    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                //    {
+                //        if (hdfControlRQ.Value == "")
+                //        {
+                //            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+                //            dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                //        }
+                //        else
+                //        {
+                //            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), hdfControlRQ.Value);
+                //            dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), hdfControlRQ.Value.ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                //        }
 
-                        if (dtTreeRQ.Rows.Count > 0)
-                        {
-                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
-                        }
-                    }
-                    else
-                    {
-                        Request_NO = Session["RequestID_1RQ"].ToString();
-                    }
-                }
-                else
-                {
-                    Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
-                }
+                //        if (dtTreeRQ.Rows.Count > 0)
+                //        {
+                //            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                //        }
+                //    }
+                //    else
+                //    {
+                //        Request_NO = Session["RequestID_1RQ"].ToString();
+                //    }
+                //}
+                //else
+                //{
+                //    Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
+                //}
 
                 //2
-
+                Request_NO = hdfRequest.Value.ToString();
 
             }
             if (hdfControlACC.Value.ToString().Trim() == "ACC-CHECK" && Session["Role_Dept"].ToString().Trim() == "ACC-CHECK")
@@ -3708,11 +3710,13 @@ namespace MATERIAL_IN_OUT
 
             }
             //if (Session["RoleOutStock"].ToString().Trim() == "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ" ) //old  05.03.2026
-            if (Session["RoleOutStock"].ToString().Trim() != "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ" )
-            {
-                dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
-                Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
-            }
+            
+            //bo 10.04.2024  ==> bo phan PUS khong dowload duoc excel
+            //if (Session["RoleOutStock"].ToString().Trim() != "STORE" && Session["Role_Dept"].ToString().Trim() == "RQ" )
+            //{
+            //    dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+            //    Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+            //}
 
             DataTable dt_ExportExcel = new DataTable();
             //Request_NO  = "RQB-PUR-1225-1";

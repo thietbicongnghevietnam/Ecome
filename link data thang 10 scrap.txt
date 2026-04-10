@@ -411,7 +411,7 @@ Export_SubIssueSAP	==> xác nhận lại format của PMS
 
 
 --------------------  // luong gui mai user //-------------------- 
-b1: SendEmail_Next => gui mail leve2 user : SP_Issue_Material_NextUser_new
+b1: SendEmail_Next => gui mail leve2 user : SP_Issue_Material_NextUser_new (****)
 	if (lblRequest.Text == "1.Other Issue Materials")
 		//gui mail cho ket toan va LOG de xac nhan
 		SendEmail_other : SP_Issue_Material_NextUser_other  (1phat) = 1 (bo user ke toan) 04.06.2026
@@ -423,7 +423,8 @@ b1:b2:b3  SendEmail_Next : SP_Issue_Material_NextUser_new
 b1:
 b2:
 b3:SP_BindPreviewtUser
-//****15.01.2026 rule ke toan dua => sau khi level 3 stock phe duyet thi se gui mail cho : incharge, level3 bo phan, ke toan (all 3 level)  *** ke toan dang xem lai
+//****15.01.2026 rule ke toan dua => sau khi level 3 stock phe duyet thi se gui mail cho : incharge, level3 bo phan, ke toan (all 3 level)  
+//****09.04.2026 ke toan dang xem lai ==> 09.04.2026 bo all level cua Ke toan khong can nhan mail
 CodeInchage_Issue
 CodeMGR_Issue		(bo ) 04.06.2026
 CodeGM_Issue		(bo ) 04.06.2026
@@ -463,10 +464,26 @@ Select_PMS_OutSAP_download2		(them tham so) ==> loc lai dieu kien
 SP_Issue_Material_Report_B		(dow excel them cot sloc)
 SP_Issue_Material_Report		(dow excel them cot sloc)
 
-**** sang mai public ***
+================= // 09.04.2026 //==================
+SP_Issue_Material_NextUser_new (****)  ==> gui luot di
+SP_BindPreviewtUser ==> gui outdep luot ve  ==> (bo luong gui mail khi outdept level3 ky khong gui lai ACC) ==> bo luong gui mail Outdep cho level3 khi out xong
+Update_Status_TranferSAP
+bang form A,B them cot: Status_Finish_PMS
+Select_PMS_OutSAP_new
 
+================= // 10.04.2026 //==================  Phan quan ly chung cac request bi reject
+==> mail lap: SP_BindPreviewtUser   (sua them distinct)  ==> mail lap: SP_BindPreviewtUser  
+*** Pus khong dowlad duoc: 2000112		(OK)
++ RQB-PUS-0426-1 số này e Reject nhưng k ký đc (OK => do van dung stored form A)	==> anh huong nhan duoc 4 mail => do (4 bo phan)	
++ ke toan ngoc ky => van den chi Nhung PUS   : RQB-PUS-0426-6
+	pus3: [SP_Issue_Material_NextUser_new] '2000032','PUS','2020','RQ','3','','','18.2'
+	ke toan level1: [SP_Issue_Material_NextUser_new] '2007600_ACC','ACC','2020','ACC-CHECK','1','','','18.2'
+		
++ dowload PDF khac PUS : SP_Issue_Material_Report_PUR (OK)
 
-
+//========== lay gia tri requeset //=========
+hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
+lblRequestUpdate.Text = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
 
 
 
