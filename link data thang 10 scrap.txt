@@ -485,6 +485,9 @@ Select_PMS_OutSAP_new
 hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
 lblRequestUpdate.Text = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
 
+**** check anh huan **** Pending **** khong click mail vao duoc:
+http://10.92.184.24:8095/Material_Issues_FormA.aspx?RQ=RQA-SCS-PLD-0426-20&User=2000020&Dept=ACC&Stock=&RoleRQ=ACC-CHECK&RoleRQ_Apr=3&RoleStore=&RoleStore_Apr=
+
 
 
 ========= // danh sach mater //===========
@@ -494,6 +497,8 @@ lblRequestUpdate.Text = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
 [Issue_MaterialInOut].[dbo].[tbl_DeptMaster]	mater bo phan
 [Issue_MaterialInOut].[dbo].[tbl_MV_Master]	mater MVT (555 -> gan voi nhung type nao???/)  // 06.03.2026  ==> bo dieu kien check MVTtypecode trong mater [Issue_MaterialInOut].[dbo].[tbl_MV_Master]
 [Issue_MaterialInOut].[dbo].[tbl_VendorMaster]	mater vendor
+
+
 
 
 
