@@ -489,7 +489,7 @@
                             </div>
 
                             <div class="btn-group" style="font-size:25px;">                                
-                                <button type="button" id="update path" onclick="openAdd2('<%=hdfRequest.Value.ToString()%>','<%=hdfControlRQ.Value.ToString()%>')" class="btn btn-info">Attract Link File</button>
+                                <button type="button" id="update path" onclick="openAdd2('<%=hdfRequest.Value.ToString()%>','<%=hdfControlRQ.Value.ToString()%>')" class="btn btn-info">Attached Link File</button>
                             </div>
 
                         </div>

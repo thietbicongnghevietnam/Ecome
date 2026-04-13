@@ -105,7 +105,15 @@ namespace MATERIAL_IN_OUT
                     //LoadData_1RQ_FromEmail(Session["RequestID_1RQ"].ToString(), Session["Role_Dept"].ToString(), Session["Role_Aproved_Dept"].ToString(), Session["RoleOutStock"].ToString(), Session["Role_Aproved_Stock"].ToString().Trim());                    
                 }
                 else
-                {                    
+                {
+                    //string Stock1 = (string)Session["Stock"];
+                    //string RoleApprove1 = (string)Session["Role_Aproved_Dept"];
+                    //string RoleRQ1 = (string)Session["Role_Dept"];
+                    //string User1 = (string)Session["UserName"];
+                    //string costcente41 = (string)Session["CostCenter"];
+                    //string role1 = (string)Session["Role"];
+                    //string rq1 = (string)Session["RequestID_1RQ"];
+
                     if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]) && string.IsNullOrEmpty((string)Session["CostCenter"]) && string.IsNullOrEmpty((string)Session["UserName"]) ||
                   string.IsNullOrEmpty((string)Session["Role"]) && string.IsNullOrEmpty((string)Session["Stock"]) && string.IsNullOrEmpty((string)Session["Role_Dept"]))
                     {

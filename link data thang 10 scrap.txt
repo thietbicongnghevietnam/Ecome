@@ -485,9 +485,17 @@ Select_PMS_OutSAP_new
 hdfRequest.Value = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
 lblRequestUpdate.Text = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
 
+============= // 13.04.2026 //============
+Select_PMS_OutSAP_download2	(sua bo document no)
+
+
+
 **** check anh huan **** Pending **** khong click mail vao duoc:
 http://10.92.184.24:8095/Material_Issues_FormA.aspx?RQ=RQA-SCS-PLD-0426-20&User=2000020&Dept=ACC&Stock=&RoleRQ=ACC-CHECK&RoleRQ_Apr=3&RoleStore=&RoleStore_Apr=
-
+SP_Issue_Material_BindRQ_NOTApproved
+SP_Issue_Material_BindRQ_Approved
+SP_Issue_Material_BindRQ_NOTApproved_OutStock
+SP_Issue_Material_BindRQ_Approved_OutStock
 
 
 ========= // danh sach mater //===========
@@ -502,9 +510,10 @@ http://10.92.184.24:8095/Material_Issues_FormA.aspx?RQ=RQA-SCS-PLD-0426-20&User=
 
 
 
+      3,233
 
 
-
+3,233
 
 
 
