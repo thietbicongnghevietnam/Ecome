@@ -103,7 +103,8 @@ namespace MATERIAL_IN_OUT
             DetailReaquest.Format.Font.Size = 14;
             DetailReaquest.AddFormattedText("Panasonic System Network VietNam Co.,Ltd", TextFormat.Bold);
             DetailReaquest.AddSpace(80);
-            DetailReaquest.AddFormattedText("TRANSFER REQUEST", TextFormat.Bold);
+            //DetailReaquest.AddFormattedText("TRANSFER REQUEST", TextFormat.Bold);
+            DetailReaquest.AddFormattedText(TitleReport, TextFormat.Bold);
             DetailReaquest.AddLineBreak();
             DetailReaquest.AddText("Plot J1-J2, Thang Long industrial Park");
             DetailReaquest.AddLineBreak();

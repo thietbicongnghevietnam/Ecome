@@ -751,7 +751,7 @@ namespace MATERIAL_IN_OUT
                 selectedOption = "MCS";
             }
 
-            if (Requestno != "" && TypeName != "" && DocumentNo != "")
+            if (Requestno != "" && TypeName != "" )  //bo "" && DocumentNo != ""  
             {
                 DataTable dtexport = DataConn.StoreFillDS("Update_Status_TranferSAP", System.Data.CommandType.StoredProcedure, Requestno, TypeName, DocumentNo, userid, Status_Finish_PMS);
 

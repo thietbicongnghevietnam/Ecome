@@ -488,10 +488,33 @@ lblRequestUpdate.Text = dt_IssueMaterial.Rows[0]["RequestNo"].ToString();
 ============= // 13.04.2026 //============
 Select_PMS_OutSAP_download2	(sua bo document no)
 
+============= // 14.04.2026 //============ export detail cua PMS 
+Export_Form_98		them cot MVT
+Export_Outscrap		them cot MVT
+Export_OtherIssueSAP	them cot MVT
+Export_SubIssueSAP	them cot MVT
+stored xuat tong: Select_PMS_OutSAP_download2
+	Format pending_done list (pending -> StatusMGR_Out is NULL : chu ky so 8)
+
+SP_Issue_Material_Report	(them sloc cho MCS)
+SP_Issue_Material_Report2
+SP_Issue_Material_Report_B
+SP_Issue_Material_Report_B2
+SP_getcommet_Log		(them docno -> report PDF)
+SP_getcommet_Log_B		(them docno -> report PDF)
+
+RQA-FES-0426-16 (co comment user)
+
+
+
 
 
 **** check anh huan **** Pending **** khong click mail vao duoc:
+http://localhost:49448/Material_Issues_FormA.aspx?RQ=RQA-SCS-PLD-0426-20&User=2000020&Dept=ACC&Stock=&RoleRQ=ACC-CHECK&RoleRQ_Apr=3&RoleStore=&RoleStore_Apr=
+
 http://10.92.184.24:8095/Material_Issues_FormA.aspx?RQ=RQA-SCS-PLD-0426-20&User=2000020&Dept=ACC&Stock=&RoleRQ=ACC-CHECK&RoleRQ_Apr=3&RoleStore=&RoleStore_Apr=
+
+
 SP_Issue_Material_BindRQ_NOTApproved
 SP_Issue_Material_BindRQ_Approved
 SP_Issue_Material_BindRQ_NOTApproved_OutStock

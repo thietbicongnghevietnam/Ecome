@@ -2901,37 +2901,39 @@ namespace MATERIAL_IN_OUT
             if ( Session["Role_Dept"].ToString().Trim() == "RQ")  //hdfControlRQ.Value.ToString().Trim() == "RQ" &&  ==> bo doan nay : All bo phan co the dowlad PDF
             {
 
-                if (treeRQ_InMaterial.SelectedNode == null)
-                {
-                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
-                    {
-                        if (hdfControlRQ.Value == "")
-                        {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
-                            dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
-                        }
-                        else
-                        {
-                            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), hdfControlRQ.Value);
-                            dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), hdfControlRQ.Value.ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
-                        }
+                //if (treeRQ_InMaterial.SelectedNode == null)
+                //{
+                //    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]))
+                //    {
+                //        if (hdfControlRQ.Value == "")
+                //        {
+                //            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+                //            dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                //        }
+                //        else
+                //        {
+                //            dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), hdfControlRQ.Value);
+                //            dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), hdfControlRQ.Value.ToString().Trim(), Session["Role_Aproved_Dept"].ToString(), Request_NO);
+                //        }
 
-                        if (dtTreeRQ.Rows.Count > 0)
-                        {
-                            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
-                        }
-                    }
-                    else
-                    {
-                        Request_NO = Session["RequestID_1RQ"].ToString();
-                    }
-                }
-                else
-                {
-                    Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
-                }
+                //        if (dtTreeRQ.Rows.Count > 0)
+                //        {
+                //            Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                //        }
+                //    }
+                //    else
+                //    {
+                //        Request_NO = Session["RequestID_1RQ"].ToString();
+                //    }
+                //}
+                //else
+                //{
+                //    Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
+                //}
 
                 //2
+                //minh sua lai 14.04.2026
+                Request_NO = hdfRequest.Value.ToString();
 
 
             }
@@ -3014,12 +3016,15 @@ namespace MATERIAL_IN_OUT
             
             string tieude = lblRequest.Text;
             string commentLOG = "";
+            string doc_PMS = "";
+            string comment2 = "";
             //string[] parts = tieude.Split('.');
             //string result = parts.Length > 1 ? parts[1] : "";
 
             if (Public_Dept != "PUS") // Nếu không phải PUR thì không cần hiển thị phần out SAP
             {
-                dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report", CommandType.StoredProcedure, Request_NO);
+                //dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report", CommandType.StoredProcedure, Request_NO);
+                dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report2", CommandType.StoredProcedure, Request_NO);
                 dt_Status = DataConn.StoreFillDS("SP_Issue_Material_RQStatus", CommandType.StoredProcedure, Request_NO);
 
                 DataTable dt_commentLOG = DataConn.StoreFillDS("SP_getcommet_Log", CommandType.StoredProcedure, Request_NO);
@@ -3027,6 +3032,8 @@ namespace MATERIAL_IN_OUT
                 if (dt_commentLOG.Rows[0][0].ToString() != "")
                 {
                     commentLOG = dt_commentLOG.Rows[0][1].ToString() + ":"+ dt_commentLOG.Rows[0][0].ToString()+ " ("+ dt_commentLOG.Rows[0][2].ToString()+")";
+                    doc_PMS = dt_commentLOG.Rows[0][3].ToString();
+                    comment2 = dt_commentLOG.Rows[0][4].ToString() + ":" + dt_commentLOG.Rows[0][5].ToString() + " (" + dt_commentLOG.Rows[0][6].ToString() + ")";
                 }
                 
 
@@ -3034,7 +3041,7 @@ namespace MATERIAL_IN_OUT
                 {
                     //PDF_A DataPDF = new PDF_A(dt_ReportAll, dt_Status, titleReport);
                     
-                    PDF_A DataPDF = new PDF_A(dt_ReportAll, dt_Status, tieude, commentLOG);
+                    PDF_A DataPDF = new PDF_A(dt_ReportAll, dt_Status, tieude, commentLOG, doc_PMS, comment2);
                     // Create a MigraDoc document
                     Document document = DataPDF.CreateDocument();
                     document.UseCmykColor = true;
@@ -3072,12 +3079,14 @@ namespace MATERIAL_IN_OUT
                 if (dt_commentLOG.Rows[0][0].ToString() != "")
                 {
                     commentLOG = dt_commentLOG.Rows[0][1].ToString() + ":" + dt_commentLOG.Rows[0][0].ToString() + " (" + dt_commentLOG.Rows[0][2].ToString() + ")";
+                    doc_PMS = dt_commentLOG.Rows[0][3].ToString();
+                    comment2 = dt_commentLOG.Rows[0][4].ToString() + ":" + dt_commentLOG.Rows[0][5].ToString() + " (" + dt_commentLOG.Rows[0][6].ToString() + ")";
                 }
 
                 if (dt_ReportAll.Rows.Count > 0 && dt_Status.Rows.Count > 0)
                 {
                     //PUR_Report  DataPDF = new PUR_Report(dt_ReportAll, dt_Status, titleReport);
-                    PUR_Report  DataPDF = new PUR_Report(dt_ReportAll, dt_Status, tieude, commentLOG);
+                    PUR_Report  DataPDF = new PUR_Report(dt_ReportAll, dt_Status, tieude, commentLOG, doc_PMS, comment2);
 
                     // Create a MigraDoc document
                     Document document = DataPDF.CreateDocument();

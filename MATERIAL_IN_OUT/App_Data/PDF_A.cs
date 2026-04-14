@@ -27,12 +27,16 @@ namespace MATERIAL_IN_OUT
         public static TextFrame detailFrame;
         public static String TitleReport;
         public static String comment_log;
-        public PDF_A(DataTable dt_Data, DataTable dt_Status, String str_Titles, String commentLOG)
+        public static String doc_pms;
+        public static String comment_log2;
+        public PDF_A(DataTable dt_Data, DataTable dt_Status, String str_Titles, String commentLOG, String doc_PMS, String commentLOG2)
         {
             dt = dt_Data;
             dtStatus = dt_Status;
             TitleReport = str_Titles;
             comment_log = commentLOG;
+            doc_pms = doc_PMS;
+            comment_log2 = commentLOG2;
         }
         public Document CreateDocument()
         {
@@ -301,7 +305,7 @@ namespace MATERIAL_IN_OUT
             Paragraph paragraph_Date = section.AddParagraph();
             paragraph_Date.Format.SpaceBefore = "2cm";
             paragraph_Date.Style = "Reference";
-            paragraph_Date.AddFormattedText("Request Detail", TextFormat.Bold);
+            paragraph_Date.AddFormattedText("Request Detail  "+ doc_pms, TextFormat.Bold);
             paragraph_Date.AddTab();
             paragraph_Date.AddText("Date, ");
             paragraph_Date.AddDateField("dd.MM.yyyy");
@@ -353,7 +357,8 @@ namespace MATERIAL_IN_OUT
             // Nội dung comment
             pComment.AddFormattedText("Comment: ", TextFormat.Bold);
             pComment.AddText(comment_log);
-
+            pComment.AddLineBreak();
+            pComment.AddText(comment_log2);
 
         }
         public static void FillContent()

@@ -169,7 +169,7 @@
                         <th>IDNO</th>
                         <th>RequestNo</th>
                         <th>Department</th>
-                        <th>Status_RQ</th>
+                        <%--<th>Status_RQ</th>--%>
                         <th>Status_Approved_OutSAP</th>
                         <th>TypeForm</th>
                         <th>Sanction Name</th>
@@ -198,7 +198,7 @@
                         <td><%= i %></td>
                         <td><%= rows["RequestNo"].ToString() %></td>
                         <td><%= rows["Department"].ToString() %></td>
-                        <td><%= rows["Status_RQ"].ToString() %></td>
+                        <%--<td><%= rows["Status_RQ"].ToString() %></td>--%>
                         <td>
                             <%--<%= rows["Status_Approved_OutSAP"].ToString() %>--%>
                              <%= string.IsNullOrEmpty(rows["Status_Approved_OutSAP"]?.ToString()) 
@@ -248,7 +248,7 @@
                         <th>IDNO</th>
                         <th>RequestNo</th>
                         <th>Department</th>
-                        <th>Status_RQ</th>
+                        <%--<th>Status_RQ</th>--%>
                         <th>Status_Approved_OutSAP</th>
                         <th>TypeForm</th>
                         <th>Sanction Name</th>
@@ -674,7 +674,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="ID">Status Tranfer SAP<i style="color: red;">(* This field is not null! *)</i></label>
+                        <label for="ID">Status Tranfer SAP<i style="color: green;">(* Tranfer SAP done! *)</i></label>
                         <asp:TextBox ID="DocumentNo10" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
                     </div>
                     <div class="col-md-6">

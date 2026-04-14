@@ -368,7 +368,8 @@
         
                              <li>
                                <asp:HyperLink ID="linkIncharge" runat="server" NavigateUrl="~/Control_ExchangeRate.aspx"><i class="fa fa-line-chart"> Control Rate Daily</i></asp:HyperLink>
-                            </li>                                                       
+                            </li>  
+                            
                             <li style="display:none">
                                 <asp:HyperLink ID="linkDownload" runat="server"  NavigateUrl ="~/Download.aspx"> <i class="fa big-icon fa-download"> Download All data</i></asp:HyperLink>
                             </li>
@@ -394,7 +395,12 @@
                                    class=" big-icon">
                                    <i class="fa fa-cogs"></i> Master Type ACC
                                 </a>
-
+                            </li>
+                            <li>
+                               <a href="/frmSlocMCS.aspx" target="_blank" 
+                                   class=" big-icon">
+                                   <i class="fa fa-cogs"></i> Master Sloc MCS
+                                </a>
                             </li>
                             <li>
                                <a href="/frmPMSOutSap.aspx" target="_blank" 

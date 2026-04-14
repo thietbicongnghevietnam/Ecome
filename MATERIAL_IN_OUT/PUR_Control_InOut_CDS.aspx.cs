@@ -226,7 +226,9 @@ namespace MATERIAL_IN_OUT
             {
                 //PUR_Report PUR_Report_ = new PUR_Report(dt_ReportAll, dt_Status, titleReport);
                 string commentlog = "truonghoplog";
-                PUR_Report PUR_Report_ = new PUR_Report(dt_ReportAll, dt_Status, titleReport, commentlog);
+                string doc_PMS = "";
+                string comment2 = "";
+                PUR_Report PUR_Report_ = new PUR_Report(dt_ReportAll, dt_Status, titleReport, commentlog, doc_PMS, comment2);
                 // Create a MigraDoc document
                 Document document = PUR_Report_.CreateDocument();
                 document.UseCmykColor = true;
