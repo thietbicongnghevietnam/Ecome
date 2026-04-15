@@ -3136,8 +3136,7 @@ namespace MATERIAL_IN_OUT
 
                             Amount_Actual = (decimal)Math.Round((UnitActual * Qty), 5);
 
-                            txtDateInput.Value = DateTime.Now.ToString("dd/MM/yyyy");
-
+                            //txtDateInput.Value = DateTime.Now.ToString("dd/MM/yyyy");
                             if (txtDateInput.Value.ToString() == "")
                             {
 

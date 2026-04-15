@@ -70,7 +70,12 @@
                 <button class="btn btn-primary" type="button" runat="server" onserverclick="Search_Date_Click">
                     Filter
                 </button>
-            </div>           
+            </div>  
+            
+             <span style="padding-left:20px;"></span>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Add New
+                </button>
         </div>
     </div>
 
@@ -105,9 +110,11 @@
                  <td><%= rows["Address"].ToString() %></td>                                  
                  <td><%= rows["Description"].ToString() %></td>                                  
                  <td><%= rows["CreatedBy"].ToString() %></td>                                  
-                 <td></td>                                  
-                 <td>                     
-                 </td>
+                 <td>
+                     <a href="#" class="btn btn-primary" title="Edit" onclick="openEditModal6('<%= rows["Id"].ToString() %>','<%= rows["Plant"].ToString() %>','<%= rows["Sloc"].ToString() %>')">Edit</a>
+                     <a href="#" class="btn btn-danger" title="Delete" onclick="openEditModal7('<%= rows["Id"].ToString() %>','<%= rows["Sloc"].ToString() %>')">Delete</a>
+                 </td>                                  
+                
              </tr>
              <% } %>
          </tbody>
@@ -130,12 +137,145 @@
 
 </div>
 
+                        <!-- Modal -->
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Sloc</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                         <div class="row">                               
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="exampleInputEmail1">Plant</label>
+                                        <span style="color: red; font-size: 11px; font-style: italic;">You must input!(*)</span>
+                                        <asp:TextBox ID="idplan" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>                                        
+                                    </div>
+                                </div>
+                              <div class="col-md-6">
+                                     <div class="form-group">
+                                         <label for="ID">Sloc</label>
+                                         <span style="color: red; font-size: 11px; font-style: italic;">You must input!(*)</span>
+                                         <asp:TextBox ID="idsloc" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                                     </div>
+                                 </div>
+                            </div>                    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" runat="server" onserverclick="themhanghoa">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        <div class="modal" id="myModal6">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div>
+                        <h4 class="modal-title" id="headerTag6" style="float: left">Dou you want Edit Sloc ?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float: right; margin-left: 300px;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="ID">Plan</label>
+                        <asp:TextBox ID="Plantid" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ID">Sloc</label>
+                        <asp:TextBox ID="Slocid" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="ID">ID</label>
+                        <asp:TextBox ID="txtid" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                       
+                    </div>
+                </div>
+                
+
+                <!-- Lặp lại thêm các dòng -->
+            </div>
+
+            <%-- Modal footer --%>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" runat="server" id="Button4" onserverclick="UpdateDocumentNo" class="btn btn-primary">
+                    Update
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                <div class="modal" id="myModal7">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div>
+                        <h4 class="modal-title" id="headerTag7" style="float: left">Dou you want delete Sloc ?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float: right; margin-left: 300px;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-body">
+               
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="ID">ID</label>
+                        <asp:TextBox ID="txtid7" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                       <label for="ID">ID</label>
+                        <asp:TextBox ID="sloc7" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                </div>
+                
+
+                <!-- Lặp lại thêm các dòng -->
+            </div>
+
+            <%-- Modal footer --%>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" runat="server" id="Button1" onserverclick="DeleteslocMCS" class="btn btn-primary">
+                    Update
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     </form>
 
     <script type="text/javascript">
         $(document).ready(function () {
-            //$('#RequestNoid').prop("readonly", true);
+            $('#txtid').prop("readonly", true);
+            $('#txtid7').prop("readonly", true);
             //$('#TypeFormid').prop("readonly", true);
             //$('#RequestNo4').prop("readonly", true);
             //$('#TypeForm4').prop("readonly", true);
@@ -160,6 +300,21 @@
             });
 
         });
+
+        function openEditModal6(id, Plant, Sloc) {
+            $("#txtid").val(id);
+            $("#Plantid").val(Plant);
+            $("#Slocid").val(Sloc);
+            $('#myModal6').modal('show');
+        }
+
+        function openEditModal7(id, Sloc) {
+            $("#txtid7").val(id);
+            $("#sloc7").val(Sloc);            
+            $('#myModal7').modal('show');
+        }
+
+
     </script>
 
 </body>

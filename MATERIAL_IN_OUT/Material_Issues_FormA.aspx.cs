@@ -1121,7 +1121,7 @@ namespace MATERIAL_IN_OUT
                         Amount = (decimal)Math.Round((UnitPriceST * Qty), 5);
 
 
-                        txtDateInput.Value = DateTime.Now.ToString("dd/MM/yyyy");
+                        //txtDateInput.Value = DateTime.Now.ToString("dd/MM/yyyy");                        
                         if (txtDateInput.Value.ToString() == "")
                         {
 

@@ -505,6 +505,10 @@ SP_getcommet_Log_B		(them docno -> report PDF)
 
 RQA-FES-0426-16 (co comment user)
 
+========= // 15.04.2026 //===========
+Select_mater_slocMCS
+
+
 
 
 
