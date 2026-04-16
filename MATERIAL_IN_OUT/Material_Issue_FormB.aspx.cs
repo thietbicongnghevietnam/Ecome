@@ -107,9 +107,9 @@ namespace MATERIAL_IN_OUT
                     //string costcente41 = (string)Session["CostCenter"];
                     //string role1 = (string)Session["Role"];
                     //string rq1 = (string)Session["RequestID_1RQ"];
-
-                    if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]) && string.IsNullOrEmpty((string)Session["CostCenter"]) && string.IsNullOrEmpty((string)Session["UserName"]) ||
-                  string.IsNullOrEmpty((string)Session["Role"]) && string.IsNullOrEmpty((string)Session["Stock"]) && string.IsNullOrEmpty((string)Session["Role_Dept"]))
+                    if (string.IsNullOrEmpty((string)Session["UserName"]) || string.IsNullOrEmpty((string)Session["CostCenter"]))
+                    //      if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]) && string.IsNullOrEmpty((string)Session["CostCenter"]) && string.IsNullOrEmpty((string)Session["UserName"]) ||
+                    //string.IsNullOrEmpty((string)Session["Role"]) && string.IsNullOrEmpty((string)Session["Stock"]) && string.IsNullOrEmpty((string)Session["Role_Dept"]))
                     {
                         Response.Redirect("Login.aspx", false);
                     }
@@ -1293,7 +1293,15 @@ namespace MATERIAL_IN_OUT
                 {
                     commentLOG = dt_commentLOG.Rows[0][1].ToString() + ":" + dt_commentLOG.Rows[0][0].ToString() + " (" + dt_commentLOG.Rows[0][2].ToString() + ")";
                     doc_PMS = dt_commentLOG.Rows[0][3].ToString();
-                    comment2 = dt_commentLOG.Rows[0][4].ToString() + ":" + dt_commentLOG.Rows[0][5].ToString() + " (" + dt_commentLOG.Rows[0][6].ToString() + ")";
+                    //comment2 = dt_commentLOG.Rows[0][4].ToString() + ":" + dt_commentLOG.Rows[0][5].ToString() + " (" + dt_commentLOG.Rows[0][6].ToString() + ")";
+                    if (dt_commentLOG.Rows[0][4].ToString() != "")
+                    {
+                        comment2 = dt_commentLOG.Rows[0][4].ToString() + ":" + dt_commentLOG.Rows[0][5].ToString() + " (" + dt_commentLOG.Rows[0][6].ToString() + ")";
+                    }
+                    else 
+                    {
+                        comment2 = "";
+                    }
                 }
 
                 if (dt_ReportAll.Rows.Count > 0 && dt_Status.Rows.Count > 0)
@@ -1343,7 +1351,15 @@ namespace MATERIAL_IN_OUT
                 {
                     commentLOG = dt_commentLOG.Rows[0][1].ToString() + ":" + dt_commentLOG.Rows[0][0].ToString() + " (" + dt_commentLOG.Rows[0][2].ToString() + ")";
                     doc_PMS = dt_commentLOG.Rows[0][3].ToString();
-                    comment2 = dt_commentLOG.Rows[0][4].ToString() + ":" + dt_commentLOG.Rows[0][5].ToString() + " (" + dt_commentLOG.Rows[0][6].ToString() + ")";
+                    //comment2 = dt_commentLOG.Rows[0][4].ToString() + ":" + dt_commentLOG.Rows[0][5].ToString() + " (" + dt_commentLOG.Rows[0][6].ToString() + ")";
+                    if (dt_commentLOG.Rows[0][4].ToString() != "")
+                    {
+                        comment2 = dt_commentLOG.Rows[0][4].ToString() + ":" + dt_commentLOG.Rows[0][5].ToString() + " (" + dt_commentLOG.Rows[0][6].ToString() + ")";
+                    }
+                    else
+                    {
+                        comment2 = "";
+                    }
                 }
 
                 if (dt_ReportAll.Rows.Count > 0 && dt_Status.Rows.Count > 0)
