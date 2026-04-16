@@ -353,10 +353,10 @@
                             </li>
 
                             <li>     
-                                <asp:HyperLink ID="linkMaterialA" runat="server" NavigateUrl="~/Material_Issues_FormA.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr="><i class="fa big-icon fa-desktop"> Material Issue-Form A</i></asp:HyperLink>
+                                <asp:HyperLink ID="linkMaterialA" runat="server" NavigateUrl="~/Material_Issues_FormA.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr="><i class="fa big-icon fa-desktop"> Material Issue-Form A</i></asp:HyperLink> 
                             </li>
                             <li>
-                                <asp:HyperLink ID="linkMaterialB"  runat="server" NavigateUrl="~/Material_Issue_FormB.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr="><i class="fa big-icon fa-desktop"> Material Issue-Form B</i></asp:HyperLink>
+                                <asp:HyperLink ID="linkMaterialB"  runat="server" NavigateUrl="~/Material_Issue_FormB.aspx?RQ=&User=&Dept=&Stock=&RoleRQ=&RoleRQ_Apr=&RoleStore=&RoleStore_Apr="><i class="fa big-icon fa-desktop"> Material Issue-Form B</i></asp:HyperLink>  
                             </li>
                               <li>
                                 <asp:HyperLink ID="linkPUR_CDS" runat="server" NavigateUrl="~/PUR_Control_InOut_CDS.aspx"><i class="fa fa-server"> PUR-Out SAP</i></asp:HyperLink>

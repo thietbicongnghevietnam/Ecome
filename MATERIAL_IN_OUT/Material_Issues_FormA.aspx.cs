@@ -106,19 +106,12 @@ namespace MATERIAL_IN_OUT
                 }
                 else
                 {
-                    //string Stock1 = (string)Session["Stock"];
-                    //string RoleApprove1 = (string)Session["Role_Aproved_Dept"];
-                    //string RoleRQ1 = (string)Session["Role_Dept"];
-                    //string User1 = (string)Session["UserName"];
-                    //string costcente41 = (string)Session["CostCenter"];
-                    //string role1 = (string)Session["Role"];
-                    //string rq1 = (string)Session["RequestID_1RQ"];
 
-
-                    if (string.IsNullOrEmpty((string)Session["UserName"]) || string.IsNullOrEmpty((string)Session["CostCenter"]))
+                    //1 || string.IsNullOrEmpty((string)Session["Stock"])
+                    if (string.IsNullOrEmpty((string)Session["UserName"]) || string.IsNullOrEmpty((string)Session["CostCenter"])) 
                       //  if (string.IsNullOrEmpty((string)Session["RequestID_1RQ"]) && string.IsNullOrEmpty((string)Session["CostCenter"]) && string.IsNullOrEmpty((string)Session["UserName"]) ||
                       //string.IsNullOrEmpty((string)Session["Role"]) && string.IsNullOrEmpty((string)Session["Stock"]) && string.IsNullOrEmpty((string)Session["Role_Dept"]))
-                    {
+                        {
                         Response.Redirect("Login.aspx", false);
                     }
                     else
@@ -231,7 +224,7 @@ namespace MATERIAL_IN_OUT
             };
 
             treeRQ_InMaterial.Nodes.Add(treeNodes);
-            DataTable table_Tree1 = new DataTable();
+            DataTable table_Tree1 = new DataTable(); 
             string Stock = Session["Stock"].ToString().Trim();
             string RoleApprove = Session["Role_Aproved_Dept"].ToString().Trim();
             string RoleRQ = Session["Role_Dept"].ToString().Trim();

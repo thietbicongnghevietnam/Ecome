@@ -165,24 +165,52 @@ namespace MATERIAL_IN_OUT.AppCode
             //    throw _ex;
             //}
         }
+        //public static DataTable StoreFillDS(string query_object, CommandType type, params object[] obj)
+        //{
+        //    SqlConnection conn = new SqlConnection(source);
+        //    conn.Open();
+        //    SqlCommand cmd = new SqlCommand(query_object, conn);
+        //    cmd.CommandType = type;
+        //    SqlCommandBuilder.DeriveParameters(cmd);
+        //    for (int i = 1; i <= obj.Length; i++)
+        //    {
+        //        cmd.Parameters[i].Value = obj[i - 1];
+        //    }
+        //    SqlDataAdapter dap = new SqlDataAdapter(cmd);
+        //    DataSet ds = new DataSet(); 
+        //    dap.Fill(ds);
+        //    conn.Dispose();
+        //    conn.Close();
+
+        //    // Fix chính: kiểm tra trước khi trả về
+        //    return ds.Tables.Count > 0 ? ds.Tables[0] : new DataTable();
+        //    //return ds.Tables[0];
+        //}
+        //1
         public static DataTable StoreFillDS(string query_object, CommandType type, params object[] obj)
         {
-            SqlConnection conn = new SqlConnection(source);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query_object, conn);
-            cmd.CommandType = type;
-            SqlCommandBuilder.DeriveParameters(cmd);
-            for (int i = 1; i <= obj.Length; i++)
+            using (SqlConnection conn = new SqlConnection(source))
             {
-                cmd.Parameters[i].Value = obj[i - 1];
-            }
-            SqlDataAdapter dap = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet(); 
-            dap.Fill(ds);
-            conn.Dispose();
-            conn.Close();
-            return ds.Tables[0];
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query_object, conn))
+                {
+                    cmd.CommandType = type;
+                    SqlCommandBuilder.DeriveParameters(cmd);
+                    for (int i = 1; i <= obj.Length; i++)
+                    {
+                        cmd.Parameters[i].Value = obj[i - 1] ?? DBNull.Value;
+                    }
+
+                    using (SqlDataAdapter dap = new SqlDataAdapter(cmd))
+                    {
+                        DataSet ds = new DataSet();
+                        dap.Fill(ds);
+                        return ds.Tables.Count > 0 ? ds.Tables[0] : new DataTable();
+                    }
+                }
+            } // ← tự động Close() + Dispose() dù có exception hay không
         }
+
         private static string key = "1prt56";
 
         public static string Encrypt(string Encryptval)
@@ -251,25 +279,49 @@ namespace MATERIAL_IN_OUT.AppCode
         }
 
         //Store Procedure tra ve datatable
+        //public static DataTable FillStore(string storename, CommandType type, params object[] obj)
+        //{
+        //    SqlConnection conn = new SqlConnection(source);
+        //    conn.Open();
+        //    SqlCommand cmd = new SqlCommand(storename, conn);
+        //    cmd.CommandType = type;
+        //    SqlCommandBuilder.DeriveParameters(cmd);
+        //    for (int i = 1; i <= obj.Length; i++)
+        //    {
+        //        cmd.Parameters[i].Value = obj[i - 1];
+        //    }
+        //    SqlDataAdapter dap = new SqlDataAdapter(cmd);
+        //    DataSet ds = new DataSet();
+        //    //cmd.ExecuteNonQuery();
+        //    dap.Fill(ds);
+        //    conn.Dispose();
+        //    conn.Close();
+        //    return ds.Tables[0];
+
+        //}
+        //1
         public static DataTable FillStore(string storename, CommandType type, params object[] obj)
         {
-            SqlConnection conn = new SqlConnection(source);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(storename, conn);
-            cmd.CommandType = type;
-            SqlCommandBuilder.DeriveParameters(cmd);
-            for (int i = 1; i <= obj.Length; i++)
+            using (SqlConnection conn = new SqlConnection(source))
             {
-                cmd.Parameters[i].Value = obj[i - 1];
-            }
-            SqlDataAdapter dap = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            //cmd.ExecuteNonQuery();
-            dap.Fill(ds);
-            conn.Dispose();
-            conn.Close();
-            return ds.Tables[0];
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(storename, conn))
+                {
+                    cmd.CommandType = type;
+                    SqlCommandBuilder.DeriveParameters(cmd);
+                    for (int i = 1; i <= obj.Length; i++)
+                    {
+                        cmd.Parameters[i].Value = obj[i - 1] ?? DBNull.Value;
+                    }
 
+                    using (SqlDataAdapter dap = new SqlDataAdapter(cmd))
+                    {
+                        DataSet ds = new DataSet();
+                        dap.Fill(ds);
+                        return ds.Tables.Count > 0 ? ds.Tables[0] : new DataTable();
+                    }
+                }
+            }
         }
 
         public static void ShowNoResultFound(DataTable source, GridView gv)

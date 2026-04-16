@@ -510,13 +510,13 @@ Select_mater_slocMCS
 
 
 
-
-
-
 **** check anh huan **** Pending **** khong click mail vao duoc:
 http://localhost:49448/Material_Issues_FormA.aspx?RQ=RQA-SCS-PLD-0426-20&User=2000020&Dept=ACC&Stock=&RoleRQ=ACC-CHECK&RoleRQ_Apr=3&RoleStore=&RoleStore_Apr=
-
 http://10.92.184.24:8095/Material_Issues_FormA.aspx?RQ=RQA-SCS-PLD-0426-20&User=2000020&Dept=ACC&Stock=&RoleRQ=ACC-CHECK&RoleRQ_Apr=3&RoleStore=&RoleStore_Apr=
+
+
++sua 2 ham table con connect
+
 
 
 SP_Issue_Material_BindRQ_NOTApproved
