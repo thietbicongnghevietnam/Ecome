@@ -511,6 +511,16 @@ Select_mater_slocMCS
 ==========// 20.04.2026 //=====
 Update_Document_No
 
+==========// 22.04.2026 //=====
+Select_PMS_OutSAP_download2	(them dieu kien loc trang thai reject)
+Select_PMS_OutSAP_new		(them dieu kien loc trang thai reject)
+Select_PMS_OutSAP_search2_new2	(them dieu kien loc trang thai reject)
+
+SP_Issue_Material_BindRQ_Approved_B	(LOG xem them cac request da duoc apporve)
+
+==========// 23.04.2026 //=====
+SP_Issue_Material_BindRQ_Approved	(LOG xem them cac request da duoc apporve)
+Select_PMS_OutSAP_download2		(them report all cho LOG => sua dieu kienloc pending MCS)
 
 
 

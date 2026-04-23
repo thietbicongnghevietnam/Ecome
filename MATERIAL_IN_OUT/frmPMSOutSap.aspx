@@ -109,6 +109,10 @@
                             <asp:RadioButton ID="optDownloadTong" runat="server" GroupName="downloadOption" />
                             CSV format tổng (Transfer)
                         </label>
+                        <label style="margin: 0; display: flex; align-items: center; gap: 4px; height: 34px; cursor: pointer;">
+                            <asp:RadioButton ID="optReportLog" runat="server" GroupName="downloadOption" />
+                            Report LOG
+                        </label>
                        
                         <%--<label style="margin: 0; display: flex; align-items: center; gap: 4px; height: 34px; cursor: pointer;">
                             <asp:CheckBox ID="chkDownloadtong" runat="server" />
@@ -316,6 +320,7 @@
                                     <th>AmountST</th>
                                     <th>DocumentNo</th>
                                     <th>SanctionName</th>
+                                    <th>Reason</th>
                                 </tr>
                             </thead>
 
@@ -836,7 +841,8 @@
                         html += "<td>" + data[i].UnitPrice_ST + "</td>";
                         html += "<td>" + data[i].Amount_ST + "</td>";
                         html += "<td>" + data[i].DocumentNo + "</td>";
-                        html += "<td>" + data[i].SanctionName + "</td>";                        
+                        html += "<td>" + data[i].SanctionName + "</td>";
+                        html += "<td>" + data[i].Reason + "</td>";
                         html += "</tr>";
                     }
                     $("#detailTableBody").html(html);

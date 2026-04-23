@@ -1089,12 +1089,9 @@ namespace MATERIAL_IN_OUT
                         // Luôn lấy VendorCode
                         VendorCode = vendorCodeValue;
 
-
                         Note = dt.Rows[i][14].ToString();  //14.note
                         CountryOfOrgin = dt.Rows[i][15].ToString();
                         ItemDescription = dt.Rows[i][16].ToString();
-
-
 
                         RQ_Reset = dt.Rows[i][17].ToString(); //17. so request no reset
                         DataTable dtPrice = new DataTable();
@@ -3748,7 +3745,8 @@ namespace MATERIAL_IN_OUT
             //}
 
             DataTable dt_ExportExcel = new DataTable();
-            //Request_NO  = "RQB-PUR-1225-1";
+            //Request_NO  = "RQB-PUR-1225-1";         
+
             dt_ExportExcel = DataConn.FillStore("SP_Issue_Material_Report", CommandType.StoredProcedure, Request_NO);
 
             if (dt_ExportExcel.Rows.Count > 0)

@@ -167,7 +167,9 @@ namespace MATERIAL_IN_OUT
                     dr["Price_STD"] = SafeDecimal(dtExcel.Rows[i][30]);
                     dr["Price2"] = 0;
                     dr["Qty"] = 0;
-                    dr["StockQty"] = SafeDouble(dtExcel.Rows[i][41]);
+                    //dr["StockQty"] = SafeDouble(dtExcel.Rows[i][41]);  //request Ngoc ACC tong ton kho = 4 cot + lai voi nhau
+                    dr["StockQty"] = SafeDouble(dtExcel.Rows[i][41]) + SafeDouble(dtExcel.Rows[i][42]) + SafeDouble(dtExcel.Rows[i][43]) + SafeDouble(dtExcel.Rows[i][44]);
+
                     dr["Sloc"] = dtExcel.Rows[i][2].ToString();
                     dr["DateInsert"] = DateTime.Now;
                     dr["UserUpdate"] = user;

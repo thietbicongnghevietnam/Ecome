@@ -124,7 +124,7 @@ namespace MATERIAL_IN_OUT
             {
                 selectedOption = "MCS";
             }
-
+            
 
             //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno);
             //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS);
@@ -214,6 +214,11 @@ namespace MATERIAL_IN_OUT
             {
                 //CSV format tổng(issue out)
                 typedownload = "2";
+            }
+            else if(optReportLog.Checked) 
+            {
+                //truong hop report cua LOG => download ALl
+                typedownload = "3"; 
             }
 
             if (rbPMS.Checked)
@@ -870,11 +875,32 @@ namespace MATERIAL_IN_OUT
             sb.AppendLine();
 
             // Data (bỏ cột 0)
+            //foreach (DataRow row in dt1.Rows)
+            //{
+            //    for (int i = 1; i < dt1.Columns.Count; i++)
+            //    {
+            //        sb.Append(row[i].ToString().Replace(",", " ") + ",");
+            //    }
+            //    sb.AppendLine();
+            //}
+
+            // xu ly loi xuong dong => cot comment log  //[tbl_RQMaterial_Comment] where RQ='RQA-COS-0426-38'
+            //da sua **** 22.04.2026
             foreach (DataRow row in dt1.Rows)
             {
                 for (int i = 1; i < dt1.Columns.Count; i++)
                 {
-                    sb.Append(row[i].ToString().Replace(",", " ") + ",");
+                    string value = row[i].ToString();
+
+                    // Gộp xuống dòng
+                    value = value.Replace("\r\n", " ")
+                                 .Replace("\n", " ")
+                                 .Replace("\r", " ");
+
+                    // Escape dấu "
+                    value = value.Replace("\"", "\"\"");
+
+                    sb.Append($"\"{value}\",");
                 }
                 sb.AppendLine();
             }
@@ -895,7 +921,7 @@ namespace MATERIAL_IN_OUT
                 string typeForm = Request["typeForm"];
 
                 string tableName = typeForm == "B" ? "tbl_RQ_MaterialIssueB" : "tbl_RQ_MaterialIssue";
-                string sql = $@"SELECT Material, Plant, VendorCode,CostCenter, Sloc, IssueQty, UnitPrice_ST, Amount_ST,DocumentNo,SanctionName,MvType FROM {tableName} WHERE RequestNo = @RequestNo";
+                string sql = $@"SELECT Material, Plant, VendorCode,CostCenter, Sloc, IssueQty, UnitPrice_ST, Amount_ST,DocumentNo,SanctionName,MvType,Reason FROM {tableName} WHERE RequestNo = @RequestNo";
 
                 var list = new List<object>();
                 using (SqlConnection con = new SqlConnection(DataConn.source))
@@ -918,7 +944,8 @@ namespace MATERIAL_IN_OUT
                             Amount_ST = dr["Amount_ST"].ToString(),
                             DocumentNo = dr["DocumentNo"].ToString(),
                             SanctionName = dr["SanctionName"].ToString(),
-                            MvType = dr["MvType"].ToString()
+                            MvType = dr["MvType"].ToString(),
+                            Reason = dr["Reason"].ToString()
                         });
                     }
                 }
