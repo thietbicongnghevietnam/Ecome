@@ -522,7 +522,13 @@ SP_Issue_Material_BindRQ_Approved_B	(LOG xem them cac request da duoc apporve)
 SP_Issue_Material_BindRQ_Approved	(LOG xem them cac request da duoc apporve)
 Select_PMS_OutSAP_download2		(them report all cho LOG => sua dieu kienloc pending MCS)
 
+==========// 24.04.2026 //=====
+tbl_TypeMater	(bang them 2 cot) MVTOut MVTIn
+Update_Form_AB2
+Insert_Form_AB2
+SP_Issue_Material_Check_MVType2
 
+SP_Issue_Material_BindRQ_NOTApproved		(1 user chi Tho co 2 quen phai bo dieu kien user di moi nhin thay)
 
 
 **** check anh huan **** Pending **** khong click mail vao duoc:

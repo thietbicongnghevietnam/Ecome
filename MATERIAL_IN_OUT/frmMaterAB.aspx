@@ -52,10 +52,10 @@
          </div>
          <div class="col-sm-12">
              <div style="float: left; padding-right: 10px;">
-                 Từ ngày:
+                 To Date:
                        <%--<input type="text" id="datepicker" runat="server">--%>
                  <input type="date" id="Date1" name="date" runat="server">
-                 Đến ngày:                                    
+                 From Date:                                    
                        <input type="date" id="ngaychiid" name="date" runat="server">
              </div>
 
@@ -65,7 +65,7 @@
 
              <div style="float: left;">
                  <button class="btn btn-primary" type="button" runat="server" onserverclick="Search_Date_Click">
-                     Lọc
+                     Filter
                  </button>
              </div>
 
@@ -100,6 +100,8 @@
                     <th>NameTemplate</th>
                     <th>AccountCost</th>                 
                     <th>AccountName</th>
+                    <th>Out</th>
+                    <th>In</th>
                     <th>Action</th>
                  </tr>
            
@@ -118,8 +120,10 @@
                  <td><%=rows["NameTemplate"].ToString()%></td>
                  <td><%=rows["AccountCost"].ToString()%></td>                 
                  <td><%=rows["AccountName"].ToString()%></td>                 
+                 <td><%=rows["MVTOut"].ToString()%></td>                 
+                 <td><%=rows["MVTIn"].ToString()%></td>                 
                  <td>
-                     <a href="#" class="btn btn-info btn-sm" title="eidt item" onclick="openEditModal3('<%= rows["TypeID"].ToString() %>','<%= rows["TypeName"].ToString() %>','<%=rows["Decription"].ToString() %>','<%=rows["NameTemplate"].ToString() %>','<%=rows["AccountCost"].ToString() %>','<%=rows["AccountName"].ToString() %>','<%=rows["ID"].ToString() %>')">Edit</a>
+                     <a href="#" class="btn btn-info btn-sm" title="eidt item" onclick="openEditModal3('<%= rows["TypeID"].ToString() %>','<%= rows["TypeName"].ToString() %>','<%=rows["Decription"].ToString() %>','<%=rows["NameTemplate"].ToString() %>','<%=rows["AccountCost"].ToString() %>','<%=rows["AccountName"].ToString() %>','<%=rows["ID"].ToString() %>','<%=rows["MVTOut"].ToString()%>','<%=rows["MVTIn"].ToString()%>')">Edit</a>
                      <a href="#" style="background-color: #dc3545; color: white;" class="btn btn-info btn-sm" title="eidt item" onclick="openEditModal4('<%= rows["ID"].ToString() %>')">Delete</a>
 
                  </td>
@@ -134,6 +138,8 @@
                    <th>NameTemplate</th>
                    <th>AccountCost</th>                 
                    <th>AccountName</th>
+                   <th>Out</th>
+                   <th>In</th>
                    <th>Action</th>            
              </tr>
          </tfoot>
@@ -185,6 +191,17 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="ID">MVT OUT</label>
+                        <asp:TextBox ID="outid" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ID">MVT IN</label>
+                        <asp:TextBox ID="inid" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                </div>
+
                 <!-- Lặp lại thêm các dòng -->
             </div>
 
@@ -233,9 +250,8 @@
                  </div>
              </div>
              <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>Close</button>
-                 <button type="button" runat="server" id="Button2" onserverclick="Xoathongtin" class="btn btn-primary">
-                     <i class="fas fa-download"></i>
+                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                 <button type="button" runat="server" id="Button2" onserverclick="Xoathongtin" class="btn btn-primary">                     
                      Save
                  </button>
              </div>
@@ -295,6 +311,16 @@
                 </div>
                   <div class="row">
                     <div class="col-md-6">
+                        <label for="ID">MVT OUT</label>
+                        <asp:TextBox ID="idout" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ID">MVT IN</label>
+                        <asp:TextBox ID="idin" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
+                    </div>
+                </div>
+                  <div class="row">
+                    <div class="col-md-6">
                         <label for="ID">ID</label>
                         <asp:TextBox ID="idID" CssClass="form-control" placeholder="" runat="server"></asp:TextBox>
                     </div>
@@ -307,9 +333,8 @@
 
              <%-- Modal footer --%>
              <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>Close</button>
-                 <button type="button" runat="server" id="Button1" onserverclick="Updatethongtin" class="btn btn-primary">
-                     <i class="fas fa-download"></i>
+                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                 <button type="button" runat="server" id="Button1" onserverclick="Updatethongtin" class="btn btn-primary">                     
                      Save
                  </button>
              </div>
@@ -354,7 +379,7 @@
 
     });
 
-    function openEditModal3(TypeID, TypeName, Decription, NameTemplate, AccountCost, AccountName,ID) {
+    function openEditModal3(TypeID, TypeName, Decription, NameTemplate, AccountCost, AccountName,ID,mvtout,mvtin) {
         $("#IDTypeID").val(TypeID);
         $("#idTypeName").val(TypeName);
         $("#idDecription").val(Decription);
@@ -362,6 +387,8 @@
         $("#idAccountCost").val(AccountCost);
         $("#idAccountName").val(AccountName);
         $("#idID").val(ID);
+        $("#idout").val(mvtout);
+        $("#idin").val(mvtin);
 
         $('#myModal3').modal('show');
     }

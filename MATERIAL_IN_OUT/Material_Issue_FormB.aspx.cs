@@ -3013,9 +3013,15 @@ namespace MATERIAL_IN_OUT
                             {
                                 MVContent = dt.Rows[i][8].ToString();
                                 DataTable dtCheckMV = new DataTable();
-                                dtCheckMV = DataConn.StoreFillDS("SP_Issue_Material_Check_MVType", CommandType.StoredProcedure, Mvtype.Trim(), MVContent.Trim());
-                                // Kiểm tra MV-TypeName không đúng Mv TypeID`
-                                if (int.Parse(dtCheckMV.Rows[0]["TotalMV"].ToString()) == 0)
+                                //dtCheckMV = DataConn.StoreFillDS("SP_Issue_Material_Check_MVType", CommandType.StoredProcedure, Mvtype.Trim(), MVContent.Trim());
+                                dtCheckMV = DataConn.StoreFillDS("SP_Issue_Material_Check_MVType2", CommandType.StoredProcedure, Mvtype, MVContent, TypeRQ);
+                                // Kiểm tra MV-TypeName không đúng Mv TypeID
+                                if (dtCheckMV.Rows[0][0].ToString() == "0")
+                                {
+                                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data MVContent at row :(" + (i + 1).ToString() + ") is not exit.');", true);
+                                    return;
+                                }
+                                else if (dtCheckMV.Rows[0][0].ToString() == "2")
                                 {
                                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data MVName at row :(" + (i + 1).ToString() + ") is incorrect with MVType.');", true);
                                     return;

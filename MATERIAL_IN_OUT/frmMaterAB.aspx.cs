@@ -38,12 +38,16 @@ namespace MATERIAL_IN_OUT
             string AccountCost = AccountCostid.Text;
             string AccountName = AccountNameid.Text;
 
+            string MVTout    = outid.Text.Trim();
+            string MVTin    = inid.Text.Trim();
+
             ////string userid = Session["username"].ToString();
 
-            if (TypeID != "" && TypeName != "" && AccountCost != "")
+            if (TypeID != "" && TypeName != "" && AccountCost != "" && MVTout != "" && MVTin != "" & NameTemplate != "")
             {
                 DataTable dtinsert = new DataTable();
-                dtinsert = DataConn.StoreFillDS("Insert_Form_AB", System.Data.CommandType.StoredProcedure, TypeID, TypeName, Decription, NameTemplate, AccountCost, AccountName);
+                //dtinsert = DataConn.StoreFillDS("Insert_Form_AB", System.Data.CommandType.StoredProcedure, TypeID, TypeName, Decription, NameTemplate, AccountCost, AccountName);
+                dtinsert = DataConn.StoreFillDS("Insert_Form_AB2", System.Data.CommandType.StoredProcedure, TypeID, TypeName, Decription, NameTemplate, AccountCost, AccountName, MVTout, MVTin);
                 if (dtinsert.Rows[0][0].ToString() == "1")
                 {
                     dt_image = DataConn.StoreFillDS("Select_form_AB", System.Data.CommandType.StoredProcedure);
@@ -68,6 +72,10 @@ namespace MATERIAL_IN_OUT
             string NameTemplate = idNameTemplate.Text;
             string AccountCost = idAccountCost.Text;
             string AccountName = idAccountName.Text;
+
+            string mvtout = idout.Text.Trim();
+            string vmtin = idin.Text.Trim();
+
             string id = idID.Text;
 
             ////string userid = Session["username"].ToString();
@@ -75,7 +83,8 @@ namespace MATERIAL_IN_OUT
             if (id != "" && AccountCost != "" && TypeName != "")
             {
                 DataTable dtupdate = new DataTable();
-                dtupdate = DataConn.StoreFillDS("Update_Form_AB", System.Data.CommandType.StoredProcedure, TypeID, TypeName, Decription, NameTemplate, AccountCost, AccountName, id);
+                //dtupdate = DataConn.StoreFillDS("Update_Form_AB", System.Data.CommandType.StoredProcedure, TypeID, TypeName, Decription, NameTemplate, AccountCost, AccountName, id);
+                dtupdate = DataConn.StoreFillDS("Update_Form_AB2", System.Data.CommandType.StoredProcedure, TypeID, TypeName, Decription, NameTemplate, AccountCost, AccountName, id, mvtout, vmtin);
 
                 if (dtupdate.Rows[0][0].ToString() == "1")
                 {

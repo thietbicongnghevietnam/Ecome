@@ -114,6 +114,24 @@ namespace MATERIAL_IN_OUT
         protected global::System.Web.UI.WebControls.TextBox AccountNameid;
 
         /// <summary>
+        /// outid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox outid;
+
+        /// <summary>
+        /// inid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox inid;
+
+        /// <summary>
         /// txtid_del control.
         /// </summary>
         /// <remarks>
@@ -184,6 +202,24 @@ namespace MATERIAL_IN_OUT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox idAccountName;
+
+        /// <summary>
+        /// idout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox idout;
+
+        /// <summary>
+        /// idin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox idin;
 
         /// <summary>
         /// idID control.

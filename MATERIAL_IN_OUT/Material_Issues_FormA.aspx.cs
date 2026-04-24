@@ -857,7 +857,6 @@ namespace MATERIAL_IN_OUT
                         string CountryOfOrgin = null; string ItemDescription = null;
                         string Type_SAP_PMS = "";
 
-
                         string Type_Rosh_Halb = "";
                         decimal STprice_ = 0;
                         string Reason = "";
@@ -963,7 +962,6 @@ namespace MATERIAL_IN_OUT
 
                         //form A khong co 6
 
-
                         if (dt.Rows[i][7].ToString() != "")  //7. MVTtype
                         {
                             Mvtype = dt.Rows[i][7].ToString();
@@ -975,13 +973,20 @@ namespace MATERIAL_IN_OUT
                         }
 
 
-                        if (dt.Rows[i][8].ToString() != "") //.8 MVConten
+                        if (dt.Rows[i][8].ToString() != "") //.8 MVConten  24.04.2026  => check theo master type
                         {
                             MVName = dt.Rows[i][8].ToString();
+
                             DataTable dtCheckMV = new DataTable();
-                            dtCheckMV = DataConn.StoreFillDS("SP_Issue_Material_Check_MVType", CommandType.StoredProcedure, Mvtype, MVName);
+                            //dtCheckMV = DataConn.StoreFillDS("SP_Issue_Material_Check_MVType", CommandType.StoredProcedure, Mvtype, MVName);
+                            dtCheckMV = DataConn.StoreFillDS("SP_Issue_Material_Check_MVType2", CommandType.StoredProcedure, Mvtype, MVName, TypeRQ);
                             // Kiểm tra MV-TypeName không đúng Mv TypeID
-                            if (int.Parse(dtCheckMV.Rows[0]["TotalMV"].ToString()) == 0)
+                            if (dtCheckMV.Rows[0][0].ToString() == "0")
+                            {
+                                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data MVName at row :(" + (i + 1).ToString() + ") is not exit.');", true);
+                                return;
+                            } 
+                            else if (dtCheckMV.Rows[0][0].ToString() == "2") 
                             {
                                 Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('This data MVName at row :(" + (i + 1).ToString() + ") is incorrect with MVType.');", true);
                                 return;
