@@ -203,7 +203,24 @@ namespace MATERIAL_IN_OUT
 
             }
         }
-        
+
+        // Hàm ghi log dùng chung
+        private void WriteLog(string RQ, string message)
+        {
+            try
+            {
+                string logPath = Server.MapPath("~/LOG/mail_error.txt");
+                string logDir = System.IO.Path.GetDirectoryName(logPath);
+
+                if (!System.IO.Directory.Exists(logDir))
+                    System.IO.Directory.CreateDirectory(logDir);
+
+                System.IO.File.AppendAllText(logPath,
+                    $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} | RQ={RQ} | {message}\n");
+            }
+            catch { } // log lỗi thì bỏ qua, không để crash app
+        }
+
         public void SendEmail_Next(string RQ,string UserCurrent , string DeptID, string Stock,string RoleRQ,string RoleApprovedRQ,string RoleStore,string RoleApprovedStore, string subject, string Content_Comment)
         {
             //out dept
@@ -212,80 +229,94 @@ namespace MATERIAL_IN_OUT
                 Stock = "2020";
             }
 
-            //lay ra Type VMT de phan quyen ky cho OUT dept : 10.03.2026
-            string typeMVT = "";
-            string typeform = "A";
-            DataTable dt_mvt = DataConn.StoreFillDS("[Get_OutDep_MVT_email]", CommandType.StoredProcedure, RQ, typeform);
-            if (dt_mvt.Rows.Count > 0)
+            try
             {
-                typeMVT = dt_mvt.Rows[0][0].ToString();
-            }
-            else
-            {
-                typeMVT = "";
-            }
-            //code old PMS ky all
-            //dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser]", CommandType.StoredProcedure, UserCurrent, DeptID, Stock, RoleRQ, RoleApprovedRQ, RoleStore, RoleApprovedStore);
-            
-            //SP_Issue_Material_NextUser_new
-            dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser_new]", CommandType.StoredProcedure, UserCurrent, DeptID, Stock, RoleRQ, RoleApprovedRQ, RoleStore, RoleApprovedStore, typeMVT);
-            if (dtNextMail.Rows.Count > 0)
-            {
-                for (int j = 0; j < dtNextMail.Rows.Count; j++)
+                //lay ra Type VMT de phan quyen ky cho OUT dept : 10.03.2026
+                string typeMVT = "";
+                string typeform = "A";
+                DataTable dt_mvt = DataConn.StoreFillDS("[Get_OutDep_MVT_email]", CommandType.StoredProcedure, RQ, typeform);
+                if (dt_mvt.Rows.Count > 0)
                 {
-                    string Request = RQ.ToString().Trim();
-                    string UserNext = dtNextMail.Rows[j]["UserLogin"].ToString();
-                    string DeptNext = dtNextMail.Rows[j]["Dept"].ToString();
-                    string Stock_  = hdfStock.Value.ToString();
-                    string RoleRQ_Next = dtNextMail.Rows[j]["RoleRQ"].ToString();
-                    string RoleAppRQ_Next = dtNextMail.Rows[j]["RoleAprovedRQ"].ToString();
-                    string RoleStore_Next = dtNextMail.Rows[j]["RoleStore"].ToString();
-                    string RoleAppStore_Next = dtNextMail.Rows[j]["RoleAprovedStock"].ToString();
-                    string Email_NextUser = dtNextMail.Rows[j]["Email"].ToString();
-                    string CCEmailNext = "";
-                     CCEmailNext = CCEmailNext + ',' + dtNextMail.Rows[j]["Email"].ToString();
-                    System.Net.Mail.SmtpClient objClient = new System.Net.Mail.SmtpClient("157.8.1.131");
-                    subject = subject.Replace('\r', ' ').Replace('\n', ' ');
-                    System.Net.Mail.MailAddress mail = new System.Net.Mail.MailAddress("tax.psnv@vn.panasonic.com", "Issue In-Out Material");
-                    System.Net.Mail.MailMessage objMessage = new System.Net.Mail.MailMessage
-                    {
-                        Priority = MailPriority.High,
-                        IsBodyHtml = true,
-
-                        From = mail,
-                        Subject = subject
-                        
-                    };
-                    objMessage.IsBodyHtml = true;
-                    //Get data Header Images to Content of Email
-                    string Header_Email = "";
-                    Header_Email += "";
-                    using (StreamReader reader2 = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Fomat_SendEmail/EmailApproved_B.html")))
-                    {
-                        header_ = reader2.ReadToEnd();
-                    }
-                  
-                    //header_ = header_.Replace("RQV", DataConn.Encrypt(RQID));
-                    //header_ = header_.Replace("UserV", DataConn.Encrypt(UserNext_));
-                    //header_ = header_.Replace("DeptV", DataConn.Encrypt(Public_Dept));
-                    //header_ = header_.Replace("StockV", DataConn.Encrypt(Kho));
-                    //header_ = header_.Replace("RoleRQV", DataConn.Encrypt(RoleDept));
-                    //header_ = header_.Replace("RoleRQ_AprV", DataConn.Encrypt(RoleApproved));
-                    //header_ = header_.Replace("RoleStoreV", DataConn.Encrypt(RoleOutStock));
-                    //header_ = header_.Replace("RoleStore_AprV", DataConn.Encrypt(RoleApproved_Stock));
-                    header_ = header_.Replace("RQV", Request);
-                    header_ = header_.Replace("UserV", UserNext);
-                    header_ = header_.Replace("DeptV", DeptNext);
-                    header_ = header_.Replace("StockV", Stock_);
-                    header_ = header_.Replace("value5", RoleRQ_Next);
-                    header_ = header_.Replace("RoleRQ_AprV", RoleAppRQ_Next);
-                    header_ = header_.Replace("RoleStoreV", RoleStore_Next);
-                    header_ = header_.Replace("RoleStore_AprV", RoleAppStore_Next);
-                    objMessage.Body = header_;
-                    objMessage.To.Add(new MailAddress(Email_NextUser));
-                    objClient.Send(objMessage);
-                   
+                    typeMVT = dt_mvt.Rows[0][0].ToString();
                 }
+                else
+                {
+                    typeMVT = "";
+                }
+                //code old PMS ky all
+                //dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser]", CommandType.StoredProcedure, UserCurrent, DeptID, Stock, RoleRQ, RoleApprovedRQ, RoleStore, RoleApprovedStore);
+
+                //SP_Issue_Material_NextUser_new
+                dtNextMail = DataConn.StoreFillDS("[SP_Issue_Material_NextUser_new]", CommandType.StoredProcedure, UserCurrent, DeptID, Stock, RoleRQ, RoleApprovedRQ, RoleStore, RoleApprovedStore, typeMVT);
+                if (dtNextMail.Rows.Count > 0)
+                {
+                    for (int j = 0; j < dtNextMail.Rows.Count; j++)
+                    {
+                        try
+                        {
+                            string Request = RQ.ToString().Trim();
+                            string UserNext = dtNextMail.Rows[j]["UserLogin"].ToString();
+                            string DeptNext = dtNextMail.Rows[j]["Dept"].ToString();
+                            string Stock_ = hdfStock.Value.ToString();
+                            string RoleRQ_Next = dtNextMail.Rows[j]["RoleRQ"].ToString();
+                            string RoleAppRQ_Next = dtNextMail.Rows[j]["RoleAprovedRQ"].ToString();
+                            string RoleStore_Next = dtNextMail.Rows[j]["RoleStore"].ToString();
+                            string RoleAppStore_Next = dtNextMail.Rows[j]["RoleAprovedStock"].ToString();
+                            string Email_NextUser = dtNextMail.Rows[j]["Email"].ToString();
+                            string CCEmailNext = "";
+                            CCEmailNext = CCEmailNext + ',' + dtNextMail.Rows[j]["Email"].ToString();
+                            System.Net.Mail.SmtpClient objClient = new System.Net.Mail.SmtpClient("157.8.1.131");
+                            subject = subject.Replace('\r', ' ').Replace('\n', ' ');
+                            System.Net.Mail.MailAddress mail = new System.Net.Mail.MailAddress("tax.psnv@vn.panasonic.com", "Issue In-Out Material");
+                            System.Net.Mail.MailMessage objMessage = new System.Net.Mail.MailMessage
+                            {
+                                Priority = MailPriority.High,
+                                IsBodyHtml = true,
+
+                                From = mail,
+                                Subject = subject
+
+                            };
+                            objMessage.IsBodyHtml = true;
+                            //Get data Header Images to Content of Email
+                            string Header_Email = "";
+                            Header_Email += "";
+                            using (StreamReader reader2 = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Fomat_SendEmail/EmailApproved_B.html")))
+                            {
+                                header_ = reader2.ReadToEnd();
+                            }
+
+                            header_ = header_.Replace("RQV", Request);
+                            header_ = header_.Replace("UserV", UserNext);
+                            header_ = header_.Replace("DeptV", DeptNext);
+                            header_ = header_.Replace("StockV", Stock_);
+                            header_ = header_.Replace("value5", RoleRQ_Next);
+                            header_ = header_.Replace("RoleRQ_AprV", RoleAppRQ_Next);
+                            header_ = header_.Replace("RoleStoreV", RoleStore_Next);
+                            header_ = header_.Replace("RoleStore_AprV", RoleAppStore_Next);
+                            objMessage.Body = header_;
+                            objMessage.To.Add(new MailAddress(Email_NextUser));
+                            objClient.Send(objMessage);
+                            WriteLog(RQ, $"Gui mail OK → {Email_NextUser}");
+                        }
+                        catch (Exception exMail)
+                        {
+                            WriteLog(RQ, $"Loi vong 2_B gui mail row {j}: {exMail.Message}");
+                            // không throw → tiếp tục gửi mail tiếp theo
+                        }
+
+                    }
+                }
+                else 
+                {
+                    WriteLog(RQ, "dtNextMail_B tra ve 0 dong → không có ai nhận mail");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                WriteLog(RQ, $"Loi vong 1_B SendEmail_Next: {ex.ToString()}");
+                //throw;  // ném lại để caller biết
             }
 
         }
@@ -675,7 +706,7 @@ namespace MATERIAL_IN_OUT
             else
             {
                 DataTable dtStatus = DataConn.StoreFillDS("SP_Issue_Material_CheckStatus_B", CommandType.StoredProcedure, Request_NO);
-                if (dtStatus.Rows.Count < 0)
+                if (dtStatus.Rows.Count <= 0)
                 {
                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Check Information of RequestNo.');", true);
                     return;

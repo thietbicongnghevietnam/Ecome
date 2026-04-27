@@ -186,6 +186,57 @@ namespace MATERIAL_IN_OUT
 
         }
 
+        protected void Dowload_All_Sub(object sender, EventArgs e) 
+        {
+            string _fromdate = Request.Form[Date1.UniqueID];
+            string _todate = Request.Form[ngaychiid.UniqueID];
+            string userid = Session["UserName"].ToString();
+            string requestno = filterRequestNo.Value;
+            string sanctionno = filterSanctionNo.Value;
+
+            //string Requestno = RequestNo9.Text;
+            string TypeName = "";
+            string Sanction = "";
+            string MVT = "";
+            //string userid = Session["UserName"].ToString();
+
+            //special Hanh PMS
+
+            if (requestno != "")
+            {
+                DataTable dtexport = DataConn.StoreFillDS("Export_SubIssueSAP_special",
+                        System.Data.CommandType.StoredProcedure, requestno, TypeName, userid, Sanction, MVT);
+
+                if (dtexport.Rows[0][0].ToString() == "1")
+                {
+                    //DataTable dt = DataConn.StoreFillDS("Select_PMS_OutSAP",
+                    //    System.Data.CommandType.StoredProcedure, Requestno, TypeName);
+
+                    if (dtexport.Rows.Count > 0)
+                    {
+                        ExportToCSV(dtexport, "PMS_ExporSub_" + requestno + ".csv");
+                    }
+                }
+                else if (dtexport.Rows[0][0].ToString() == "2")
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(),
+                        "Message", "toastr.error('NG, User do not PMS!');", true);
+                }
+                else
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(),
+                        "Message", "toastr.error('NG, Check again!');", true);
+                }
+            }
+            else 
+            {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(),
+                            "Message", "toastr.error('NG, data null!');", true);
+            }
+
+
+        }
+
         protected void Dowload_All_Click(object sender, EventArgs e)
         {
             string _fromdate = Request.Form[Date1.UniqueID];
