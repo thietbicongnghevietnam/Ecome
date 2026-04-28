@@ -109,6 +109,7 @@
                     <th>Amount OLD</th>
                     <th>Price NEW</th>
                     <th>Amount NEW</th>
+                    <th>Reason</th>
                     <th>CreateDate</th>
                     
                  </tr>
@@ -129,6 +130,18 @@
         <td><%= rows["amountcu"].ToString() %></td>
         <td><%= rows["giamoi"].ToString() %></td>
         <td><%= rows["amountmoi"].ToString() %></td>
+        <td style='<% 
+                string lydo = rows["LydoNG"].ToString();
+                if (lydo == "NG_soluong") {
+                    Response.Write("background-color: yellow;");
+                } else if (lydo == "NG_Gia_OR_Sloc") {
+                    Response.Write("background-color: orange;");
+                }
+            %>' >  
+
+            <%= rows["LydoNG"].ToString() %>
+
+        </td>
         <td><%= rows["CreateDate"].ToString() %></td>
     </tr>
 <% } %>
@@ -145,6 +158,7 @@
                     <th>Amount OLD</th>
                     <th>Price NEW</th>
                     <th>Amount NEW</th>
+                    <th>Reason</th>
                     <th>CreateDate</th>
                     
              </tr>

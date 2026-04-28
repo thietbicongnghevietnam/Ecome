@@ -1604,7 +1604,8 @@ namespace MATERIAL_IN_OUT
                             if ((int.Parse(Role) == 2 && Issue_Incharge == "OK" && Issue_MGR == "") || (int.Parse(Role) == 2 && Issue_Incharge == "OK" && Issue_MGR == null))
                             {
 
-                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
+                                //int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
+                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject_B]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
                                 if (row == 0)
                                 {
 
@@ -1700,7 +1701,8 @@ namespace MATERIAL_IN_OUT
                         {
                             if ((int.Parse(Role) == 2 && ACC_Check == "OK" && ACC_MGR == "") || (int.Parse(Role) == 2 && ACC_Check == "OK" && ACC_MGR == null))
                             {
-                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
+                                //int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
+                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject_B]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
                                 if (row == 0)
                                 {
 
@@ -1725,7 +1727,8 @@ namespace MATERIAL_IN_OUT
                         {
                             if ((int.Parse(Role) == 3 && ACC_MGR == "OK" && ACC_GM == "") || (int.Parse(Role) == 2 && ACC_MGR == "OK" && ACC_GM == null))
                             {
-                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
+                                //int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
+                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject_B]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
                                 if (row == 0)
                                 {
 
@@ -1755,7 +1758,8 @@ namespace MATERIAL_IN_OUT
                             if ((int.Parse(Role) == 1 && ACC_GM == "OK" && Out_Incharge == "") || (int.Parse(Role) == 1 && ACC_GM == "OK" && Out_Incharge == null))
                             {
 
-                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
+                                //int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
+                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject_B]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
                                 if (row == 0)
                                 {
 
@@ -1783,7 +1787,8 @@ namespace MATERIAL_IN_OUT
                         {
                             if ((int.Parse(Role) == 2 && Out_Incharge == "OK" && Out_MGR == "") || (int.Parse(Role) == 2 && Out_Incharge == "OK" && Out_MGR == null))
                             {
-                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
+                                //int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
+                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject_B]", CommandType.StoredProcedure, Session["UserName"], Request_NO, Role_RQ, Role);
                                 if (row == 0)
                                 {
                                     string Subject = " [Issue Out] - Request Reject for " + Request_NO;
@@ -1805,7 +1810,8 @@ namespace MATERIAL_IN_OUT
                         {
                             if ((int.Parse(Role) == 3 && Out_MGR == "OK" && Out_GM == "") || (int.Parse(Role) == 2 && Out_MGR == "OK" && Out_GM == null))
                             {
-                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, hdfStock.Value.ToString());
+                                //int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject]", CommandType.StoredProcedure, Session["UserName"], Request_NO, hdfStock.Value.ToString());
+                                int row = DataConn.ExecuteStore("[SP_Issue_Material_Reject_B]", CommandType.StoredProcedure, Session["UserName"], Request_NO, hdfStock.Value.ToString());
                                 if (row == 0)
                                 {
 
@@ -3007,7 +3013,7 @@ namespace MATERIAL_IN_OUT
                             if (dt.Rows[i][5].ToString() != "")   //STprice_ ???
                             {
 
-                                float STprice2 = float.Parse(dt.Rows[i][5].ToString().Trim());
+                                decimal STprice2 = decimal.Parse(dt.Rows[i][5].ToString().Trim());
                                 STprice_ = (decimal)Math.Round((STprice2), 5);
                             }
                             else

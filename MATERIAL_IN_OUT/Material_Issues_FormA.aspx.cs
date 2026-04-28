@@ -653,7 +653,6 @@ namespace MATERIAL_IN_OUT
                 //lblRequest.Text = dt_IssueMaterial.Rows[0]["TypeName"].ToString();
 
 
-
                 if (Session["RoleOutStock"].ToString().Trim() == "STORE" && Session["Role_Dept"].ToString().Trim() != "")
                 {
                     Loadstatus(Request_NO);
@@ -895,6 +894,11 @@ namespace MATERIAL_IN_OUT
                             return;
                         }
 
+                        if (Material == "PNKF1137ZA3W252/V3")
+                        {
+
+                        }
+
                         if (dt.Rows[i][3].ToString() != "")  //3.sloc
                         {
                             Sloc = dt.Rows[i][3].ToString();
@@ -948,10 +952,12 @@ namespace MATERIAL_IN_OUT
                             return;
                         }
 
+                       
+
                         if (dt.Rows[i][5].ToString() != "")   //5.STprice_ ???
                         {
 
-                            float STprice2 = float.Parse(dt.Rows[i][5].ToString().Trim());
+                            decimal STprice2 = decimal.Parse(dt.Rows[i][5].ToString().Trim());
                             STprice_ = (decimal)Math.Round((STprice2), 5);
                         }
                         else
@@ -1113,6 +1119,8 @@ namespace MATERIAL_IN_OUT
                         //    Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Upload NG... Reason is material (" + Material + ") of (" + Plant + ") not exits at table link SAP at row :(" + (i + 1).ToString() + ") ');", true);
                         //    return;
                         //}
+
+                        
 
                         UnitPriceST = STprice_;
                         Amount = (decimal)Math.Round((UnitPriceST * Qty), 5);
@@ -4116,12 +4124,13 @@ namespace MATERIAL_IN_OUT
                         {
                             //ban ghi update gia
                             count_update = count_update + 1;
+                            check_mater = material;
                         }
                     }
                     if (count_update > 0 && check_mater == "")
                     {
                         Search(treeRQ_InMaterial.SelectedNode.Value.ToString(), Session["Role_Aproved_Dept"].ToString().Trim(), Session["Role_Dept"].ToString().Trim());
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + count_update, true);
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + count_update+ "-"+ check_mater, true);
 
                     }
                     else if (check_mater != "")

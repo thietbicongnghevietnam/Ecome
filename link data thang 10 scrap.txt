@@ -528,10 +528,16 @@ Update_Form_AB2
 Insert_Form_AB2
 SP_Issue_Material_Check_MVType2
 
-SP_Issue_Material_BindRQ_NOTApproved		(1 user chi Tho co 2 quen phai bo dieu kien user di moi nhin thay)
+SP_Issue_Material_BindRQ_NOTApproved		(1 user chi Tho level2 co 2 quen phai bo dieu kien user di moi nhin thay)  *** level 2 tam rao
 
 ==========// 27.04.2026 //===== 
 Export_SubIssueSAP_special	(hanh PMS)
+
+==========// 28.04.2026 //=====  (mo quyen view level2 va level3 -> 1 sep co the xem nhieu RQ)    *** level 2 tam rao
+Update_Issue_Material_Report_A	(thieu 1 truong hop select+ them cot ly do)
+SP_Issue_Material_BindRQ_NOTApproved ---SP_Issue_Material_BindRQ_NOTApproved 'PMD','','RQ','2001822','3'	(mo them quyen cap 3 cho sep. 1 sep quan ly nhieu bo phan) *** chi phan anh dung ****3 bo phan
+SP_Issue_Material_BindRQ_NOTApproved_B		(1 sep co the co nhieu bo phan)
+
 
 
 **** check anh huan **** Pending **** khong click mail vao duoc:
