@@ -563,6 +563,12 @@ SP_Issue_Material_BindRQ_Approved_OutStock
 [Issue_MaterialInOut].[dbo].[tbl_MV_Master]	mater MVT (555 -> gan voi nhung type nao???/)  // 06.03.2026  ==> bo dieu kien check MVTtypecode trong mater [Issue_MaterialInOut].[dbo].[tbl_MV_Master]
 [Issue_MaterialInOut].[dbo].[tbl_VendorMaster]	mater vendor
 
+================== //check loi // ======
+--------------------- // truong hop anh Huong OUT gui mail ma ben Cos van nhan duoc mail 29.04.2026 //-----------hung nhan mail luc 1:36 PM----------- Hung (level 1) va Khanh (level2) 
+  --update [Issue_MaterialInOut].[dbo].[tbl_RQ_MaterialIssue] set CodeGM_Out=NULL,NameGM_Out=NULL,DateGM_Out=NULL,StatusGM_Out=NULL,Status_RQ='Pending' where RequestNo='RQA-FA-0426-31'
+  --update [Issue_MaterialInOut].[dbo].[tbl_RQ_MaterialIssue] set CodeGM_Out='2000032',NameGM_Out=N'Nguyễn Văn Hường',DateGM_Out='2026-04-29 13:39:22.700',StatusGM_Out='OK',Status_RQ='Approved' where RequestNo='RQA-FA-0426-31'
+  --set CodeGM_Out='2000032',NameGM_Out='Nguyễn Văn Hường',DateGM_Out='2026-04-29 13:39:22.700',StatusGM_Out='OK',Status_RQ='Approved'
+
 
 
 

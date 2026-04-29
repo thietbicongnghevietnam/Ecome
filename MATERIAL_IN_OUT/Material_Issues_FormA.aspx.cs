@@ -1484,63 +1484,71 @@ namespace MATERIAL_IN_OUT
                 dtPreEmail = DataConn.StoreFillDS("SP_BindPreviewtUser", CommandType.StoredProcedure, Session["UserName"].ToString(), Session["Role_Dept"].ToString().Trim(), Session["Role_Aproved_Dept"].ToString().Trim(), RequestID);
             }
 
-            if (dtPreEmail.Rows.Count > 0)
+            try
             {
-                UserNext = dtPreEmail.Rows[0]["UserLogin"].ToString();
-                RoleNext = dtPreEmail.Rows[0]["RoleID"].ToString();
-                RoleDeptNext = dtPreEmail.Rows[0]["RoleDept"].ToString();
+                if (dtPreEmail.Rows.Count > 0)
+                {
+                    UserNext = dtPreEmail.Rows[0]["UserLogin"].ToString();
+                    RoleNext = dtPreEmail.Rows[0]["RoleID"].ToString();
+                    RoleDeptNext = dtPreEmail.Rows[0]["RoleDept"].ToString();
+                }
+                else 
+                {
+                    //dtNextMail trả về 0 dòng → không có ai nhận mail
+                    WriteLog(RQ, "dtPreEmail_A123_tet tra ve 0 dong → vaoday");
+                }
+
+                System.Net.Mail.SmtpClient objClient = new System.Net.Mail.SmtpClient("157.8.1.131");
+                subject = subject.Replace('\r', ' ').Replace('\n', ' ');
+                System.Net.Mail.MailAddress mail = new System.Net.Mail.MailAddress("tax.psnv@vn.panasonic.com", "Issue In-Out Material");
+                System.Net.Mail.MailMessage objMessage = new System.Net.Mail.MailMessage();
+                string[] ToEmailList = ToEmail.Split(',');
+
+
+                objMessage.Priority = MailPriority.High;
+                objMessage.IsBodyHtml = true;
+                objMessage.From = mail;
+                objMessage.Subject = subject;
+                objMessage.IsBodyHtml = true;
+                //Get data Header Images to Content of Email
+                string Header_Email = "";
+                Header_Email += "";
+                using (StreamReader reader2 = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Fomat_SendEmail/EmailApproved_A.html")))
+                {
+                    header_ = reader2.ReadToEnd();
+                }
+
+                string RQID = RequestID.ToString().Trim();
+                string UserNext_ = UserNext.ToString().Trim();
+                string Kho = hdfStock.Value.ToString();
+                string RoleDept = Session["Role_Dept"].ToString().Trim();
+                string RoleApproved = Session["Role_Aproved_Dept"].ToString().Trim();
+                string RoleOutStock = Session["RoleOutStock"].ToString().Trim();
+                string RoleApproved_Stock = Session["Role_Aproved_Stock"].ToString().Trim();
+
+                header_ = header_.Replace("RQV", RQID);
+                header_ = header_.Replace("UserV", UserNext_);
+                header_ = header_.Replace("DeptV", Public_Dept);
+                header_ = header_.Replace("StockV", Kho);
+                header_ = header_.Replace("value5", RoleDept);
+                header_ = header_.Replace("RoleRQ_AprV", RoleApproved);
+                header_ = header_.Replace("RoleStoreV", RoleOutStock);
+                header_ = header_.Replace("RoleStore_AprV", RoleApproved_Stock);
+
+                objMessage.Body = header_;
+                foreach (string Email_To in ToEmailList)
+                {
+                    objMessage.To.Add(new MailAddress(Email_To));
+                    objClient.Send(objMessage);
+                    WriteLog(RQ, $"Gui mail_A Pre OK → {Email_To}");
+                }
             }
-            System.Net.Mail.SmtpClient objClient = new System.Net.Mail.SmtpClient("157.8.1.131");
-            subject = subject.Replace('\r', ' ').Replace('\n', ' ');
-            System.Net.Mail.MailAddress mail = new System.Net.Mail.MailAddress("tax.psnv@vn.panasonic.com", "Issue In-Out Material");
-            System.Net.Mail.MailMessage objMessage = new System.Net.Mail.MailMessage();
-            string[] ToEmailList = ToEmail.Split(',');
-
-
-            objMessage.Priority = MailPriority.High;
-            objMessage.IsBodyHtml = true;
-            objMessage.From = mail;
-            objMessage.Subject = subject;
-            objMessage.IsBodyHtml = true;
-            //Get data Header Images to Content of Email
-            string Header_Email = "";
-            Header_Email += "";
-            using (StreamReader reader2 = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Fomat_SendEmail/EmailApproved_A.html")))
+            catch (Exception ex)
             {
-                header_ = reader2.ReadToEnd();
+                WriteLog(RQ, $"Loi vong 1A Sendmail_Prv: {ex.ToString()}");
+                //throw;
             }
-
-            string RQID = RequestID.ToString().Trim();
-            string UserNext_ = UserNext.ToString().Trim();
-            string Kho = hdfStock.Value.ToString();
-            string RoleDept = Session["Role_Dept"].ToString().Trim();
-            string RoleApproved = Session["Role_Aproved_Dept"].ToString().Trim();
-            string RoleOutStock = Session["RoleOutStock"].ToString().Trim();
-            string RoleApproved_Stock = Session["Role_Aproved_Stock"].ToString().Trim();
-            //header_ = header_.Replace("RQV", DataConn.Encrypt(RQID));
-            //header_ = header_.Replace("UserV", DataConn.Encrypt(UserNext_));
-            //header_ = header_.Replace("DeptV", DataConn.Encrypt(Public_Dept));
-            //header_ = header_.Replace("StockV", DataConn.Encrypt(Kho));
-            //header_ = header_.Replace("value5", DataConn.Encrypt(RoleDept));
-            //header_ = header_.Replace("RoleRQ_AprV", DataConn.Encrypt(RoleApproved));
-            //header_ = header_.Replace("RoleStoreV", DataConn.Encrypt(RoleOutStock));
-            //header_ = header_.Replace("RoleStore_AprV", DataConn.Encrypt(RoleApproved_Stock));
-
-            header_ = header_.Replace("RQV", RQID);
-            header_ = header_.Replace("UserV", UserNext_);
-            header_ = header_.Replace("DeptV", Public_Dept);
-            header_ = header_.Replace("StockV", Kho);
-            header_ = header_.Replace("value5", RoleDept);
-            header_ = header_.Replace("RoleRQ_AprV", RoleApproved);
-            header_ = header_.Replace("RoleStoreV", RoleOutStock);
-            header_ = header_.Replace("RoleStore_AprV", RoleApproved_Stock);
-
-            objMessage.Body = header_;
-            foreach (string Email_To in ToEmailList)
-            {
-                objMessage.To.Add(new MailAddress(Email_To));
-                objClient.Send(objMessage);
-            }
+            
         }
 
         public void SendEmail_Prv_LOG(string RequestID, string DeptID, string user_Current, string subject, string ToEmail, string Content_Comment)
@@ -1606,14 +1614,7 @@ namespace MATERIAL_IN_OUT
             string RoleApproved = Session["Role_Aproved_Dept"].ToString().Trim();
             string RoleOutStock = Session["RoleOutStock"].ToString().Trim();
             string RoleApproved_Stock = Session["Role_Aproved_Stock"].ToString().Trim();
-            //header_ = header_.Replace("RQV", DataConn.Encrypt(RQID));
-            //header_ = header_.Replace("UserV", DataConn.Encrypt(UserNext_));
-            //header_ = header_.Replace("DeptV", DataConn.Encrypt(Public_Dept));
-            //header_ = header_.Replace("StockV", DataConn.Encrypt(Kho));
-            //header_ = header_.Replace("value5", DataConn.Encrypt(RoleDept));
-            //header_ = header_.Replace("RoleRQ_AprV", DataConn.Encrypt(RoleApproved));
-            //header_ = header_.Replace("RoleStoreV", DataConn.Encrypt(RoleOutStock));
-            //header_ = header_.Replace("RoleStore_AprV", DataConn.Encrypt(RoleApproved_Stock));
+            
 
             header_ = header_.Replace("RQV", RQID);
             header_ = header_.Replace("UserV", UserNext_);
