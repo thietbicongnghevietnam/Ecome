@@ -4060,12 +4060,14 @@ namespace MATERIAL_IN_OUT
                         {
                             //Search(treeRQ_InMaterial.SelectedNode.Value.ToString(), Session["Role_Aproved_Dept"].ToString().Trim(), Session["Role_Dept"].ToString().Trim());
                             Search(Request_NO, "1", "RQ");
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + count_update, true);
+                            //Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + count_update, true);
+                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');", true);
 
                         }
                         else if (check_mater != "")
                         {
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');"+ row_err+ "-" + check_mater, true);
+                            //Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');"+ row_err+ "-" + check_mater, true);
+                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');", true);
                         }
                         else
                         {
@@ -4128,15 +4130,31 @@ namespace MATERIAL_IN_OUT
                             check_mater = material;
                         }
                     }
+                    
                     if (count_update > 0 && check_mater == "")
                     {
                         Search(treeRQ_InMaterial.SelectedNode.Value.ToString(), Session["Role_Aproved_Dept"].ToString().Trim(), Session["Role_Dept"].ToString().Trim());
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + count_update+ "-"+ check_mater, true);
+                        //Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Ban ghi NG Price !!!');" + count_update+ "-"+ check_mater, true);
+                        string script = "toastr.success('Ban ghi NG Price !!! - " + count_update + " - " + check_mater + "');";
+
+                        Page.ClientScript.RegisterStartupScript(
+                            Page.GetType(),
+                            "Message",
+                            script,
+                            true
+                        );
 
                     }
                     else if (check_mater != "")
                     {
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');" + row_err +"-" + check_mater, true);
+                        //Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.warning('Mater Price SAP khong ton tai!');" + row_err +"-" + check_mater, true);
+                        string script = "toastr.warning('Mater Price SAP khong ton tai! - " + row_err + " - " + check_mater + "');";
+                                                Page.ClientScript.RegisterStartupScript(
+                            Page.GetType(),
+                            "Message",
+                            script,
+                            true
+                        );
                     }
                     else
                     {
