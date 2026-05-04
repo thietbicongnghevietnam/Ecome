@@ -538,21 +538,22 @@ Update_Issue_Material_Report_A	(thieu 1 truong hop select+ them cot ly do)
 SP_Issue_Material_BindRQ_NOTApproved ---SP_Issue_Material_BindRQ_NOTApproved 'PMD','','RQ','2001822','3'	(mo them quyen cap 3 cho sep. 1 sep quan ly nhieu bo phan) *** chi phan anh dung ****3 bo phan
 SP_Issue_Material_BindRQ_NOTApproved_B		(1 sep co the co nhieu bo phan)
 
-
-
 **** check anh huan **** Pending **** khong click mail vao duoc:
 http://localhost:49448/Material_Issues_FormA.aspx?RQ=RQA-SCS-PLD-0426-20&User=2000020&Dept=ACC&Stock=&RoleRQ=ACC-CHECK&RoleRQ_Apr=3&RoleStore=&RoleStore_Apr=
 http://10.92.184.24:8095/Material_Issues_FormA.aspx?RQ=RQA-SCS-PLD-0426-20&User=2000020&Dept=ACC&Stock=&RoleRQ=ACC-CHECK&RoleRQ_Apr=3&RoleStore=&RoleStore_Apr=
 
-
 +sua 2 ham table con connect
-
-
 
 SP_Issue_Material_BindRQ_NOTApproved
 SP_Issue_Material_BindRQ_Approved
 SP_Issue_Material_BindRQ_NOTApproved_OutStock
 SP_Issue_Material_BindRQ_Approved_OutStock
+
+==========// 04.05.2026 //=====
+Select_PMS_OutSAP_new		(bo sung dieu kien out dept -> NG)
+Select_PMS_OutSAP_search2_new2	(chu ky so 8 chua ky + chu ky so 6 OK -> list pending)
+Export_Outscrap			(bo du lieu cot '' as 'GL account',)
+Export_OtherIssueSAP		(them du lieu cot a.Reason)
 
 
 ========= // danh sach mater //===========
@@ -563,7 +564,7 @@ SP_Issue_Material_BindRQ_Approved_OutStock
 [Issue_MaterialInOut].[dbo].[tbl_MV_Master]	mater MVT (555 -> gan voi nhung type nao???/)  // 06.03.2026  ==> bo dieu kien check MVTtypecode trong mater [Issue_MaterialInOut].[dbo].[tbl_MV_Master]
 [Issue_MaterialInOut].[dbo].[tbl_VendorMaster]	mater vendor
 
-================== //check loi // ======
+================== //check loi ***** follow check log gui mail // ======
 --------------------- // truong hop anh Huong OUT gui mail ma ben Cos van nhan duoc mail 29.04.2026 //-----------hung nhan mail luc 1:36 PM----------- Hung (level 1) va Khanh (level2) 
   --update [Issue_MaterialInOut].[dbo].[tbl_RQ_MaterialIssue] set CodeGM_Out=NULL,NameGM_Out=NULL,DateGM_Out=NULL,StatusGM_Out=NULL,Status_RQ='Pending' where RequestNo='RQA-FA-0426-31'
   --update [Issue_MaterialInOut].[dbo].[tbl_RQ_MaterialIssue] set CodeGM_Out='2000032',NameGM_Out=N'Nguyễn Văn Hường',DateGM_Out='2026-04-29 13:39:22.700',StatusGM_Out='OK',Status_RQ='Approved' where RequestNo='RQA-FA-0426-31'

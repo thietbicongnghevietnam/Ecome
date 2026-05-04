@@ -39,6 +39,18 @@
     <!-- Toastr -->
     <script src="/LibNew/toastr.min.js"></script>
 
+    <style>
+        .btn-out201 { background-color: #e9e3e3; color: #000000; }
+        .btn-scrap  { background-color: #ffd800; color: #000000; }
+        .btn-other  { background-color: #00ffff; color: #000000; }
+        .btn-sub    { background-color: #f6aaaa; color: #000000; }
+
+        .row-sub    td { background-color: #f6aaaa !important; color: #000000; }
+        .row-other  td { background-color: #00ffff !important; color: #000000; }
+        .row-scrap  td { background-color: #ffd800 !important; color: #000000; }
+        .row-sloc98 td { background-color: #e9e3e3 !important; color: #000000; }
+    </style>
+
 </head>
 
 <body>
@@ -201,7 +213,16 @@
                     <% foreach (System.Data.DataRow rows in dt.Rows)
                         { %>
                     <% i++; %>
-                    <tr>
+                    <%
+                        string type = rows["TypeSapPMS"]?.ToString();
+                        string rowClass = "";
+
+                        if (type == "Sub") rowClass = "row-sub";
+                        else if (type == "Other") rowClass = "row-other";
+                        else if (type == "Scrap") rowClass = "row-scrap";
+                        else if (type == "Sloc98") rowClass = "row-sloc98";
+                    %>
+                    <tr class="<%= rowClass %>">
                         <td><%= i %></td>
                         <td><%= rows["RequestNo"].ToString() %></td>
                         <td><%= rows["Department"].ToString() %></td>
@@ -228,13 +249,11 @@
                         <td><%= rows["CommentPMS"].ToString() %></td>
                         <td><%= rows["Satatu_tranferPMS"].ToString() %></td>
                         <td><%= rows["Status_Finish_PMS"].ToString() %></td>
-                        <td>
+                        <%--<td>
                             <a href="#" class="btn btn-primary" title="Update Status SAP" onclick="openEditModal10('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["Satatu_tranferPMS"].ToString() %>','<%= rows["Status_Finish_PMS"].ToString() %>')">Update_StatusSAP</a>
                             <a href="#" class="btn btn-primary" title="Update Doc" onclick="openEditModal6('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Update_Doc</a>
                             <a href="#" class="btn btn-info btn-sm" title="Detail" onclick="openEditModal2('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>')">Detail</a>
                             <a href="#" class="btn btn-info btn-sm" title="Out201_98" onclick="openEditModal3('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Out201_98</a>
-
-                            <%--<a href="#" class="btn btn-info btn-sm" title="Tranfer_G99" onclick="openEditModal4('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Tranfer_G99</a>--%>
                             <% if (rows["TypeSapPMS"] != DBNull.Value && rows["TypeSapPMS"].ToString() == "Scrap") { %>
                                 <a href="#" class="btn btn-info btn-sm" title="Tranfer_G99"
                                    onclick="openEditModal4('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
@@ -245,7 +264,58 @@
                             <a href="#" class="btn btn-info btn-sm" title="Out Scrap" onclick="openEditModal7('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Other Type</a>
                             <a href="#" class="btn btn-info btn-sm" title="Out Sub" onclick="openEditModal9('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Sub</a>
                             <a href="#" class="btn btn-info btn-sm" title="feedback" onclick="openEditModal8('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Feedback</a>
+                        </td>--%>
+                        <td>
+                            <a href="#" class="btn btn-info btn-sm" title="Update Status SAP"
+                               onclick="openEditModal10('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["Satatu_tranferPMS"] %>','<%= rows["Status_Finish_PMS"] %>')">
+                               Update_StatusSAP
+                            </a>
 
+                            <a href="#" class="btn btn-info btn-sm" title="Update Doc"
+                               onclick="openEditModal6('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>')">
+                               Update_Doc
+                            </a>
+
+                            <a href="#" class="btn btn-info btn-sm" title="Detail"
+                               onclick="openEditModal2('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>')">
+                               Detail
+                            </a>
+
+                            <!-- ĐỔI MÀU 1-->
+                            <a href="#" class="btn btn-out201 btn-sm" title="Out201_98"
+                               onclick="openEditModal3('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
+                               Out201_98
+                            </a>
+
+                            <% if (rows["TypeSapPMS"] != DBNull.Value && rows["TypeSapPMS"].ToString() == "Scrap") { %>
+                                <a href="#" class="btn btn-info btn-sm" title="Tranfer_G99"
+                                   onclick="openEditModal4('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
+                                   Tranfer_G99
+                                </a>
+                            <% } %>
+
+                            <!-- ĐỔI MÀU 2-->
+                            <a href="#" class="btn btn-scrap btn-sm" title="Out Scrap"
+                               onclick="openEditModal5('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
+                               Out Scrap
+                            </a>
+
+                            <!-- ĐỔI MÀU 3 -->
+                            <a href="#" class="btn btn-other btn-sm" title="Other Type"
+                               onclick="openEditModal7('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
+                               Other Type
+                            </a>
+
+                            <!-- ĐỔI MÀU 4-->
+                            <a href="#" class="btn btn-sub btn-sm" title="Sub"
+                               onclick="openEditModal9('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
+                               Sub
+                            </a>
+
+                            <a href="#" class="btn btn-info btn-sm" title="feedback"
+                               onclick="openEditModal8('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
+                               Feedback
+                            </a>
                         </td>
                     </tr>
                     <% } %>
