@@ -554,6 +554,10 @@ Select_PMS_OutSAP_new		(bo sung dieu kien out dept -> NG)
 Select_PMS_OutSAP_search2_new2	(chu ky so 8 chua ky + chu ky so 6 OK -> list pending)
 Export_Outscrap			(bo du lieu cot '' as 'GL account',)
 Export_OtherIssueSAP		(them du lieu cot a.Reason)
+==========// 05.05.2026 //=====
+Select_PMS_OutSAP_new		and (TypeID <>'15.1' or TypeID <>'15.2' or TypeID <>'16.1' or TypeID <>'16.2')
+Select_PMS_OutSAP_search2_new2
+
 
 
 ========= // danh sach mater //===========

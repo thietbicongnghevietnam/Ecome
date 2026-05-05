@@ -40,15 +40,15 @@
     <script src="/LibNew/toastr.min.js"></script>
 
     <style>
-        .btn-out201 { background-color: #e9e3e3; color: #000000; }
-        .btn-scrap  { background-color: #ffd800; color: #000000; }
-        .btn-other  { background-color: #00ffff; color: #000000; }
-        .btn-sub    { background-color: #f6aaaa; color: #000000; }
+        .btn-out201 { background-color: #78fafa; color: #000000; }
+        .btn-scrap  { background-color: #fbfcd9; color: #000000; }
+        .btn-other  { background-color: #e6fafb; color: #000000; }
+        .btn-sub    { background-color: #fbe2e2; color: #000000; }
 
-        .row-sub    td { background-color: #f6aaaa !important; color: #000000; }
-        .row-other  td { background-color: #00ffff !important; color: #000000; }
-        .row-scrap  td { background-color: #ffd800 !important; color: #000000; }
-        .row-sloc98 td { background-color: #e9e3e3 !important; color: #000000; }
+        .row-sub    td { background-color: #fbe2e2 !important; color: #000000; }
+        .row-other  td { background-color: #e6fafb !important; color: #000000; }
+        .row-scrap  td { background-color: #fbfcd9 !important; color: #000000; }
+        .row-sloc98 td { background-color: #78fafa !important; color: #000000; }
     </style>
 
 </head>

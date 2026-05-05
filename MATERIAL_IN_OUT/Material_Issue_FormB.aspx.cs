@@ -233,7 +233,8 @@ namespace MATERIAL_IN_OUT
             {
                 //lay ra Type VMT de phan quyen ky cho OUT dept : 10.03.2026
                 string typeMVT = "";
-                string typeform = "A";
+                //string typeform = "A";  //fix loi gui mail nham  05.05.2026
+                string typeform = "B";
                 DataTable dt_mvt = DataConn.StoreFillDS("[Get_OutDep_MVT_email]", CommandType.StoredProcedure, RQ, typeform);
                 if (dt_mvt.Rows.Count > 0)
                 {
