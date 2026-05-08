@@ -558,6 +558,10 @@ Export_OtherIssueSAP		(them du lieu cot a.Reason)
 Select_PMS_OutSAP_new		and (TypeID <>'15.1' or TypeID <>'15.2' or TypeID <>'16.1' or TypeID <>'16.2')
 Select_PMS_OutSAP_search2_new2
 
+==========// 08.05.2026 //=====
+Select_PMS_OutSAP_search2_new2ACC	(them option cho ACC)
+
+
 
 
 ========= // danh sach mater //===========

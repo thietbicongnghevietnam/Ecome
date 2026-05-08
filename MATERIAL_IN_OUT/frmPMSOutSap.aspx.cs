@@ -82,10 +82,24 @@ namespace MATERIAL_IN_OUT
             {
                 selectedOption = "MCS";
             }
+            else if (rbACC.Checked) 
+            {
+                selectedOption = "ACC";
+            }
             // Xử lý logic ở đây
             //Response.Write("Bạn chọn: " + selectedOption);
-            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout, selectedOption);
 
+            if (selectedOption == "ACC")
+            {
+                //ACC
+                dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new2ACC", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout, selectedOption);
+            }
+            else 
+            {
+                //PMS va MCS
+                dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout, selectedOption);
+            }
+           
             if (dt.Rows.Count > 0)
             {
                 //Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('search successfully!');", true);
@@ -465,10 +479,11 @@ namespace MATERIAL_IN_OUT
                     {
                         //DataTable dt = DataConn.StoreFillDS("Select_PMS_OutSAP",
                         //    System.Data.CommandType.StoredProcedure, Requestno, TypeName);
+                        string mvttype = dtexport.Rows[0][7].ToString();
 
                         if (dtexport.Rows.Count > 0)
                         {
-                            ExportToCSV(dtexport, "PMS_Tranfer_99_" + Requestno + ".csv");
+                            ExportToCSV(dtexport, "PMS_Tranfer_99_" + Requestno +"_"+ mvttype + ".csv");
                         }
                     }
                     else if (dtexport.Rows[0][0].ToString() == "2")
@@ -552,9 +567,11 @@ namespace MATERIAL_IN_OUT
                         //DataTable dt = DataConn.StoreFillDS("Select_PMS_OutSAP",
                         //    System.Data.CommandType.StoredProcedure, Requestno, TypeName);
 
+                        string mvtname = dtexport.Rows[0][13].ToString();
+
                         if (dtexport.Rows.Count > 0)
                         {
-                            ExportToCSV(dtexport, "PMS_ExportOutscrap_" + Requestno + ".csv");
+                            ExportToCSV(dtexport, "PMS_ExportOutscrap_" + Requestno +"_"+ mvtname + ".csv");
                         }
                     }
                     else if (dtexport.Rows[0][0].ToString() == "2")
@@ -639,9 +656,11 @@ namespace MATERIAL_IN_OUT
                         //DataTable dt = DataConn.StoreFillDS("Select_PMS_OutSAP",
                         //    System.Data.CommandType.StoredProcedure, Requestno, TypeName);
 
+                        string mvtname = dtexport.Rows[0][13].ToString();
+
                         if (dtexport.Rows.Count > 0)
                         {
-                            ExportToCSV(dtexport, "PMS_ExportOther_" + Requestno + ".csv");
+                            ExportToCSV(dtexport, "PMS_ExportOther_" + Requestno +"_"+ mvtname + ".csv");
                         }
                     }
                     else if (dtexport.Rows[0][0].ToString() == "2")
@@ -725,10 +744,11 @@ namespace MATERIAL_IN_OUT
                     {
                         //DataTable dt = DataConn.StoreFillDS("Select_PMS_OutSAP",
                         //    System.Data.CommandType.StoredProcedure, Requestno, TypeName);
+                        string mvtname = dtexport.Rows[0][13].ToString();
 
                         if (dtexport.Rows.Count > 0)
                         {
-                            ExportToCSV(dtexport, "PMS_ExporSub_" + Requestno + ".csv");
+                            ExportToCSV(dtexport, "PMS_ExporSub_" + Requestno +"_"+ mvtname + ".csv");
                         }
                     }
                     else if (dtexport.Rows[0][0].ToString() == "2")
