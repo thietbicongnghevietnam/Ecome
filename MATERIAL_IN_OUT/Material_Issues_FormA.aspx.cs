@@ -363,12 +363,14 @@ namespace MATERIAL_IN_OUT
                     lblQtyVG01.Text = r["Qty_VG01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VG01"]).ToString("#,##0.00");
                     lblQtyV501.Text = r["Qty_V501"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_V501"]).ToString("#,##0.00");
                     lblQtyVB01.Text = r["Qty_VB01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VB01"]).ToString("#,##0.00");
+                    lblQtyVY01.Text = r["Qty_VY01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VY01"]).ToString("#,##0.00");
 
                     lblAmtVR01.Text = r["Amt_VR01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VR01"]).ToString("#,##0.00");
                     lblAmtVE01.Text = r["Amt_VE01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VE01"]).ToString("#,##0.00");
                     lblAmtVG01.Text = r["Amt_VG01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VG01"]).ToString("#,##0.00");
                     lblAmtV501.Text = r["Amt_V501"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_V501"]).ToString("#,##0.00");
                     lblAmtVB01.Text = r["Amt_VB01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VB01"]).ToString("#,##0.00");                    
+                    lblAmtVY01.Text = r["Amt_VY01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VY01"]).ToString("#,##0.00");                    
 
                 }
 
@@ -390,12 +392,7 @@ namespace MATERIAL_IN_OUT
                 //lblAccountName.Text = dt_IssueMaterial.Rows[0]["AccountName"].ToString();
                 //hdfStock.Value = dt_IssueMaterial.Rows[0]["Sloc"].ToString();
                 
-
-
-
                 Loadstatus(RQ);
-
-
             }
             else
             {
@@ -621,12 +618,14 @@ namespace MATERIAL_IN_OUT
                     lblQtyVG01.Text = r["Qty_VG01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VG01"]).ToString("#,##0.00");
                     lblQtyV501.Text = r["Qty_V501"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_V501"]).ToString("#,##0.00");
                     lblQtyVB01.Text = r["Qty_VB01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VB01"]).ToString("#,##0.00");
+                    lblQtyVY01.Text = r["Qty_VY01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Qty_VY01"]).ToString("#,##0.00");
 
                     lblAmtVR01.Text = r["Amt_VR01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VR01"]).ToString("#,##0.00");
                     lblAmtVE01.Text = r["Amt_VE01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VE01"]).ToString("#,##0.00");
                     lblAmtVG01.Text = r["Amt_VG01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VG01"]).ToString("#,##0.00");
                     lblAmtV501.Text = r["Amt_V501"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_V501"]).ToString("#,##0.00");
                     lblAmtVB01.Text = r["Amt_VB01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VB01"]).ToString("#,##0.00");
+                    lblAmtVY01.Text = r["Amt_VY01"] == DBNull.Value ? "" : Convert.ToDecimal(r["Amt_VY01"]).ToString("#,##0.00");
 
                 }
 

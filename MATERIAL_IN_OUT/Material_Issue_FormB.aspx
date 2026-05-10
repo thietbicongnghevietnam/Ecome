@@ -230,7 +230,7 @@
                             <!-- Voucher Date -->
                             <tr>
                                 <td colspan="2"><b>Voucher Date (dd/MM/yyyy)</b></td>
-                                <td colspan="6">
+                                <td colspan="7">
                                     <%--<asp:Label ID="lblVoucherDate" runat="server"></asp:Label>--%>
                                     <div class="date-picker-inner">
                                         <div class="form-group data-custon-pick" id="data_2">
@@ -247,7 +247,7 @@
                             <!-- MV Type -->
                             <tr>
                                 <td colspan="2"><b>MV Type</b></td>
-                                <td colspan="6">
+                                <td colspan="7">
                                     <asp:Label ID="lblMvTYpe" runat="server"></asp:Label>
                                     -
                                 <asp:Label ID="lblIN" runat="server"></asp:Label>
@@ -257,16 +257,12 @@
                             <!-- Cost Center Header -->
                             <tr>
                                 <td colspan="2"><b>Plan</b></td>
-                                <td>
-                                    <asp:Label ID="lblCC_VR01" runat="server" Text="VR01" /></td>
-                                <td>
-                                    <asp:Label ID="lblCC_VE01" runat="server" Text="VE01" /></td>
-                                <td>
-                                    <asp:Label ID="lblCC_VG01" runat="server" Text="VG01" /></td>
-                                <td>
-                                    <asp:Label ID="lblCC_V501" runat="server" Text="V501" /></td>
-                                <td>
-                                    <asp:Label ID="lblCC_VB01" runat="server" Text="VB01" /></td>
+                                <td><asp:Label ID="lblCC_VR01" runat="server" Text="VR01" /></td>
+                                <td><asp:Label ID="lblCC_VE01" runat="server" Text="VE01" /></td>
+                                <td><asp:Label ID="lblCC_VG01" runat="server" Text="VG01" /></td>
+                                <td><asp:Label ID="lblCC_V501" runat="server" Text="V501" /></td>
+                                <td><asp:Label ID="lblCC_VB01" runat="server" Text="VB01" /></td>
+                                <td><asp:Label ID="lblCC_VY01" runat="server" Text="VY01" /></td>
                                 <td><asp:Label ID="lblCC_tong" runat="server" Text="Total" /></td>
                             </tr>
 
@@ -283,6 +279,7 @@
                                     <asp:Label ID="lblQtyV501" runat="server" /></td>
                                 <td>
                                     <asp:Label ID="lblQtyVB01" runat="server" /></td>
+                                <td><asp:Label ID="lblQtyVY01" runat="server" /></td>
                                 <td><asp:Label ID="lblQtyTong" runat="server" /></td>
                             </tr>
 
@@ -299,6 +296,7 @@
                                     <asp:Label ID="lblAmtV501" runat="server" /></td>
                                 <td>
                                     <asp:Label ID="lblAmtVB01" runat="server" /></td>
+                                <td><asp:Label ID="lblAmtVY01" runat="server" /></td>
                                 <td><asp:Label ID="lblAmttong" runat="server" /></td>
                             </tr>
 
@@ -309,7 +307,7 @@
                                         <asp:Label ID="lblVendorCode" runat="server"></asp:Label>
                                     </b>
                                 </td>
-                                <td colspan="5">
+                                <td colspan="6">
                                     <asp:Label ID="lblvendorName" runat="server"></asp:Label>
                                 </td>
                             </tr>
@@ -476,7 +474,7 @@
                                 <asp:Button ID="btnOpenPopup"
                                     CssClass="btn btn-info"
                                     runat="server"
-                                    Text="Export Scrap List"
+                                    Text="Input IAF"
                                     OnClientClick="showExportPopup(); return false;" />
                             </div>
 

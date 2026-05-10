@@ -420,6 +420,15 @@ namespace MATERIAL_IN_OUT
         protected global::System.Web.UI.WebControls.Label lblCC_VB01;
 
         /// <summary>
+        /// lblCC_VY01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCC_VY01;
+
+        /// <summary>
         /// lblCC_tong control.
         /// </summary>
         /// <remarks>
@@ -474,6 +483,15 @@ namespace MATERIAL_IN_OUT
         protected global::System.Web.UI.WebControls.Label lblQtyVB01;
 
         /// <summary>
+        /// lblQtyVY01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblQtyVY01;
+
+        /// <summary>
         /// lblQtyTong control.
         /// </summary>
         /// <remarks>
@@ -526,6 +544,15 @@ namespace MATERIAL_IN_OUT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAmtVB01;
+
+        /// <summary>
+        /// lblAmtVY01 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAmtVY01;
 
         /// <summary>
         /// lblAmttong control.

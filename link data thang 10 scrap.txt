@@ -561,6 +561,10 @@ Select_PMS_OutSAP_search2_new2
 ==========// 08.05.2026 //=====
 Select_PMS_OutSAP_search2_new2ACC	(them option cho ACC)
 
+==========// 10.05.2026 //=====  them VY01
+SP_Issue_Material_Search_A_tongplant 
+SP_Issue_Material_Search_B_tongplant
+
 
 
 

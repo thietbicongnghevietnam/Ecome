@@ -267,56 +267,82 @@
                             <a href="#" class="btn btn-info btn-sm" title="feedback" onclick="openEditModal8('<%= rows["RequestNo"].ToString() %>','<%= rows["TypeForm"].ToString() %>','<%= rows["SanctionName"].ToString() %>')">Feedback</a>
                         </td>--%>
                         <td>
+                            <!-- Các nút mặc định luôn hiện -->
                             <a href="#" class="btn btn-info btn-sm" title="Update Status SAP"
-                               onclick="openEditModal10('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["Satatu_tranferPMS"] %>','<%= rows["Status_Finish_PMS"] %>')">
-                               Update_StatusSAP
+                                onclick="openEditModal10('<%= rows["RequestNo"] %>',
+                                '<%= rows["TypeForm"] %>',
+                                '<%= rows["Satatu_tranferPMS"] %>',
+                                '<%= rows["Status_Finish_PMS"] %>')">Update_StatusSAP
                             </a>
 
                             <a href="#" class="btn btn-info btn-sm" title="Update Doc"
-                               onclick="openEditModal6('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>')">
-                               Update_Doc
+                                onclick="openEditModal6('<%= rows["RequestNo"] %>',
+                               '<%= rows["TypeForm"] %>')">Update_Doc
                             </a>
 
                             <a href="#" class="btn btn-info btn-sm" title="Detail"
-                               onclick="openEditModal2('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>')">
-                               Detail
+                                onclick="openEditModal2('<%= rows["RequestNo"] %>',
+                               '<%= rows["TypeForm"] %>')">Detail
                             </a>
 
-                            <!-- ĐỔI MÀU 1-->
+                            <a href="#" class="btn btn-info btn-sm" title="Feedback"
+                                onclick="openEditModal8('<%= rows["RequestNo"] %>',
+                               '<%= rows["TypeForm"] %>',
+                               '<%= rows["SanctionName"] %>')">Feedback
+                           </a>
+
+                            <!-- Type = Sloc98 -->
+                            <% if (type == "Sloc98")
+                            { %>
                             <a href="#" class="btn btn-out201 btn-sm" title="Out201_98"
-                               onclick="openEditModal3('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
-                               Out201_98
-                            </a>
-
-                            <% if (rows["TypeSapPMS"] != DBNull.Value && rows["TypeSapPMS"].ToString() == "Scrap") { %>
-                                <a href="#" class="btn btn-info btn-sm" title="Tranfer_G99"
-                                   onclick="openEditModal4('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
-                                   Tranfer_G99
-                                </a>
+                                onclick="openEditModal3('<%= rows["RequestNo"] %>',
+                                   '<%= rows["TypeForm"] %>',
+                                   '<%= rows["SanctionName"] %>')">Out201_98
+                             </a>
                             <% } %>
 
-                            <!-- ĐỔI MÀU 2-->
+                            <!-- Type = Scrap -->
+                            <% if (type == "Scrap")
+                            { %>
+
+                            <a href="#" class="btn btn-info btn-sm" title="Tranfer_G99"
+                                onclick="openEditModal4('<%= rows["RequestNo"] %>',
+                                   '<%= rows["TypeForm"] %>',
+                                   '<%= rows["SanctionName"] %>')">Tranfer_G99
+                            </a>
+
                             <a href="#" class="btn btn-scrap btn-sm" title="Out Scrap"
-                               onclick="openEditModal5('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
-                               Out Scrap
+                                onclick="openEditModal5('<%= rows["RequestNo"] %>',
+                                   '<%= rows["TypeForm"] %>',
+                                   '<%= rows["SanctionName"] %>')">Out Scrap
                             </a>
 
-                            <!-- ĐỔI MÀU 3 -->
+                            <% } %>
+
+                            <!-- Type = Other -->
+                            <% if (type == "Other")
+                            { %>
+
                             <a href="#" class="btn btn-other btn-sm" title="Other Type"
-                               onclick="openEditModal7('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
-                               Other Type
+                                onclick="openEditModal7('<%= rows["RequestNo"] %>',
+                                   '<%= rows["TypeForm"] %>',
+                                   '<%= rows["SanctionName"] %>')">Other Type
                             </a>
 
-                            <!-- ĐỔI MÀU 4-->
+                            <% } %>
+
+                            <!-- Type = Sub -->
+                            <% if (type == "Sub")
+                            { %>
+
                             <a href="#" class="btn btn-sub btn-sm" title="Sub"
-                               onclick="openEditModal9('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
-                               Sub
+                                onclick="openEditModal9('<%= rows["RequestNo"] %>',
+                                   '<%= rows["TypeForm"] %>',
+                                   '<%= rows["SanctionName"] %>')">Sub
                             </a>
 
-                            <a href="#" class="btn btn-info btn-sm" title="feedback"
-                               onclick="openEditModal8('<%= rows["RequestNo"] %>','<%= rows["TypeForm"] %>','<%= rows["SanctionName"] %>')">
-                               Feedback
-                            </a>
+                            <% } %>
+
                         </td>
                     </tr>
                     <% } %>
