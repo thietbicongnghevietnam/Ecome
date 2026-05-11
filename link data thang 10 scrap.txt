@@ -565,6 +565,10 @@ Select_PMS_OutSAP_search2_new2ACC	(them option cho ACC)
 SP_Issue_Material_Search_A_tongplant 
 SP_Issue_Material_Search_B_tongplant
 
+==========// 11.05.2026 //=====
+SP_Issue_Material_BindRQ_NOTApproved_OutStock_B		(level 3 outdep => phan quyen lai type 15 va 16 tach khi pus chi nhin nhung request khac 15 & 16) and (TypeID not in 15 & 16)
+SP_Issue_Material_BindRQ_NOTApproved_OutStock		(from A)
+Select_PMS_OutSAP_download2				(dow list pending -> chu ky so 6 ok moi dua vao)
 
 
 

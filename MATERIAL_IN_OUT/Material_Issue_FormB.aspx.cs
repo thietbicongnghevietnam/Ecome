@@ -4004,11 +4004,13 @@ namespace MATERIAL_IN_OUT
                         Request_NO = treeRQ_InMaterial.SelectedNode.Value.ToString();
                     }
                 }
-                if (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() == "STORE")
-                {
-                    dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
-                    Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
-                }
+
+                //bo doan nay: 11.05.2026  ==> fix loi khong duoc 2 requset chung 1 sanction  :khong update duoc sacntion  ***
+                //if (Session["Role_Dept"].ToString().Trim() == "RQ" && Session["RoleOutStock"].ToString().Trim() == "STORE")
+                //{
+                //    dtTreeRQ = DataConn.StoreFillDS("SP_Issue_Material_RQMAX_B", CommandType.StoredProcedure, Public_Dept, Session["Stock"].ToString(), Session["Role_Dept"].ToString().Trim());
+                //    Request_NO = dtTreeRQ.Rows[0]["RequestNo"].ToString();
+                //}
 
                 if (hdfControlACC.Value.ToString().Trim() == "ACC-CHECK" && Session["Role_Dept"].ToString().Trim() == "ACC-CHECK")
                 {
