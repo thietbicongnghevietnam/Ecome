@@ -573,6 +573,17 @@ Select_PMS_OutSAP_download2				(dow list pending -> chu ky so 6 ok moi dua vao)
 ==========// 12.05.2026 //=====
 [SP_Issue_Material_Report_PUR]		(loi forB chua show tong -> da fix)
 
+========== // report ACC //===========
+Select_PMS_OutSAP_ReportACC
+Select_PMS_OutSAP_ReportACC_download
+Select_PMS_OutSAP_ReportACC_search
+Select_PMS_OutSAP_ReportACC_trangthai
+Select_PMS_OutSAP_ReportACC_download2
+sp_NextSign_Process
+
+
+<link rel="stylesheet" href="/LibNew/all.min.css" />  ==> xem lai file nay can kiem tra lai
+
 
 ========= // danh sach mater //===========
 [Issue_MaterialInOut].[dbo].[tbl_Plant]

@@ -409,8 +409,13 @@
                                    class=" big-icon">
                                    <i class="fa big-icon fa-download"></i> PMS Out SAP
                                 </a>
-
                             </li>
+                             <li>
+                                <a href="/frmReportACC.aspx" target="_blank" 
+                                    class=" big-icon">
+                                    <i class="fa big-icon fa-download"></i> Report ACC
+                                 </a>
+                             </li>
                             <li>
                                 <asp:LinkButton 
                                     ID="lnkDownloadExcel"

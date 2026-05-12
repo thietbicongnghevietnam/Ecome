@@ -168,9 +168,11 @@
     <Content Include="Changepassword.aspx" />
     <Content Include="ControlPriceSAP.aspx" />
     <Content Include="ControlPriceSAP2.aspx" />
+    <Content Include="css\all.min.css" />
     <Content Include="Download.aspx" />
     <Content Include="Control_ExchangeRate.aspx" />
     <Content Include="Fomat_SendEmail\FeedBackPMS.html" />
+    <Content Include="frmReportACC.aspx" />
     <Content Include="frmPMSOutSap.aspx" />
     <Content Include="frmHistoryChangePrice.aspx" />
     <Content Include="frmMaterAB.aspx" />
@@ -527,6 +529,13 @@
     </Compile>
     <Compile Include="Control_ExchangeRate.aspx.designer.cs">
       <DependentUpon>Control_ExchangeRate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportACC.aspx.cs">
+      <DependentUpon>frmReportACC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReportACC.aspx.designer.cs">
+      <DependentUpon>frmReportACC.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmPMSOutSap.aspx.cs">
       <DependentUpon>frmPMSOutSap.aspx</DependentUpon>
