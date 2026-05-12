@@ -175,6 +175,7 @@
     <Content Include="frmHistoryChangePrice.aspx" />
     <Content Include="frmMaterAB.aspx" />
     <Content Include="frmSlocMCS.aspx" />
+    <Content Include="import_excel_test.aspx" />
     <Content Include="LibNew\adminlte.min.css" />
     <Content Include="LibNew\adminlte.min.js" />
     <Content Include="LibNew\all.min.css" />
@@ -554,6 +555,13 @@
     </Compile>
     <Compile Include="frmSlocMCS.aspx.designer.cs">
       <DependentUpon>frmSlocMCS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="import_excel_test.aspx.cs">
+      <DependentUpon>import_excel_test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="import_excel_test.aspx.designer.cs">
+      <DependentUpon>import_excel_test.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReviseInvoice.aspx.cs">
       <DependentUpon>ReviseInvoice.aspx</DependentUpon>

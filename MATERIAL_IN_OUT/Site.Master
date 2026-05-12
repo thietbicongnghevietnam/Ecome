@@ -378,6 +378,8 @@
                             </li>
                             <li>                              
                                 <a href="/ControlPriceSAP2.aspx" target="_blank" class=" fa fa-cloud-upload big-icon"> Upload Price SAP </a>
+
+                                 <%--<a href="/import_excel_test.aspx" target="_blank" class=" fa fa-cloud-upload big-icon"> Upload Price SAP </a>--%>
                               <%--  <asp:HyperLink ID="linkUploadPriceSAP" runat="server" NavigateUrl="~/ControlPriceSAP2.aspx" Target="_blank">    
                                     <i class="fa fa-cloud-upload big-icon"> Upload Price SAP</i>
                                 </asp:HyperLink>--%>
