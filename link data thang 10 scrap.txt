@@ -580,6 +580,12 @@ Select_PMS_OutSAP_ReportACC_search
 Select_PMS_OutSAP_ReportACC_trangthai
 Select_PMS_OutSAP_ReportACC_download2
 sp_NextSign_Process
+pro_get_section
+
+==========//14.05.2026 //===== 
+Update_Issue_Material_Report_B	(update them ly do check SAP)
+
+
 
 
 <link rel="stylesheet" href="/LibNew/all.min.css" />  ==> xem lai file nay can kiem tra lai

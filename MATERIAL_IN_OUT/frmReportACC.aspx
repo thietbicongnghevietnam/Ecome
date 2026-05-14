@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="/LibNew/toastr.min.css" />
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <!-- Thu vien Icon =>  <i class="fa fa-arrow-right"> ....-->
      <%--<link rel="stylesheet" href="/LibNew/all.min.css" />--%>
 
