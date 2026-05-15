@@ -106,6 +106,13 @@
                              Export ACC
                          </button>
                     </div>
+
+                    <div style="float: left; padding-right: 10px;">
+                        <button class="btn btn-primary" type="button" runat="server" onserverclick="Report_LOG_Click">
+                             Report LOG
+                         </button>
+                    </div>
+
                     <div style="float: left; padding-right: 10px;">
                     <button class="btn btn-primary" type="button" runat="server" onserverclick="Report_All_Click">
                          Report ALL

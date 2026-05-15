@@ -253,6 +253,28 @@ namespace MATERIAL_IN_OUT
             }
         }
 
+        protected void Report_LOG_Click(object sender, EventArgs e) 
+        {
+            string _fromdate = Request.Form[Datefrom1.UniqueID];
+            string _todate = Request.Form[Dateto1.UniqueID];
+            string userid = Session["UserName"].ToString();
+
+            string requestno = filterRequestNo.Value;
+            string sanctionno = filterSanctionNo.Value;
+            string typeSapPMS = filterSapPMS.Value;
+            DataTable dtexport = DataConn.StoreFillDS("Select_PMS_OutSAP_LOG", System.Data.CommandType.StoredProcedure, _fromdate, _todate, userid);
+            
+            if (dtexport.Rows.Count > 0)
+            {
+                ExportToCSV(dtexport, "Report_LOG_issueout" + ".csv");
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(),
+                            "Message", "toastr.error('NG,Data null, Check again!');", true);
+            }
+
+        }
         protected void Report_All_Click(object sender, EventArgs e)
         {
             string _fromdate = Request.Form[Datefrom1.UniqueID];

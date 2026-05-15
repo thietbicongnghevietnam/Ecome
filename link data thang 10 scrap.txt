@@ -585,6 +585,14 @@ pro_get_section
 ==========//14.05.2026 //===== 
 Update_Issue_Material_Report_B	(update them ly do check SAP)
 
+==========//15.05.2026 //===== 
+Select_PMS_OutSAP_LOG
+Select_PMS_OutSAP_ReportACC_download2	(loc du lieu)
+Select_PMS_OutSAP_ReportACC_download	(dowload)
+Select_PMS_OutSAP_ReportACC_search	(search)
+Select_PMS_OutSAP_ReportACC_trangthai	(loc trang thai)
+Select_PMS_OutSAP_ReportACC_section	(loc theo bo phan)
+
 
 
 
