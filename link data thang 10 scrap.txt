@@ -593,6 +593,14 @@ Select_PMS_OutSAP_ReportACC_search	(search)
 Select_PMS_OutSAP_ReportACC_trangthai	(loc trang thai)
 Select_PMS_OutSAP_ReportACC_section	(loc theo bo phan)
 
+==========//15.05.2026 //===== 18.05.2026 
+Select_PMS_OutSAP_ReportACC_download	(report acc =>tao bk)
+-----//out dept //----not apporove
+SP_Issue_Material_BindRQ_NOTApproved_OutStock
+SP_Issue_Material_BindRQ_NOTApproved_OutStock_B
+
+
+
 
 
 
