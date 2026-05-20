@@ -35,34 +35,53 @@ namespace MATERIAL_IN_OUT
     {
         public DataTable dt = new DataTable();
         public DataTable dt_update = new DataTable();
+        public DataTable dtsection = new DataTable();
 
         public string listUserMCS = "";
         public string selectedOption = "PMS";
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Date1.Value = DateTime.Now.ToString("yyyy-MM-dd");
-            Date1.Value = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd");
-            ngaychiid.Value = DateTime.Now.ToString("yyyy-MM-dd");
-            
-            // Xử lý AJAX request riêng
-            if (Request["action"] == "getDetail")
+            if (!IsPostBack) 
             {
-                HandleGetDetail();
-                Response.End();
-                return;
-            }            
+                //Date1.Value = DateTime.Now.ToString("yyyy-MM-dd");
+                Date1.Value = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd");
+                ngaychiid.Value = DateTime.Now.ToString("yyyy-MM-dd");
 
-            if (rbPMS.Checked)
-            {
-                selectedOption = "PMS";
-            }
-            else if (rbMCS.Checked)
-            {
-                selectedOption = "MCS";
-            }
+                // Xử lý AJAX request riêng
+                if (Request["action"] == "getDetail")
+                {
+                    HandleGetDetail();
+                    Response.End();
+                    return;
+                }
 
-            //dt = DataConn.StoreFillDS("Select_PMS_OutSAP", System.Data.CommandType.StoredProcedure);
-            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_new", System.Data.CommandType.StoredProcedure, selectedOption);
+                if (rbPMS.Checked)
+                {
+                    selectedOption = "PMS";
+                }
+                else if (rbMCS.Checked)
+                {
+                    selectedOption = "MCS";
+                }
+
+                //dt = DataConn.StoreFillDS("Select_PMS_OutSAP", System.Data.CommandType.StoredProcedure);
+                dt = DataConn.StoreFillDS("Select_PMS_OutSAP_new", System.Data.CommandType.StoredProcedure, selectedOption);
+
+                //danh sach bophan
+                dtsection = DataConn.StoreFillDS("pro_get_section", System.Data.CommandType.StoredProcedure);
+                DataRow newRow1 = dtsection.NewRow();
+                newRow1["DeptCode"] = "==Section==";
+                dtsection.Rows.InsertAt(newRow1, 0);
+                dr_filter_section.DataSource = dtsection;
+                dr_filter_section.DataBind();
+            }
+        }
+
+        protected void dr_filter_section_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string section = dr_filter_section.SelectedValue;
+            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_new_section", System.Data.CommandType.StoredProcedure, selectedOption, section);
+
         }
 
         protected void Radio_CheckedChanged(object sender, EventArgs e)
@@ -253,12 +272,34 @@ namespace MATERIAL_IN_OUT
 
         protected void Dowload_All_Click(object sender, EventArgs e)
         {
+            DataTable dtexport = new DataTable();
+
             string _fromdate = Request.Form[Date1.UniqueID];
             string _todate = Request.Form[ngaychiid.UniqueID];
             string userid = Session["UserName"].ToString();
 
             string requestno = filterRequestNo.Value;
             string sanctionno = filterSanctionNo.Value;
+
+            // Lấy danh sách request đã chọn
+            string selectedRequests = hfSelectedRequest.Value;
+            // Convert thành List
+            List<string> requestList = new List<string>();
+
+            //if (!string.IsNullOrEmpty(selectedRequests))
+            //{
+            //    requestList = selectedRequests.Split(',').ToList();
+            //}
+            //else 
+            //{
+            //    //truong hop bi null ==> khong chon request nao
+            //}
+            //// Loop xử lý
+            //foreach (string requestNo in requestList)
+            //{
+            //    // xử lý export
+            //}
+
 
             //bool isDownloadDetail = chkDownloadDetail.Checked;
             string typedownload = "0";
@@ -297,8 +338,18 @@ namespace MATERIAL_IN_OUT
 
             string status_issueout = ddlStatus.SelectedValue;
 
-            //DataTable dtexport = DataConn.StoreFillDS("Select_PMS_OutSAP_download", System.Data.CommandType.StoredProcedure, _fromdate, _todate, userid, typedownload);
-            DataTable dtexport = DataConn.StoreFillDS("Select_PMS_OutSAP_download2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, userid, typedownload, selectedOption, status_issueout);
+            if (!string.IsNullOrEmpty(selectedRequests))
+            {
+                requestList = selectedRequests.Split(',').ToList();
+                string requestString = string.Join(",", requestList);
+                dtexport = DataConn.StoreFillDS("Select_PMS_OutSAP_download2_chon", System.Data.CommandType.StoredProcedure, _fromdate, _todate, userid, typedownload, selectedOption, status_issueout, requestString);
+            }
+            else
+            {
+                //truong hop bi null ==> khong chon request nao
+                dtexport = DataConn.StoreFillDS("Select_PMS_OutSAP_download2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, userid, typedownload, selectedOption, status_issueout);
+            }
+            
 
             if (dtexport.Rows.Count > 0)
             {

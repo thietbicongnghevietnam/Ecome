@@ -49,6 +49,12 @@
         .row-other  td { background-color: #e6fafb !important; color: #000000; }
         .row-scrap  td { background-color: #fbfcd9 !important; color: #000000; }
         .row-sloc98 td { background-color: #78fafa !important; color: #000000; }
+
+        /*th:first-child,
+        td:first-child {
+            text-align: center;
+            width: 40px;
+        }*/
     </style>
 
 </head>
@@ -60,7 +66,7 @@
             <div class="card-header">
                 <div class="col-sm-12">
                     <h3><b style="font-size: 30px;">List Issue In-Out PMS Out SAP</b></h3>
-                    <br />
+                   <br />
                     <p style="color: blue;">
                         <asp:Label ID="lblConfirm" Text="" runat="server"></asp:Label>
                     </p>
@@ -76,18 +82,30 @@
 
 
                     <div style="float: left; padding-right: 10px;">
-                        RequestNO:
+                       <%-- RequestNO:--%>
                         <input type="text" id="filterRequestNo" runat="server" placeholder="Input Request No" style="height: 34px;" />
                     </div>
                     <div style="float: left; padding-right: 10px;">
-                        Sanction:
+                       <%-- Sanction:--%>
                         <input type="text" id="filterSanctionNo" runat="server" placeholder="Input Sanction No" style="height: 34px;" />
                     </div>
 
                      <div style="float: left; padding-right: 10px;">
-                         TypeSapPMS:
+                         <%--TypeSapPMS:--%>
                          <input type="text" id="filterSapPMS" runat="server" placeholder="Input type sapPMS" style="height: 34px;" />
                      </div>
+
+                    <div class="col-md-1" style="float: left;padding-right: 10px;">
+                        <div class="form-group">                        
+                           <asp:DropDownList ID="dr_filter_section" runat="server"
+                               AppendDataBoundItems="true"
+                               DataTextField="DeptCode"
+                               DataValueField="DeptCode"
+                               CssClass="custom-select custom-select-sm form-control form-control-sm" Style="height:39px;" OnSelectedIndexChanged="dr_filter_section_SelectedIndexChanged" AutoPostBack="True" />
+       
+                       </div>
+                    </div>
+
                      <div style="float: left; padding-right: 10px;">
                                    <b>Status Out Dept:</b> 
                                     <asp:DropDownList ID="ddlStatus" runat="server" style="height: 34px;">
@@ -104,9 +122,13 @@
 
                     <!-- Checkbox + Download All -->
                     <div style="float: left; padding-right: 10px; display: flex; align-items: center; gap: 8px;">
-                        <button class="btn btn-primary" type="button" runat="server" onserverclick="Dowload_All_Click">
+                        <asp:HiddenField ID="hfSelectedRequest" runat="server" />
+
+                        <%--<button class="btn btn-primary" type="button" runat="server" onserverclick="Dowload_All_Click" onclick="return collectCheckedRows();">
                             Export
-                        </button>
+                        </button>--%>
+
+                        <asp:Button ID="btnExport" runat="server" CssClass="btn btn-primary" Text="Export" OnClientClick="return collectCheckedRows();" OnClick="Dowload_All_Click" />
                         
                         <label style="margin: 0; display: flex; align-items: center; gap: 4px; height: 34px; cursor: pointer;">
                             <asp:RadioButton ID="optDownloadDetail" runat="server" GroupName="downloadOption" Checked="true" />
@@ -125,16 +147,13 @@
                             <asp:RadioButton ID="optReportLog" runat="server" GroupName="downloadOption" />
                             Report LOG
                         </label>
-                       
-                        <%--<label style="margin: 0; display: flex; align-items: center; gap: 4px; height: 34px; cursor: pointer;">
-                            <asp:CheckBox ID="chkDownloadtong" runat="server" />
-                            CSV format tổng (Transfer)
-                        </label>
-
-                         <label style="margin: 0; display: flex; align-items: center; gap: 4px; height: 34px; cursor: pointer;">
-                             <asp:CheckBox ID="chkDownloadDetail" runat="server" />
-                             Format pending_done list
-                         </label>--%>
+                    
+                                         <b>Type Issue out Dept:</b> &nbsp;&nbsp;&nbsp;&nbsp;
+<div class="horizontal-radio-group">
+    <asp:RadioButton ID="rbPMS" runat="server" GroupName="rblOptions" Text="PMS" Checked="true" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged" />&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:RadioButton ID="rbMCS" runat="server" GroupName="rblOptions" Text="MCS" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged"  /> &nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:RadioButton ID="rbACC" runat="server" GroupName="rblOptions" Text="ACC" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged"  />   
+</div>
 
 
                     </div>
@@ -169,15 +188,11 @@
 
 
                 </div>
-                <b>Type Issue out Dept:</b> &nbsp;&nbsp;&nbsp;&nbsp;
-                 <div class="horizontal-radio-group">
-                     <asp:RadioButton ID="rbPMS" runat="server" GroupName="rblOptions" Text="PMS" Checked="true" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged" />&nbsp;&nbsp;&nbsp;&nbsp;
-                     <asp:RadioButton ID="rbMCS" runat="server" GroupName="rblOptions" Text="MCS" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged"  /> &nbsp;&nbsp;&nbsp;&nbsp;
-                     <asp:RadioButton ID="rbACC" runat="server" GroupName="rblOptions" Text="ACC" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged"  />   
-                 </div>
+                
               
 
             </div>
+
         </div>
 
 
@@ -186,6 +201,11 @@
                 <thead>
 
                     <tr role="row">
+                        <!-- Checkbox all -->
+                <th>
+                    <input type="checkbox" id="checkAll" />
+                </th>
+
                         <th>IDNO</th>
                         <th>RequestNo</th>
                         <th>Department</th>
@@ -224,6 +244,9 @@
                         else if (type == "Sloc98") rowClass = "row-sloc98";
                     %>
                     <tr class="<%= rowClass %>">
+                        <!-- Checkbox từng dòng -->
+                        <td> <input type="checkbox" class="row-check" value="<%= rows["RequestNo"] %>" /> </td>
+
                         <td><%= i %></td>
                         <td><%= rows["RequestNo"].ToString() %></td>
                         <td><%= rows["Department"].ToString() %></td>
@@ -349,6 +372,12 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        <!-- Checkbox all -->
+                        <th>
+                   
+                        </th>
+
+
                         <th>IDNO</th>
                         <th>RequestNo</th>
                         <th>Department</th>
@@ -878,6 +907,37 @@
         //    })
         //});
     </script>
+
+    <script>
+
+        function collectCheckedRows() {
+
+            //alert('ok');
+
+            let selected = [];
+
+            document.querySelectorAll(".row-check:checked")
+                .forEach(function (checkbox) {
+
+                    selected.push(checkbox.value);
+
+                });
+
+            // Gán vào hidden field
+            document.getElementById("<%= hfSelectedRequest.ClientID %>").value =
+                selected.join(",");
+
+            // Nếu chưa chọn
+            //if (selected.length === 0) {
+
+            //    alert("Please select at least one request!");
+            //    return false;
+            //}
+
+            return true;
+        }
+
+</script>
 
     <script type="text/javascript">  
         $(document).ready(function () {

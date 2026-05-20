@@ -605,7 +605,10 @@ loc theo saction => report PMS, ACC
 Select_PMS_OutSAP_ReportACC_download	(them cot MVType cho report ACC)
 
 
-
+-------------
+Select_PMS_OutSAP_download2		(and TypeID not in ('15.1','15.2','16.1','16.2'))
+Select_PMS_OutSAP_download2_chon	(check box chon request)
+Select_PMS_OutSAP_new_section		(loc section)
 
 
 
