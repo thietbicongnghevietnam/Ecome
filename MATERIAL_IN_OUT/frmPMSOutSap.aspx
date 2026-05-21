@@ -66,7 +66,13 @@
             <div class="card-header">
                 <div class="col-sm-12">
                     <h3><b style="font-size: 30px;">List Issue In-Out PMS Out SAP</b></h3>
-                   <br />
+ 
+<div class="horizontal-radio-group">
+    <b>Type Issue out Dept:</b> &nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:RadioButton ID="rbPMS" runat="server" GroupName="rblOptions" Text="PMS" Checked="true" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged" />&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:RadioButton ID="rbMCS" runat="server" GroupName="rblOptions" Text="MCS" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged"  /> &nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:RadioButton ID="rbACC" runat="server" GroupName="rblOptions" Text="ACC" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged"  />   
+</div>
                     <p style="color: blue;">
                         <asp:Label ID="lblConfirm" Text="" runat="server"></asp:Label>
                     </p>
@@ -148,12 +154,7 @@
                             Report LOG
                         </label>
                     
-                                         <b>Type Issue out Dept:</b> &nbsp;&nbsp;&nbsp;&nbsp;
-<div class="horizontal-radio-group">
-    <asp:RadioButton ID="rbPMS" runat="server" GroupName="rblOptions" Text="PMS" Checked="true" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged" />&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:RadioButton ID="rbMCS" runat="server" GroupName="rblOptions" Text="MCS" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged"  /> &nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:RadioButton ID="rbACC" runat="server" GroupName="rblOptions" Text="ACC" AutoPostBack="true" OnCheckedChanged="Radio_CheckedChanged"  />   
-</div>
+                                         
 
 
                     </div>

@@ -33,6 +33,33 @@ namespace MATERIAL_IN_OUT
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// rbPMS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbPMS;
+
+        /// <summary>
+        /// rbMCS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbMCS;
+
+        /// <summary>
+        /// rbACC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbACC;
+
+        /// <summary>
         /// lblConfirm control.
         /// </summary>
         /// <remarks>
@@ -157,33 +184,6 @@ namespace MATERIAL_IN_OUT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton optReportLog;
-
-        /// <summary>
-        /// rbPMS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbPMS;
-
-        /// <summary>
-        /// rbMCS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbMCS;
-
-        /// <summary>
-        /// rbACC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbACC;
 
         /// <summary>
         /// FileUpload control.
