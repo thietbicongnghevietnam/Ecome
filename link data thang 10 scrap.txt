@@ -608,6 +608,14 @@ Select_PMS_OutSAP_download2		(and TypeID not in ('15.1','15.2','16.1','16.2'))
 Select_PMS_OutSAP_download2_chon	(check box chon request)
 Select_PMS_OutSAP_new_section		(loc section)
 
+==========//26.05.2026 //=====
+Select_PMS_OutSAP_download2	(sua lai report pending PMS)
+Select_PMS_OutSAP_search2_new3	(loc chu ky so 7,8,9 cho PMS)
+Select_PMS_OutSAP_ReportACC	(them usercreate)
+Select_PMS_OutSAP_ReportACC_section
+Select_PMS_OutSAP_ReportACC_trangthai
+Select_PMS_OutSAP_ReportACC_search
+
 
 
 <link rel="stylesheet" href="/LibNew/all.min.css" />  ==> xem lai file nay can kiem tra lai

@@ -133,6 +133,7 @@
                         <th>Actions</th>
                         <th>IDNO</th>
                         <th>RequestNo</th>
+                        <th>UserCreate</th>
                         <th>TypeID</th>  
                         <th>DocumentNo</th>
                         <th>TypeSapPMS</th>
@@ -181,6 +182,7 @@
                         </td>
                         <td><%= i %></td>
                         <td><%= rows["RequestNo"].ToString() %></td>
+                        <td><%= rows["UserCreate"].ToString() %></td>
                         <td><%= rows["TypeID"].ToString() %></td>
                         <td><%= rows["DocumentNo"].ToString() %></td>
                         <td><%= rows["TypeSapPMS"].ToString() %></td>
@@ -212,6 +214,7 @@
                         <th>Actions</th>
                        <th>IDNO</th>
                         <th>RequestNo</th>
+                        <th>UserCreate</th>
                         <th>TypeID</th>  
                         <th>DocumentNo</th>
                         <th>TypeSapPMS</th>

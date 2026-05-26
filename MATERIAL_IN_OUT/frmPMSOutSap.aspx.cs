@@ -140,6 +140,8 @@ namespace MATERIAL_IN_OUT
             string typesapPMS = filterSapPMS.Value;
 
             string status_issueout = ddlStatus.SelectedValue;   //and StatusMGR_Out is NULL  //set @sql += ' and StatusMGR_Out is NULL '
+
+            string chukyso = ddlChuKy.SelectedValue;
             //ALL       //Pending
             //if (status_issueout == "ALL")
             //{
@@ -158,11 +160,10 @@ namespace MATERIAL_IN_OUT
                 selectedOption = "MCS";
             }
             
+            //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout, selectedOption);
+            // loc theo chu ky 7,8,9
+            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new3", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout, selectedOption, chukyso);
 
-            //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno);
-            //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS);
-            //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout);
-            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout, selectedOption);
 
             if (dt.Rows.Count > 0)
             {

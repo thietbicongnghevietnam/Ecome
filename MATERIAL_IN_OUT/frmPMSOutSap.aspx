@@ -121,6 +121,17 @@
                      </div>
 
                     <div style="float: left; padding-right: 10px;">
+                        <b>Sign:</b>
+
+                        <asp:DropDownList ID="ddlChuKy" runat="server" style="height: 34px;">
+                            <asp:ListItem Text="ALL" Value="ALL" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="Chu Ky 7" Value="7"></asp:ListItem>
+                            <asp:ListItem Text="Chu Ky 8" Value="8"></asp:ListItem>
+                            <asp:ListItem Text="Chu Ky 9" Value="9"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+
+                    <div style="float: left; padding-right: 10px;">
                         <button class="btn btn-primary" type="button" runat="server" onserverclick="Search_Date_Click">
                             Filter
                         </button>
