@@ -224,6 +224,7 @@
                         <%--<th>Status_RQ</th>--%>
                         <th>Status_Approved_OutSAP</th>
                         <th>TypeForm</th>
+                        <th>MvType</th>
                         <th>Sanction Name</th>
                         <th>Document No</th>
 
@@ -270,6 +271,7 @@
                             : rows["Status_Approved_OutSAP"].ToString() %>
                         </td>
                         <td><%= rows["TypeForm"].ToString() %></td>
+                        <td><%= rows["MvType"].ToString() %></td>
                         <td><%= rows["SanctionName"].ToString() %></td>
                         <td><%= rows["DocumentNo"].ToString() %></td>
 
@@ -396,6 +398,7 @@
                         <%--<th>Status_RQ</th>--%>
                         <th>Status_Approved_OutSAP</th>
                         <th>TypeForm</th>
+                        <th>MvType</th>
                         <th>Sanction Name</th>
                         <th>Document No</th>
 

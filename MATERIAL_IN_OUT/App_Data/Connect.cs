@@ -35,6 +35,7 @@ namespace MATERIAL_IN_OUT.AppCode
         public static int month2;
         public static string E_Month;
         public static string source;
+        public static string source2;
         private static SqlConnection con;
         public static int gio;
         public static DataAdapter adapter;
@@ -90,6 +91,8 @@ namespace MATERIAL_IN_OUT.AppCode
             //source = @"Data Source=10.92.186.30;Initial Catalog=Issue_MaterialInOut;User ID=sa;Password=Psnvdb2013";
 
             source = @"Data Source=192.168.128.1;Initial Catalog=Issue_MaterialInOut;User ID=sa;Password=Psnvdb2013";
+
+            source2 = @"Data Source=192.168.128.130;Initial Catalog=SWMS_DEV;User ID=sa;Password=Psnvdb2013";
             //source = @"Data Source=.\;Initial Catalog=Issue_MaterialInOut;Integrated Security=True";
 
             //LT-DE2302026
@@ -190,6 +193,30 @@ namespace MATERIAL_IN_OUT.AppCode
         public static DataTable StoreFillDS(string query_object, CommandType type, params object[] obj)
         {
             using (SqlConnection conn = new SqlConnection(source))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query_object, conn))
+                {
+                    cmd.CommandType = type;
+                    SqlCommandBuilder.DeriveParameters(cmd);
+                    for (int i = 1; i <= obj.Length; i++)
+                    {
+                        cmd.Parameters[i].Value = obj[i - 1] ?? DBNull.Value;
+                    }
+
+                    using (SqlDataAdapter dap = new SqlDataAdapter(cmd))
+                    {
+                        DataSet ds = new DataSet();
+                        dap.Fill(ds);
+                        return ds.Tables.Count > 0 ? ds.Tables[0] : new DataTable();
+                    }
+                }
+            } // ← tự động Close() + Dispose() dù có exception hay không
+        }
+
+        public static DataTable StoreFillDS_MCS(string query_object, CommandType type, params object[] obj)
+        {
+            using (SqlConnection conn = new SqlConnection(source2))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query_object, conn))

@@ -76,6 +76,12 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Add New
                 </button>
+
+             <span style="padding-left:20px;"></span>
+            <button class="btn btn-primary" type="button" runat="server" onserverclick="Sys_SlocMCS_Click">
+                SYS Sloc MCS
+                </button>
+
         </div>
     </div>
 

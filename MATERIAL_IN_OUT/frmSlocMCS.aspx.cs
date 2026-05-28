@@ -45,6 +45,40 @@ namespace MATERIAL_IN_OUT
 
         }
 
+        protected void Sys_SlocMCS_Click(object sender, EventArgs e) 
+        {
+            //update thong tin sloc tu kho MCS sang he thong Issue OUT
+            DataTable dt_sloc_mcs = new DataTable();
+            DataTable dt_update = new DataTable();
+            dt_sloc_mcs = DataConn.StoreFillDS_MCS("Select_mater_slocMCS_SWMS", System.Data.CommandType.StoredProcedure);
+            if (dt_sloc_mcs.Rows.Count > 0)
+            {                
+                for (int i = 0; i < dt_sloc_mcs.Rows.Count; i++)
+                {
+                    string plant = dt_sloc_mcs.Rows[i]["Plant"].ToString();
+                    string Category = dt_sloc_mcs.Rows[i]["Category"].ToString();
+                    string Sloc = dt_sloc_mcs.Rows[i]["Sloc"].ToString();
+                    string Type = dt_sloc_mcs.Rows[i]["Type"].ToString();
+                    string Address = dt_sloc_mcs.Rows[i]["Address"].ToString();
+                    string Description = dt_sloc_mcs.Rows[i]["Description"].ToString();
+                    string CreatedBy = "SYS";
+                    //update kho neu chua co
+                    //neu type=SMT khong thuoc kho MCS thi sua trong sotre****
+                    dt_update = DataConn.StoreFillDS("Update_mater_slocMCS", System.Data.CommandType.StoredProcedure, plant, Category, Sloc, Type, Address, Description, CreatedBy);                    
+                }
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.success('Update Sloc Sucess !!!');", true);
+            }
+            else 
+            {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "Message", "toastr.error('NG, Data NULL!'); ", true);
+            }
+
+            //load grid
+            string slocname = filterSloc.Value;
+            dt = DataConn.StoreFillDS("Select_mater_slocMCS", System.Data.CommandType.StoredProcedure, slocname);
+
+        }
+
         public void UpdateDocumentNo(object sender, EventArgs e)
         {
             string idno = txtid.Text;

@@ -381,7 +381,7 @@ namespace MATERIAL_IN_OUT
                 //old 2
                 //lblPlant.Text = dt_IssueMaterial.Rows[0]["Plant"].ToString();
                 //lblPlantName.Text = dt_IssueMaterial.Rows[0]["NamePlant"].ToString();
-                ////  txtVoucherDate.Value.ToString() = dt_IssueMaterial.Rows[0]["DateVoucher"].ToString();
+                txtDateInput.Value = dt_IssueMaterial.Rows[0]["DateVoucher"].ToString();    //ACC click vao show ra ngay voucher date cua thang sau  
                 lblMvTYpe.Text = dt_IssueMaterial.Rows[0]["MvType"].ToString();
                 lblIN.Text = dt_IssueMaterial.Rows[0]["MvName"].ToString();
                 //lblCostCenter.Text = dt_IssueMaterial.Rows[0]["CostCenter"].ToString();

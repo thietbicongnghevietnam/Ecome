@@ -616,6 +616,23 @@ Select_PMS_OutSAP_ReportACC_section
 Select_PMS_OutSAP_ReportACC_trangthai
 Select_PMS_OutSAP_ReportACC_search
 
+==========//28.05.2026 //=====  bo request reject ra khoi not aprove ACC
+SP_Issue_Material_BindRQ_NOTApproved_B
+SP_Issue_Material_BindRQ_NOTApproved
+
+Update_Sloc_MCS			(bo update sloc)
+Select_mater_slocMCS_SWMS	(strored ben SMWS)
+Update_mater_slocMCS		(update lai thong in)
+
+Select_PMS_OutSAP_new		(them cot MVTtype)
+Select_PMS_OutSAP_new_section
+Select_PMS_OutSAP_search2_new2
+Select_PMS_OutSAP_search2_new2ACC
+Select_PMS_OutSAP_search2_new3
+
+
+
+
 
 
 <link rel="stylesheet" href="/LibNew/all.min.css" />  ==> xem lai file nay can kiem tra lai
