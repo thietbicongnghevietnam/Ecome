@@ -367,6 +367,7 @@
 
                                                     <th>Reason</th>
                                                     <th>Rosh/Halb</th>
+                                                    <th>TypeSAP</th>
                                                     <th>Status</th>
                                                     <%--<th>Flag</th>--%>
                                                     <%--<th style="text-align:center">--%>
@@ -416,6 +417,7 @@
 
                                                             <td><%#Eval("Reason") %></td>
                                                             <td><%#Eval("Type_Rosh_Halb") %></td>
+                                                            <td><%#Eval("TypeSapPMS") %></td>
                                                             <td><%#Eval("Status_RQ") %></td>
                                                             <%--<td><%# Eval("Flag_price_sap") %></td>--%>
                                                             <!-- CHECKBOX -->

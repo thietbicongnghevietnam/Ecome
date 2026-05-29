@@ -37,7 +37,7 @@ namespace MATERIAL_IN_OUT
             Doc = new Document();
             Doc.Info.Title = "List user in Material System.";
             Doc.Info.Subject = "";
-            Doc.Info.Author = "NGUYEN THI DAO";
+            Doc.Info.Author = "PSNV-2026";
 
             DefineStyles();
 

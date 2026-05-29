@@ -630,6 +630,13 @@ Select_PMS_OutSAP_search2_new2
 Select_PMS_OutSAP_search2_new2ACC
 Select_PMS_OutSAP_search2_new3
 
+============== //29.05.2026 //=============
+SP_Issue_Material_Search	(them cot TypeSapPMS cho ACC khi ky)
+SP_Issue_Material_Search_B
+
+SP_Issue_Material_Report_PUR	(thay cot Note => Reason)
+Select_PMS_OutSAP_new_section
+
 
 
 
