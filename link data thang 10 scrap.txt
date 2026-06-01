@@ -637,7 +637,9 @@ SP_Issue_Material_Search_B
 SP_Issue_Material_Report_PUR	(thay cot Note => Reason)
 Select_PMS_OutSAP_new_section
 
-
+============== //01.06.2026 //=============
+SP_Issue_Material_Report2	--a.Reason as Note,	(them cot lydo => note ACC)
+SP_Issue_Material_Report_PUR	--a.Reason as Note,
 
 
 
