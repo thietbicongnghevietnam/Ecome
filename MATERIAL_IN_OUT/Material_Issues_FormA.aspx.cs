@@ -893,10 +893,10 @@ namespace MATERIAL_IN_OUT
                             return;
                         }
 
-                        if (Material == "PNKF1137ZA3W252/V3")
-                        {
+                        //if (Material == "PNKF1137ZA3W252/V3")
+                        //{
 
-                        }
+                        //}
 
                         if (dt.Rows[i][3].ToString() != "")  //3.sloc
                         {

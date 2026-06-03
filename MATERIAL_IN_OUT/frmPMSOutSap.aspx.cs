@@ -142,6 +142,8 @@ namespace MATERIAL_IN_OUT
             string status_issueout = ddlStatus.SelectedValue;   //and StatusMGR_Out is NULL  //set @sql += ' and StatusMGR_Out is NULL '
 
             string chukyso = ddlChuKy.SelectedValue;
+
+            string bophan = dr_filter_section.SelectedValue;
             //ALL       //Pending
             //if (status_issueout == "ALL")
             //{
@@ -162,7 +164,9 @@ namespace MATERIAL_IN_OUT
             
             //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new2", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout, selectedOption);
             // loc theo chu ky 7,8,9
-            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new3", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout, selectedOption, chukyso);
+            //dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new3", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout, selectedOption, chukyso);
+            //loc theo bo phan
+            dt = DataConn.StoreFillDS("Select_PMS_OutSAP_search2_new4", System.Data.CommandType.StoredProcedure, _fromdate, _todate, requestno, sanctionno, typesapPMS, status_issueout, selectedOption, chukyso, bophan);
 
 
             if (dt.Rows.Count > 0)

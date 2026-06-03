@@ -641,6 +641,29 @@ Select_PMS_OutSAP_new_section
 SP_Issue_Material_Report2	--a.Reason as Note,	(them cot lydo => note ACC)
 SP_Issue_Material_Report_PUR	--a.Reason as Note,
 
+============== //03.06.2026 //=============
+Select_PMS_OutSAP_search2_new4	(loc them dieu kien bo phan khi tim kiem)
+Export_Form_98
+Export_Form_98_MCS
+Export_Tranfer_99
+Export_Tranfer_99_MCS
+Export_Outscrap		(da xuat ra co reason) 	ok
+Export_Outscrap_MCS	(da xuat ra co reason)	ok
+Export_OtherIssueSAP		(da xuat ra co reason)	ok
+Export_OtherIssueSAP_MCS	(da xuat ra co reason)	ok
+Export_SubIssueSAP	(da xuat ra co reason)	ok
+Export_SubIssueSAP_MCS	(da xuat ra co reason) ok
+Export_SubIssueSAP_special   (phan Hanh san)  -> (da xuat ra co reason) ok
+
+DECLARE @Reason NVARCHAR(300);
+set @Reason = ISNULL((SELECT TOP 1 Reason FROM tbl_RQ_MaterialIssue WHERE RequestNo = @Requestno AND TypeID IN (SELECT TypeID FROM tbl_TypeMater WHERE TypeReason = 1 )),'');
+--form b
+set @Reason = ISNULL((SELECT TOP 1 Reason FROM tbl_RQ_MaterialIssueB WHERE RequestNo = @Requestno AND TypeID IN (SELECT TypeID FROM tbl_TypeMater WHERE TypeReason = 1 )),'');
+thay cot: @Reason as Reason
+
+
+
+
 
 
 
