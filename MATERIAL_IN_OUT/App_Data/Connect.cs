@@ -17,6 +17,7 @@ using System.Text;
 using System;
 using System.Data.SqlClient;
 using System.Data.Common;
+using System.Web;
 
 namespace MATERIAL_IN_OUT.AppCode
 {
@@ -43,6 +44,9 @@ namespace MATERIAL_IN_OUT.AppCode
         public static string path = "~/CELL_MG/Employee_Images/";
         public static string path2 = "~/Images/";
         public static string[] extensions = { ".gif", ".jpg", ".bmp", ".jpeg", ".png" };
+
+        public static string target_excel;
+        public static string sqlConnStr;
         public static string ImagePath(string MaNV)
         {
             FileInfo file;
@@ -98,6 +102,9 @@ namespace MATERIAL_IN_OUT.AppCode
             //LT-DE2302026
             //source = @"Data Source=LT-DE2302026;Initial Catalog=Issue_MaterialInOut;Integrated Security=True";
 
+            //chuoi ket noi buckcopy excel            
+            sqlConnStr = "Data Source=192.168.128.1;Persist Security Info=False;Initial Catalog=Issue_MaterialInOut;User Id=sa;Password=Psnvdb2013;Connect Timeout=30;";
+
             con = new SqlConnection(source);
             try
 
@@ -107,6 +114,14 @@ namespace MATERIAL_IN_OUT.AppCode
             catch
             {
             }
+        }
+
+        // Phương thức để gán target_excel dựa vào file upload
+        public static void SetTargetExcel(HttpServerUtility server, string fileName)
+        {
+            target_excel = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" +
+                server.MapPath(".") + "\\" + fileName +
+                "; Extended Properties='Excel 12.0; HDR=YES; IMEX=1;'";
         }
         public static DataTable DataTable_Sql(string sql)
         {

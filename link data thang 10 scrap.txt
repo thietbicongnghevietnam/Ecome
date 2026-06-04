@@ -661,6 +661,15 @@ set @Reason = ISNULL((SELECT TOP 1 Reason FROM tbl_RQ_MaterialIssue WHERE Reques
 set @Reason = ISNULL((SELECT TOP 1 Reason FROM tbl_RQ_MaterialIssueB WHERE RequestNo = @Requestno AND TypeID IN (SELECT TypeID FROM tbl_TypeMater WHERE TypeReason = 1 )),'');
 thay cot: @Reason as Reason
 
+============== //04.06.2026 //=============
+Select_PMS_OutSAP_LOG	(report ACC)
+Insert_master_slocMCS	(insert sloc MCS)
+
+Select_PMS_OutSAP_new_section	(comment logB)
+Select_PMS_OutSAP_new		(comment logB)
+Select_PMS_OutSAP_search2_new2
+Select_PMS_OutSAP_search2_new2ACC
+Select_PMS_OutSAP_search2_new4
 
 
 

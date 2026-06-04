@@ -68,19 +68,43 @@
 
             <div style="float: left; padding-right: 10px;">
                 <button class="btn btn-primary" type="button" runat="server" onserverclick="Search_Date_Click">
-                    Filter
+                    Lọc
                 </button>
             </div>  
             
              <span style="padding-left:20px;"></span>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Add New
+                Thêm mới
                 </button>
 
              <span style="padding-left:20px;"></span>
             <button class="btn btn-primary" type="button" runat="server" onserverclick="Sys_SlocMCS_Click">
-                SYS Sloc MCS
+                Đồng bộ kho MCS
                 </button>
+
+
+
+                <!-- import file excel -->
+                <!-- ADD A FILE UPLOAD CONTROL AND A BUTTON TO EXECUTE. -->
+                <div style="font: 14px Verdana; float: right">
+                    <p style="margin-top: 0px; margin-left: 20px;">
+                       Chọn file để upload:
+                        <asp:FileUpload ID="FileUpload" Width="450px" runat="server" />
+                    </p>
+                    <p style="margin-top: 0px; margin-left: 20px;">
+                        <input type="button" value="Import data to Excel" runat="server" onserverclick="ImportFromExcel" class="btn btn-primary" /> 
+
+                        <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;" runat="server" onserverclick="btnDownloadClick"> 
+                            Tải file mẫu upload
+                        </button>
+                    </p>
+                    <p>
+                        <asp:Label ID="Label1" runat="server"></asp:Label>
+                    </p>
+
+                </div>
+
+
 
         </div>
     </div>
