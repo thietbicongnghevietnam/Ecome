@@ -156,33 +156,65 @@ namespace MATERIAL_IN_OUT.AppCode
                 }
             }
         }
+
         public static int Execute_NonSQL(string sql)
         {
-            SqlTransaction sqltran = null;
-            //try
-            //{
-            SqlConnection conn = new SqlConnection(source);
+            using (SqlConnection conn = new SqlConnection(source))
+            {
+                conn.Open();
 
-            int row = 0;
-            conn.Open();
-            sqltran = conn.BeginTransaction();
-            SqlCommand cmd = new SqlCommand(sql, conn, sqltran);
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = sql;
-            row = cmd.ExecuteNonQuery();
-            sqltran.Commit();
-            conn.Dispose();
-            conn.Close();
-            return row;
-            //}
-            //catch (Exception ex)
-            //{
-            //    // throw new Exception(ex.Message);
-            //    sqltran.Rollback();
-            //    var _ex = new Exception(ex.Message + "Chỗ này sai rồi... : '" + sql + "'");
-            //    throw _ex;
-            //}
+                using (SqlTransaction tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = new SqlCommand(sql, conn, tran))
+                        {
+                            cmd.CommandTimeout = 300;
+
+                            int row = cmd.ExecuteNonQuery();
+
+                            tran.Commit();
+
+                            return row;
+                        }
+                    }
+                    catch
+                    {
+                        tran.Rollback();
+                        throw;
+                    }
+                }
+            }
         }
+
+        //public static int Execute_NonSQL(string sql)
+        //{
+        //    SqlTransaction sqltran = null;
+        //    //try
+        //    //{
+        //    SqlConnection conn = new SqlConnection(source);
+
+        //    int row = 0;
+        //    conn.Open();
+        //    sqltran = conn.BeginTransaction();
+        //    SqlCommand cmd = new SqlCommand(sql, conn, sqltran);
+        //    cmd.CommandType = CommandType.Text;
+        //    cmd.CommandText = sql;
+        //    row = cmd.ExecuteNonQuery();
+        //    sqltran.Commit();
+        //    conn.Dispose();
+        //    conn.Close();
+        //    return row;
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    // throw new Exception(ex.Message);
+        //    //    sqltran.Rollback();
+        //    //    var _ex = new Exception(ex.Message + "Chỗ này sai rồi... : '" + sql + "'");
+        //    //    throw _ex;
+        //    //}
+        //}
+
         //public static DataTable StoreFillDS(string query_object, CommandType type, params object[] obj)
         //{
         //    SqlConnection conn = new SqlConnection(source);
