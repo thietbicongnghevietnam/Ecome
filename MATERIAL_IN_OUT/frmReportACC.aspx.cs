@@ -1,9 +1,13 @@
-﻿using MATERIAL_IN_OUT.AppCode;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using MATERIAL_IN_OUT.AppCode;
+using MigraDoc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Web;
 
@@ -14,7 +18,6 @@ namespace MATERIAL_IN_OUT
         public DataTable dt_report = new DataTable();
         public DataTable dtsection = new DataTable();
        
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -187,6 +190,136 @@ namespace MATERIAL_IN_OUT
             {
                 return "ERROR: " + ex.Message;
             }
+        }
+
+        protected void bttPrint_Click(object sender, EventArgs e) 
+        {
+            string Public_Dept = "ACC_CHECK";
+            DataTable dt_ReportAll = new DataTable();
+            DataTable dt_Status = new DataTable();
+            string Request_NO = "";
+
+            string titleReport = "Report Issue IN-OUT Material";
+
+            //string tieude = lblRequest.Text;
+            string tieude = "tieu de report => lay tu type master";
+            string commentLOG = "";
+            string doc_PMS = "";
+            string comment2 = "";
+            if (Public_Dept != "PUS") // Nếu không phải PUR thì không cần hiển thị phần out SAP
+            {
+                //dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report", CommandType.StoredProcedure, Request_NO);
+                dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report2", CommandType.StoredProcedure, Request_NO);
+                dt_Status = DataConn.StoreFillDS("SP_Issue_Material_RQStatus", CommandType.StoredProcedure, Request_NO);
+
+                DataTable dt_commentLOG = DataConn.StoreFillDS("SP_getcommet_Log", CommandType.StoredProcedure, Request_NO);
+
+                if (dt_commentLOG.Rows[0][0].ToString() != "")
+                {
+                    commentLOG = dt_commentLOG.Rows[0][1].ToString() + ":" + dt_commentLOG.Rows[0][0].ToString() + " (" + dt_commentLOG.Rows[0][2].ToString() + ")";
+                    doc_PMS = dt_commentLOG.Rows[0][3].ToString();
+                    if (dt_commentLOG.Rows[0][4].ToString() != "")
+                    {
+                        comment2 = dt_commentLOG.Rows[0][4].ToString() + ":" + dt_commentLOG.Rows[0][5].ToString() + " (" + dt_commentLOG.Rows[0][6].ToString() + ")";
+                    }
+                    else
+                    {
+                        comment2 = "";
+                    }
+
+                }
+
+
+                if (dt_ReportAll.Rows.Count > 0 && dt_Status.Rows.Count > 0)
+                {
+                    //PDF_A DataPDF = new PDF_A(dt_ReportAll, dt_Status, titleReport);
+
+                    PDF_A DataPDF = new PDF_A(dt_ReportAll, dt_Status, tieude, commentLOG, doc_PMS, comment2);
+                    // Create a MigraDoc document
+                    MigraDoc.DocumentObjectModel.Document document =  DataPDF.CreateDocument();
+                    document.UseCmykColor = true;
+                    PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always)
+                    {
+                        Document = document
+                    };
+                    pdfRenderer.RenderDocument();
+                    string filename = "REPORT FOR ISSUE IN-OUT MATERIAl";
+                    string lastfile = ".pdf";
+                    string link_report = Server.MapPath("~/Out_Report/" + filename + "_" + DateTime.Now.ToString("yyyy-MM-dd") + lastfile);
+                    // I don't want to close the document constantly...
+                    pdfRenderer.Save(link_report);
+                    //Process.Start(link_report);
+                    string path = Server.MapPath("~/Out_Report/" + filename + "" + "_" + "" + DateTime.Now.ToString("yyyy-MM-dd") + "" + lastfile + " ");
+                    WebClient client = new WebClient();
+                    byte[] buffer = client.DownloadData(path);
+                    if (buffer != null)
+                    {
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-length", buffer.Length.ToString());
+                        Response.BinaryWrite(buffer);
+                    }
+                    File.Delete(link_report);
+                }
+            }
+            if (Public_Dept == "PUS") // Nếu PUR thì hiển thị phần out stock
+            {
+                dt_ReportAll = DataConn.StoreFillDS("SP_Issue_Material_Report_PUR", CommandType.StoredProcedure, Request_NO);
+                dt_Status = DataConn.StoreFillDS("SP_Issue_Material_RQStatus_PUR", CommandType.StoredProcedure, Request_NO);
+
+                DataTable dt_commentLOG = DataConn.StoreFillDS("SP_getcommet_Log", CommandType.StoredProcedure, Request_NO);
+
+                if (dt_commentLOG.Rows[0][0].ToString() != "")
+                {
+                    commentLOG = dt_commentLOG.Rows[0][1].ToString() + ":" + dt_commentLOG.Rows[0][0].ToString() + " (" + dt_commentLOG.Rows[0][2].ToString() + ")";
+                    doc_PMS = dt_commentLOG.Rows[0][3].ToString();
+                    //comment2 = dt_commentLOG.Rows[0][4].ToString() + ":" + dt_commentLOG.Rows[0][5].ToString() + " (" + dt_commentLOG.Rows[0][6].ToString() + ")";
+                    if (dt_commentLOG.Rows[0][4].ToString() != "")
+                    {
+                        comment2 = dt_commentLOG.Rows[0][4].ToString() + ":" + dt_commentLOG.Rows[0][5].ToString() + " (" + dt_commentLOG.Rows[0][6].ToString() + ")";
+                    }
+                    else
+                    {
+                        comment2 = "";
+                    }
+
+                }
+
+                if (dt_ReportAll.Rows.Count > 0 && dt_Status.Rows.Count > 0)
+                {
+                    //PUR_Report  DataPDF = new PUR_Report(dt_ReportAll, dt_Status, titleReport);
+                    PUR_Report DataPDF = new PUR_Report(dt_ReportAll, dt_Status, tieude, commentLOG, doc_PMS, comment2);
+
+                    // Create a MigraDoc document
+                    //Document document = DataPDF.CreateDocument();
+                    MigraDoc.DocumentObjectModel.Document document = DataPDF.CreateDocument();
+                    document.UseCmykColor = true;
+                    PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always)
+                    {
+                        Document = document
+                    };
+                    pdfRenderer.RenderDocument();
+                    string filename = "REPORT FOR ISSUE IN-OUT MATERIAl";
+                    string lastfile = ".pdf";
+                    string link_report = Server.MapPath("~/Out_Report/" + filename + "_" + DateTime.Now.ToString("yyyy-MM-dd") + lastfile);
+                    // I don't want to close the document constantly...
+                    pdfRenderer.Save(link_report);
+                    //Process.Start(link_report);
+                    string path = Server.MapPath("~/Out_Report/" + filename + "" + "_" + "" + DateTime.Now.ToString("yyyy-MM-dd") + "" + lastfile + " ");
+                    WebClient client = new WebClient();
+                    byte[] buffer = client.DownloadData(path);
+                    if (buffer != null)
+                    {
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-length", buffer.Length.ToString());
+                        Response.BinaryWrite(buffer);
+                    }
+                    File.Delete(link_report);
+                }
+            }
+
+
+
+
         }
 
         protected void dr_filter_section_SelectedIndexChanged(object sender, EventArgs e)

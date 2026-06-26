@@ -174,11 +174,14 @@
    data-department="<%= rows["Department"] %>"
    title="Next Sign">
 
-    <i class="fa fa-arrow-right"></i> Next Sign
+    <i class="fa fa-arrow-right"></i> Next Sign|
 </a>
 
                             <a href="#" title="Commnet LOG"  onclick="openEditModal2('<%= rows["RequestNo"] %>',
-'<%= rows["TypeForm"] %>')"> <i class="fa fa-comment-dots"></i> CommentLOG </a> 
+'<%= rows["TypeForm"] %>')"> <i class="fa fa-comment-dots"></i> CommentLOG </a>|
+                             <asp:Button ID="bttPrint" OnClientClick="openInNewTab()" CssClass="btn btn-info" Text="Report PDF" runat="server" OnClick="bttPrint_Click" />
+                             
+
                         </td>
                         <td><%= i %></td>
                         <td><%= rows["RequestNo"].ToString() %></td>
@@ -298,6 +301,13 @@
         //        });
         //    })
         //});
+    </script>
+
+    <script type="text/javascript">
+        function openInNewTab() {
+            window.document.forms[0].target = '_blank';
+            setTimeout(function () { window.document.forms[0].target = ''; }, 0);
+        }
     </script>
 
     <script type="text/javascript">  
