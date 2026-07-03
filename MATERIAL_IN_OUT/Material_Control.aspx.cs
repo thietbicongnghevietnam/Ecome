@@ -54,7 +54,21 @@ namespace MATERIAL_IN_OUT
         {
             
             DataTable dt2 = new DataTable();
+            //string typename = ddlMasterType.SelectedItem.Text.Trim();
+            //if (ddlMasterType.SelectedValue.ToString() == "23")
+            //{
+            //    //23.Scrap mixing part
+            //    //23.Scrap mixing part (For Outsourcing)
+            //    //special
+            //    dt2 = DataConn.DataTable_Sql("select a.TypeID, a.TypeName, a.Decription  from[dbo].[tbl_TypeMater] a  where a.TypeName = '" + typename + "' ");
+            //}
+            //else 
+            //{
+            //    //normal
+            //}
+
             dt2 = DataConn.DataTable_Sql("select a.TypeID, a.TypeName, a.Decription  from[dbo].[tbl_TypeMater] a  where a.TypeID = '" + ddlMasterType.SelectedValue.ToString() + "' ");
+
             if (dt2.Rows.Count > 0 )
             {
                 lblDecription.Text = dt2.Rows[0]["Decription"].ToString();

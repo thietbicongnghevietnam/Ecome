@@ -4103,6 +4103,11 @@ namespace MATERIAL_IN_OUT
                     for (int i = 0; i < dt_ReportAll.Rows.Count; i++)
                     {
                         string material = dt_ReportAll.Rows[i]["Material"].ToString();
+                        //test
+                        if (material == "ZK4S112C")
+                        {
+
+                        }
                         string plant = dt_ReportAll.Rows[i]["Plant"].ToString();
                         //float qty_issue = float.Parse(dt_ReportAll.Rows[i]["IssueQty"].ToString());
                         //float UnitPrice_ST = float.Parse(dt_ReportAll.Rows[i]["UnitPrice_ST"].ToString());
