@@ -1,0 +1,3 @@
+﻿RequestNo,Department,Status_RQ,Status_Approved_OutSAP,TypeForm,SanctionName,DocumentNo,UserCreate,TypeSapPMS,TypeID,commentlog,Satatu_tranferPMS,Status_Finish_PMS
+RQB-PAPVN-0626-63,PAPVN,Pending,Pending,B,IAF20927,,2000333,Scrap,18.1Production Rejects for OutsourcingHalb,,Tranfer Done_Là,
+RQB-PAPVN-0626-64,PAPVN,Pending,Pending,B,IAF20928,,2000333,Scrap,18.2Production Rejects for OutsourcingRoh,,Tranfer Done_Là,

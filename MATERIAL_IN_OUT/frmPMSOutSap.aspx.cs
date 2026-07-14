@@ -1223,8 +1223,9 @@ namespace MATERIAL_IN_OUT
                                 string typeform = rows[4].Trim();
                                 string sanctionname = rows[5].Trim();
                                 string documentno = rows[6].Trim();
-
-                                if (requestno != "" && department != "" && typeform != "" && documentno != "")
+                                string Status_Finish_PMS = rows[12].Trim(); 
+                                //cap nhat them trang thai Status_Finish_PMS => bo dieu kien documentno != ""   14.07.2026
+                                if (requestno != "" && department != "" && typeform != "")  //&& documentno != ""
                                 {
                                     DataTable dt_checkupload = DataConn.StoreFillDS(
                                         "Upload_Document_PMS",
@@ -1233,7 +1234,8 @@ namespace MATERIAL_IN_OUT
                                         department,
                                         typeform,
                                         sanctionname,
-                                        documentno
+                                        documentno,
+                                        Status_Finish_PMS
                                     );
 
                                     if (dt_checkupload.Rows.Count > 0 && dt_checkupload.Rows[0][0].ToString() == "1")
