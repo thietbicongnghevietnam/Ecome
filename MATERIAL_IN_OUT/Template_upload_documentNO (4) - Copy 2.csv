@@ -1,0 +1,2 @@
+﻿RequestNo,Department,Status_RQ,Status_Approved_OutSAP,TypeForm,SanctionName,DocumentNo,UserCreate,TypeSapPMS,TypeID,commentlog,Satatu_tranferPMS,Status_Finish_PMS
+RQA-SCS-PLD-0626-250,SCS-PLD,Pending,Pending,A,IAF20898,,2010520,Scrap,5.1DispositionHalb,"IAF20898, chờ LOG confirm ngày thực hủy",Tranfer Done_Là,

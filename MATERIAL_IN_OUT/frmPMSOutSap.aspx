@@ -180,7 +180,7 @@
         <asp:FileUpload ID="FileUpload" Width="450px" runat="server" />
                         </p>
                         <p style="margin-top: 0px; margin-left: 20px;">
-                            <input type="button" value="Upload document no" runat="server" onserverclick="ImportFromExcel" class="btn btn-primary" />
+                            <input type="button" value="Update Status Out Sap" runat="server" onserverclick="ImportFromExcel" class="btn btn-primary" />
 
                            
 

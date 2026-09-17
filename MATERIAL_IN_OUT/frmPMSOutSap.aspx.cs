@@ -1223,7 +1223,11 @@ namespace MATERIAL_IN_OUT
                                 string typeform = rows[4].Trim();
                                 string sanctionname = rows[5].Trim();
                                 string documentno = rows[6].Trim();
+                                
+                                string Satatu_tranferPMS= rows[11].Trim();
+
                                 string Status_Finish_PMS = rows[12].Trim(); 
+                                
                                 //cap nhat them trang thai Status_Finish_PMS => bo dieu kien documentno != ""   14.07.2026
                                 if (requestno != "" && department != "" && typeform != "")  //&& documentno != ""
                                 {
@@ -1235,6 +1239,7 @@ namespace MATERIAL_IN_OUT
                                         typeform,
                                         sanctionname,
                                         documentno,
+                                        Satatu_tranferPMS,
                                         Status_Finish_PMS
                                     );
 
