@@ -4,6 +4,12 @@ W:\13.Develop\9.Explanation\FY2025
 
 "DefaultConnection": "Server=LT-DE2302026;Database=ScrapSystem;Integrated Security=True;TrustServerCertificate=True;"
 
+=============== // 01.10.2026 request NG => bo khoi list //============--01.10.2026  bo dieu kien: chi hong PMS *** or  StatusMGR_Out  = ''NG''  --or  StatusMGR_Out  = ''NG''
+SP_Issue_Material_BindRQ_NOTApproved_OutStock
+SP_Issue_Material_BindRQ_NOTApproved_OutStock_B
+
+
+
 =============== // loi rong apporve cua PMS => 08.09.2026 //============
 SP_Issue_Material_BindRQ_Approved_OutStock	-2 => -6
 SP_Issue_Material_BindRQ_Approved_OutStock_B
